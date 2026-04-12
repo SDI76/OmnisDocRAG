@@ -1,0 +1,10 @@
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search_omnis_concepts",
+    "arguments": {
+      "query": "Wie implementiere ich robustes Error Handling bei Omnis API-Aufrufen?",
+      "deep": false
+    }
+  }
+}

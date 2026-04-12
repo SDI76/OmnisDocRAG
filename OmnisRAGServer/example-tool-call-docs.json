@@ -1,0 +1,11 @@
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search_omnis_docs",
+    "arguments": {
+      "query": "$sendallref semantics and differences to $ref",
+      "mode": "concept",
+      "k_programming": 14
+    }
+  }
+}

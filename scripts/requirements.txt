@@ -1,0 +1,8 @@
+# Pipeline Scripts — Omnis RAG
+# Install: pip install -r requirements.txt
+
+pymupdf4llm>=1.27.0      # extract.py  — PDF → Markdown (structure)
+pdfplumber>=0.11.0       # extract.py  — code block spacing fix
+sentence-transformers>=3.0 # embed_and_store.py — local bge-m3 embedding
+psycopg2-binary>=2.9.9   # import_to_postgres.py — PostgreSQL
+python-dotenv>=1.0.0     # import_to_postgres.py — .env loading

@@ -1,0 +1,9 @@
+{
+  "method": "tools/call",
+  "params": {
+    "name": "search_omnis_syntax",
+    "arguments": {
+      "query": "Wie ist die exakte Syntax von $sendall inklusive Parametern?"
+    }
+  }
+}
