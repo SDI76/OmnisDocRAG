@@ -248,7 +248,7 @@ final_splitter = RecursiveCharacterTextSplitter(
 
 **Embedding model:**
 - `text-embedding-3-small` (OpenAI) — inexpensive, good for English
-- or `nomic-embed-text` (local/Ollama) — free, good
+- or `bge-m3` (local/Ollama) — free, good
 
 **Vector database:**
 - **ChromaDB** for development/local use (simple, Python-native)

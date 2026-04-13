@@ -161,7 +161,7 @@ client.create_collection(
 ### Recommendation
 
 - **Now:** ChromaDB + `rank_bm25` for the prototype
-- **Later (production):** Qdrant
+- **Later (production):** Postgresql with pgvector + BM25 indexes, or Qdrant for a more turnkey solution
 
 ---
 
