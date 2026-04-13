@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"c:/Users/stefan.WINTI/Documents/Code/OmnisRAG/OmnisDocRAG/OmnisRAGServer/rag-server/.venv/Scripts/python.exe\" ragserver.py)",
+      "Bash(node -e ':*)",
+      "Bash(node \"c:/Users/stefan.WINTI/Documents/Code/OmnisRAG/OmnisDocRAG/OmnisRAGServer/mcp-bridge/mcpserver.mjs\")"
+    ]
+  }
+}

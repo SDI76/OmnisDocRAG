@@ -15,6 +15,8 @@ Run:
   python import_to_postgres.py
 
 Supports resume: already-imported chunks are skipped via ON CONFLICT DO UPDATE.
+Also performs full-sync cleanup by default: stale documents that are no longer
+present in embeddings.jsonl are removed from the three doc corpora.
 """
 
 import json
@@ -44,6 +46,8 @@ EMBED_DIM   = 1024
 
 JSONL_PATH  = Path(__file__).parent.parent / "output" / "embeddings.jsonl"
 BATCH_SIZE  = 200
+# Read from scripts/.env (loaded above): set DELETE_STALE_DOCS=0 for upsert-only mode.
+DELETE_STALE_DOCS = os.environ.get("DELETE_STALE_DOCS", "1").lower() in {"1", "true", "yes"}
 # ─────────────────────────────────────────────────────────────
 
 SOURCE_TO_CORPUS = {
@@ -173,6 +177,65 @@ def upsert_batch(cur, batch: list[dict], corpus_ids: dict[str, str]) -> tuple[in
     return len(rows), skipped
 
 
+def delete_stale_documents(
+    cur,
+    expected_doc_keys: set[tuple[str, str]],
+    corpus_ids: dict[str, str],
+) -> int:
+    """
+    Delete documents from the three doc corpora that are not in current import.
+    Related chunk/embedding rows are removed by ON DELETE CASCADE.
+    """
+    if not expected_doc_keys:
+        raise RuntimeError(
+            "No valid records found for stale cleanup. "
+            "Aborting deletion to avoid accidental full wipe."
+        )
+
+    cur.execute(
+        """
+        CREATE TEMP TABLE tmp_expected_docs (
+          corpus_id uuid NOT NULL,
+          external_id text NOT NULL,
+          PRIMARY KEY (corpus_id, external_id)
+        ) ON COMMIT DROP
+        """
+    )
+
+    psycopg2.extras.execute_values(
+        cur,
+        """
+        INSERT INTO tmp_expected_docs (corpus_id, external_id)
+        VALUES %s
+        ON CONFLICT DO NOTHING
+        """,
+        [(corpus_ids[corpus], external_id) for corpus, external_id in expected_doc_keys],
+        template="(%s::uuid, %s)",
+        page_size=1000,
+    )
+
+    cur.execute(
+        """
+        WITH target_corpora AS (
+          SELECT corpus_id
+          FROM rag.corpus
+          WHERE name = ANY(%s)
+        )
+        DELETE FROM rag.document d
+        USING target_corpora tc
+        WHERE d.corpus_id = tc.corpus_id
+          AND NOT EXISTS (
+            SELECT 1
+            FROM tmp_expected_docs ted
+            WHERE ted.corpus_id = d.corpus_id
+              AND ted.external_id = d.external_id
+          )
+        """,
+        (list(SOURCE_TO_CORPUS.values()),),
+    )
+    return cur.rowcount
+
+
 def main() -> None:
     if not JSONL_PATH.exists():
         log.error(f"File not found: {JSONL_PATH}")
@@ -192,7 +255,9 @@ def main() -> None:
     imported = 0
     skipped  = 0
     errors   = 0
+    removed  = 0
     t_start  = time.time()
+    expected_doc_keys: set[tuple[str, str]] = set()
 
     with JSONL_PATH.open(encoding="utf-8") as f:
         batch: list[dict] = []
@@ -208,6 +273,12 @@ def main() -> None:
                 log.warning(f"Line {line_num}: JSON parse error — {e}")
                 errors += 1
                 continue
+
+            meta = record.get("metadata", {})
+            source = meta.get("source", "")
+            corpus = SOURCE_TO_CORPUS.get(source)
+            if corpus:
+                expected_doc_keys.add((corpus, record["id"]))
 
             batch.append(record)
 
@@ -249,6 +320,22 @@ def main() -> None:
                 log.error(f"Final batch error: {e}")
                 errors += len(batch)
 
+    if DELETE_STALE_DOCS:
+        try:
+            with conn.cursor() as cur:
+                removed = delete_stale_documents(cur, expected_doc_keys, corpus_ids)
+            conn.commit()
+            if removed > 0:
+                log.info(f"Stale documents removed: {removed}")
+            else:
+                log.info("Stale documents removed: 0")
+        except Exception as e:
+            conn.rollback()
+            log.error(f"Stale cleanup error: {e}")
+            errors += 1
+    else:
+        log.info("Stale cleanup disabled (DELETE_STALE_DOCS=0)")
+
     conn.close()
 
     elapsed = time.time() - t_start
@@ -257,6 +344,7 @@ def main() -> None:
     log.info(f"Done in {elapsed:.1f}s")
     log.info(f"  Imported : {imported}")
     log.info(f"  Skipped  : {skipped} (unknown source)")
+    log.info(f"  Removed  : {removed} (stale documents)")
     log.info(f"  Errors   : {errors}")
     log.info("=" * 50)
 

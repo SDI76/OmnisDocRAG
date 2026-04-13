@@ -4,12 +4,15 @@
 
 This layer makes agentic access easier without changing the underlying database or embeddings.
 
-The runtime now consists of two parts:
+The runtime consists of two parts:
 
 - `rag-server`: local HTTP retrieval server against PostgreSQL
 - `mcp-bridge`: stdio MCP bridge for VS Code that forwards requests to `rag-server`
 
 The `mcp-bridge` depends on the `rag-server` and must be started after it.
+
+A containerised alternative with Streamable HTTP transport is available in
+[`docker_mcp-rag/`](../docker_mcp-rag/README.md).
 
 ## Available Tools
 
@@ -76,26 +79,20 @@ Make sure the local RAG server is running on:
 http://127.0.0.1:7071
 ```
 
-Example:
-
 ```bash
 cd OmnisDocRAG/OmnisRAGServer/rag-server
+source .venv/bin/activate
 python ragserver.py
 ```
 
 ### 2. Start the MCP bridge
 
-```bash
-export OMNIS_RAG_SERVER_URL=http://127.0.0.1:7071
-cd OmnisDocRAG/OmnisRAGServer/mcp-bridge
-node mcpserver.mjs
-```
+The bridge is started automatically by VS Code when the workspace is opened.
+It does not need to be started manually.
 
 ### 3. Register in VS Code
 
-Use a separate MCP server definition for this bridge if you want to keep older variants untouched.
-
-Example configuration:
+`.vscode/mcp.json` in the workspace root:
 
 ```json
 {
@@ -112,6 +109,13 @@ Example configuration:
 }
 ```
 
+## Wire Format
+
+`mcpserver.mjs` uses **NDJSON** (newline-delimited JSON) as the wire format —
+one JSON-RPC object per line, no `Content-Length` headers.
+This matches the MCP stdio transport specification and how VS Code Copilot
+communicates with stdio MCP servers.
+
 ## Example Calls
 
 - `example-tool-call-syntax.json`
@@ -120,4 +124,5 @@ Example configuration:
 
 ## Implementation Status
 
-- `mcpserver.mjs` is operational and uses the existing `/search` endpoint of the `rag-server`.
+- `mcpserver.mjs` is operational (Node.js, NDJSON wire format, MCP 2024-11-05).
+- For the containerised setup with Streamable HTTP transport see [`docker_mcp-rag/`](../docker_mcp-rag/README.md).

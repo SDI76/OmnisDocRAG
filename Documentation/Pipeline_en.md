@@ -484,16 +484,11 @@ python ragserver.py
 
 **Purpose:** stdio MCP bridge for VS Code. It forwards tool calls to the running local `rag-server`.
 
-**Start:**
-```bash
-cd OmnisRAGServer/mcp-bridge
-export OMNIS_RAG_SERVER_URL=http://127.0.0.1:7071
-node mcpserver.mjs
-```
+**Wire format:** NDJSON — one JSON-RPC object per line (`\n` terminated), no `Content-Length` headers.
+This is the wire format used by VS Code Copilot for stdio MCP servers (MCP spec, stdio transport).
 
-**Important:** start the `rag-server` first. The MCP bridge depends on it.
+**VS Code starts the bridge automatically.** No manual start needed. Configuration in `.vscode/mcp.json`:
 
-**VS Code MCP registration example:**
 ```json
 {
   "omnis-rag-local": {
@@ -508,6 +503,11 @@ node mcpserver.mjs
   }
 }
 ```
+
+**Important:** start the `rag-server` before opening VS Code, otherwise tool calls will fail
+(the bridge initialises successfully without the RAG server, but search requests will error).
+
+For the containerised alternative see the [Docker setup](#docker-setup) section below.
 
 ---
 
@@ -538,8 +538,50 @@ cd OmnisRAGServer/rag-server
 pip install -r requirements.txt
 python ragserver.py
 
-# ── Local: Start MCP bridge ──────────────────────────────────
-cd ../mcp-bridge
-export OMNIS_RAG_SERVER_URL=http://127.0.0.1:7071
-node mcpserver.mjs
+# ── Local: Start RAG server (required before VS Code opens) ──
+cd OmnisRAGServer/rag-server
+source .venv/bin/activate
+python ragserver.py
+# VS Code starts the MCP bridge automatically via mcp.json
 ```
+
+---
+
+## Docker Setup
+
+The folder `docker_mcp-rag/` contains a fully containerised version of the RAG stack.
+It runs both the RAG server and the MCP server as Docker containers and exposes the MCP
+server via **Streamable HTTP** (MCP protocol 2025-03-26) instead of stdio.
+
+Full documentation: [`docker_mcp-rag/README.md`](../docker_mcp-rag/README.md)
+
+### What changes compared to the local setup
+
+| Aspect | Local | Docker |
+| --- | --- | --- |
+| MCP server | `mcpserver.mjs` (Node.js, stdio) | `server.py` (Python, HTTP) |
+| MCP transport | NDJSON over stdio | Streamable HTTP on port 3000 |
+| MCP protocol version | 2024-11-05 | 2025-03-26 |
+| RAG server startup | manual | `docker compose up` |
+| Model cache | `~/.cache/huggingface/` | Docker named volume `hf_cache` |
+| VS Code config | `"type": "stdio"` | `"type": "http"` |
+
+### Quick start
+
+```bash
+cd docker_mcp-rag
+cp .env.example .env
+# fill in RAG_DB_PASS and verify RAG_DB_USER in .env
+docker compose up --build
+```
+
+VS Code connects to `http://localhost:3000/mcp` using the `omnis-rag-docker` entry
+already present in `.vscode/mcp.json`.
+
+### Prerequisites for the Docker setup
+
+- Docker Desktop (Windows / macOS) or Docker Engine + Compose plugin (Linux)
+- PostgreSQL running on the host machine with `ragdb` already populated
+  (same database as the local setup — no separate import needed)
+- PostgreSQL `pg_hba.conf` must allow connections from the Docker subnet
+  (`172.0.0.0/8`), and `postgresql.conf` must have `listen_addresses = '*'`

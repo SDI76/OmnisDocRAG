@@ -12,8 +12,9 @@ This document is the short entry point for developers. It explains the actual ru
 - split them into structured chunks
 - embed the chunks locally
 - import them into PostgreSQL with `pgvector`
-- run a local HTTP `rag-server` for retrieval
-- expose MCP tools to VS Code via the stdio-based `mcp-bridge`
+- run a local HTTP `rag-server` for retrieval OR
+- build and run the docker_mcp-rag container
+- expose MCP tools to VS Code via the stdio-based `mcp-bridge` OR the HTTP based Docker
 
 The project is built around three corpora:
 
@@ -31,6 +32,19 @@ OmnisDocRAG/
 ├── Omnis PDF/                  Source PDFs
 ├── output/                     Extracted Markdown, chunks, embeddings
 ├── scripts/                    Extraction, chunking, embedding, DB import
+├── docker_mcp-rag/             Containerised stack (self-contained, independent of OmnisRAGServer)
+│   ├── mcp-server/
+│   │   ├── server.py           MCP server — Python FastMCP, Streamable HTTP, port 3000
+│   │   ├── requirements.txt
+│   │   └── Dockerfile
+│   ├── rag-server/
+│   │   ├── ragserver.py        FastAPI retrieval server (copy of OmnisRAGServer variant)
+│   │   ├── requirements.txt
+│   │   └── Dockerfile
+│   ├── docker-compose.yml      Orchestrates both services
+│   ├── .env                    Runtime configuration (copy from .env.example)
+│   ├── .env.example            Configuration template
+│   └── README.md               Full Docker documentation
 └── OmnisRAGServer/
     ├── README.md               Bridge/server contract
     ├── rag-server/
@@ -152,12 +166,49 @@ What each step does:
 1. `extract.py` converts PDFs to Markdown.
 2. `chunk.py` creates JSON chunk files in `output/chunks/`.
 3. `embed_and_store.py` creates `output/embeddings.jsonl`.
-4. `import_to_postgres.py` upserts the data into PostgreSQL.
+4. `import_to_postgres.py` upserts the data into PostgreSQL and removes stale rows by default.
 
 If chunk content changes, rebuild embeddings with:
 
 ```bash
 python scripts/embed_and_store.py --force
+```
+
+### Import modes (full-sync vs upsert-only)
+
+`scripts/import_to_postgres.py` supports two modes controlled by `DELETE_STALE_DOCS`:
+
+- Full-sync (default): `DELETE_STALE_DOCS=1`
+  - Upserts current embeddings.
+  - Deletes stale documents in `omnis-commands`, `omnis-functions`, and `omnis-programming` that are no longer present in `output/embeddings.jsonl`.
+- Upsert-only: `DELETE_STALE_DOCS=0`
+  - Upserts current embeddings.
+  - Keeps older rows that are not in the current JSONL.
+
+Examples:
+
+```bash
+# full-sync (default)
+python scripts/import_to_postgres.py
+
+# explicit full-sync
+DELETE_STALE_DOCS=1 python scripts/import_to_postgres.py
+
+# upsert-only
+DELETE_STALE_DOCS=0 python scripts/import_to_postgres.py
+```
+
+PowerShell equivalents:
+
+```powershell
+# explicit full-sync
+$env:DELETE_STALE_DOCS = "1"; python scripts/import_to_postgres.py
+
+# upsert-only
+$env:DELETE_STALE_DOCS = "0"; python scripts/import_to_postgres.py
+
+# optional cleanup
+Remove-Item Env:DELETE_STALE_DOCS
 ```
 
 ---
@@ -201,9 +252,85 @@ node mcpserver.mjs
 
 The MCP bridge is dependent on the RAG server. If `rag-server` is not running, MCP requests will fail.
 
+---
+
+## Docker Variant (Recommended for Production Use)
+
+The `docker_mcp-rag/` folder contains a fully self-contained, containerised version of the stack.
+It runs both the RAG server and the MCP server as Docker containers.
+No local Python environment or Node.js bridge is needed at runtime.
+
+### Architecture
+
+```text
+VS Code (HTTP MCP client)
+    │  HTTP POST http://localhost:3000/mcp
+    ▼
+mcp-server  (Python FastMCP, Streamable HTTP, port 3000)
+    │  HTTP http://rag-server:7071  (internal Docker network)
+    ▼
+rag-server  (FastAPI, port 7071)
+    │  TCP
+    ▼
+PostgreSQL on host  (host.docker.internal)
+```
+
+### Prerequisites
+
+- Docker Desktop (Windows/macOS) or Docker Engine + Compose plugin (Linux)
+- PostgreSQL already populated via the pipeline scripts (see [Standard Data Build Workflow](#standard-data-build-workflow))
+- PostgreSQL configured to accept connections from the Docker subnet (see `docker_mcp-rag/README.md`)
+
+### First-time setup
+
+```bash
+cd docker_mcp-rag
+copy .env.example .env     # Windows
+# cp .env.example .env     # macOS/Linux
+```
+
+Edit `.env` and set at minimum:
+
+```env
+RAG_DB_USER=rag_app
+RAG_DB_PASS=your_password
+RAG_DB_NAME=ragdb
+```
+
+### Build and start
+
+```bash
+cd docker_mcp-rag
+docker compose up --build
+```
+
+The first start downloads the `BAAI/bge-m3` model (~1.1 GB) into the named volume `hf_cache`.
+Subsequent starts reuse the cached model and are much faster.
+
+```bash
+# Start in background
+docker compose up -d
+
+# Follow logs of the MCP server only
+docker compose logs -f mcp-server
+
+# Stop everything
+docker compose down
+```
+
+### Health check
+
+The `rag-server` container exposes a `/health` endpoint:
+
+```bash
+curl http://localhost:7071/health
+```
+
+The `mcp-server` only starts after `rag-server` passes its health check (`depends_on: service_healthy`).
+
 ### VS Code MCP configuration
 
-Example local stdio registration:
+**Local stdio variant** (requires local RAG server + Node.js bridge):
 
 ```json
 {
@@ -220,6 +347,19 @@ Example local stdio registration:
 }
 ```
 
+**Docker HTTP variant** (requires `docker compose up` in `docker_mcp-rag/`):
+
+```json
+{
+  "omnis-rag-docker": {
+    "type": "http",
+    "url": "http://localhost:3000/mcp"
+  }
+}
+```
+
+Both entries can coexist in `.vscode/mcp.json`. Use one or the other depending on which variant is running.
+
 ---
 
 ## Important Notes
@@ -229,31 +369,54 @@ Example local stdio registration:
 - Treat `output/` as generated artifacts.
 - `embed_and_store.py` uses local `sentence-transformers` with `BAAI/bge-m3`, which downloads a large model on first run.
 - `scripts/import_to_postgres.py` reads database environment values from `scripts/.env`.
-- The runtime topology is now `rag-server -> mcp-bridge -> VS Code`.
+- Two runtime topologies are available:
+  - **Local:** `rag-server (Python) → mcp-bridge (Node.js) → VS Code (stdio)`
+  - **Docker:** `rag-server (container) → mcp-server (container) → VS Code (HTTP)`
+- `docker_mcp-rag/` is self-contained. Its `rag-server/` and `mcp-server/` are independent copies of the source in `OmnisRAGServer/`.
+- The Docker MCP server uses Python FastMCP with Streamable HTTP (MCP protocol 2025-03-26), not the Node.js stdio bridge.
+- The HuggingFace model cache is persisted in the named Docker volume `hf_cache` to avoid repeated downloads.
 
 ---
 
 ## Quick Start
 
+### Local variant
+
 ```bash
+# 1. Pipeline — run once to build the data
 cd OmnisDocRAG
 python3 -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate          # Windows: .venv\Scripts\Activate.ps1
 pip install -r scripts/requirements.txt
 python scripts/extract.py
 python scripts/chunk.py
 python scripts/embed_and_store.py
 python scripts/import_to_postgres.py
 
+# 2. RAG server — terminal 1
 cd OmnisRAGServer/rag-server
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python ragserver.py
 
-# in a second terminal
+# 3. MCP bridge — terminal 2
 cd OmnisRAGServer/mcp-bridge
 node mcpserver.mjs
 ```
 
-If you are new to the codebase, read `RAG_KONZEPT_en.md` first, then `Pipeline_en.md`, then `OmnisRAGServer/README.md`.
+### Docker variant
+
+```bash
+# 1. Pipeline — run once (same as above, uses local .venv)
+python scripts/import_to_postgres.py
+
+# 2. Configure and start containers
+cd docker_mcp-rag
+copy .env.example .env   # then edit RAG_DB_USER, RAG_DB_PASS
+docker compose up --build
+```
+
+After startup, register `http://localhost:3000/mcp` as an HTTP MCP server in VS Code.
+
+If you are new to the codebase, read `RAG_concept_en.md` first, then `Pipeline_en.md`, then `OmnisRAGServer/README.md` and `docker_mcp-rag/README.md`.

@@ -1,4 +1,5 @@
 import process from "node:process";
+import readline from "node:readline";
 
 const RAG_SERVER_URL = process.env.OMNIS_RAG_SERVER_URL ?? "http://127.0.0.1:7071";
 
@@ -39,18 +40,11 @@ const ALLOWED_MODES = new Set(Object.keys(MODES));
 const ALLOWED_QUERY_LANGUAGES = new Set(["auto", "de", "en"]);
 const MAX_K = 30;
 
-const decoder = new TextDecoder("utf-8");
-const encoder = new TextEncoder();
-let inputBuffer = Buffer.alloc(0);
 let inFlightRequests = 0;
 let stdinEnded = false;
 
 function writeMessage(message) {
-  const json = JSON.stringify(message);
-  const body = encoder.encode(json);
-  const header = `Content-Length: ${body.length}\r\n\r\n`;
-  process.stdout.write(header);
-  process.stdout.write(body);
+  process.stdout.write(JSON.stringify(message) + "\n");
 }
 
 function sendResult(id, result) {
@@ -65,20 +59,6 @@ function sendError(id, code, message, data = undefined) {
   writeMessage({ jsonrpc: "2.0", id, error });
 }
 
-function parseHeaders(headerBlock) {
-  const lines = headerBlock.split("\r\n").filter(Boolean);
-  const headers = new Map();
-  for (const line of lines) {
-    const idx = line.indexOf(":");
-    if (idx === -1) {
-      continue;
-    }
-    const key = line.slice(0, idx).trim().toLowerCase();
-    const value = line.slice(idx + 1).trim();
-    headers.set(key, value);
-  }
-  return headers;
-}
 
 function normalizeK(value, fallback) {
   const numeric = Number(value);
@@ -492,68 +472,44 @@ async function handleRequest(request) {
   return sendError(id, -32601, `Method not found: ${method}`);
 }
 
-function processBuffer() {
-  while (true) {
-    const separator = inputBuffer.indexOf("\r\n\r\n");
-    if (separator === -1) {
-      return;
-    }
+const rl = readline.createInterface({ input: process.stdin, crlfDelay: Infinity });
 
-    const headerRaw = decoder.decode(inputBuffer.subarray(0, separator));
-    const headers = parseHeaders(headerRaw);
-    const contentLengthRaw = headers.get("content-length");
-    if (!contentLengthRaw) {
-      inputBuffer = inputBuffer.subarray(separator + 4);
-      continue;
-    }
-
-    const contentLength = Number(contentLengthRaw);
-    const totalLength = separator + 4 + contentLength;
-    if (inputBuffer.length < totalLength) {
-      return;
-    }
-
-    const bodyBuffer = inputBuffer.subarray(separator + 4, totalLength);
-    inputBuffer = inputBuffer.subarray(totalLength);
-
-    let request;
-    try {
-      request = JSON.parse(decoder.decode(bodyBuffer));
-    } catch {
-      continue;
-    }
-
-    if (!request || request.jsonrpc !== "2.0" || !request.method) {
-      continue;
-    }
-
-    inFlightRequests += 1;
-    Promise.resolve(handleRequest(request))
-      .catch((error) => {
-        const message = error instanceof Error ? error.message : String(error);
-        if (request.id !== undefined) {
-          sendError(request.id, -32603, message);
-        }
-      })
-      .finally(() => {
-        inFlightRequests -= 1;
-        if (stdinEnded && inFlightRequests === 0) {
-          process.exit(0);
-        }
-      });
+rl.on("line", (line) => {
+  const trimmed = line.trim();
+  if (!trimmed) {
+    return;
   }
-}
 
-process.stdin.on("data", (chunk) => {
-  inputBuffer = Buffer.concat([inputBuffer, chunk]);
-  processBuffer();
+  let request;
+  try {
+    request = JSON.parse(trimmed);
+  } catch {
+    return;
+  }
+
+  if (!request || request.jsonrpc !== "2.0" || !request.method) {
+    return;
+  }
+
+  inFlightRequests += 1;
+  Promise.resolve(handleRequest(request))
+    .catch((error) => {
+      const message = error instanceof Error ? error.message : String(error);
+      if (request.id !== undefined) {
+        sendError(request.id, -32603, message);
+      }
+    })
+    .finally(() => {
+      inFlightRequests -= 1;
+      if (stdinEnded && inFlightRequests === 0) {
+        process.exit(0);
+      }
+    });
 });
 
-process.stdin.on("end", () => {
+rl.on("close", () => {
   stdinEnded = true;
   if (inFlightRequests === 0) {
     process.exit(0);
   }
 });
-
-process.stdin.resume();
