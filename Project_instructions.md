@@ -464,6 +464,99 @@ Full details: [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md)
 
 ---
 
+## Agentic Programming — MCP Setup for VS Code
+
+This section is for developers using a coding agent (GitHub Copilot, Claude Code, or any MCP-aware assistant) inside this workspace.
+
+### VS Code MCP configuration (`.vscode/mcp.json`)
+
+Create `.vscode/mcp.json` in the workspace root (one or both entries, depending on which variant is running):
+
+```json
+{
+  "servers": {
+    "omnis-rag-docker": {
+      "type": "http",
+      "url": "http://localhost:3000/mcp"
+    },
+    "omnis-rag-local": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/OmnisRAGServer/mcp-bridge/mcpserver.mjs"
+      ],
+      "env": {
+        "OMNIS_RAG_SERVER_URL": "http://127.0.0.1:7071"
+      }
+    }
+  }
+}
+```
+
+- Use `omnis-rag-docker` when `docker compose up` is running in `docker_mcp-rag/`.
+- Use `omnis-rag-local` when the RAG server and MCP bridge are started manually (see [Runtime Startup Order](#runtime-startup-order)).
+- After changing `mcp.json`, run **MCP: Restart Server** in VS Code to pick up the changes.
+
+### Coding agent instructions (`CLAUDE.md` / `.github/copilot-instructions.md`)
+
+To make the coding agent use these MCP tools automatically, add the following block to your agent instruction file.
+For Claude Code that is `CLAUDE.md` in the workspace root; for GitHub Copilot it is `.github/copilot-instructions.md`.
+
+---
+
+#### MCP Usage Defaults (Project-wide)
+
+For Omnis tasks in this repository, prefer MCP knowledge/functions whenever available:
+
+1. **Syntax/Behavior questions first:** If Omnis language behavior or function semantics are unclear, query MCP-provided Omnis docs before implementing.
+2. **Class retrieval first:** For missing or outdated local classes, use MCP class retrieval workflow (`getClass`) instead of manually recreating structures.
+3. **Source of truth priority:** If local export and MCP payload differ, treat MCP payload as authoritative for reconstruction, then re-check local integration points.
+4. **Traceability:** When MCP data is used for implementation decisions, mention briefly which class/payload was used in the handoff summary.
+
+#### Omnis RAG via MCP-Bridge (for Coding Agent)
+
+When working in this workspace, the coding agent should use the MCP bridge server `omnis-rag-docker` or `omnis-rag-local` for Omnis documentation grounding.
+
+1. **Tools to use:** `search_omnis_syntax`, `search_omnis_concepts`, `search_omnis_docs`.
+2. **When to call RAG:** Primarily when Omnis syntax/semantics are unclear (uncertainty-first), not for every coding step.
+3. **Tool selection:**
+   - `search_omnis_syntax` for strict syntax/signatures/parameters (commands/functions).
+   - `search_omnis_concepts` for patterns, architecture, and best practices.
+   - `search_omnis_docs` for mixed or unclear cases and expert overrides.
+4. **How to apply:** Run the focused tool call, then generate/adjust Omnis code based on returned `context_text` and `chunks`.
+5. **Fallback:** If the MCP bridge is unavailable, mention this explicitly and continue with best-effort from local project patterns.
+6. **Runtime expectation:** Bridge targets `OMNIS_RAG_SERVER_URL` (configured in `.vscode/mcp.json`), expected local endpoint `http://localhost:3000/mcp` for omnis-rag-docker. If using `omnis-rag-local`, ensure the local RAG server and Node.js bridge are running. expected local endpoint then is `http://127.0.0.1:7071`.
+
+##### Retrieval Strategy (Coverage vs. Relevance)
+
+When answering Omnis coding questions, tune retrieval intentionally instead of always using broad defaults:
+
+1. **Concept-first queries:** For programming concepts/patterns, set `corpus="omnis-programming"` and increase `k_programming` (e.g. 12–20).
+2. **Syntax-first queries:** For strict signatures/semantics, query `omnis-functions` and `omnis-commands` explicitly.
+3. **Large topics:** Prefer multiple focused queries over one broad query (e.g., `$sendall` → `$sendallref` → recursion/conditions).
+4. **Grounded output:** Base implementation guidance on retrieved chunks and mention uncertainties if chunks conflict.
+5. **Practical default:** If unsure, start with `corpus="all"`, then refine with corpus-specific follow-up queries.
+
+##### Retrieval Modes (Bridge Presets)
+
+The MCP bridge supports optional `mode` presets in `search_omnis_docs`:
+
+1. **`mode="syntax"`:** Prefer when the user asks for strict syntax/signatures; this increases commands/functions coverage.
+2. **`mode="concept"`:** Prefer for implementation patterns and design questions; this increases programming-guide coverage while keeping some syntax context.
+3. **`mode="deep"`:** Prefer for broad/complex Omnis topics requiring higher conceptual coverage from programming docs.
+4. **Override rule:** If you pass explicit `corpus`/`k_*` values, they intentionally override preset values.
+5. **Recommended flow:** Start with a mode, inspect returned chunks, then issue 1–2 focused follow-up queries if needed.
+
+##### Mode Decision Matrix (Quick Selection)
+
+1. **Strict syntax/signatures/parameters:** start with `mode="syntax"`.
+2. **Implementation patterns/design questions:** start with `mode="concept"`.
+3. **Broad topics with multiple sub-questions:** start with `mode="deep"` and split into focused follow-up queries.
+4. **Ambiguous mixed request:** start with `mode="concept"`, then refine to `syntax` or `deep` based on retrieved chunks.
+5. **Escalation rule:** if first answer lacks confidence/coverage, do at least one focused follow-up query before coding.
+
+---
+
 ## Quick Start
 
 ### Local variant

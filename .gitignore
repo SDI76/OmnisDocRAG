@@ -30,3 +30,7 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.claude/
+
+# MacOS
+.DS_Store
