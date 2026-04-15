@@ -4,6 +4,11 @@
 
 Three documents -> three separate collections -> three different chunking strategies.
 
+The generated chunk JSON files are later embedded locally and can then be imported into:
+
+- local or external PostgreSQL via `scripts/import_to_postgres.py`
+- the Docker PostgreSQL stack via `scripts/import_to_docker_postgres.py`
+
 | Collection | Source | Strategy | Chunk Unit |
 |---|---|---|---|
 | `omnis_commands` | CommandRef.pdf | Atomic command chunking | 1 command = 1 chunk |
@@ -243,7 +248,7 @@ About 15% of Programming chunks are below 50 words. These come from:
 - Legitimate short sections (complete concepts in 30-50 words)
 - Code demo headings (the PDF uses code snippets as section titles)
 
-**Decision: do not merge neighboring chunks.** Reason: the H2 boundaries are semantic units, and merging would join unrelated sections, for example `"Closing a Library"` + `"Omnis VCS"`. `text-embedding-3-large` handles short, self-contained chunks well. The metadata prefix also gives short chunks enough context for retrieval.
+**Decision: do not merge neighboring chunks.** Reason: the H2 boundaries are semantic units, and merging would join unrelated sections, for example `"Closing a Library"` + `"Omnis VCS"`. `BAAI/bge-m3` handles short, self-contained chunks well enough for this corpus, and the metadata prefix gives short chunks additional retrieval context.
 
 ### Metadata per chunk
 
@@ -340,6 +345,8 @@ omnis_programming: "What is the difference between instance and class variables?
   chunk.py            # Markdown -> JSON chunks (with metadata prefix)
   validate.py         # Chunk quality checks
   embed_and_store.py  # JSON chunks -> vector database
+  import_to_postgres.py
+  import_to_docker_postgres.py
 ```
 
 Each script runs independently. Output from step N becomes input to step N+1.

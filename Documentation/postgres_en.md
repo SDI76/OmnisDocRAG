@@ -4,6 +4,11 @@ Reference for the `rag` schema. Full SQL files:
 - `scripts/setup_db.sql` — schema, tables, indexes
 - `scripts/setup_ranking.sql` — hybrid search functions
 
+This schema is used by:
+
+- local or external PostgreSQL instances populated manually
+- the full Docker stack in `docker_mcp-rag-pg/`, where the database is initialized automatically on first startup
+
 ---
 
 ## Table Structure
@@ -70,6 +75,16 @@ SELECT * FROM rag.search_omnis_docs(
 VACUUM ANALYZE rag.embedding;
 VACUUM ANALYZE rag.chunk;
 ```
+
+For `docker_mcp-rag-pg/`, run each `VACUUM` as a separate `psql -c` command:
+
+```bash
+cd docker_mcp-rag-pg
+docker compose exec postgres psql -U rag_owner -d ragdb -c "VACUUM ANALYZE rag.embedding;"
+docker compose exec postgres psql -U rag_owner -d ragdb -c "VACUUM ANALYZE rag.chunk;"
+```
+
+`VACUUM` cannot run inside a transaction block, so do not combine both statements into one single `-c`.
 
 ---
 

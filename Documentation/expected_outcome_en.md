@@ -1,5 +1,13 @@
 # 1. Expected Improvement
 
+The expected retrieval quality is the same across the supported runtime variants:
+
+- local PostgreSQL + local `rag-server` + stdio MCP bridge
+- `docker_mcp-rag/` with PostgreSQL on the host
+- `docker_mcp-rag-pg/` with PostgreSQL 18 inside Docker
+
+All three use the same corpora, the same `BAAI/bge-m3` embedding model, and the same PostgreSQL hybrid search functions.
+
 ## Baseline without RAG
 
 AI has only baseline Omnis knowledge. Omnis is a proprietary niche language with hardly any presence on the internet. Generated code would look syntactically plausible, but be wrong in substance. Estimate: about `~5%` correct syntax for specific questions.
@@ -78,10 +86,9 @@ Comparison with GitHub Copilot for well-known languages: Copilot reaches about `
 - `Programming`: `~300 sections × 450 tokens = 135,000 tokens`
 - Total corpus: `~298,000 tokens`
 
-`text-embedding-3-large`: `$0.13 / 1M tokens`  
-One-time cost: `~$0.04`
+In the current repository this cost is effectively `$0`, because embeddings are generated locally with `BAAI/bge-m3` via `sentence-transformers`.
 
-Basically free. Even with daily re-embedding, for example when docs are updated, it remains negligible.
+Historically, even an OpenAI-based embedding path would have been negligible at this corpus size.
 
 ---
 

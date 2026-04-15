@@ -11,8 +11,10 @@ The runtime consists of two parts:
 
 The `mcp-bridge` depends on the `rag-server` and must be started after it.
 
-A containerised alternative with Streamable HTTP transport is available in
-[`docker_mcp-rag/`](../docker_mcp-rag/README.md).
+Containerised alternatives with Streamable HTTP transport are available in:
+
+- [`docker_mcp-rag/`](../docker_mcp-rag/README.md) for Docker MCP/RAG with PostgreSQL on the host
+- [`docker_mcp-rag-pg/`](../docker_mcp-rag-pg/README.md) for the full Docker stack with PostgreSQL 18 + `pgvector`
 
 ## Available Tools
 
@@ -125,4 +127,4 @@ communicates with stdio MCP servers.
 ## Implementation Status
 
 - `mcpserver.mjs` is operational (Node.js, NDJSON wire format, MCP 2024-11-05).
-- For the containerised setup with Streamable HTTP transport see [`docker_mcp-rag/`](../docker_mcp-rag/README.md).
+- For the containerised setup with Streamable HTTP transport see [`docker_mcp-rag/`](../docker_mcp-rag/README.md) or [`docker_mcp-rag-pg/`](../docker_mcp-rag-pg/README.md).

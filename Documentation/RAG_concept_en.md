@@ -2,7 +2,7 @@
 
 ## Goal
 
-Create **three** separate vector databases from the Omnis PDFs that serve as the RAG foundation for an agentic IDE / AI assistance for Omnis Studio development.
+Create three Omnis documentation corpora inside one PostgreSQL `rag` schema that serve as the RAG foundation for an agentic IDE / AI assistance for Omnis Studio development.
 
 | Collection | Source | Chunk Type |
 |---|---|---|
@@ -148,18 +148,16 @@ Full documentation: `Pipeline_en.md`
 
 ## Runtime Topology
 
-The retrieval runtime has two separate components:
+The repository supports three runtime topologies:
 
-- `OmnisRAGServer/rag-server/ragserver.py`: local HTTP retrieval server
-- `OmnisRAGServer/mcp-bridge/mcpserver.mjs`: stdio MCP bridge for VS Code
+1. Local:
+   `PostgreSQL` -> `OmnisRAGServer/rag-server/ragserver.py` -> `OmnisRAGServer/mcp-bridge/mcpserver.mjs`
+2. Docker with host PostgreSQL:
+   `PostgreSQL` on the host -> `docker_mcp-rag/rag-server` -> `docker_mcp-rag/mcp-server`
+3. Full Docker stack:
+   `docker_mcp-rag-pg/postgres` -> `docker_mcp-rag/rag-server` -> `docker_mcp-rag/mcp-server`
 
-Startup order:
-
-1. PostgreSQL must already contain the imported chunk and embedding data.
-2. Start `rag-server`.
-3. Start `mcp-bridge`.
-
-The MCP bridge depends on the RAG server. It does not perform retrieval on its own.
+In all three variants, the MCP layer depends on `rag-server`. It does not perform retrieval on its own.
 
 ---
 
@@ -246,22 +244,23 @@ final_splitter = RecursiveCharacterTextSplitter(
 
 ### Phase 4: Embedding & vector database
 
-**Embedding model:**
-- `text-embedding-3-small` (OpenAI) — inexpensive, good for English
-- or `bge-m3` (local/Ollama) — free, good
+**Embedding model actually used in the project:**
+- `BAAI/bge-m3` via `sentence-transformers`
+- local for both indexing and query-time embeddings
+- 1024 dimensions
 
-**Vector database:**
-- **ChromaDB** for development/local use (simple, Python-native)
-- **Qdrant** for production (fast, Docker-friendly)
-- Two separate collections: `omnis_functions` + `omnis_programming`
+**Vector database actually used in the project:**
+- PostgreSQL with `pgvector`
+- one `rag` schema with `corpus`, `document`, `chunk`, and `embedding`
+- dense retrieval + BM25 fused via Reciprocal Rank Fusion (RRF)
 
-```python
-import chromadb
+**Import targets in the current repository:**
 
-client = chromadb.PersistentClient(path="./chroma_db")
-functions_col = client.get_or_create_collection("omnis_functions")
-programming_col = client.get_or_create_collection("omnis_programming")
-```
+- local or external PostgreSQL via `scripts/import_to_postgres.py`
+- Docker PostgreSQL inside `docker_mcp-rag-pg/` via `scripts/import_to_docker_postgres.py`
+
+This means the same data model is used across local development, the host-PostgreSQL Docker runtime,
+and the full Docker runtime.
 
 ---
 

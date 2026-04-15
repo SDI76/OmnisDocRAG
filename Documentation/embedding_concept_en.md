@@ -116,52 +116,27 @@ reranker = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
 
 ## Vector Database
 
-### Development: ChromaDB
+### Current implementation: PostgreSQL + pgvector
 
-```python
-import chromadb
+The project now uses PostgreSQL with `pgvector` across all supported runtime variants.
 
-client = chromadb.PersistentClient(path="./chroma_db")
+Schema overview:
 
-commands_col = client.get_or_create_collection(
-    name="omnis_commands",
-    metadata={"hnsw:space": "cosine"}
-)
-functions_col = client.get_or_create_collection(
-    name="omnis_functions",
-    metadata={"hnsw:space": "cosine"}
-)
-programming_col = client.get_or_create_collection(
-    name="omnis_programming",
-    metadata={"hnsw:space": "cosine"}
-)
+```text
+rag.corpus -> rag.document -> rag.chunk -> rag.embedding
 ```
 
-**Pro:** no server, pure Python, easy setup  
-**Con:** no built-in BM25, so BM25 must be implemented separately with `rank_bm25`
+Key properties:
 
-### Production: Qdrant
+- one database with three corpora: `omnis-commands`, `omnis-functions`, `omnis-programming`
+- HNSW index for dense retrieval
+- BM25/full-text via `tsvector`
+- hybrid search via Reciprocal Rank Fusion in SQL functions
 
-```python
-from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams
+Deployment variants:
 
-client = QdrantClient(host="localhost", port=6333)  # or Cloud
-
-client.create_collection(
-    collection_name="omnis_commands",
-    vectors_config=VectorParams(size=3072, distance=Distance.COSINE),
-    # Sparse vectors for hybrid search are built in
-)
-```
-
-**Pro:** built-in hybrid search (dense + sparse), production-ready, Docker-friendly  
-**Con:** slightly more setup
-
-### Recommendation
-
-- **Now:** ChromaDB + `rank_bm25` for the prototype
-- **Later (production):** Postgresql with pgvector + BM25 indexes, or Qdrant for a more turnkey solution
+- local or external PostgreSQL populated via `scripts/import_to_postgres.py`
+- Docker PostgreSQL 18 + `pgvector` in `docker_mcp-rag-pg/`, populated via `scripts/import_to_docker_postgres.py`
 
 ---
 
@@ -242,43 +217,20 @@ Agentic task (5-8 turns):                       ~$0.15-0.24
 
 ## One-Time Corpus Embedding
 
-```python
-import openai
-import json
+The repository performs embeddings locally with `sentence-transformers`:
 
-def embed_chunks(chunks_file: str, collection) -> None:
-    with open(chunks_file) as f:
-        chunks = json.load(f)
-
-    # Batch embedding (max 2048 strings per request with OpenAI)
-    batch_size = 100
-    for i in range(0, len(chunks), batch_size):
-        batch = chunks[i:i+batch_size]
-        texts = [c["text"] for c in batch]
-
-        response = openai.embeddings.create(
-            model="text-embedding-3-large",
-            input=texts
-        )
-        embeddings = [r.embedding for r in response.data]
-
-        collection.add(
-            ids=[c["id"] for c in batch],
-            embeddings=embeddings,
-            documents=texts,
-            metadatas=[c["metadata"] for c in batch]
-        )
-        print(f"Embedded {i + len(batch)}/{len(chunks)} chunks")
+```bash
+python scripts/embed_and_store.py
 ```
 
-**Total one-time embedding cost:**
-```text
-Commands:    ~400 × 250 tokens  = 100,000 tokens
-Functions:   ~350 × 180 tokens  =  63,000 tokens
-Programming: ~300 × 450 tokens  = 135,000 tokens
-─────────────────────────────────────────────────
-Total:                          298,000 tokens × $0.13/1M = ~$0.04
-```
+That script:
+
+- reads all generated chunk JSON files
+- computes `BAAI/bge-m3` embeddings locally
+- writes `output/embeddings.jsonl`
+- resumes by chunk ID if interrupted
+
+The first run downloads the model once to the HuggingFace cache. There is no per-request or per-corpus API cost.
 
 ---
 
@@ -303,10 +255,9 @@ Biggest remaining gap: **object properties**, for example which properties a `Da
 
 ```bash
 pip install pymupdf4llm           # PDF -> Markdown extraction
-pip install openai                # Embeddings + LLM
-pip install chromadb              # Vector database (dev)
-pip install rank_bm25             # BM25 sparse search
-pip install sentence-transformers # Cross-encoder reranking
+pip install sentence-transformers # Embeddings + optional reranking
+pip install psycopg2-binary       # PostgreSQL import/runtime
+pip install python-dotenv         # Env loading for import/runtime
 pip install langchain-text-splitters  # MarkdownHeaderTextSplitter
 ```
 
@@ -318,5 +269,6 @@ pip install langchain-text-splitters  # MarkdownHeaderTextSplitter
 2. Manually verify: are command names recognized as H2 headings? Are tables readable?
 3. Run `extract.py` for all three documents
 4. Run `chunk.py` and validate the JSON chunks (chunk sizes, metadata extraction)
-5. Run `embed_and_store.py` for embeddings (`~$0.04` total cost if using OpenAI)
-6. Execute test queries and assess quality
+5. Run `embed_and_store.py` for local embeddings
+6. Import into PostgreSQL with `import_to_postgres.py` or `import_to_docker_postgres.py`
+7. Execute test queries and assess quality

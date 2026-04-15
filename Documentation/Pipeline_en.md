@@ -1,7 +1,7 @@
 # Omnis Studio RAG — Pipeline Documentation
 
 Complete technical documentation for the processing pipeline from the Omnis PDFs to the
-PostgreSQL vector database and the local `rag-server` / `mcp-bridge` runtime.
+PostgreSQL vector database and the supported local or Docker-based runtimes.
 
 ---
 
@@ -25,7 +25,11 @@ embeddings.jsonl (output/)
     │
     │  scripts/import_to_postgres.py
     ▼
-PostgreSQL ragdb (Linux server)
+PostgreSQL ragdb
+    │
+    │  local/external PostgreSQL or docker_mcp-rag-pg/postgres
+    ▼
+Retrieval database
     │
     │  OmnisRAGServer/rag-server/ragserver.py
     │  Embedding via sentence-transformers (bge-m3, at runtime)
@@ -56,12 +60,17 @@ python3 --version      # >= 3.10
 pip install -r scripts/requirements.txt
 ```
 
-**Linux server (PostgreSQL):**
+**PostgreSQL (manual/local path):**
 ```bash
 # PostgreSQL >= 15 with pgvector extension
 sudo apt install postgresql-16
 sudo apt install postgresql-16-pgvector
 ```
+
+**Docker alternative:**
+
+- `docker_mcp-rag-pg/` provides PostgreSQL 18 + `pgvector` with automatic bootstrap
+- no manual DB installation is required for that path
 
 **Model:** `BAAI/bge-m3` via `sentence-transformers` — downloaded automatically on first use
 (~2 GB, then cached under `~/.cache/huggingface/`).
@@ -84,6 +93,7 @@ OmnisDocRAG/
 │   ├── chunk.py                  Step 2: Markdown -> JSON chunks
 │   ├── embed_and_store.py        Step 3: Chunks -> embeddings.jsonl
 │   ├── import_to_postgres.py     Step 4: embeddings.jsonl -> PostgreSQL
+│   ├── import_to_docker_postgres.py  Step 4b: embeddings.jsonl -> Docker PostgreSQL
 │   ├── setup_db.sql              Create database schema
 │   └── setup_ranking.sql         Hybrid search functions
 │
@@ -96,6 +106,14 @@ OmnisDocRAG/
 │       ├── commands_chunks.json
 │       ├── functions_chunks.json
 │       └── programming_chunks.json
+│
+├── docker_mcp-rag-pg/
+│   ├── docker-compose.yml        postgres + rag-server + mcp-server
+│   ├── postgres-init/           Database bootstrap for PG18 + pgvector
+│   └── README.md                Full Docker-stack runtime docs
+│
+├── docker_mcp-rag/
+│   └── README.md                MCP/RAG Docker stack using PostgreSQL on the host
 │
 └── OmnisRAGServer/
     ├── README.md                 Bridge/server contract
@@ -340,7 +358,9 @@ Each line:
 
 ### `setup_db.sql`
 
-**Run on the Linux server:**
+This step is required when you use PostgreSQL outside Docker.
+
+**Run on the PostgreSQL host:**
 ```bash
 # 1. As superuser: extensions, roles, schema
 psql -U postgres -f setup_db.sql
@@ -399,6 +419,11 @@ RRF score = 1/(60 + dense_rank) + 1/(60 + bm25_rank)
 
 Calls `search_hybrid` across all three document corpora. Default: `3+2+4 = 9` chunks total.
 
+### Docker note
+
+If you use `docker_mcp-rag-pg/`, these schema and ranking steps are executed automatically
+from `docker_mcp-rag-pg/postgres-init/` on first container startup.
+
 ---
 
 ## Step 5 — Import: `import_to_postgres.py`
@@ -413,6 +438,12 @@ Calls `search_hybrid` across all three document corpora. Default: `3+2+4 = 9` ch
 python3 scripts/import_to_postgres.py
 ```
 
+**Docker PostgreSQL target:**
+
+```bash
+python3 scripts/import_to_docker_postgres.py
+```
+
 **Corpus mapping:**
 
 | `metadata.source` | PostgreSQL corpus |
@@ -424,10 +455,23 @@ python3 scripts/import_to_postgres.py
 `ON CONFLICT DO UPDATE` is used on all tables, so the import is resumable and idempotent.
 
 **After import — optimize indexes:**
+
+For local/external PostgreSQL:
+
 ```sql
 VACUUM ANALYZE rag.embedding;
 VACUUM ANALYZE rag.chunk;
 ```
+
+For `docker_mcp-rag-pg/`:
+
+```bash
+cd docker_mcp-rag-pg
+docker compose exec postgres psql -U rag_owner -d ragdb -c "VACUUM ANALYZE rag.embedding;"
+docker compose exec postgres psql -U rag_owner -d ragdb -c "VACUUM ANALYZE rag.chunk;"
+```
+
+Run each `VACUUM` in its own command. `VACUUM` cannot run inside a transaction block.
 
 ---
 
@@ -520,17 +564,22 @@ python3 scripts/extract.py                    # ~2 min
 python3 scripts/chunk.py                      # ~5 sec
 python3 scripts/embed_and_store.py --force    # ~10 min (one-time, M-series)
 
-# ── Linux server: Database ───────────────────────────────────
+# ── PostgreSQL: Database (manual path) ───────────────────────
 psql -U postgres -f scripts/setup_db.sql
 createdb -U postgres -O rag_owner ragdb
 psql -U postgres -d ragdb -f scripts/setup_db.sql
 psql -U postgres -d ragdb -f scripts/setup_ranking.sql
 
-# ── Mac -> Linux: Transfer + Import ─────────────────────────
-scp output/embeddings.jsonl user@linux-server:~/
-# On the Linux server:
+# ── Import: local/external PostgreSQL ───────────────────────
 python3 import_to_postgres.py
-psql -U rag_owner -d ragdb -c 'VACUUM ANALYZE rag.embedding; VACUUM ANALYZE rag.chunk;'
+psql -U rag_owner -d ragdb -c 'VACUUM ANALYZE rag.embedding;'
+psql -U rag_owner -d ragdb -c 'VACUUM ANALYZE rag.chunk;'
+
+# ── Import: Docker PostgreSQL alternative ───────────────────
+python3 scripts/import_to_docker_postgres.py
+cd docker_mcp-rag-pg
+docker compose exec postgres psql -U rag_owner -d ragdb -c "VACUUM ANALYZE rag.embedding;"
+docker compose exec postgres psql -U rag_owner -d ragdb -c "VACUUM ANALYZE rag.chunk;"
 
 # ── Local: Start RAG server ──────────────────────────────────
 cd OmnisRAGServer/rag-server
@@ -549,24 +598,33 @@ python ragserver.py
 
 ## Docker Setup
 
-The folder `docker_mcp-rag/` contains a fully containerised version of the RAG stack.
-It runs both the RAG server and the MCP server as Docker containers and exposes the MCP
-server via **Streamable HTTP** (MCP protocol 2025-03-26) instead of stdio.
+Two Docker variants exist:
 
-Full documentation: [`docker_mcp-rag/README.md`](../docker_mcp-rag/README.md)
+- `docker_mcp-rag/`: `mcp-server` + `rag-server`, PostgreSQL stays outside Docker
+- `docker_mcp-rag-pg/`: `postgres` + `rag-server` + `mcp-server`, fully containerized
+
+Both expose the MCP server via **Streamable HTTP** (MCP protocol 2025-03-26) instead of stdio.
+
+Full documentation:
+
+- [`docker_mcp-rag/README.md`](../docker_mcp-rag/README.md)
+- [`docker_mcp-rag-pg/README.md`](../docker_mcp-rag-pg/README.md)
 
 ### What changes compared to the local setup
 
-| Aspect | Local | Docker |
-| --- | --- | --- |
-| MCP server | `mcpserver.mjs` (Node.js, stdio) | `server.py` (Python, HTTP) |
-| MCP transport | NDJSON over stdio | Streamable HTTP on port 3000 |
-| MCP protocol version | 2024-11-05 | 2025-03-26 |
-| RAG server startup | manual | `docker compose up` |
-| Model cache | `~/.cache/huggingface/` | Docker named volume `hf_cache` |
-| VS Code config | `"type": "stdio"` | `"type": "http"` |
+| Aspect | Local | Docker with host PostgreSQL | Full Docker stack |
+| --- | --- | --- | --- |
+| MCP server | `mcpserver.mjs` (Node.js, stdio) | `server.py` (Python, HTTP) | `server.py` (Python, HTTP) |
+| MCP transport | NDJSON over stdio | Streamable HTTP on port 3000 | Streamable HTTP on port 3000 |
+| MCP protocol version | 2024-11-05 | 2025-03-26 | 2025-03-26 |
+| RAG server startup | manual | `docker compose up` | `docker compose up` |
+| PostgreSQL | local/external | local/external | Docker PG18 + `pgvector` |
+| Model cache | `~/.cache/huggingface/` | Docker named volume `hf_cache` | Docker named volume `hf_cache` |
+| VS Code config | `"type": "stdio"` | `"type": "http"` | `"type": "http"` |
 
 ### Quick start
+
+`docker_mcp-rag/`:
 
 ```bash
 cd docker_mcp-rag
@@ -575,13 +633,22 @@ cp .env.example .env
 docker compose up --build
 ```
 
+`docker_mcp-rag-pg/`:
+
+```bash
+cd docker_mcp-rag-pg
+cp .env.example .env
+docker compose up --build
+cd ..
+python scripts/import_to_docker_postgres.py
+```
+
 VS Code connects to `http://localhost:3000/mcp` using the `omnis-rag-docker` entry
 already present in `.vscode/mcp.json`.
 
 ### Prerequisites for the Docker setup
 
 - Docker Desktop (Windows / macOS) or Docker Engine + Compose plugin (Linux)
-- PostgreSQL running on the host machine with `ragdb` already populated
-  (same database as the local setup — no separate import needed)
-- PostgreSQL `pg_hba.conf` must allow connections from the Docker subnet
-  (`172.0.0.0/8`), and `postgresql.conf` must have `listen_addresses = '*'`
+- For `docker_mcp-rag/`: PostgreSQL running on the host machine with `ragdb` already populated,
+  plus network access for the Docker subnet
+- For `docker_mcp-rag-pg/`: no host PostgreSQL installation required
