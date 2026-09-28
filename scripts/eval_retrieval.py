@@ -27,12 +27,16 @@ Run it before and after every retrieval or ingestion change.
 
 from __future__ import annotations
 
+import sys
 import argparse
 import json
 import re
 import time
 import urllib.request
 from pathlib import Path
+
+if hasattr(sys.stdout, "reconfigure"):   # Windows pipes default to a legacy code page
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 QUERIES = Path(__file__).with_name("eval_queries.json")
 

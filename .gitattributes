@@ -3,3 +3,6 @@
 *.sql  text eol=lf
 Dockerfile text eol=lf
 *.yml  text eol=lf
+
+# Generated artifacts are identical no matter on which OS they are built.
+output/**  text eol=lf

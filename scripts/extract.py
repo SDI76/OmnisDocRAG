@@ -41,6 +41,9 @@ import fitz  # PyMuPDF
 import pdfplumber
 import pymupdf4llm
 
+if hasattr(sys.stdout, "reconfigure"):   # Windows pipes default to a legacy code page
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 BASE = Path(__file__).resolve().parent.parent
 PDF_DIR = BASE / "Omnis PDF"
 OUTPUT = BASE / "output"
@@ -861,10 +864,10 @@ def run(cfg: dict) -> None:
         "units": [asdict(u) for u in units],
     }
     (EXTRACTED / f"{cfg['source']}.json").write_text(
-        json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
+        json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
     md = "\n\n".join(f"<!-- p{u.page_start}-{u.page_end} | {' › '.join(u.heading_path)} -->\n{u.markdown}"
                      for u in units)
-    (OUTPUT / f"{cfg['source']}_extracted.md").write_text(md, encoding="utf-8")
+    (OUTPUT / f"{cfg['source']}_extracted.md").write_text(md, encoding="utf-8", newline="\n")
 
     kinds: dict[str, int] = {}
     for u in units:

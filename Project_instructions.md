@@ -115,18 +115,20 @@ model inside the running rag-server container).
 From the project root:
 
 ```bash
-bash setup_project.sh
+bash setup_project.sh            # macOS / Linux
+.\setup_project.ps1              # Windows PowerShell
 ```
 
-This bootstrap script:
+Both call the cross-platform runner `scripts/pipeline.py` (standard library only):
 
-- creates the root pipeline virtual environment at `.venv`
-- creates the RAG server virtual environment at `OmnisRAGServer/rag-server/.venv`
-- installs all Python dependencies for both environments
-- checks that `python3` and `node` are available
-- creates `OmnisRAGServer/rag-server/.env` from `.env.example` if it is missing
+- `pipeline.py setup --rag-server` creates `.venv` and `OmnisRAGServer/rag-server/.venv` with the
+  right paths for the OS, installs the dependencies and creates `OmnisRAGServer/rag-server/.env`
+  from `.env.example` if it is missing
+- `pipeline.py doctor` shows OS, Python, the embedding device (CUDA / Apple Silicon / CPU), Node.js,
+  Docker, the rag-server and the state of chunks and embeddings, with a recommendation
 
-It does not install system-level dependencies such as PostgreSQL or Node.js itself.
+It does not install system-level dependencies such as PostgreSQL, Docker or Node.js itself.
+Platform details: [Documentation/Pipeline_en.md](Documentation/Pipeline_en.md#platforms-macos-windows-linux).
 
 ### 1. Pipeline virtual environment
 
@@ -208,7 +210,8 @@ Schema details: [Documentation/postgres_en.md](Documentation/postgres_en.md)
 
 ## Standard Data Build Workflow
 
-Run these from the project root after activating the pipeline virtual environment:
+All steps in one go (any OS): `python scripts/pipeline.py build` — or step by step from the project
+root after activating the pipeline virtual environment:
 
 ```bash
 python scripts/extract.py

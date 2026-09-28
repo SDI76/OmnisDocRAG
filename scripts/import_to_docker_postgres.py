@@ -15,6 +15,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):   # Windows pipes default to a legacy code page
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_ENV_FILE = BASE_DIR / "docker_mcp-rag-pg" / ".env"

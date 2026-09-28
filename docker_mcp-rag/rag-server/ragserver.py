@@ -31,6 +31,7 @@ import logging
 import os
 import re
 import socket
+import threading
 import time
 from contextlib import asynccontextmanager, contextmanager
 from pathlib import Path
@@ -96,6 +97,7 @@ CORPUS_LABEL = {
 
 model: SentenceTransformer | None = None
 pool: psycopg2.pool.ThreadedConnectionPool | None = None
+embed_lock = threading.Lock()   # /embed may change max_seq_length temporarily
 
 
 @asynccontextmanager
@@ -231,6 +233,9 @@ class ChunksRequest(BaseModel):
 
 class EmbedRequest(BaseModel):
     texts: list[str] = Field(..., max_length=256)
+    # Token limit for document embeddings; the ingestion sends its own value so that
+    # vectors are identical whether they are computed locally or by this server.
+    max_seq_length: int | None = Field(None, ge=16, le=8192)
 
 
 def resolve_corpora(value: list[str] | str | None, legacy: str | None) -> list[str] | None:
@@ -339,8 +344,16 @@ def health():
 
 @app.post("/embed")
 def embed(req: EmbedRequest):
-    vecs = model.encode(req.texts, normalize_embeddings=True, batch_size=16, show_progress_bar=False)
-    return {"model": EMBED_MODEL, "embeddings": [v.tolist() for v in vecs]}
+    with embed_lock:
+        default_len = model.max_seq_length
+        if req.max_seq_length:
+            model.max_seq_length = req.max_seq_length
+        try:
+            used = model.max_seq_length
+            vecs = model.encode(req.texts, normalize_embeddings=True, batch_size=16, show_progress_bar=False)
+        finally:
+            model.max_seq_length = default_len
+    return {"model": EMBED_MODEL, "max_seq_length": used, "embeddings": [v.tolist() for v in vecs]}
 
 
 @app.post("/search")

@@ -49,10 +49,41 @@ pip install -r scripts/requirements.txt
 
 - Model `BAAI/bge-m3` (~2 GB) is downloaded on first local use to `~/.cache/huggingface/`.
 - Embedding ~1.7 M tokens takes minutes on a GPU / Apple Silicon (MPS is used automatically) and
-  hours on a plain CPU. Alternatively embed through the running rag-server (`--server`), which uses
-  the model already cached in its container.
+  hours on a plain CPU (see [Platforms](#platforms-macos-windows-linux)). Alternatively embed through
+  the running rag-server (`--server`), which uses the model already cached in its container.
 - Optional doc pack: a directory with `catalogs/` and `md/` (built from the Omnis 11.1 HTML help).
   Pass it with `--omnisdoc PATH` or set `OMNISDOC_PACK=PATH` in `scripts/.env.local`.
+
+## Platforms (macOS, Windows, Linux)
+
+`scripts/pipeline.py` is the cross-platform entry point (standard library only). It uses the right
+virtual-environment paths per OS and runs every step with the project's `.venv`:
+
+```bash
+python scripts/pipeline.py doctor        # OS, Python, torch device, Node, Docker, rag-server, data state
+python scripts/pipeline.py setup         # create .venv and install (add --rag-server for the local topology)
+python scripts/pipeline.py build         # extract → chunk → validate → embed → import → eval
+python scripts/pipeline.py build --from embed --to embed   # only the embeddings
+```
+
+`setup_project.sh` (macOS/Linux) and `setup_project.ps1` (Windows) call `pipeline.py setup --rag-server`
+and `pipeline.py doctor`.
+
+What adapts to the machine:
+
+| Aspect | Behaviour |
+|---|---|
+| Embedding device | NVIDIA GPU (`cuda`) → Apple Silicon GPU (`mps`, with CPU fallback for missing ops) → CPU; override with `--device` |
+| Duration of a full embedding | minutes on `cuda`/`mps`, hours on CPU (`doctor` says which applies) |
+| Vectors | identical everywhere: same model, same token limit (512); both are stored per record, so a file built on one machine can be continued or imported on another |
+| Console output | UTF-8 on every OS (Windows pipes no longer break on `›`/`…`) |
+| Generated files | written with LF; `.gitattributes` keeps `output/`, `*.sh`, `*.sql`, `*.yml` in LF |
+| Docker image | CPU build of PyTorch — containers have no GPU (Docker Desktop on macOS has none), and the CUDA build would add several GB on amd64; `pgvector` and Python images are multi-arch (arm64 on Apple Silicon) |
+
+**Embedding on one machine, serving on another.** The chunk files are in git, the embeddings are not.
+Build `output/embeddings.jsonl` where it is fast (`pipeline.py build --from embed --to embed` on a Mac
+with Apple Silicon), copy the file to the machine that runs the database, then run
+`pipeline.py build --from import` there.
 
 ---
 
@@ -68,6 +99,7 @@ OmnisDocRAG/
 │   ├── embed_and_store.py         step 4: chunks → embeddings.jsonl
 │   ├── import_to_postgres.py      step 5: chunks + embeddings → PostgreSQL
 │   ├── import_to_docker_postgres.py  step 5 against the Docker PostgreSQL
+│   ├── pipeline.py                cross-platform runner: doctor, setup, build
 │   ├── eval_retrieval.py          retrieval regression check (eval_queries.json)
 │   ├── test_mcp_rag_bridge.py     end-to-end test of the stdio bridge
 │   ├── setup_db.sql / setup_ranking.sql   local PostgreSQL (include the shared SQL)
@@ -185,7 +217,13 @@ pages, id, and a snippet — typically 2–4 KB.
 ## Full rebuild
 
 ```bash
-source .venv/bin/activate
+python scripts/pipeline.py build                  # all steps, import into the Docker stack
+python scripts/pipeline.py build --target local   # import into the database from scripts/.env
+```
+
+Equivalent single steps (inside the activated `.venv`):
+
+```bash
 python scripts/extract.py
 python scripts/chunk.py --omnisdoc /path/to/omnisdoc
 python scripts/validate.py --omnisdoc /path/to/omnisdoc

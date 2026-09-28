@@ -21,6 +21,7 @@ removed (set DELETE_STALE_DOCS=0 to disable).
 
 from __future__ import annotations
 
+import sys
 import hashlib
 import json
 import logging
@@ -35,6 +36,9 @@ load_dotenv(Path(__file__).parent / ".env")
 
 import psycopg2
 import psycopg2.extras
+
+if hasattr(sys.stdout, "reconfigure"):   # Windows pipes default to a legacy code page
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)

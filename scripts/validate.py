@@ -35,6 +35,9 @@ from pathlib import Path
 import fitz
 from dotenv import load_dotenv
 
+if hasattr(sys.stdout, "reconfigure"):   # Windows pipes default to a legacy code page
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 BASE = Path(__file__).resolve().parent.parent
 EXTRACTED = BASE / "output" / "extracted"
 CHUNKS = BASE / "output" / "chunks"
@@ -182,7 +185,7 @@ def main() -> None:
 
     report = {"failures": r.failures, "info": r.info}
     (BASE / "output" / "validation_report.json").write_text(
-        json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
+        json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
     print(f"\n{'FAILED' if r.failures else 'PASSED'}: {len(r.failures)} failing checks "
           f"(report: output/validation_report.json)")
     sys.exit(1 if r.failures else 0)

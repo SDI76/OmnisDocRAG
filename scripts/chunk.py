@@ -41,6 +41,7 @@ Chunking rules
 
 from __future__ import annotations
 
+import sys
 import argparse
 import json
 import os
@@ -50,6 +51,9 @@ from collections import Counter
 from pathlib import Path
 
 from dotenv import load_dotenv
+
+if hasattr(sys.stdout, "reconfigure"):   # Windows pipes default to a legacy code page
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 BASE = Path(__file__).resolve().parent.parent
 EXTRACTED = BASE / "output" / "extracted"
@@ -617,7 +621,7 @@ def chunk_notation(pack: DocPack) -> list[dict]:
 
 def save(chunks: list[dict], filename: str) -> None:
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    (OUTPUT / filename).write_text(json.dumps(chunks, ensure_ascii=False, indent=1), encoding="utf-8")
+    (OUTPUT / filename).write_text(json.dumps(chunks, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
     sizes = [words(c["text"]) for c in chunks]
     print(f"  {filename}: {len(chunks)} chunks, words avg {sum(sizes) // max(1, len(sizes))}, "
           f"min {min(sizes)}, max {max(sizes)}")

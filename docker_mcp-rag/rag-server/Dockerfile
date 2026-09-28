@@ -3,7 +3,11 @@ FROM python:3.12-slim
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Containers have no GPU access (Docker Desktop on macOS has none at all), so the
+# CPU build of PyTorch is enough. Without this, pip pulls the multi-GB CUDA build on
+# amd64. The CPU index has wheels for amd64 and arm64 (Apple Silicon).
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu \
+ && pip install --no-cache-dir -r requirements.txt
 
 COPY ragserver.py .
 

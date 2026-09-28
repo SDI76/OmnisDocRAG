@@ -80,23 +80,21 @@ fetched only for the ids that matter.
 
 ## Minimum quick start (Full Docker stack)
 
+Works the same on macOS, Windows and Linux (`python3` / `py` instead of `python` where needed).
+
 ```bash
-# 1. Build the data
-source .venv/bin/activate
-python scripts/extract.py
-python scripts/chunk.py --omnisdoc /path/to/omnisdoc     # doc pack optional
-python scripts/validate.py
-python scripts/embed_and_store.py                         # GPU/MPS: minutes, CPU: hours
+# 1. Set up and check the machine
+python scripts/pipeline.py setup
+python scripts/pipeline.py doctor        # shows whether embedding runs on GPU/Apple Silicon (minutes) or CPU (hours)
 
 # 2. Start the stack
 cd docker_mcp-rag-pg
 cp .env.example .env   # then edit DB credentials
 docker compose up -d --build
-
-# 3. Import into the Docker PostgreSQL and check
 cd ..
-python scripts/import_to_docker_postgres.py
-python scripts/eval_retrieval.py --compare
+
+# 3. Build, import and check (optional doc pack: OMNISDOC_PACK in scripts/.env.local)
+python scripts/pipeline.py build
 
 # 4. VS Code — .vscode/mcp.json
 # { "omnis-rag-docker": { "type": "http", "url": "http://localhost:3000/mcp" } }
