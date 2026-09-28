@@ -15,6 +15,45 @@ topologies for local and Docker-based operation.
 
 ---
 
+## What changed in v2 (September 2026)
+
+**Data**
+
+- Extraction reads the structure from the PDFs (bookmarks, fonts, table positions): no lost commands or
+  functions, no code lines as section titles, repaired "fi"/"fl" ligatures, all 17 programming chapters.
+- New corpus `omnis-notation` and the entries new in Omnis 11.1, from the optional doc pack.
+- 5,918 chunks (v1: 2,355). `scripts/validate.py` checks every build.
+- `output/embeddings.jsonl` is versioned in git again, in a compact format (base64 float32, ~33 MB).
+
+**Search and tools**
+
+- One ranking across all corpora; modes `hybrid` (default), `semantic`, `fulltext` (with `"phrase"`,
+  `OR`, `-word`); exact names ranked first; German questions supported.
+- Answers are compact text (~2 KB instead of ~105 KB); new tool `get_omnis_doc` for the full text.
+  Tool names are unchanged; old arguments (`k_commands` …) are ignored.
+- Measured: 39/40 queries with the right hit in the top 5, MRR 0.92 (v1: 14/18, MRR 0.62).
+
+**Operation**
+
+- New schema (v2) and ranking function; SQL moved to `docker_mcp-rag-pg/postgres-init/sql/`.
+- Smaller rag-server image (CPU PyTorch), `mcp` pinned below 2.0, `importer` service for imports inside
+  Docker, bind hosts and tuning in `.env`.
+- `scripts/pipeline.py` (doctor / setup / build) works the same on macOS, Windows and Linux; embedding
+  uses Apple Silicon or NVIDIA GPUs automatically.
+
+**Upgrading an existing installation**
+
+| Where | Steps |
+|---|---|
+| Docker server / full Docker stack | `git pull` → recreate the PostgreSQL volume → `docker compose up -d --build` → `docker compose --profile import run --rm importer` — see [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md#update-an-existing-deployment) |
+| Local PostgreSQL | run `scripts/setup_db.sql` and `scripts/setup_ranking.sql` in `ragdb` (they migrate v1), then `python scripts/pipeline.py build --from import --target local` |
+| MCP clients | nothing to change; optionally use `get_omnis_doc` and `mode` |
+| Rebuilding embeddings (e.g. on a Mac) | [Documentation/Pipeline_en.md](Documentation/Pipeline_en.md#runbook-new-embeddings-on-a-mac-deployment-on-a-docker-server) |
+
+Background and measurements: [Documentation/retrieval_quality_analysis_en.md](Documentation/retrieval_quality_analysis_en.md).
+
+---
+
 ## Documentation index
 
 | Document | What it covers |
