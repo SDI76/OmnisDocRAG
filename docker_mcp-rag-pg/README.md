@@ -6,8 +6,8 @@ This folder provides a second Docker setup for the project:
 - `rag-server`
 - `mcp-server`
 
-It exists alongside `docker_mcp-rag/`, which still targets your local PostgreSQL.
-Nothing in the existing local stack or in `scripts/` needs to be changed.
+It exists alongside `docker_mcp-rag/`, which targets PostgreSQL on the host. `rag-server` and
+`mcp-server` are built from the `docker_mcp-rag/` service folders.
 
 ## What this stack is for
 
@@ -89,11 +89,10 @@ docker compose exec -T postgres psql -U postgres -d ragdb -v ON_ERROR_STOP=1 < p
 docker compose exec -T postgres psql -U postgres -d ragdb -v ON_ERROR_STOP=1 < postgres-init/sql/40-rag-ranking.sql
 ```
 
-## Import embeddings into the Docker PostgreSQL
+## Import into the Docker PostgreSQL
 
-The existing import pipeline stays untouched.
-
-Use the new helper from the repository root:
+Build the data first (`extract.py`, `chunk.py`, `validate.py`, `embed_and_store.py` — see
+[`Documentation/Pipeline_en.md`](../Documentation/Pipeline_en.md)), then from the repository root:
 
 ```bash
 python scripts/import_to_docker_postgres.py
@@ -103,7 +102,8 @@ What it does:
 
 - loads `docker_mcp-rag-pg/.env` if present
 - points `scripts/import_to_postgres.py` to the published Docker PostgreSQL port
-- keeps the original import script unchanged
+- passes further arguments through, e.g. `--allow-missing` to import a partial build while the
+  embeddings are still being computed
 
 You can use a custom env file if needed:
 
@@ -169,20 +169,24 @@ Stop:
 docker compose down
 ```
 
-Stop and remove the database volume too:
+Remove only the database volume (the data is rebuilt by the import):
 
 ```bash
-docker compose down -v
+docker compose rm -sf postgres
+docker volume rm docker_mcp-rag-pg_postgres_data
 ```
+
+`docker compose down -v` removes **all** volumes, including the ~2.2 GB model cache `hf_cache`.
 
 ## Notes
 
 - Passwords are only applied during initial database bootstrap. If you change them
-  later, recreate the PostgreSQL volume with `docker compose down -v`.
+  later, recreate the PostgreSQL volume (see above).
 - PostgreSQL 18 expects the persistent volume at `/var/lib/postgresql`, not
   `/var/lib/postgresql/data`. The compose file already uses the PG18-compatible
   mount layout.
-- `rag-server` and `mcp-server` are built from the existing `docker_mcp-rag` service
-  folders, so there is only one code path for those services in the repo.
+- `rag-server` and `mcp-server` are built from the `docker_mcp-rag` service folders, so there is
+  only one code path for those services in the repo.
+- Container scripts must keep LF line endings; `.gitattributes` enforces this on Windows checkouts.
 - The PostgreSQL image is based on the official `pgvector` Docker image for Postgres 18:
   https://github.com/pgvector/pgvector

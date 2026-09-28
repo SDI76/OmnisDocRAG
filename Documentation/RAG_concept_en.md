@@ -1,311 +1,99 @@
 # RAG Concept: Omnis Studio Documentation
 
-> Original concept from the start of the project (April 2026). The current extraction, chunking and
-> retrieval design differs in several points — all chapters are indexed, structure comes from the PDF
-> fonts/bookmarks, a notation corpus exists, and search ranks globally across corpora. See
-> [chunking_concept_en.md](chunking_concept_en.md), [Pipeline_en.md](Pipeline_en.md) and
-> [retrieval_quality_analysis_en.md](retrieval_quality_analysis_en.md).
-
 ## Goal
 
-Create three Omnis documentation corpora inside one PostgreSQL `rag` schema that serve as the RAG foundation for an agentic IDE / AI assistance for Omnis Studio development.
+Omnis Studio is a proprietary niche language; language models know little of its commands, functions
+and notation and produce plausible-looking but wrong code. This project turns the Omnis documentation
+into a searchable knowledge base that coding agents query through MCP before they write Omnis code.
 
-| Collection | Source | Chunk Type |
+Requirements:
+
+- **complete** — every command, function, notation member and manual section that the sources contain
+- **searchable by meaning and by words** — questions in English or German, exact names, phrases
+- **cheap per call** — compact answers; full text only on demand
+- **local** — no cloud API, reproducible from the files in this repository (+ optional doc pack)
+
+---
+
+## Sources
+
+| Source | Content | Omnis version |
 |---|---|---|
-| `omnis_commands` | CommandRef.pdf | 1 command = 1 chunk |
-| `omnis_functions` | FunctionRef.pdf | 1 function = 1 chunk |
-| `omnis_programming` | Programming_Omnis.pdf | 1 section (H2/H3) = 1 chunk |
+| `CommandRef.pdf` (357 pages, 508 bookmarks) | every 4GL command with metadata table, syntax, options, description, example; overview sections, error codes | Studio 11 (rev. 35659) |
+| `FunctionRef.pdf` (157 pages, no bookmarks) | every function with metadata table, syntax, description, example | Studio 11 (rev. 35659) |
+| `Programming_Omnis.pdf` (614 pages, 17 chapters, no bookmarks) | concepts and patterns: libraries, variables, methods, OOP, lists, SQL, reports, windows, localization, VCS, deployment | Studio 11 |
+| Omnis doc pack (optional) | Markdown built from the Omnis 11.1 help: commands, functions, **notation** (1,121 nodes) | 11.1 |
+
+The PDFs are the files Omnis shipped (FunctionRef and Programming re-saved because the originals were
+hard to read). The notation reference — which properties and methods an object has — exists only in
+the Omnis help, not in the PDFs; the doc pack adds it.
 
 ---
 
-## Document Analysis
+## Corpora
 
-### CommandRef.pdf (~200 pages) — NEW
+| Corpus | Chunk unit | Metadata |
+|---|---|---|
+| `omnis-commands` | one command (+ overview and error-code sections) | group, flag affected, reversible, execute on client, platform, deprecated, pages |
+| `omnis-functions` | one function | group, execute on client, platform, pages |
+| `omnis-programming` | one sub-section with its heading path (chapter › section › sub-section) | chapter, section, pages |
+| `omnis-notation` | one node overview + groups of members | node path, section, deprecated members |
 
-**Structure:** Intro/index (pp. 1-10) + alphabetical command entries (p. 11-end)
+Design decisions that still hold from the original concept:
 
-**Pattern per command:**
+- **Natural units.** Commands and functions are self-contained entries; a chunk never mixes two of them.
+- **Deprecated entries stay** in the index (legacy code must still be understood) but are marked, so
+  agents explain them instead of proposing them.
+- **Metadata in the embedding.** A context line (entry name, group, flags or heading path) is embedded
+  with the chunk, so even short chunks carry their meaning.
+- **Local embeddings.** `BAAI/bge-m3`, multilingual, 1024 dimensions — for indexing and for queries.
+
+---
+
+## Architecture
+
 ```text
-Command Name
-─────────────────────────────────────────────────────
-Command group │ Flag affected │ Reversible │ Execute on client │ Platform
-Constructs    │ NO            │ NO         │ YES               │ All
-─────────────────────────────────────────────────────
-Syntax
-Command Name ([Option1][,Option2])
-
-Options
-Option1    │ Description of what this option does
-Option2    │ Description of what this option does
-
-[Deprecated Command]  ← if deprecated
-Description
-Description of what the command does.
-
-Example
-# comment
-Command Name (Option1)
-Calculate lVar as ...
+Omnis PDF/*.pdf ─┐
+doc pack (opt.) ─┤ extract.py → chunk.py → validate.py → embed_and_store.py → import
+                 ▼
+          PostgreSQL + pgvector  (schema rag: corpus → document → chunk → embedding)
+                 ▼
+          rag-server  /search  /chunks  /embed  /health
+                 ▼
+          MCP: search_omnis_docs · get_omnis_doc · search_omnis_syntax · search_omnis_concepts
+                 ▼
+          coding agent (VS Code, Claude Code, Codex, …)
 ```
 
-**Important differences from FunctionRef:**
-- Additional **Options** field (parameters/keywords of the command)
-- **Flag affected**: does the command set `#F`? Important for error handling
-- **Reversible**: can the command be rolled back inside `Begin reversible block`?
-- **Deprecated** marker: many old commands are deprecated and no longer visible in the code assistant
+Runtime topologies (the MCP layer never retrieves on its own):
 
-**Chunking:** 1 chunk = 1 command (natural separation from the structure)
-- Chunk size: `~150-600` tokens (commands often contain more context than functions)
-- Skip pages 1-10 (index pages, client command list, obsolete command list)
-
-**Deprecated commands:** Keep them as chunks, but mark them with metadata `deprecated: true`.
-Developers maintaining legacy code still need that information.
-
-**Metadata per command chunk:**
-```json
-{
-  "text": "...",
-  "source": "CommandRef",
-  "command_name": "Begin reversible block",
-  "command_group": "Constructs",
-  "flag_affected": false,
-  "reversible": false,
-  "execute_on_client": false,
-  "platform": "All",
-  "deprecated": false,
-  "has_options": false
-}
-```
+1. Local: PostgreSQL → `rag-server` (Python) → stdio bridge `OmnisRAGServer/mcp-bridge/mcpserver.mjs`
+2. Docker with host PostgreSQL: `docker_mcp-rag/` (rag-server + mcp-server, HTTP port 3000)
+3. Full Docker stack: `docker_mcp-rag-pg/` (PostgreSQL 18 + pgvector + both servers)
 
 ---
 
-### FunctionRef.pdf (~150 pages)
+## How retrieval works
 
-**Structure:** Intro (pp. 1-7) + alphabetical function entries (p. 8-end)
+1. The query is embedded (semantic leg), split into words for the weighted full-text leg (stop words
+   removed, common German Omnis words mapped to English), and scanned for Omnis names.
+2. The database ranks all corpora together: nearest vectors, best full-text matches, and chunks that
+   document a name from the query are fused into **one** ranking.
+3. One hit per entry/section is returned as a line with title, source, pages, id and a snippet.
+4. The agent fetches the full text of the relevant ids.
 
-**Pattern per function:**
-```text
-functionname()
-─────────────────────────────────────────
-Function group │ Execute on client │ Platform(s)
-String         │ NO                │ All
-─────────────────────────────────────────
-Syntax
-functionname(parameter1, parameter2)
-
-Description
-Description of what the function does.
-
-Example
-Calculate lResult as functionname('input')
-# returns ...
-```
-
-**Chunking:** 1 chunk = 1 function (natural separation from the structure)
-- Chunk size: `~100-400` tokens
-- Skip pages 1-7 (index pages) since they have rendering issues and no RAG value
-
-**Why Docling failed:** The overview tables on pp. 4-7 use multi-column layouts with overlapping text elements. Docling cannot parse them correctly, which causes extraction to fail.
+Details: [embedding_concept_en.md](embedding_concept_en.md), [postgres_en.md](postgres_en.md).
+Extraction and chunking: [chunking_concept_en.md](chunking_concept_en.md).
+Measurements and the reasons for this design: [retrieval_quality_analysis_en.md](retrieval_quality_analysis_en.md).
 
 ---
 
-### Programming_Omnis.pdf (~508 pages)
+## Quality control
 
-**Structure:** 11 chapters with clear H1/H2/H3 headings
-
-**Chapter overview:**
-| Chapter | Pages | Topic |
-|---------|--------|-------|
-| 1 | 9-83 | The Omnis Environment (IDE) |
-| 2 | 84-114 | Libraries and Classes |
-| 3 | 115-156 | Omnis Programming (Variables, Methods, Events) |
-| 4 | 157-221 | Debugging Methods |
-| 5 | 222-233 | Object Oriented Programming |
-| 6 | 234-249 | List Programming |
-| 7 | 250-285 | SQL Programming |
-| 8 | 286-300 | SQL Classes and Notation |
-| 9 | 301-368 | Server-Specific Programming |
-| 10 | 369-405 | Report Programming |
-| 11 | 406-508 | Window Components |
-
-**Chunking:** 1 chunk = 1 section (H2/H3 level)
-- Target size: `300-800` tokens
-- Sections > `800` tokens: split with `~50-token` overlap
-- Error-code tables (pp. ~107-115): keep as a single chunk `"Error Codes Reference"`
-
-**What to remove:**
-- TOC (pp. 1-6)
-- Figure captions (`"Figure 73:"`, `"Figure 74:"`, etc.)
-- Pure screenshot pages (detected as empty or image-dominant pages)
-- Copyright pages
-
----
-
-## Toolchain Used
-
-- **PDF -> Markdown:** `pymupdf4llm` for structure + `pdfplumber` for correct code-block spacing fixes (hybrid approach, see `scripts/extract.py`)
-- **Chunking:** custom regex parser (commands/functions) + header-based splitting (programming), see `scripts/chunk.py`
-- **Embedding:** `sentence-transformers` with `BAAI/bge-m3` (local, 1024 dimensions)
-- **Vector database:** PostgreSQL with `pgvector`, hybrid search via RRF (dense + BM25)
-
-Full documentation: `Pipeline_en.md`
-
----
-
-## Runtime Topology
-
-The repository supports three runtime topologies:
-
-1. Local:
-   `PostgreSQL` -> `OmnisRAGServer/rag-server/ragserver.py` -> `OmnisRAGServer/mcp-bridge/mcpserver.mjs`
-2. Docker with host PostgreSQL:
-   `PostgreSQL` on the host -> `docker_mcp-rag/rag-server` -> `docker_mcp-rag/mcp-server`
-3. Full Docker stack:
-   `docker_mcp-rag-pg/postgres` -> `docker_mcp-rag/rag-server` -> `docker_mcp-rag/mcp-server`
-
-In all three variants, the MCP layer depends on `rag-server`. It does not perform retrieval on its own.
-
----
-
-## Pipeline Architecture
-
-### Phase 1: Extraction
-
-```python
-# FunctionRef: Markdown extraction
-import pymupdf4llm
-
-md_text = pymupdf4llm.to_markdown("FunctionRef.pdf",
-                                    page_chunks=False,
-                                    show_progress=True)
-# Result: one large Markdown file
-
-# Programming_Omnis: page-by-page for better control
-md_pages = pymupdf4llm.to_markdown("Programming_Omnis.pdf",
-                                    page_chunks=True,  # one list entry per page
-                                    show_progress=True)
-```
-
-### Phase 2: Chunking
-
-**FunctionRef — regex-based splitting:**
-```python
-import re
-
-# Every function starts with the pattern: "functionname()\n"
-# followed by the metadata table
-pattern = r'\n(?=\*\*\w+\(.*?\)\*\*\n)'  # Bold function name
-# or adjust to the Markdown output if needed
-chunks = re.split(r'\n(?=#{3} \w+\()', md_text)
-```
-
-**Programming_Omnis — header-based splitting:**
-```python
-from langchain.text_splitter import MarkdownHeaderTextSplitter
-
-headers_to_split_on = [
-    ("#", "chapter"),
-    ("##", "section"),
-    ("###", "subsection"),
-]
-splitter = MarkdownHeaderTextSplitter(headers_to_split_on)
-chunks = splitter.split_text(md_text)
-
-# Afterwards: RecursiveCharacterTextSplitter for oversized chunks
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-final_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=800,
-    chunk_overlap=50,
-    separators=["\n\n", "\n", ". "]
-)
-```
-
-### Phase 3: Metadata per chunk
-
-**FunctionRef chunk:**
-```json
-{
-  "text": "...",
-  "source": "FunctionRef",
-  "function_name": "abs",
-  "function_group": "Number",
-  "execute_on_client": true,
-  "platform": "All",
-  "has_example": true
-}
-```
-
-**Programming chunk:**
-```json
-{
-  "text": "...",
-  "source": "Programming_Omnis",
-  "chapter": 3,
-  "chapter_title": "Omnis Programming",
-  "section": "Variables",
-  "subsection": "Declaration and Scope",
-  "page_start": 116
-}
-```
-
-### Phase 4: Embedding & vector database
-
-**Embedding model actually used in the project:**
-- `BAAI/bge-m3` via `sentence-transformers`
-- local for both indexing and query-time embeddings
-- 1024 dimensions
-
-**Vector database actually used in the project:**
-- PostgreSQL with `pgvector`
-- one `rag` schema with `corpus`, `document`, `chunk`, and `embedding`
-- dense retrieval + BM25 fused via Reciprocal Rank Fusion (RRF)
-
-**Import targets in the current repository:**
-
-- local or external PostgreSQL via `scripts/import_to_postgres.py`
-- Docker PostgreSQL inside `docker_mcp-rag-pg/` via `scripts/import_to_docker_postgres.py`
-
-This means the same data model is used across local development, the host-PostgreSQL Docker runtime,
-and the full Docker runtime.
-
----
-
-## Irrelevant Sections (to skip)
-
-### FunctionRef:
-- Pages 1-7: intro, function overview lists, copyright
-- `"The OWEB functions have been removed..."` (deprecated notice)
-
-### Programming_Omnis:
-- Pages 1-6: table of contents
-- All `"Figure N:"` captions without surrounding text
-- `"About This Manual"` (p. 7): boilerplate
-- Copyright pages
-- Pure screenshot pages (detected as pages with < 100 characters of text)
-
-**Filter rule:**
-```python
-def is_relevant_page(page_text: str) -> bool:
-    # Skip pages with almost no text (pure images/screenshots)
-    if len(page_text.strip()) < 100:
-        return False
-    # Remove figure-only lines
-    page_text = re.sub(r'\nFigure \d+:.*?\n', '\n', page_text)
-    return True
-```
-
----
-
-## Quality Control — Test Questions
-
-**FunctionRef:**
-
-- "What parameters does `binfrombase64()` accept?"
-- "Which functions can execute on the client?"
-- "How do I calculate the average of a list column?"
-
-**Programming:**
-
-- "What is the difference between instance and class variables in Omnis?"
-- "How do I set up a database connection?"
-- "What is the `$root` notation?"
+- **Build time:** `scripts/validate.py` — every bookmarked command and every function table of the PDFs
+  must be present, no code line as title, no text damage, all chunk fields present; cross-check with
+  the doc pack.
+- **Retrieval:** `scripts/eval_retrieval.py` — 40 questions (commands, functions, notation, concepts,
+  SQL, German, exact names) with expected hits; Hit@5 and MRR@5 per mode. Run it before and after
+  every change.
+- **Runtime:** `scripts/test_mcp_rag_bridge.py` — end-to-end test of the MCP tools.

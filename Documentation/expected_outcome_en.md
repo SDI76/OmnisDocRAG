@@ -68,7 +68,7 @@ i.e. ~15,000–25,000 tokens per call.
 
 ## One-time embedding cost (entire corpus)
 
-- 6,009 chunks, ~1.7 M tokens in total (commands, functions, programming, notation)
+- 5,918 chunks, ~1.7 M tokens in total (commands, functions, programming, notation)
 - Local embedding: minutes on a GPU / Apple Silicon, a few hours on a plain CPU; afterwards only
   changed chunks are embedded again
 

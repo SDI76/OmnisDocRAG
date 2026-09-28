@@ -32,8 +32,8 @@ MCP: docker_mcp-rag/mcp-server/server.py (HTTP)  or  OmnisRAGServer/mcp-bridge/m
 | `omnis-commands` | CommandRef.pdf, 11.1 additions from the doc pack | 585 |
 | `omnis-functions` | FunctionRef.pdf, 11.1 additions from the doc pack | 395 |
 | `omnis-programming` | Programming_Omnis.pdf, chapters 1–17 | 1,883 |
-| `omnis-notation` | doc pack (optional) | 3,146 |
-| **Total** | | **6,009** |
+| `omnis-notation` | doc pack (optional) | 3,055 |
+| **Total** | | **5,918** |
 
 Details of extraction and chunking: [chunking_concept_en.md](chunking_concept_en.md).
 

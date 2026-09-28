@@ -1,274 +1,139 @@
-# Embedding Concept: Omnis Studio RAG
+# Embedding and Retrieval Concept: Omnis Studio RAG
 
 ## Core problem
 
-Omnis-specific tokens such as `$cwind`, `$sendall`, `kTrue`, `kRelationalList`, and `evClick` do not exist in the training corpora of embedding models. The model does not understand them semantically because they are effectively unknown tokens.
-
-Consequence: pure dense-embedding retrieval fails for exact notation lookups. The architecture has to compensate for that.
+Omnis-specific tokens such as `$cwind`, `$sendall`, `kTrue`, `kRelationalList` and `evClick` barely occur
+in the training data of embedding models. Dense embeddings capture the *meaning* of a question well
+("how do I loop over a list"), but are unreliable for exact names. The retrieval therefore combines
+three signals: semantic similarity, weighted full text, and exact-name matching.
 
 ---
 
-## Architecture: Hybrid Search (mandatory)
+## Architecture
 
 ```text
-User Query
+User query (English or German)
     │
-    ├─── Dense Embedding ──────────────────────────┐
-    │    (semantic: "how do I iterate over a list")│
-    │                                               │
-    └─── BM25 Sparse Search ───────────────────────┤
-         (lexical: "$makelist", "kRelationalList")
-                                                    │
-                                              Fusion (RRF)
-                                                    │
-                                        Cross-Encoder Reranking
-                                                    │
-                                            Top-3 to Top-5 Chunks
-                                                    │
-                                           Injection into LLM Prompt
+    ├── Dense embedding (bge-m3)          → 60 nearest chunks, all corpora
+    ├── Full text (weighted tsvector)     → 60 best chunks, OR over the query words
+    └── Name detection ($search, mid(),   → chunks that document that name
+        Begin reversible block, #ERRCODE)
+                    │
+        Weighted Reciprocal Rank Fusion + exact-name boost   (one global ranking)
+                    │
+        One hit per entry/section, top_k (default 8), snippet per hit
+                    │
+        Agent reads the list, fetches full text of 1–3 ids (get_omnis_doc)
 ```
 
-### Why BM25 is indispensable
+The ranking lives in the database function `rag.search_ranked`
+(see [postgres_en.md](postgres_en.md)); the rag-server prepares the query (words, search syntax,
+candidate names, German → English mapping of common words for the full-text leg).
 
-| Query type | Dense only | BM25 only | Hybrid |
-|---|---|---|---|
-| "how to iterate over list" | ✅ good | ❌ no match | ✅ good |
-| "`$sendall` syntax" | ⚠️ weak | ✅ good | ✅ good |
-| "`binfrombase64` parameters" | ⚠️ weak | ✅ good | ✅ good |
-| "SQL connection error handling" | ✅ good | ⚠️ partial | ✅ good |
-| "`kFetchAll` constant" | ❌ unknown | ✅ exact | ✅ good |
+### Why global ranking instead of top-k per corpus
 
-For Omnis, BM25 is **not optional**. Notation lookups are common and lexically very specific.
+v1 retrieved a fixed number of chunks from every corpus and sorted them by a per-corpus RRF score.
+Rank 1 of every corpus got the same score, so unrelated commands or functions were mixed into
+conceptual answers. A single ranking over all candidates fixed that: on the original 18 test queries
+MRR@5 rose from 0.62 to 0.79 with the dense leg alone (see
+[retrieval_quality_analysis_en.md](retrieval_quality_analysis_en.md)).
+
+### Why full text still matters — and why it is weighted
+
+| Query | Semantic | Full text |
+|---|---|---|
+| "how to iterate over a list" | good | weak (common words) |
+| "`binfrombase64`" | neighbours (`binfrombase32`) | exact |
+| "`$sendall` syntax" | good | good |
+| `"reversible block"` (phrase) | — | exact |
+| "Wie lösche ich Zeilen aus einer Liste?" | good (multilingual) | only via word mapping |
+
+A naive full-text leg over the raw content (OR of all words, equal weight) made results worse in the
+analysis (MRR 0.50), because long chunks with frequent words such as "list" dominate. The v2 full-text
+leg therefore uses field weights (title A, heading path B, content C/D), stop-word removal,
+length normalisation, and a lower fusion weight than the dense leg (`RAG_W_FTS`, default 0.5).
+Exact names are handled by the separate boost, not by the full-text rank.
 
 ---
 
-## Embedding Model
+## Embedding model
 
 ### In use: `BAAI/bge-m3`
 
-**Reasoning:**
-- Strong multilingual support (German/English), relevant because queries may be in German while the content is in English
-- Runs locally via `sentence-transformers`, no API key, no cost, no cloud dependency
-- 1024 dimensions, which is sufficient for about `~6000` chunks of a proprietary niche corpus
-- Same model for indexing (`embed_and_store.py`) and runtime (`ragserver.py`), so retrieval stays consistent
+- multilingual (German questions against English documentation)
+- local via `sentence-transformers` — no API key, no cost, no cloud dependency
+- 1024 dimensions, normalised vectors, cosine distance
+- the same model for indexing (`embed_and_store.py`) and queries (`ragserver.py`)
 
-**Specifications:**
 ```text
 Model:       BAAI/bge-m3
 Dimensions:  1024
-Deployment:  sentence-transformers (local, ~2 GB download)
+Download:    ~2.2 GB (HuggingFace cache; Docker volume hf_cache)
 Cost:        $0
 ```
 
-### Why not `text-embedding-3-large` (OpenAI)?
+### What is embedded
 
-It was originally planned because of top quality, `3072` dimensions, and only about `~$0.04` total cost.
-It was later replaced in favor of a fully local pipeline with no API dependency.
-The quality difference is small for this corpus because BM25 already finds the critical Omnis-specific tokens such as `$sendall` and `kRelationalList` lexically.
-
-### Not recommended
-
-- Code-specific models (`CodeBERT`, etc.): Omnis is not present in their training data
-- `text-embedding-ada-002`: outdated and weaker than newer models
-
----
-
-## Retrieval Configuration
-
-### Top-K per collection
-
-| Query type | omnis_commands | omnis_functions | omnis_programming |
-|---|---|---|---|
-| Simple syntax question | 2 | 2 | 1 |
-| Standard coding task | 4 | 3 | 2 |
-| Complex architecture question | 3 | 2 | 4 |
-
-Default configuration: **Top-3 per collection** = 9 chunks total, about `~2,000-3,000` tokens of RAG context.
-
-### Fusion: Reciprocal Rank Fusion (RRF)
-
-RRF combines dense and sparse rankings without parameter tuning:
-```python
-def reciprocal_rank_fusion(dense_results, sparse_results, k=60):
-    scores = {}
-    for rank, doc_id in enumerate(dense_results):
-        scores[doc_id] = scores.get(doc_id, 0) + 1 / (k + rank + 1)
-    for rank, doc_id in enumerate(sparse_results):
-        scores[doc_id] = scores.get(doc_id, 0) + 1 / (k + rank + 1)
-    return sorted(scores.keys(), key=lambda x: scores[x], reverse=True)
-```
-
-### Cross-encoder reranking (optional but recommended)
-
-After fusion, rerank the top-10 candidates with a cross-encoder before selecting the final top-K.
-
-```python
-from sentence_transformers import CrossEncoder
-
-reranker = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
-# Local, free, ~100 ms latency for 10 candidates
-# Gives significantly better relevance scores than cosine similarity alone
-```
-
-**When reranking is worth it:** when the query is very specific and several similar chunks exist, for example many related SQL commands. For clearly unique queries such as direct function lookup, it adds little.
-
----
-
-## Vector Database
-
-### Current implementation: PostgreSQL + pgvector
-
-The project now uses PostgreSQL with `pgvector` across all supported runtime variants.
-
-Schema overview:
+`embed_text` of each chunk = one context line + the chunk text, for example
 
 ```text
-rag.corpus -> rag.document -> rag.chunk -> rag.embedding
+Omnis command: OK message | Group: Message boxes | Flag affected: NO | Reversible: NO | … | DEPRECATED
+
+## OK message
+…
 ```
 
-Key properties:
+or `Omnis Programming manual | Chapter 7—SQL Programming › SQL Worker Objects › Overview`. The context
+line gives short chunks their meaning (which entry, which chapter) and is not shown to the reader.
+Local embedding limits the input to 512 tokens (`--max-seq-length`), which only shortens the longest
+chunks; their beginning (title, metadata, syntax) is always embedded.
 
-- one database with four corpora: `omnis-commands`, `omnis-functions`, `omnis-programming`, `omnis-notation`
-- HNSW index for dense retrieval
-- BM25/full-text via `tsvector`
-- hybrid search via Reciprocal Rank Fusion in SQL functions
+### Cost of building the embeddings
 
-Deployment variants:
+~6,000 chunks, ~1.7 M tokens:
 
-- local or external PostgreSQL populated via `scripts/import_to_postgres.py`
-- Docker PostgreSQL 18 + `pgvector` in `docker_mcp-rag-pg/`, populated via `scripts/import_to_docker_postgres.py`
+| Hardware | Duration |
+|---|---|
+| Apple Silicon (MPS) / NVIDIA GPU | minutes |
+| CPU only (12 threads) | 2–4 hours |
+
+`embed_and_store.py` is incremental (only chunks whose text hash changed), writes checkpoints, and can
+use the model inside the running rag-server container (`--server http://localhost:7071`).
+
+### Alternatives considered
+
+- `text-embedding-3-large` (OpenAI): planned originally; replaced by a fully local pipeline.
+- Code models (`CodeBERT` …): Omnis is not in their training data.
+- A cross-encoder reranker (e.g. `ms-marco-MiniLM`) after fusion is a possible next step; it is not
+  used today — measure with `scripts/eval_retrieval.py` before adding it.
 
 ---
 
-## Metadata Filters During Retrieval
+## Retrieval parameters
 
-Metadata allows targeted retrieval:
+| Parameter | Where | Default |
+|---|---|---|
+| `mode` | tool / `/search` | `hybrid` (`semantic`, `fulltext`) |
+| `top_k` | tool / `/search` | 8 (max 30) |
+| `corpus` / `corpora` | tool / `/search` | all |
+| candidates per leg | `rag.search_ranked` | 60 |
+| RRF constant | `rag.search_ranked` | 60 |
+| dense / full-text weight | `RAG_W_DENSE` / `RAG_W_FTS` | 1.0 / 0.5 |
+| exact-name boost | `rag.search_ranked` | 0.02 × words in the name |
+| snippet length | `RAG_SNIPPET_CHARS` | 240 |
 
-```python
-# Only commands that can execute on the client
-commands_col.query(
-    query_embeddings=[query_embedding],
-    where={"execute_on_client": True},
-    n_results=5
-)
-
-# Exclude deprecated commands
-commands_col.query(
-    query_embeddings=[query_embedding],
-    where={"deprecated": False},
-    n_results=5
-)
-
-# Only functions that run on all platforms
-functions_col.query(
-    query_embeddings=[query_embedding],
-    where={"platform": "All"},
-    n_results=5
-)
-```
+Metadata used at query time: corpus filter, one hit per `doc_key`, `[deprecated]` marker in the result
+list. Further metadata (command group, execute on client, platform, pages) is stored with each chunk
+and shown in the full text.
 
 ---
 
-## Prompt Injection
+## How an agent uses it
 
-### Format in the system prompt
+1. `search_omnis_docs` → compact list (≈ 600–1,000 tokens for 8 hits).
+2. `get_omnis_doc` for the relevant ids (≈ 300–600 tokens per chunk).
 
-```python
-def build_rag_context(commands: list, functions: list, programming: list) -> str:
-    context = "## Relevant Omnis Documentation\n\n"
+A typical question costs ~1,500–2,000 tokens of documentation context. v1 returned 15,000–25,000
+tokens per search because the same text was sent up to four times.
 
-    if commands:
-        context += "### Commands\n"
-        for chunk in commands:
-            context += f"**{chunk['metadata']['command_name']}**\n"
-            context += chunk['text'] + "\n\n---\n\n"
-
-    if functions:
-        context += "### Functions\n"
-        for chunk in functions:
-            context += f"**{chunk['metadata']['function_name']}**\n"
-            context += chunk['text'] + "\n\n---\n\n"
-
-    if programming:
-        context += "### Concepts & Patterns\n"
-        for chunk in programming:
-            context += chunk['text'] + "\n\n---\n\n"
-
-    return context
-```
-
-### Token cost per turn (summary)
-
-```text
-System prompt (instructions):      ~800 tokens   $0.0024
-RAG context (9 chunks, avg):     ~2,500 tokens   $0.0075
-Conversation history:            ~1,000 tokens   $0.0030
-User question + code:              ~500 tokens   $0.0015
-──────────────────────────────────────────────────────────
-Total input:                     ~4,800 tokens   $0.0144
-Output (code + explanation):     ~1,000 tokens   $0.0150
-──────────────────────────────────────────────────────────
-Per turn:                                        ~$0.030
-
-Agentic task (5-8 turns):                       ~$0.15-0.24
-```
-
----
-
-## One-Time Corpus Embedding
-
-The repository performs embeddings locally with `sentence-transformers`:
-
-```bash
-python scripts/embed_and_store.py
-```
-
-That script:
-
-- reads all generated chunk JSON files
-- computes `BAAI/bge-m3` embeddings locally
-- writes `output/embeddings.jsonl`
-- resumes by chunk ID if interrupted
-
-The first run downloads the model once to the HuggingFace cache. There is no per-request or per-corpus API cost.
-
----
-
-## Expected RAG Quality
-
-| Area | Without RAG | With RAG | Limitation |
-|---|---|---|---|
-| Function calls | ~5% | ~90% | FunctionRef is complete |
-| Command syntax | ~5% | ~90% | CommandRef is complete |
-| Notation patterns | ~15% | ~70% | Programming guide is conceptual |
-| Object properties | ~10% | ~35% | Missing from all three docs |
-| Events/handlers | ~10% | ~50% | Partially documented |
-| SQL patterns | ~10% | ~75% | Well covered |
-
-**Overall improvement:** from about `~5%` to `~70-80%` syntactically correct code for standard tasks.
-
-Biggest remaining gap: **object properties**, for example which properties a `Data Grid` has. These live in Omnis Help (`F1`) and not in the three source documents. Mid-term option: scrape the Omnis online help or add it as a fourth RAG collection.
-
----
-
-## Dependencies
-
-```bash
-pip install pymupdf4llm           # PDF -> Markdown extraction
-pip install sentence-transformers # Embeddings + optional reranking
-pip install psycopg2-binary       # PostgreSQL import/runtime
-pip install python-dotenv         # Env loading for import/runtime
-pip install langchain-text-splitters  # MarkdownHeaderTextSplitter
-```
-
----
-
-## Next Steps (in order)
-
-1. `pip install pymupdf4llm` and test extraction: `python -c "import pymupdf4llm; print(pymupdf4llm.to_markdown('CommandRef.pdf', pages=[11,12,13]))"`
-2. Manually verify: are command names recognized as H2 headings? Are tables readable?
-3. Run `extract.py` for all three documents
-4. Run `chunk.py` and validate the JSON chunks (chunk sizes, metadata extraction)
-5. Run `embed_and_store.py` for local embeddings
-6. Import into PostgreSQL with `import_to_postgres.py` or `import_to_docker_postgres.py`
-7. Execute test queries and assess quality
+Expected quality per area: [expected_outcome_en.md](expected_outcome_en.md).

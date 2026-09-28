@@ -62,7 +62,7 @@ VS Code (HTTP) → mcp-server (Python, port 3000) → rag-server (Python, port 7
 | `omnis-commands` | Command Reference (every command, overview sections, error code tables) | 585 |
 | `omnis-functions` | Function Reference | 395 |
 | `omnis-programming` | Programming manual, all 17 chapters | 1,883 |
-| `omnis-notation` | Notation reference from the Omnis 11.1 help (optional doc pack) | 3,146 |
+| `omnis-notation` | Notation reference from the Omnis 11.1 help (optional doc pack) | 3,055 |
 
 ## MCP tools
 

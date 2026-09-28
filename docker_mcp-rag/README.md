@@ -1,7 +1,9 @@
 # docker_mcp-rag — Containerised Omnis RAG Stack
 
-This folder contains the Docker setup for running the Omnis RAG stack as containers.
-It is a self-contained copy, independent of the local development setup in `OmnisRAGServer/`.
+This folder contains the Docker setup for running the Omnis RAG stack as containers, with
+PostgreSQL on the host. Its `rag-server/` and `mcp-server/` folders are the source of both services —
+`docker_mcp-rag-pg/` builds from them, and the local start script `OmnisRAGServer/rag-server/ragserver.py`
+runs `rag-server/ragserver.py`.
 
 ---
 
@@ -10,11 +12,11 @@ It is a self-contained copy, independent of the local development setup in `Omni
 ```text
 docker_mcp-rag/
 ├── mcp-server/
-│   ├── server.py          MCP server — Python, Streamable HTTP, MCP 2025-03-26
-│   ├── requirements.txt
+│   ├── server.py          MCP server — Python FastMCP, Streamable HTTP
+│   ├── requirements.txt   mcp pinned below 2.0 (2.x renamed FastMCP)
 │   └── Dockerfile
 ├── rag-server/
-│   ├── ragserver.py       RAG retrieval server — copy of OmnisRAGServer/rag-server/
+│   ├── ragserver.py       RAG retrieval server (FastAPI) — the only copy of the server code
 │   ├── requirements.txt
 │   └── Dockerfile
 ├── docker-compose.yml     Orchestrates both services
@@ -30,8 +32,8 @@ The `rag-server` container needs two external resources at runtime:
 
 ### 1. PostgreSQL with pgvector (`ragdb`)
 
-The RAG server connects to PostgreSQL and runs hybrid search (dense vector + BM25/full-text)
-against the `rag` schema. The following tables must already be populated before starting:
+The RAG server connects to PostgreSQL and runs `rag.search_ranked` (semantic + weighted full text +
+exact-name boost, one ranking across all corpora) against the `rag` schema. The following tables must already be populated before starting:
 
 | Table | Content |
 |---|---|
@@ -52,7 +54,9 @@ subnet (see [PostgreSQL configuration](#postgresql-configuration) below).
 ### 2. BAAI/bge-m3 embedding model
 
 At startup, the RAG server loads `BAAI/bge-m3` via `sentence-transformers`.
-The model is ~1.1 GB and is downloaded from HuggingFace on the first run.
+The model is ~2.2 GB and is downloaded from HuggingFace on the first run. The server also offers
+`POST /embed`, so `scripts/embed_and_store.py --server http://localhost:7071` can build the document
+embeddings with this cached model.
 
 To avoid downloading it every time:
 - The Docker Compose setup uses a **named volume** (`hf_cache`) that persists the model
@@ -148,9 +152,10 @@ docker compose up --build
 
 On the **first start**:
 1. Docker builds both images (~2–4 min)
-2. `rag-server` downloads `BAAI/bge-m3` (~1.1 GB, stored in the `hf_cache` volume)
+2. `rag-server` downloads `BAAI/bge-m3` (~2.2 GB, stored in the `hf_cache` volume)
 3. `rag-server` connects to PostgreSQL and signals ready
-4. `mcp-server` starts after the `rag-server` health check passes
+4. `mcp-server` starts after the `rag-server` health check passes (the health check allows 5 minutes
+   for loading the model on a busy CPU)
 
 On **subsequent starts** the model is loaded from the volume and the stack is up in ~30 s.
 

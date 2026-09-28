@@ -7,7 +7,7 @@
 | `omnis-commands` | `CommandRef.pdf` (+ doc pack for 11.1 additions) | 1 command; overview sections | 585 |
 | `omnis-functions` | `FunctionRef.pdf` (+ doc pack for 11.1 additions) | 1 function | 395 |
 | `omnis-programming` | `Programming_Omnis.pdf`, all 17 chapters | 1 sub-section with heading path | 1,883 |
-| `omnis-notation` | Omnis doc pack (11.1 help), optional | 1 node overview + member groups | 3,146 |
+| `omnis-notation` | Omnis doc pack (11.1 help), optional | 1 node overview + member groups | 3,055 |
 
 Pipeline: `extract.py` → `chunk.py` → `validate.py` → `embed_and_store.py` → `import_to_postgres.py`.
 Each step reads the output of the previous one from `output/`.
@@ -125,7 +125,8 @@ and `output/<source>_extracted.md` for manual inspection.
 The PDFs contain no notation reference. With the doc pack (`--omnisdoc PATH` or `OMNISDOC_PACK`) each
 notation page (1,121 nodes) becomes:
 
-- a **node chunk**: description plus the names of its properties, methods, events and standard members,
+- a **node chunk**: description plus the names of its properties, methods, events, standard members
+  and child nodes (e.g. `Children: $bobjs $objs $toolbars …`),
 - **member chunks** of ~300 words: `- \`$line\` — The current line in the list …`, deprecated members
   marked.
 

@@ -8,8 +8,9 @@ This document is the short entry point for developers. It explains the actual ru
 
 `OmnisDocRAG` provides a local RAG stack for Omnis Studio documentation:
 
-- extract Omnis PDF manuals into Markdown
-- split them into structured chunks
+- extract the Omnis PDF manuals (structure from bookmarks, fonts and table positions)
+- optionally add the notation reference and 11.1 additions from the Omnis doc pack
+- split everything into structured chunks and validate them
 - embed the chunks locally
 - import them into PostgreSQL with `pgvector`
 - run a local HTTP `rag-server` for retrieval OR
@@ -33,21 +34,24 @@ OmnisDocRAG/
 ├── README.md                   Root overview and document index
 ├── Documentation/              Concepts, architecture, pipeline docs
 ├── Omnis PDF/                  Source PDFs
-├── output/                     Extracted Markdown, chunks, embeddings
-├── scripts/                    Extraction, chunking, embedding, DB import
+├── output/                     Generated: extracted units, chunks, validation report, embeddings
+│   ├── extracted/              Step 1 — units per PDF (JSON)
+│   ├── chunks/                 Step 2 — chunks per corpus (JSON)
+│   └── embeddings.jsonl        Step 4 — not in git, rebuilt locally
+├── scripts/                    extract, chunk, validate, embed, import, eval, bridge test, local SQL setup
 ├── docker_mcp-rag-pg/          Full containerised stack with PostgreSQL 18 + pgvector
 │   ├── docker-compose.yml      Orchestrates postgres + rag-server + mcp-server
-│   ├── postgres-init/          Auto-init SQL and bootstrap scripts
+│   ├── postgres-init/          10-init-ragdb.sh + sql/ (roles, schema, ranking — shared with the local setup)
 │   ├── .env                    Runtime configuration (copy from .env.example)
 │   ├── .env.example            Configuration template
 │   └── README.md               Full-stack Docker documentation
-├── docker_mcp-rag/             Containerised stack (self-contained, independent of OmnisRAGServer)
+├── docker_mcp-rag/             Containerised rag-server + mcp-server (PostgreSQL on the host)
 │   ├── mcp-server/
 │   │   ├── server.py           MCP server — Python FastMCP, Streamable HTTP, port 3000
 │   │   ├── requirements.txt
 │   │   └── Dockerfile
 │   ├── rag-server/
-│   │   ├── ragserver.py        FastAPI retrieval server (copy of OmnisRAGServer variant)
+│   │   ├── ragserver.py        FastAPI retrieval server — the only copy of the server code
 │   │   ├── requirements.txt
 │   │   └── Dockerfile
 │   ├── docker-compose.yml      Orchestrates both services
@@ -57,7 +61,7 @@ OmnisDocRAG/
 └── OmnisRAGServer/
     ├── README.md               Bridge/server contract
     ├── rag-server/
-    │   ├── ragserver.py        FastAPI retrieval server
+    │   ├── ragserver.py        Local start wrapper for docker_mcp-rag/rag-server/ragserver.py
     │   ├── requirements.txt    RAG server dependencies
     │   ├── .env                Runtime configuration
     │   └── .env.example        Template
@@ -69,9 +73,10 @@ OmnisDocRAG/
 
 ## Read These First
 
-- [Documentation/RAG_concept_en.md](Documentation/RAG_concept_en.md)
 - [Documentation/Pipeline_en.md](Documentation/Pipeline_en.md)
 - [Documentation/chunking_concept_en.md](Documentation/chunking_concept_en.md)
+- [Documentation/retrieval_quality_analysis_en.md](Documentation/retrieval_quality_analysis_en.md)
+- [Documentation/RAG_concept_en.md](Documentation/RAG_concept_en.md) (original concept, background)
 - [Documentation/embedding_concept_en.md](Documentation/embedding_concept_en.md)
 - [Documentation/postgres_en.md](Documentation/postgres_en.md)
 - [Documentation/expected_outcome_en.md](Documentation/expected_outcome_en.md)
@@ -94,11 +99,16 @@ cp .env.example .env
 docker compose up --build -d
 ```
 
-Then import the generated embeddings from the repository root:
+Then build the data (see [Standard Data Build Workflow](#standard-data-build-workflow)) and import it
+from the repository root:
 
 ```bash
 python scripts/import_to_docker_postgres.py
 ```
+
+`output/embeddings.jsonl` is not in git: after a fresh clone run `scripts/embed_and_store.py` first
+(minutes on a GPU / Apple Silicon, hours on a plain CPU; `--server http://localhost:7071` uses the
+model inside the running rag-server container).
 
 ### Local bootstrap helper
 
@@ -134,9 +144,18 @@ This installs the dependencies for:
 
 - `scripts/extract.py`
 - `scripts/chunk.py`
+- `scripts/validate.py`
 - `scripts/embed_and_store.py`
 - `scripts/import_to_postgres.py`
 - `scripts/import_to_docker_postgres.py`
+- `scripts/eval_retrieval.py`
+
+Local settings that must not be committed (e.g. the doc pack path) go into `scripts/.env.local`
+(git-ignored):
+
+```env
+OMNISDOC_PACK=/path/to/omnisdoc
+```
 
 ### 2. RAG server environment
 
@@ -175,10 +194,10 @@ There are now two supported database paths:
 - Local or external PostgreSQL managed outside Docker
 - PostgreSQL 18 inside `docker_mcp-rag-pg/` with automatic bootstrap
 
-Use:
+Use (they include the shared SQL from `docker_mcp-rag-pg/postgres-init/sql/`):
 
-- `scripts/setup_db.sql`
-- `scripts/setup_ranking.sql`
+- `scripts/setup_db.sql` — roles, then schema (run again with `-d ragdb`)
+- `scripts/setup_ranking.sql` — `rag.search_ranked`
 
 Manual schema setup is only needed for the local/external PostgreSQL path.
 The full Docker stack initializes the database automatically on first startup.
@@ -358,7 +377,7 @@ cd docker_mcp-rag
 docker compose up --build
 ```
 
-The first start downloads the `BAAI/bge-m3` model (~1.1 GB) into the named volume `hf_cache`.
+The first start downloads the `BAAI/bge-m3` model (~2.2 GB) into the named volume `hf_cache`.
 Subsequent starts reuse the cached model and are much faster.
 
 ```bash
@@ -455,18 +474,21 @@ Full details: [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md)
 ## Important Notes
 
 - Work only inside `OmnisDocRAG` for this finalized project copy.
-- Keep German originals in `Documentation/` and add English versions as separate `_en` files.
-- Treat `output/` as generated artifacts.
-- `embed_and_store.py` uses local `sentence-transformers` with `BAAI/bge-m3`, which downloads a large model on first run.
+- Documentation in `Documentation/` is written in English (`_en` files).
+- Treat `output/` as generated artifacts; `output/embeddings.jsonl` is git-ignored (exceeds GitHub's file limit).
+- `embed_and_store.py` uses local `sentence-transformers` with `BAAI/bge-m3` (~2.2 GB download; MPS/CUDA
+  used automatically) or, with `--server`, the model of the running rag-server.
 - `scripts/import_to_postgres.py` reads database environment values from `scripts/.env`.
 - `scripts/import_to_docker_postgres.py` reads Docker DB settings from `docker_mcp-rag-pg/.env`.
 - Three runtime topologies are available:
   - **Local:** `rag-server (Python) → mcp-bridge (Node.js) → VS Code (stdio)`
   - **Docker with host PostgreSQL:** `PostgreSQL (host) → rag-server (container) → mcp-server (container) → VS Code (HTTP)`
   - **Full Docker stack:** `postgres (container) → rag-server (container) → mcp-server (container) → VS Code (HTTP)`
-- `docker_mcp-rag/` is self-contained. Its `rag-server/` and `mcp-server/` are independent copies of the source in `OmnisRAGServer/`.
+- `docker_mcp-rag/rag-server/ragserver.py` is the only copy of the server code; `OmnisRAGServer/rag-server/ragserver.py`
+  starts it for the local topology.
 - `docker_mcp-rag-pg/` reuses those Docker service folders but adds PostgreSQL 18 + `pgvector` and database bootstrap.
-- The Docker MCP server uses Python FastMCP with Streamable HTTP (MCP protocol 2025-03-26), not the Node.js stdio bridge.
+- The Docker MCP server uses Python FastMCP with Streamable HTTP, not the Node.js stdio bridge. `mcp` is pinned
+  below 2.0 (2.x renamed FastMCP). Both MCP front-ends offer the same four tools.
 - The HuggingFace model cache is persisted in the named Docker volume `hf_cache` to avoid repeated downloads.
 
 ---
@@ -595,4 +617,4 @@ python scripts/import_to_docker_postgres.py
 
 After startup, register `http://localhost:3000/mcp` as an HTTP MCP server in VS Code.
 
-If you are new to the codebase, read `RAG_concept_en.md` first, then `Pipeline_en.md`, then `docker_mcp-rag-pg/README.md` or `docker_mcp-rag/README.md` depending on the runtime you want.
+If you are new to the codebase, read `Pipeline_en.md` first, then `chunking_concept_en.md`, then `docker_mcp-rag-pg/README.md` or `docker_mcp-rag/README.md` depending on the runtime you want. `RAG_concept_en.md` documents the original design decisions.
