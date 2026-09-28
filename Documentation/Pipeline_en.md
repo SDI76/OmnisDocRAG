@@ -86,6 +86,62 @@ textual diff). Build the embeddings where it is fast (`pipeline.py build --from 
 Mac with Apple Silicon), commit and push; on the machine with the database pull and run
 `pipeline.py build --from import`.
 
+### Runbook: new embeddings on a Mac, deployment on a Docker server
+
+**1. Prepare the Mac (once)**
+
+```bash
+git clone https://github.com/SDI76/OmnisDocRAG.git && cd OmnisDocRAG   # or: git pull
+python3 scripts/pipeline.py setup
+python3 scripts/pipeline.py doctor        # "embedding device: mps" — otherwise it runs on the CPU (hours)
+```
+
+Only if chunks are rebuilt on the Mac (step 2b): the Omnis doc pack must be on the Mac, and
+`scripts/.env.local` must point to it (`OMNISDOC_PACK=/path/to/omnisdoc`, see `scripts/.env.local.example`).
+Without it `chunk.py` stops, instead of silently dropping the notation corpus and the 11.1 additions.
+
+**2a. Only re-embed** (chunks unchanged, e.g. after a model or token-limit change — the chunks are in git):
+
+```bash
+python3 scripts/pipeline.py build --from embed --to embed     # --force in embed_and_store.py re-embeds everything
+```
+
+**2b. Rebuild chunks and embeddings** (after changes to `extract.py` / `chunk.py`):
+
+```bash
+python3 scripts/pipeline.py build --from extract --to embed   # extract → chunk → validate → embed
+```
+
+`validate.py` stops the build on missing entries or damaged text; `embed_and_store.py` only embeds
+chunks whose text changed.
+
+**3. Check and publish**
+
+```bash
+python3 scripts/pipeline.py doctor        # "missing/stale: 0"
+git add output/ && git commit -m "Rebuild embeddings" && git push
+```
+
+`output/embeddings.jsonl` (~33 MB) is versioned; no manual file transfer is needed.
+
+**4. Deploy on the server** (see [docker_mcp-rag-pg/README.md](../docker_mcp-rag-pg/README.md#deploy-on-an-internal-docker-server)):
+
+```bash
+git pull
+cd docker_mcp-rag-pg
+docker compose up -d --build                        # only rebuilds what changed
+docker compose --profile import run --rm importer   # loads output/ into the database (~30 s)
+```
+
+**5. Measure** (from any machine that reaches the rag-server, e.g. on the server itself or through an
+SSH tunnel to port 7071):
+
+```bash
+python3 scripts/eval_retrieval.py --compare --url http://localhost:7071/search
+```
+
+Compare with the results log in [retrieval_quality_analysis_en.md](retrieval_quality_analysis_en.md#6-results-log).
+
 ---
 
 ## Project structure

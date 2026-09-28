@@ -470,7 +470,10 @@ cd ..
 python scripts/import_to_docker_postgres.py
 ```
 
-Full details: [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md)
+Full details, including deployment on an internal Docker server (import inside Docker, bind hosts,
+updates): [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md#deploy-on-an-internal-docker-server).
+Rebuilding the embeddings on a Mac and rolling them out:
+[Documentation/Pipeline_en.md](Documentation/Pipeline_en.md#runbook-new-embeddings-on-a-mac-deployment-on-a-docker-server).
 
 ---
 

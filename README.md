@@ -21,7 +21,7 @@ topologies for local and Docker-based operation.
 |---|---|
 | [Project_instructions.md](Project_instructions.md) | Entry point — setup, startup order, quick-start commands |
 | [Documentation/RAG_concept_en.md](Documentation/RAG_concept_en.md) | Why RAG, how retrieval works, architecture overview |
-| [Documentation/Pipeline_en.md](Documentation/Pipeline_en.md) | Data build pipeline (extract → chunk → validate → embed → import), endpoints, tools |
+| [Documentation/Pipeline_en.md](Documentation/Pipeline_en.md) | Data build pipeline, platforms, **runbook: new embeddings on a Mac → server** |
 | [Documentation/chunking_concept_en.md](Documentation/chunking_concept_en.md) | How the PDFs are extracted and chunked, and why |
 | [Documentation/embedding_concept_en.md](Documentation/embedding_concept_en.md) | Embedding model, dimensions, and storage |
 | [Documentation/postgres_en.md](Documentation/postgres_en.md) | Database schema, full-text vector, `rag.search_ranked` |
@@ -29,7 +29,7 @@ topologies for local and Docker-based operation.
 | [Documentation/retrieval_quality_analysis_en.md](Documentation/retrieval_quality_analysis_en.md) | Retrieval quality analysis, measurements before/after the rework |
 | [OmnisRAGServer/README.md](OmnisRAGServer/README.md) | Local stdio MCP bridge contract and tool reference |
 | [docker_mcp-rag/README.md](docker_mcp-rag/README.md) | Docker stack — `mcp-server` + `rag-server`, using PostgreSQL on the host |
-| [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md) | Full Docker stack — PostgreSQL 18 + `pgvector` + `rag-server` + `mcp-server` |
+| [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md) | Full Docker stack — PostgreSQL 18 + `pgvector` + `rag-server` + `mcp-server`; **deployment on an internal Docker server** |
 
 ---
 

@@ -26,7 +26,9 @@ services:
     build: ../docker_mcp-rag/rag-server
     restart: unless-stopped
     ports:
-      - "${RAG_PORT:-7071}:7071"
+      # Only the MCP server needs the rag-server (internal network). Publish it for the local
+      # stdio bridge, the evaluation and --server embedding; on a shared server use 127.0.0.1.
+      - "${RAG_BIND_HOST:-0.0.0.0}:${RAG_PORT:-7071}:7071"
     environment:
       - RAG_DB_HOST=postgres
       - RAG_DB_PORT=5432
@@ -36,6 +38,9 @@ services:
       - EMBED_MODEL=${EMBED_MODEL:-BAAI/bge-m3}
       - PORT=7071
       - STRICT_PORT=false
+      - RAG_W_DENSE=${RAG_W_DENSE:-1.0}
+      - RAG_W_FTS=${RAG_W_FTS:-0.3}
+      - RAG_RRF_K=${RAG_RRF_K:-60}
     volumes:
       - hf_cache:/root/.cache/huggingface
     depends_on:
@@ -52,13 +57,36 @@ services:
     build: ../docker_mcp-rag/mcp-server
     restart: unless-stopped
     ports:
-      - "${MCP_PORT:-3000}:3000"
+      - "${MCP_BIND_HOST:-0.0.0.0}:${MCP_PORT:-3000}:3000"
     environment:
       - RAG_SERVER_URL=http://rag-server:7071
       - MCP_HOST=0.0.0.0
       - MCP_PORT=3000
     depends_on:
       rag-server:
+        condition: service_healthy
+
+  # One-shot import of output/chunks + output/embeddings.jsonl into the stack's database,
+  # inside the Docker network (no Python on the host, no published database port needed):
+  #   docker compose --profile import run --rm importer
+  importer:
+    build: ../docker_mcp-rag/rag-server        # has psycopg2 + python-dotenv
+    profiles: ["import"]
+    working_dir: /repo
+    volumes:
+      - ../scripts:/repo/scripts:ro
+      - ../output:/repo/output:ro
+    environment:
+      - RAG_DB_HOST=postgres
+      - RAG_DB_PORT=5432
+      - RAG_DB_NAME=${POSTGRES_DB:-ragdb}
+      - RAG_DB_USER=${RAG_DB_USER:-rag_app}
+      - RAG_DB_PASS=${RAG_DB_PASS:?RAG_DB_PASS is required}
+      - EMBED_MODEL=${EMBED_MODEL:-BAAI/bge-m3}
+      - PYTHONUNBUFFERED=1
+    command: ["python", "scripts/import_to_postgres.py"]
+    depends_on:
+      postgres:
         condition: service_healthy
 
 volumes:

@@ -630,8 +630,18 @@ def save(chunks: list[dict], filename: str) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--omnisdoc", help="path to the Omnis doc pack (directory with catalogs/ and md/)")
+    ap.add_argument("--without-docpack", action="store_true",
+                    help="build from the PDFs only; drops the notation corpus and the 11.1 additions")
     args = ap.parse_args()
-    pack = resolve_pack(args.omnisdoc)
+    pack = None if args.without_docpack else resolve_pack(args.omnisdoc)
+
+    # Guard: a machine without the doc pack must not silently shrink a complete build.
+    if pack is None and not args.without_docpack and (OUTPUT / "notation_chunks.json").exists():
+        sys.exit("The current chunks were built with the Omnis doc pack (notation corpus, 11.1 additions), "
+                 "but no doc pack is configured here.\n"
+                 "  - set OMNISDOC_PACK in scripts/.env.local or pass --omnisdoc PATH, or\n"
+                 "  - pass --without-docpack to build from the PDFs only (drops those chunks).\n"
+                 "Re-embedding alone does not need the doc pack: python scripts/pipeline.py build --from embed")
 
     print("=== Chunking ===")
     print(f"Doc pack: {pack.root if pack else 'not configured (no notation corpus, no deprecation data)'}")
