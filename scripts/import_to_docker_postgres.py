@@ -2,9 +2,9 @@
 import_to_docker_postgres.py — run the existing PostgreSQL import against the
 containerized PostgreSQL published by docker_mcp-rag-pg/.
 
-This script keeps scripts/import_to_postgres.py unchanged.
-It only resolves the Docker stack env file, sets RAG_DB_* overrides, and then
-launches the existing importer with the current Python interpreter.
+It resolves the Docker stack env file, sets RAG_DB_* overrides, and then
+launches scripts/import_to_postgres.py with the current Python interpreter.
+Unknown arguments (e.g. --allow-missing) are passed through to the importer.
 """
 
 from __future__ import annotations
@@ -40,7 +40,7 @@ def parse_args() -> argparse.Namespace:
         type=int,
         help="Override the published Docker PostgreSQL port.",
     )
-    return parser.parse_args()
+    return parser.parse_known_args()
 
 
 def resolve_env_file(env_file: Path) -> Path | None:
@@ -73,7 +73,7 @@ def load_env_file(env_file: Path) -> None:
 
 
 def main() -> None:
-    args = parse_args()
+    args, passthrough = parse_args()   # unknown args go to import_to_postgres.py
     env_file = resolve_env_file(args.env_file)
 
     if env_file:
@@ -103,7 +103,7 @@ def main() -> None:
     print()
 
     subprocess.run(
-        [sys.executable, str(IMPORT_SCRIPT)],
+        [sys.executable, str(IMPORT_SCRIPT), *passthrough],
         cwd=BASE_DIR,
         env=child_env,
         check=True,

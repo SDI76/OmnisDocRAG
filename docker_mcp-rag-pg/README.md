@@ -26,11 +26,16 @@ docker_mcp-rag-pg/
 ├── .env.example
 ├── README.md
 └── postgres-init/
-    ├── 10-init-ragdb.sh
-    ├── 20-rag-bootstrap.sql
-    ├── 30-rag-schema.sql
-    └── 40-rag-ranking.sql
+    ├── 10-init-ragdb.sh          runs the SQL files below once, on an empty volume
+    └── sql/                      not executed directly by the postgres entrypoint
+        ├── 20-rag-bootstrap.sql  roles (passwords from .env)
+        ├── 30-rag-schema.sql     schema v2 (idempotent, migrates v1)
+        └── 40-rag-ranking.sql    rag.search_ranked
 ```
+
+The SQL files sit in `sql/` because the postgres entrypoint executes every top-level `*.sql` in
+`/docker-entrypoint-initdb.d` itself — the bootstrap would otherwise run a second time without its
+password variables and fail.
 
 ## First start
 
@@ -64,6 +69,25 @@ docker compose up --build -d
 On the first start, PostgreSQL initializes the database volume and runs the SQL
 from `postgres-init/`. The RAG server then waits for the database and starts as soon
 as it can connect and load the embedding model.
+
+### Schema upgrade on an existing volume
+
+The init scripts only run on an empty volume. After a schema change either recreate the database
+volume (the data is rebuilt by the import; the model cache volume `hf_cache` stays):
+
+```bash
+docker compose rm -sf postgres
+docker volume rm docker_mcp-rag-pg_postgres_data
+docker compose up -d
+python ../scripts/import_to_docker_postgres.py
+```
+
+or apply `sql/30-rag-schema.sql` and `sql/40-rag-ranking.sql` in place:
+
+```bash
+docker compose exec -T postgres psql -U postgres -d ragdb -v ON_ERROR_STOP=1 < postgres-init/sql/30-rag-schema.sql
+docker compose exec -T postgres psql -U postgres -d ragdb -v ON_ERROR_STOP=1 < postgres-init/sql/40-rag-ranking.sql
+```
 
 ## Import embeddings into the Docker PostgreSQL
 

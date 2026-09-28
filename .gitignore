@@ -34,3 +34,7 @@ Thumbs.db
 
 # MacOS
 .DS_Store
+
+# Embeddings are rebuilt by scripts/embed_and_store.py (file exceeds 100 MB with all corpora)
+output/embeddings.jsonl
+output/embeddings.tmp

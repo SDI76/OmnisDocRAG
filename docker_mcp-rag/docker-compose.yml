@@ -28,7 +28,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 90s   # model load can take ~60 s on first warm-up
+      start_period: 300s   # model load can take minutes on a busy CPU
 
   mcp-server:
     build: ./mcp-server

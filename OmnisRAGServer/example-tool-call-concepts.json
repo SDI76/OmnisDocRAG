@@ -3,7 +3,7 @@
   "params": {
     "name": "search_omnis_concepts",
     "arguments": {
-      "query": "Wie implementiere ich robustes Error Handling bei Omnis API-Aufrufen?",
+      "query": "Wie implementiere ich robustes Error Handling bei SQL-Anweisungen?",
       "deep": false
     }
   }

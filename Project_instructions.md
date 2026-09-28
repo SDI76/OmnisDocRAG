@@ -17,11 +17,12 @@ This document is the short entry point for developers. It explains the actual ru
 - build and run the `docker_mcp-rag-pg` full stack with PostgreSQL 18 inside Docker
 - expose MCP tools to VS Code via the stdio-based `mcp-bridge` OR one of the HTTP-based Docker variants
 
-The project is built around three corpora:
+The project is built around four corpora:
 
-- `omnis-commands` from `CommandRef.pdf`
-- `omnis-functions` from `FunctionRef.pdf`
-- `omnis-programming` from `Programming_Omnis.pdf`
+- `omnis-commands` from `CommandRef.pdf` (plus commands that are new in the Omnis 11.1 help)
+- `omnis-functions` from `FunctionRef.pdf` (plus functions that are new in the Omnis 11.1 help)
+- `omnis-programming` from `Programming_Omnis.pdf`, all chapters
+- `omnis-notation` from the Omnis doc pack (optional; Markdown built from the Omnis 11.1 help)
 
 ---
 
@@ -192,35 +193,41 @@ Run these from the project root after activating the pipeline virtual environmen
 
 ```bash
 python scripts/extract.py
-python scripts/chunk.py
-python scripts/embed_and_store.py
+python scripts/chunk.py --omnisdoc /path/to/omnisdoc    # doc pack optional (or OMNISDOC_PACK in scripts/.env.local)
+python scripts/validate.py
+python scripts/embed_and_store.py                        # or --server http://localhost:7071
 ```
 
 What each step does:
 
-1. `extract.py` converts PDFs to Markdown.
-2. `chunk.py` creates JSON chunk files in `output/chunks/`.
-3. `embed_and_store.py` creates `output/embeddings.jsonl`.
-4. Import the generated embeddings into your target PostgreSQL:
+1. `extract.py` reads the PDF structure (bookmarks, fonts, metadata tables) and writes units to
+   `output/extracted/` plus readable Markdown to `output/*_extracted.md`.
+2. `chunk.py` creates the chunk files in `output/chunks/` (with the doc pack also the notation corpus
+   and entries that are new in 11.1).
+3. `validate.py` is the quality gate — it fails when entries are missing, code lines became titles,
+   ligature damage is left, or chunks are empty/oversized.
+4. `embed_and_store.py` creates `output/embeddings.jsonl` (not in git). It is incremental: only
+   changed chunks are embedded again; `--force` re-embeds everything.
+5. Import into your target PostgreSQL:
    - local/external PostgreSQL: `python scripts/import_to_postgres.py`
    - Docker PostgreSQL in `docker_mcp-rag-pg/`: `python scripts/import_to_docker_postgres.py`
+6. Check retrieval quality: `python scripts/eval_retrieval.py --compare`
 
-If chunk content changes, rebuild embeddings with:
-
-```bash
-python scripts/embed_and_store.py --force
-```
+Details: [Documentation/Pipeline_en.md](Documentation/Pipeline_en.md),
+[Documentation/chunking_concept_en.md](Documentation/chunking_concept_en.md).
 
 ### Import modes (full-sync vs upsert-only)
 
 `scripts/import_to_postgres.py` supports two modes controlled by `DELETE_STALE_DOCS`:
 
 - Full-sync (default): `DELETE_STALE_DOCS=1`
-  - Upserts current embeddings.
-  - Deletes stale documents in `omnis-commands`, `omnis-functions`, and `omnis-programming` that are no longer present in `output/embeddings.jsonl`.
+  - Upserts the current chunks and embeddings.
+  - Deletes documents of the imported corpora that are no longer in `output/chunks/`.
 - Upsert-only: `DELETE_STALE_DOCS=0`
-  - Upserts current embeddings.
-  - Keeps older rows that are not in the current JSONL.
+  - Upserts the current chunks and embeddings.
+  - Keeps older rows that are not in the current chunk files.
+
+The importer refuses to run when an embedding is missing or belongs to an older chunk text.
 
 Examples:
 
@@ -517,43 +524,22 @@ For Omnis tasks in this repository, prefer MCP knowledge/functions whenever avai
 
 When working in this workspace, the coding agent should use the MCP bridge server `omnis-rag-docker` or `omnis-rag-local` for Omnis documentation grounding.
 
-1. **Tools to use:** `search_omnis_syntax`, `search_omnis_concepts`, `search_omnis_docs`.
-2. **When to call RAG:** Primarily when Omnis syntax/semantics are unclear (uncertainty-first), not for every coding step.
-3. **Tool selection:**
-   - `search_omnis_syntax` for strict syntax/signatures/parameters (commands/functions).
-   - `search_omnis_concepts` for patterns, architecture, and best practices.
-   - `search_omnis_docs` for mixed or unclear cases and expert overrides.
-4. **How to apply:** Run the focused tool call, then generate/adjust Omnis code based on returned `context_text` and `chunks`.
-5. **Fallback:** If the MCP bridge is unavailable, mention this explicitly and continue with best-effort from local project patterns.
-6. **Runtime expectation:** Bridge targets `OMNIS_RAG_SERVER_URL` (configured in `.vscode/mcp.json`), expected local endpoint `http://localhost:3000/mcp` for omnis-rag-docker. If using `omnis-rag-local`, ensure the local RAG server and Node.js bridge are running. expected local endpoint then is `http://127.0.0.1:7071`.
-
-##### Retrieval Strategy (Coverage vs. Relevance)
-
-When answering Omnis coding questions, tune retrieval intentionally instead of always using broad defaults:
-
-1. **Concept-first queries:** For programming concepts/patterns, set `corpus="omnis-programming"` and increase `k_programming` (e.g. 12–20).
-2. **Syntax-first queries:** For strict signatures/semantics, query `omnis-functions` and `omnis-commands` explicitly.
-3. **Large topics:** Prefer multiple focused queries over one broad query (e.g., `$sendall` → `$sendallref` → recursion/conditions).
-4. **Grounded output:** Base implementation guidance on retrieved chunks and mention uncertainties if chunks conflict.
-5. **Practical default:** If unsure, start with `corpus="all"`, then refine with corpus-specific follow-up queries.
-
-##### Retrieval Modes (Bridge Presets)
-
-The MCP bridge supports optional `mode` presets in `search_omnis_docs`:
-
-1. **`mode="syntax"`:** Prefer when the user asks for strict syntax/signatures; this increases commands/functions coverage.
-2. **`mode="concept"`:** Prefer for implementation patterns and design questions; this increases programming-guide coverage while keeping some syntax context.
-3. **`mode="deep"`:** Prefer for broad/complex Omnis topics requiring higher conceptual coverage from programming docs.
-4. **Override rule:** If you pass explicit `corpus`/`k_*` values, they intentionally override preset values.
-5. **Recommended flow:** Start with a mode, inspect returned chunks, then issue 1–2 focused follow-up queries if needed.
-
-##### Mode Decision Matrix (Quick Selection)
-
-1. **Strict syntax/signatures/parameters:** start with `mode="syntax"`.
-2. **Implementation patterns/design questions:** start with `mode="concept"`.
-3. **Broad topics with multiple sub-questions:** start with `mode="deep"` and split into focused follow-up queries.
-4. **Ambiguous mixed request:** start with `mode="concept"`, then refine to `syntax` or `deep` based on retrieved chunks.
-5. **Escalation rule:** if first answer lacks confidence/coverage, do at least one focused follow-up query before coding.
+1. **Tools:** `search_omnis_docs` (default), `get_omnis_doc`; restricted variants `search_omnis_syntax`
+   (commands, functions, notation) and `search_omnis_concepts` (Programming manual).
+2. **When to call RAG:** when Omnis syntax or semantics are unclear (uncertainty-first), not for every coding step.
+3. **Two steps:** search first — the answer lists hits with title, source, id and a snippet (a few KB).
+   Then fetch only the relevant ids with `get_omnis_doc` and base the code on that full text.
+4. **Modes of `search_omnis_docs`:**
+   - `hybrid` (default) — meaning and words combined; right for most questions, English or German.
+   - `semantic` — meaning only; for loosely phrased questions.
+   - `fulltext` — words only; for exact terms, error texts, `"exact phrases"`, `OR`, `-exclusion`.
+5. **Exact names** (`mid()`, `$search`, `#ERRCODE`, `Begin reversible block`) can be searched directly;
+   the matching entry is ranked first.
+6. **Deprecated entries** are marked `[deprecated]` in the result list — explain them, do not propose them.
+7. **Large topics:** several focused searches beat one broad one (e.g. `$sendall` → `$sendallref`).
+8. **Fallback:** if the server is unavailable, say so and continue best-effort from local project patterns.
+9. **Runtime:** `omnis-rag-docker` at `http://localhost:3000/mcp`; `omnis-rag-local` needs the rag-server at
+   `http://127.0.0.1:7071` (bridge started by VS Code).
 
 ---
 
@@ -568,7 +554,8 @@ python3 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\Activate.ps1
 pip install -r scripts/requirements.txt
 python scripts/extract.py
-python scripts/chunk.py
+python scripts/chunk.py --omnisdoc /path/to/omnisdoc   # doc pack optional
+python scripts/validate.py
 python scripts/embed_and_store.py
 python scripts/import_to_postgres.py
 
@@ -589,7 +576,8 @@ node mcpserver.mjs
 ```bash
 # 1. Pipeline — run once (same as above, uses local .venv)
 python scripts/extract.py
-python scripts/chunk.py
+python scripts/chunk.py --omnisdoc /path/to/omnisdoc   # doc pack optional
+python scripts/validate.py
 python scripts/embed_and_store.py
 
 # 2a. Host-PostgreSQL Docker runtime

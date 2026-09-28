@@ -1,5 +1,11 @@
 # RAG Concept: Omnis Studio Documentation
 
+> Original concept from the start of the project (April 2026). The current extraction, chunking and
+> retrieval design differs in several points — all chapters are indexed, structure comes from the PDF
+> fonts/bookmarks, a notation corpus exists, and search ranks globally across corpora. See
+> [chunking_concept_en.md](chunking_concept_en.md), [Pipeline_en.md](Pipeline_en.md) and
+> [retrieval_quality_analysis_en.md](retrieval_quality_analysis_en.md).
+
 ## Goal
 
 Create three Omnis documentation corpora inside one PostgreSQL `rag` schema that serve as the RAG foundation for an agentic IDE / AI assistance for Omnis Studio development.

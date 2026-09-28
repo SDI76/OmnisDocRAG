@@ -1,47 +1,51 @@
 """
 Omnis RAG Server (FastAPI)
-=========================
+==========================
 
-Purpose
--------
-This server provides a local HTTP interface (`/search`) through which
-agents and tools (for example the MCP bridge) can search Omnis documentation semantically.
+HTTP service behind the MCP front-ends (Docker `mcp-server`, local stdio bridge).
 
-Per-request flow
+Endpoints
+---------
+GET  /health            model, database and corpus counts
+POST /search            ranked search, compact by default
+POST /chunks            full text of chunks by id (second stage of retrieval)
+POST /embed             embeddings with the server's model (used by the ingestion)
+
+Retrieval design
 ----------------
-1. The query text is vectorized with a local embedding model.
-2. Hybrid retrieval (vector + full-text/BM25) is executed against PostgreSQL.
-3. Results are returned as structured chunks and as `context_text`.
+- One global ranking across all corpora (commands, functions, programming,
+  notation) instead of a fixed number of hits per corpus.
+- Modes: `semantic` (vector), `fulltext` (weighted full text), `hybrid` (both,
+  fused with Reciprocal Rank Fusion). Exact names from the query (`$search`,
+  `binfrombase64`, `Begin reversible block`) are boosted.
+- One hit per entry/section, with a short snippet. The full text is fetched
+  on demand via /chunks, which keeps a search response at a few KB.
 
-Operating mode
---------------
-- Runs on `127.0.0.1:7071` by default.
-- With `STRICT_PORT=true`, the server exits intentionally on port conflicts
-    instead of silently falling back to other ports.
+All ranking happens in the database function `rag.search_ranked`
+(docker_mcp-rag-pg/postgres-init/sql/40-rag-ranking.sql).
 """
 
-import os
-import time
+from __future__ import annotations
+
 import logging
+import os
+import re
 import socket
-from contextlib import asynccontextmanager
+import time
+from contextlib import asynccontextmanager, contextmanager
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 
 def _as_bool(value: str | None, default: bool) -> bool:
-    """Robustly converts typical string booleans into Python booleans."""
     if value is None:
         return default
     return str(value).strip().lower() in ("1", "true", "yes", "on")
 
 
 def _load_env() -> Path:
-    """
-    Loads configuration from an env file.
-    Uses the local `.env` next to `ragserver.py` in dev setups.
-    """
+    """Load `.env` next to this file, or the file named by OMNIS_RAG_ENV_FILE."""
     default_env = Path(__file__).parent / ".env"
     configured_env = os.environ.get("OMNIS_RAG_ENV_FILE", "").strip()
     env_path = Path(configured_env) if configured_env else default_env
@@ -53,17 +57,16 @@ ENV_FILE = _load_env()
 
 import psycopg2
 import psycopg2.extras
+import psycopg2.pool
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sentence_transformers import SentenceTransformer
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-# ── Config (from .env) ────────────────────────────────────────
-# The DB parameters are intentionally required so misconfiguration is visible
-# immediately at startup.
+# ── Config ────────────────────────────────────────────────────
 DB_HOST = os.environ["RAG_DB_HOST"]
 DB_PORT = int(os.environ.get("RAG_DB_PORT", "5432"))
 DB_NAME = os.environ.get("RAG_DB_NAME", "ragdb")
@@ -71,430 +74,372 @@ DB_USER = os.environ["RAG_DB_USER"]
 DB_PASS = os.environ["RAG_DB_PASS"]
 
 EMBED_MODEL = os.environ.get("EMBED_MODEL", "BAAI/bge-m3")
-# 7071 matches the MCP bridge configuration in the workspace.
 PORT = int(os.environ.get("PORT", "7071"))
-# Strict port mode prevents the service and MCP bridge from drifting apart unexpectedly.
 STRICT_PORT = _as_bool(os.environ.get("STRICT_PORT"), True)
+
+# Fusion weights; the full-text leg is weighted lower because single frequent
+# words ("list", "line") match many chunks. Tuned with scripts/eval_retrieval.py.
+W_DENSE = float(os.environ.get("RAG_W_DENSE", "1.0"))
+W_FTS = float(os.environ.get("RAG_W_FTS", "0.5"))
+SNIPPET_CHARS = int(os.environ.get("RAG_SNIPPET_CHARS", "240"))
+
+CORPORA = ("omnis-commands", "omnis-functions", "omnis-programming", "omnis-notation")
+CORPUS_ALIASES = {
+    "commands": "omnis-commands", "functions": "omnis-functions",
+    "programming": "omnis-programming", "notation": "omnis-notation",
+}
+CORPUS_LABEL = {
+    "omnis-commands": "command", "omnis-functions": "function",
+    "omnis-programming": "manual", "omnis-notation": "notation",
+}
 # ─────────────────────────────────────────────────────────────
 
-# Global runtime objects (initialized during startup).
-model: SentenceTransformer = None
-db_conn = None
-function_exists_cache: dict[str, bool] = {}
+model: SentenceTransformer | None = None
+pool: psycopg2.pool.ThreadedConnectionPool | None = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """
-    FastAPI lifecycle:
-    - Start: load model + connect to DB
-    - Stop: close the DB connection cleanly
-    """
-    global model, db_conn
-
+    global model, pool
     log.info(f"Loading embedding model: {EMBED_MODEL}")
     t = time.time()
     model = SentenceTransformer(EMBED_MODEL)
-    log.info(f"Model loaded in {time.time()-t:.1f}s")
+    model.encode("warm-up", normalize_embeddings=True)   # first call is slow; do it now
+    log.info(f"Model loaded and warmed up in {time.time() - t:.1f}s")
 
     log.info(f"Connecting to PostgreSQL at {DB_HOST}:{DB_PORT}/{DB_NAME} (user: {DB_USER})")
-    db_conn = psycopg2.connect(
-        host=DB_HOST,
-        port=DB_PORT,
-        dbname=DB_NAME,
-        user=DB_USER,
-        password=DB_PASS,
-        connect_timeout=10,
-        options="-c search_path=rag,public",
-    )
-    db_conn.autocommit = True
-    log.info("DB connected. Ready.")
-
+    pool = psycopg2.pool.ThreadedConnectionPool(
+        1, 4, host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASS,
+        connect_timeout=10, options="-c search_path=rag,public")
+    log.info("DB pool ready.")
     yield
-
-    db_conn.close()
+    pool.closeall()
 
 
 app = FastAPI(title="Omnis RAG Server", lifespan=lifespan)
-# Open CORS so local tools/extensions can connect without origin issues.
 app.add_middleware(CORSMiddleware, allow_origins=["*"])
 
 
-# ── Request / Response models ─────────────────────────────────
+@contextmanager
+def db_cursor():
+    conn = pool.getconn()
+    try:
+        conn.autocommit = True
+        with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+            yield cur
+    finally:
+        pool.putconn(conn)
+
+
+# ── Query analysis ────────────────────────────────────────────
+
+STOPWORDS = set("""
+a an the of to in on at for from by with without into onto over under and or not no is are was were be been
+being do does did done doing how what which who whom whose why when where there here this that these those it
+its i me my we our you your he she they them their can could should would will shall may might must has have
+had get gets got use using used via as if then than so such any all each every some more most other only own
+same too very just about also between both
+wie was welche welcher welches wer warum wann wo der die das den dem des ein eine einer einem einen und oder
+nicht kein keine ist sind war mit ohne für von zu im in am an auf aus bei nach über unter ich du er sie es wir
+ihr man kann können soll sollen muss müssen wird werden hat haben mein meine dein deine sein seine
+""".split())
+
+# German words frequently used in Omnis questions → English doc vocabulary.
+# Only the full-text leg needs this; the embedding model is multilingual.
+GERMAN_TERMS = {
+    "löschen": "delete remove", "lösche": "delete remove", "entfernen": "remove", "zeile": "line",
+    "zeilen": "lines", "liste": "list", "listen": "lists", "suchen": "search", "suche": "search",
+    "fenster": "window", "feld": "field", "felder": "fields", "klasse": "class", "klassen": "classes",
+    "methode": "method", "methoden": "methods", "tabelle": "table", "datei": "file", "dateien": "files",
+    "fehler": "error", "fehlerbehandlung": "error handling", "anzeigen": "display", "sortieren": "sort",
+    "speichern": "save", "öffnen": "open", "schließen": "close", "aktuelle": "current", "aktuellen": "current",
+    "auswählen": "select", "markieren": "select", "hinzufügen": "add", "einfügen": "insert",
+    "ersetzen": "replace", "schleife": "loop", "bedingung": "condition", "verbindung": "connection",
+    "abfrage": "query", "zeichenkette": "string", "datum": "date", "zahl": "number", "wert": "value",
+    "werte": "values", "objekt": "object", "referenz": "reference", "ereignis": "event",
+    "ereignisse": "events", "drucken": "print", "bericht": "report", "sitzung": "session",
+    "anweisung": "statement", "rückgabewert": "return value", "beispiel": "example",
+    "unterschied": "difference", "variable": "variable", "variablen": "variables", "spalte": "column",
+    "spalten": "columns", "zeichen": "character", "text": "text", "aufrufen": "call", "senden": "send",
+    "alle": "all", "zeit": "time", "tage": "days", "tag": "day", "leer": "empty", "gleich": "equal",
+    "rekursion": "recursion", "konvertieren": "convert", "umwandeln": "convert", "lesen": "read",
+    "schreiben": "write", "erstellen": "create", "neu": "new", "berechnen": "calculate",
+}
+
+SEARCH_SYNTAX = re.compile(r'"|\bOR\b|(^|\s)-\w')
+
+
+def norm_symbol(text: str) -> str:
+    """Normalisation shared with scripts/import_to_postgres.py (keep both identical)."""
+    text = text.strip().lower()
+    text = re.sub(r"[‘’“”'\"`]", "", text)
+    text = re.sub(r"\(\s*\)", "", text)
+    text = re.sub(r"(^|[\s.])[$#]", r"\1", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip(" .?!:;,")
+
+
+def analyse_query(query: str) -> dict:
+    """Full-text terms, search-syntax flag and candidate symbol names."""
+    raw_tokens = re.findall(r"[#$]?[\w.]+(?:\(\))?", query, flags=re.UNICODE)
+    terms: list[str] = []
+    for tok in raw_tokens:
+        low = tok.lower()
+        if low in GERMAN_TERMS:
+            terms.extend(GERMAN_TERMS[low].split())
+            continue
+        for part in re.split(r"[.]", re.sub(r"[#$()]", "", low)):
+            if len(part) > 1 and part not in STOPWORDS and re.fullmatch(r"[a-z0-9_]+", part):
+                terms.append(part)
+    terms = list(dict.fromkeys(terms))
+
+    symbols: list[str] = []
+    whole = norm_symbol(query)
+    if whole and len(whole.split()) <= 6:
+        symbols.append(whole)
+    words = [w for w in re.findall(r"[#$]?[\w.]+(?:\(\))?", query)]
+    for tok in words:
+        # Tokens that look like Omnis names: $notation, #hashvar, func(), dotted paths, digits
+        if re.search(r"[$#().]|\d", tok) or re.search(r"[a-z][A-Z]", tok):
+            symbols.append(norm_symbol(tok))
+    plain = [w for w in re.findall(r"[\w/&]+", query.lower())]
+    for n in range(2, 6):
+        for i in range(len(plain) - n + 1):
+            symbols.append(norm_symbol(" ".join(plain[i:i + n])))
+    symbols = [s for s in dict.fromkeys(symbols) if s]
+    return {"terms": terms, "websearch": query if SEARCH_SYNTAX.search(query) else None, "symbols": symbols}
+
+
+# ── Request / response models ─────────────────────────────────
 
 class SearchRequest(BaseModel):
-    """Input model for `/search`."""
-    query:         str
-    # Defaults are aligned with the bridge strategy (mode-neutral baseline mix).
-    k_commands:    int = 4
-    k_functions:   int = 4
-    k_programming: int = 10
-    corpus:        str = "all"   # "all" | "omnis-commands" | "omnis-functions" | "omnis-programming"
+    query: str
+    mode: str = "hybrid"                       # hybrid | semantic | fulltext
+    top_k: int = Field(8, ge=1, le=30)
+    corpora: list[str] | str | None = None     # None/"all" = every corpus
+    format: str = "text"                       # text (compact, for agents) | json
+    w_dense: float | None = None
+    w_fts: float | None = None
+    # v1 compatibility: `corpus` was a single corpus name; k_* are ignored now.
+    corpus: str | None = None
 
 
-class Chunk(BaseModel):
-    """A single retrieval result."""
-    chunk_id:    str
-    corpus_name: str
-    content:     str
-    rrf_score:   float
-    dense_rank:  int | None
-    fts_rank:    int | None
-    meta:        dict
+class ChunksRequest(BaseModel):
+    ids: list[str]
+    format: str = "text"
 
 
-class SearchResponse(BaseModel):
-    """HTTP response model for `/search`."""
-    query:        str
-    chunks:       list[Chunk]
-    context_text: str           # pre-formatted for Copilot injection
-    embed_ms:     float
-    search_ms:    float
+class EmbedRequest(BaseModel):
+    texts: list[str] = Field(..., max_length=256)
 
 
-# ── Helpers ───────────────────────────────────────────────────
-
-def embed(text: str) -> list[float]:
-    """Generates normalized embeddings for a query."""
-    vec = model.encode(text, normalize_embeddings=True)
-    return vec.tolist()
-
-
-def vec_to_pg(v: list[float]) -> str:
-    """Converts a Python vector into a pgvector literal (`[x,y,...]`)."""
-    return "[" + ",".join(f"{x:.8f}" for x in v) + "]"
-
-
-def rag_function_exists(function_name: str) -> bool:
-    """
-    Checks once whether optional DB functions exist.
-
-    The result is cached to avoid extra DB metadata queries on each request.
-    """
-    cached = function_exists_cache.get(function_name)
-    if cached is not None:
-        return cached
-
-    with db_conn.cursor() as cur:
-        cur.execute(
-            """
-            SELECT EXISTS (
-                SELECT 1
-                FROM pg_proc p
-                JOIN pg_namespace n ON n.oid = p.pronamespace
-                WHERE n.nspname = 'rag'
-                  AND p.proname = %s
-            )
-            """,
-            (function_name,),
-        )
-        exists = bool(cur.fetchone()[0])
-
-    function_exists_cache[function_name] = exists
-    return exists
+def resolve_corpora(value: list[str] | str | None, legacy: str | None) -> list[str] | None:
+    items = value if isinstance(value, list) else ([value] if value else [])
+    if legacy and not items:
+        items = [legacy]
+    out = []
+    for item in items:
+        for part in str(item).split(","):
+            name = part.strip().lower()
+            if not name or name == "all":
+                continue
+            name = CORPUS_ALIASES.get(name, name)
+            if name not in CORPORA:
+                raise HTTPException(400, f"unknown corpus '{part.strip()}' (use {', '.join(CORPORA)})")
+            out.append(name)
+    return sorted(set(out)) or None
 
 
-def search_corpus_inline(query_vec: list[float], query_text: str,
-                         corpus_name: str, top_k: int) -> list[dict]:
-    """
-    SQL fallback for hybrid retrieval without DB helper functions.
-
-    Uses Reciprocal Rank Fusion (RRF) over:
-    - vector ranking (`embedding <=> query_vec`)
-    - full-text ranking (`ts_rank_cd`)
-    """
-    # DOMAIN: This path is the "no-magic" fallback if DB helper functions
-    # (`rag.search_hybrid` / `rag.search_omnis_docs`) are missing.
-    # Benefit: the server remains functional as long as the base tables exist.
-    with db_conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
-        cur.execute(
-            """
-            -- 1) Resolve target corpus (name -> corpus_id)
-            WITH target_corpus AS (
-                SELECT corpus_id
-                FROM rag.corpus
-                WHERE name = %s::text
-            ),
-            -- 2) Full-text hits (lexical relevance)
-            fts_hits AS (
-                SELECT
-                    ch.chunk_id,
-                    row_number() OVER (
-                        ORDER BY ts_rank_cd(ch.content_tsv, websearch_to_tsquery('simple', %s::text)) DESC
-                    ) AS rank_fts
-                FROM rag.chunk ch
-                JOIN rag.document d ON d.document_id = ch.document_id
-                JOIN target_corpus tc ON tc.corpus_id = d.corpus_id
-                WHERE ch.content_tsv @@ websearch_to_tsquery('simple', %s::text)
-                LIMIT %s::integer
-            ),
-            -- 3) Vector hits (semantic relevance)
-            vec_hits AS (
-                SELECT
-                    e.chunk_id,
-                    row_number() OVER (ORDER BY e.v <=> %s::vector(1024)) AS rank_vec
-                FROM rag.embedding e
-                JOIN rag.chunk ch ON ch.chunk_id = e.chunk_id
-                JOIN rag.document d ON d.document_id = ch.document_id
-                JOIN target_corpus tc ON tc.corpus_id = d.corpus_id
-                LIMIT %s::integer
-            ),
-            -- 4) Reciprocal Rank Fusion (RRF): robustly combines both rankings
-            rrf AS (
-                SELECT
-                    COALESCE(f.chunk_id, v.chunk_id) AS chunk_id,
-                    COALESCE(1.0 / (60 + f.rank_fts), 0.0) + COALESCE(1.0 / (60 + v.rank_vec), 0.0) AS rrf_score,
-                    f.rank_fts,
-                    v.rank_vec
-                FROM fts_hits f
-                FULL OUTER JOIN vec_hits v ON f.chunk_id = v.chunk_id
-            )
-            -- 5) Load hit metadata and sort by combined relevance
-            SELECT
-                r.chunk_id,
-                %s::text AS corpus_name,
-                d.title,
-                ch.content,
-                r.rrf_score,
-                r.rank_vec AS dense_rank,
-                r.rank_fts AS fts_rank,
-                ch.meta
-            FROM rrf r
-            JOIN rag.chunk ch ON ch.chunk_id = r.chunk_id
-            JOIN rag.document d ON d.document_id = ch.document_id
-            ORDER BY r.rrf_score DESC
-            LIMIT %s::integer
-            """,
-            (
-                # Placeholder order must match the SQL parameter order exactly.
-                corpus_name,
-                query_text,
-                query_text,
-                top_k,
-                vec_to_pg(query_vec),
-                top_k,
-                corpus_name,
-                top_k,
-            ),
-        )
-        return [dict(r) for r in cur.fetchall()]
+def source_label(meta: dict) -> str:
+    src = meta.get("source", "")
+    if src == "OmnisDocPack":
+        return "Omnis help 11.1"
+    pages = ""
+    if meta.get("page_start"):
+        ps, pe = meta["page_start"], meta.get("page_end") or meta["page_start"]
+        pages = f" p.{ps}" if ps == pe else f" p.{ps}-{pe}"
+    return f"{src}{pages}"
 
 
-def search_all(query_vec: list[float], query_text: str,
-               k_commands: int, k_functions: int, k_programming: int) -> list[dict]:
-    """
-    Runs a search across all Omnis corpora.
-
-    Prefers `rag.search_omnis_docs` and falls back to inline SQL per corpus
-    if the DB function is unavailable.
-    """
-    if not rag_function_exists("search_omnis_docs"):
-        log.warning(
-            "DB function rag.search_omnis_docs not found. Using inline hybrid SQL fallback."
-        )
-        # BUSINESS RULE: for `corpus=all`, the partial corpora are searched separately
-        # and then sorted together by score.
-        rows = []
-        rows.extend(search_corpus_inline(query_vec, query_text, "omnis-commands", k_commands))
-        rows.extend(search_corpus_inline(query_vec, query_text, "omnis-functions", k_functions))
-        rows.extend(search_corpus_inline(query_vec, query_text, "omnis-programming", k_programming))
-        # SIDE EFFECT: ordering is intentionally re-sorted globally
-        # so no corpus is artificially preferred.
-        rows.sort(key=lambda row: row.get("rrf_score", 0.0), reverse=True)
-        return rows
-
-    # Primary path: DB function encapsulates the optimized multi-corpus logic.
-    with db_conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
-        cur.execute(
-            "SELECT * FROM rag.search_omnis_docs(%s::vector(1024), %s::text, %s::integer, %s::integer, %s::integer)",
-            (vec_to_pg(query_vec), query_text, k_commands, k_functions, k_programming)
-        )
-        return [dict(r) for r in cur.fetchall()]
+def make_snippet(content: str, highlighted: str | None) -> str:
+    if highlighted and highlighted.strip():
+        text = highlighted
+    else:
+        lines = [l for l in content.split("\n")
+                 if l.strip() and not l.startswith("#")
+                 and not re.match(r"^(Command group|Function group):", l)]
+        text = " ".join(lines)
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) > SNIPPET_CHARS:
+        text = text[:SNIPPET_CHARS].rsplit(" ", 1)[0] + " …"
+    return text
 
 
-def search_corpus(query_vec: list[float], query_text: str,
-                  corpus_name: str, top_k: int) -> list[dict]:
-    """
-    Runs a search in exactly one corpus.
-
-    Prefers `rag.search_hybrid` and falls back to inline SQL when needed.
-    """
-    if not rag_function_exists("search_hybrid"):
-        log.warning(
-            "DB function rag.search_hybrid not found. Using inline hybrid SQL fallback."
-        )
-        return search_corpus_inline(query_vec, query_text, corpus_name, top_k)
-
-    # Primary path for single-corpus search via the DB function API.
-    with db_conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
-        cur.execute(
-            """
-            -- `search_hybrid` already returns RRF-scored hits.
-            SELECT h.chunk_id, %s::text AS corpus_name, h.title, h.content,
-                   h.rrf_score, h.dense_rank, h.fts_rank, h.meta
-            FROM rag.search_hybrid(
-                %s::vector(1024), %s::text,
-                (SELECT corpus_id FROM rag.corpus WHERE name = %s),
-                %s::integer
-            ) h
-            """,
-            (corpus_name, vec_to_pg(query_vec), query_text, corpus_name, top_k)
-        )
-        return [dict(r) for r in cur.fetchall()]
-
-
-def format_context(chunks: list[dict]) -> str:
-    """
-    Condenses results into a prompt-ready context block.
-
-    The text is structured so agents can quickly recognize signatures, commands,
-    and conceptual guidance.
-    """
-    sections = {
-        "omnis-commands":    [],
-        "omnis-functions":   [],
-        "omnis-programming": [],
-        "omnis-code":        [],
+def result_row(r: dict) -> dict:
+    meta = r["meta"] or {}
+    return {
+        "id": r["external_id"],
+        "corpus": r["corpus"],
+        "title": r["title"],
+        "heading": r["heading"],
+        "source": source_label(meta),
+        "score": round(float(r["score"]), 5),
+        "dense_rank": r["dense_rank"],
+        "fts_rank": r["fts_rank"],
+        "exact_symbol": r["exact_symbol"],
+        "deprecated": bool(meta.get("deprecated")),
+        "part": f"{meta['part']}/{meta['parts']}" if meta.get("parts") else None,
+        "snippet": make_snippet(r["content"], r.get("snippet")),
     }
-    for c in chunks:
-        sections.get(c["corpus_name"], sections["omnis-programming"]).append(c)
 
-    out = ["## Relevant Omnis Studio Documentation\n"]
 
-    if sections["omnis-commands"]:
-        out.append("### Commands")
-        for c in sections["omnis-commands"]:
-            name = c.get("meta", {}).get("command_name", "")
-            out.append(f"**{name}**\n{c['content']}\n")
-
-    if sections["omnis-functions"]:
-        out.append("### Functions")
-        for c in sections["omnis-functions"]:
-            name = c.get("meta", {}).get("function_signature", "")
-            out.append(f"**{name}**\n{c['content']}\n")
-
-    if sections["omnis-programming"]:
-        out.append("### Concepts & Patterns")
-        for c in sections["omnis-programming"]:
-            out.append(c["content"] + "\n")
-
-    if sections["omnis-code"]:
-        out.append("### Code Examples from Project")
-        for c in sections["omnis-code"]:
-            out.append(c["content"] + "\n")
-
+def render_results(query: str, mode: str, results: list[dict]) -> str:
+    if not results:
+        return f'No Omnis documentation found for "{query}" ({mode}).'
+    out = [f'Omnis documentation — {len(results)} results for "{query}" ({mode}):']
+    for i, r in enumerate(results, 1):
+        label = CORPUS_LABEL.get(r["corpus"], r["corpus"])
+        where = r["heading"] if r["corpus"] == "omnis-programming" and r["heading"] else r["title"]
+        flags = " [deprecated]" if r["deprecated"] else ""
+        part = f" (part {r['part']})" if r["part"] else ""
+        out.append(f"{i}. [{label}] {where}{part}{flags} — {r['source']} — id: {r['id']}")
+        if r["snippet"]:
+            out.append(f"   {r['snippet']}")
+    out.append("Full text: get_omnis_doc with one or more ids.")
     return "\n".join(out)
 
 
-def find_available_port(host: str, preferred_port: int, max_tries: int = 50) -> int:
-    """Returns the next free port starting from `preferred_port`."""
-    for port in range(preferred_port, preferred_port + max_tries):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
-            probe.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            if probe.connect_ex((host, port)) != 0:
-                return port
-    raise RuntimeError(
-        f"No free port found in range {preferred_port}-{preferred_port + max_tries - 1}"
-    )
-
-
-def is_port_free(host: str, port: int) -> bool:
-    """Lightweight socket probe for a specific port."""
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
-        probe.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        return probe.connect_ex((host, port)) != 0
+def render_chunks(rows: list[dict], missing: list[str]) -> str:
+    out = []
+    for r in rows:
+        meta = r["meta"] or {}
+        head = f"[{r['id']}] {r['heading'] or r['title']} — {source_label(meta)}"
+        if r["siblings"]:
+            head += f" — other parts: {', '.join(r['siblings'])}"
+        out.append(f"{head}\n\n{r['content']}")
+    if missing:
+        out.append(f"Not found: {', '.join(missing)}")
+    return "\n\n---\n\n".join(out)
 
 
 # ── Routes ────────────────────────────────────────────────────
 
 @app.get("/health")
 def health():
-    """Minimal liveness endpoint for service and MCP checks."""
-    return {"status": "ok", "model": EMBED_MODEL}
+    with db_cursor() as cur:
+        cur.execute("""
+            SELECT co.name, count(ch.chunk_id)::int AS chunks
+            FROM rag.corpus co
+            LEFT JOIN rag.document d ON d.corpus_id = co.corpus_id
+            LEFT JOIN rag.chunk ch ON ch.document_id = d.document_id
+            GROUP BY co.name ORDER BY co.name""")
+        corpora = {r["name"]: r["chunks"] for r in cur.fetchall()}
+    return {"status": "ok", "model": EMBED_MODEL, "corpora": corpora}
 
 
-@app.post("/search", response_model=SearchResponse)
+@app.post("/embed")
+def embed(req: EmbedRequest):
+    vecs = model.encode(req.texts, normalize_embeddings=True, batch_size=16, show_progress_bar=False)
+    return {"model": EMBED_MODEL, "embeddings": [v.tolist() for v in vecs]}
+
+
+@app.post("/search")
 def search(req: SearchRequest):
-    """
-    Core retrieval endpoint.
-
-    Expects a query plus optional K tuning values and returns hits together with
-    formatted context and latency metrics.
-    """
-    if not req.query.strip():
+    query = req.query.strip()
+    if not query:
         raise HTTPException(400, "query must not be empty")
+    mode = req.mode.lower()
+    if mode not in ("hybrid", "semantic", "fulltext"):
+        raise HTTPException(400, "mode must be hybrid, semantic or fulltext")
+    corpora = resolve_corpora(req.corpora, req.corpus)
+    qa = analyse_query(query)
 
-    # 1) Vectorize query
     t0 = time.time()
-    query_vec = embed(req.query)
+    vec = None
+    if mode in ("hybrid", "semantic"):
+        v = model.encode(query, normalize_embeddings=True)
+        vec = "[" + ",".join(f"{x:.7f}" for x in v) + "]"
     embed_ms = (time.time() - t0) * 1000
 
-    # 2) Search (all corpora or a single corpus)
+    use_fts = mode in ("hybrid", "fulltext")
     t1 = time.time()
-    try:
-        if req.corpus == "all":
-            rows = search_all(query_vec, req.query,
-                              req.k_commands, req.k_functions, req.k_programming)
-        else:
-            top_k = req.k_commands + req.k_functions + req.k_programming
-            rows = search_corpus(query_vec, req.query, req.corpus, top_k)
-    except Exception as e:
-        log.error(f"DB error: {e}")
-        raise HTTPException(500, f"Database error: {e}")
+    with db_cursor() as cur:
+        cur.execute(
+            """SELECT * FROM rag.search_ranked(%s::vector(1024), %s::text[], %s::text, %s::text[], %s::text[],
+                                              %s, 60, %s, %s, 60)""",
+            (vec,
+             qa["terms"] if use_fts else None,
+             qa["websearch"] if use_fts else None,
+             qa["symbols"],
+             corpora,
+             req.top_k,
+             req.w_dense if req.w_dense is not None else W_DENSE,
+             req.w_fts if req.w_fts is not None else W_FTS))
+        rows = cur.fetchall()
     search_ms = (time.time() - t1) * 1000
 
-    # 3) Serialize DB rows into the API model
-    chunks = [
-        Chunk(
-            chunk_id=str(r["chunk_id"]),
-            corpus_name=r["corpus_name"],
-            content=r["content"],
-            rrf_score=float(r["rrf_score"]),
-            dense_rank=r.get("dense_rank"),
-            fts_rank=r.get("fts_rank"),
-            meta=r.get("meta") or {},
-        )
-        for r in rows
-    ]
+    results = [result_row(r) for r in rows]
+    log.info(f"search mode={mode} q={query!r:.60} hits={len(results)} "
+             f"embed={embed_ms:.0f}ms db={search_ms:.0f}ms")
+    if req.format == "json":
+        return {"query": query, "mode": mode, "corpora": corpora, "terms": qa["terms"],
+                "results": results, "embed_ms": round(embed_ms), "search_ms": round(search_ms)}
+    return {"text": render_results(query, mode, results)}
 
-    log.info(
-        f"query={req.query!r:.50} "
-        f"chunks={len(chunks)} embed={embed_ms:.0f}ms search={search_ms:.0f}ms"
-    )
 
-    # 4) Return raw chunks together with prompt-ready context
-    return SearchResponse(
-        query=req.query,
-        chunks=chunks,
-        context_text=format_context([c.model_dump() for c in chunks]),
-        embed_ms=embed_ms,
-        search_ms=search_ms,
-    )
+@app.post("/chunks")
+def chunks(req: ChunksRequest):
+    ids = [i.strip() for i in req.ids if i.strip()][:20]
+    if not ids:
+        raise HTTPException(400, "ids must not be empty")
+    with db_cursor() as cur:
+        cur.execute("""
+            SELECT d.external_id AS id, co.name AS corpus, ch.title, ch.heading, ch.content, ch.meta,
+                   ARRAY(SELECT d2.external_id FROM rag.document d2
+                         WHERE d2.meta->>'doc_key' = d.meta->>'doc_key'
+                           AND d2.external_id <> d.external_id
+                           AND d.meta->>'parts' IS NOT NULL
+                         ORDER BY (d2.meta->>'part')::int) AS siblings
+            FROM rag.document d
+            JOIN rag.corpus co ON co.corpus_id = d.corpus_id
+            JOIN rag.chunk ch ON ch.document_id = d.document_id
+            WHERE d.external_id = ANY(%s)""", (ids,))
+        found = {r["id"]: r for r in cur.fetchall()}
+    rows = [found[i] for i in ids if i in found]
+    missing = [i for i in ids if i not in found]
+    if req.format == "json":
+        return {"chunks": [{**r, "source": source_label(r["meta"] or {})} for r in rows], "missing": missing}
+    return {"text": render_chunks(rows, missing)}
+
+
+# ── Local start ───────────────────────────────────────────────
+
+def find_available_port(host: str, preferred_port: int, max_tries: int = 50) -> int:
+    for port in range(preferred_port, preferred_port + max_tries):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
+            probe.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            if probe.connect_ex((host, port)) != 0:
+                return port
+    raise RuntimeError(f"No free port found in range {preferred_port}-{preferred_port + max_tries - 1}")
+
+
+def is_port_free(host: str, port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
+        probe.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        return probe.connect_ex((host, port)) != 0
 
 
 if __name__ == "__main__":
-    # Local direct start (for example debug/service wrapper)
     import uvicorn
 
     host = "127.0.0.1"
     actual_port = PORT
-
-    log.info(
-        f"Startup config: env_file={ENV_FILE}, host={host}, port={PORT}, strict_port={STRICT_PORT}"
-    )
-
+    log.info(f"Startup config: env_file={ENV_FILE}, host={host}, port={PORT}, strict_port={STRICT_PORT}")
     if STRICT_PORT:
-        # Explicit fail-fast so the MCP bridge does not silently point to the wrong port.
         if not is_port_free(host, PORT):
-            raise RuntimeError(
-                f"Configured port {PORT} is already in use on {host}. Stop the conflicting process or change PORT."
-            )
+            raise RuntimeError(f"Configured port {PORT} is already in use on {host}.")
     else:
-        # Optional dev mode: fall back to the next free port.
         actual_port = find_available_port(host, PORT)
         if actual_port != PORT:
-            log.warning(
-                f"Requested PORT={PORT} is unavailable on {host}. Using PORT={actual_port} instead."
-            )
-
+            log.warning(f"Requested PORT={PORT} is unavailable on {host}. Using PORT={actual_port} instead.")
     uvicorn.run(app, host=host, port=actual_port, log_level="info")

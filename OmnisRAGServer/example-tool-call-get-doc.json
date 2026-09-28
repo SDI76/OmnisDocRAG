@@ -1,0 +1,11 @@
+{
+  "method": "tools/call",
+  "params": {
+    "name": "get_omnis_doc",
+    "arguments": {
+      "ids": [
+        "cmd_begin_reversible_block"
+      ]
+    }
+  }
+}

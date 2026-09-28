@@ -1,353 +1,144 @@
-# Chunking Concept: Omnis Studio RAG
+# Extraction and Chunking Concept
 
 ## Overview
 
-Three documents -> three separate collections -> three different chunking strategies.
-
-The generated chunk JSON files are later embedded locally and can then be imported into:
-
-- local or external PostgreSQL via `scripts/import_to_postgres.py`
-- the Docker PostgreSQL stack via `scripts/import_to_docker_postgres.py`
-
-| Collection | Source | Strategy | Chunk Unit |
+| Corpus | Source | Chunk unit | Chunks (Sept 2026) |
 |---|---|---|---|
-| `omnis_commands` | CommandRef.pdf | Atomic command chunking | 1 command = 1 chunk |
-| `omnis_functions` | FunctionRef.pdf | Atomic function chunking | 1 function = 1 chunk |
-| `omnis_programming` | Programming_Omnis.pdf | Semantic section chunking | 1 H2/H3 section = 1 chunk |
+| `omnis-commands` | `CommandRef.pdf` (+ doc pack for 11.1 additions) | 1 command; overview sections | 585 |
+| `omnis-functions` | `FunctionRef.pdf` (+ doc pack for 11.1 additions) | 1 function | 395 |
+| `omnis-programming` | `Programming_Omnis.pdf`, all 17 chapters | 1 sub-section with heading path | 1,883 |
+| `omnis-notation` | Omnis doc pack (11.1 help), optional | 1 node overview + member groups | 3,146 |
+
+Pipeline: `extract.py` → `chunk.py` → `validate.py` → `embed_and_store.py` → `import_to_postgres.py`.
+Each step reads the output of the previous one from `output/`.
 
 ---
 
-## Extraction (`extract.py`)
+## Why the PDFs are hard
 
-`extract.py` uses a **hybrid approach** to generate correct Markdown output:
+The manuals in `Omnis PDF/` are the files Omnis shipped; FunctionRef and Programming were re-saved
+(PDFium, macOS Preview) because the originals were hard to read. The consequences:
 
-- **pymupdf4llm** (`page_chunks` mode): provides document structure such as H2 headings, bold/italic text, and tables
-- **pdfplumber**: fixes spacing inside code blocks
+| Property | CommandRef | FunctionRef | Programming |
+|---|---|---|---|
+| Bookmarks | 508 (one per command) | none | none |
+| Headings tagged in the PDF | no | no | no |
+| Entry title font | Montserrat-Bold 8 pt, same as "Syntax" labels | same | — |
+| Section titles | — | — | Montserrat-Bold 9.2 pt (sections), 7.7 pt (sub-sections), 11 pt (chapters) |
+| Code font | LMMono10 **10 pt** | LMMono10 10 pt | LMMono10 **9.6 pt** — larger than section titles |
+| Code spacing | glyphs positioned without space characters | same | same |
 
-### Why hybrid?
+`pymupdf4llm` converts pages to good Markdown (tables, lists, bold text) but guesses headings from
+font size. It therefore
 
-`pymupdf4llm` loses spaces in code blocks, for example `CalculatelCountas1` instead of `Calculate lCount as 1`. The reason is that code in PDFs is positioned via glyph spacing rather than real space characters. `pdfplumber` handles this correctly using `x_tolerance`-based word detection.
-
-### Per-page flow
-
-1. `pymupdf4llm` extracts the page into Markdown with correct structure but broken code blocks
-2. `pdfplumber` extracts mono-font lines (LMMono / Courier) from the same page
-3. Code-block lines are replaced by normalized text matching (spaceless comparison)
-4. Prefix matching handles cases where `pymupdf4llm` renders a shorter line than `pdfplumber`
-
-### Result (as of April 2026)
-
-| Document | Total code lines | Still incorrect |
-|---|---|---|
-| CommandRef | 3809 | 4 (< 0.1%) |
-| FunctionRef | 683 | 7 (1%) |
-| Programming_Omnis | 2226 | ~60 (3%, most of them legitimately spaceless) |
+- turned **code lines into headings** (220 of 1,543 v1 programming chunks had a code line as title),
+- rendered some entry titles as **bold text** instead of a heading, so the v1 chunker merged the
+  entry into the previous one (66 of 499 commands and ≥ 25 functions were lost),
+- lost the **"fi"/"fl" ligatures inside tables** ("specifed", "frst", "fag") — PyMuPDF expands a
+  ligature into two characters at the same position and its table extraction drops the second one.
 
 ---
 
-## CommandRef.pdf
+## Extraction (`scripts/extract.py`)
 
-### Document structure
-- Pages 1-10: index pages (command-group overviews, client command list, obsolete commands) -> **skip**
-- Page 11-end: alphabetical command entries -> **chunk**
+**Principle: structure from the PDF, content from pymupdf4llm.**
 
-### Chunk structure (observed)
-Every command entry follows this exact pattern:
-```text
-Command Name (bold, heading level)
-───────────────────────────────────────────────────────
-Command group │ Flag affected │ Reversible │ Execute on client │ Platform
-Constructs    │ NO            │ NO         │ YES               │ All
-───────────────────────────────────────────────────────
-Syntax
-Command Name ([Option1][,Option2])
+1. `pymupdf4llm` renders every page to Markdown (`page_chunks=True`).
+2. **Code spacing** is repaired per page with `pdfplumber` (x-tolerance word grouping of LMMono lines),
+   matching lines by their space-free form.
+3. **Ligatures** are repaired with a vocabulary built from the plain page text (which is intact):
+   an unknown word is corrected when exactly one insertion of "i" or "l" after an "f" yields a known
+   word. 1,158 repairs, e.g. `specifed → specified`, `usequalifers → usequalifiers`, `fag → flag`.
+4. The **document structure** is read from the PDF itself (PyMuPDF spans with font and position):
+   - **CommandRef / FunctionRef:** an entry starts at the bold line directly before its metadata
+     table label ("Command group" / "Function group"). Bookmarks, when present, canonicalise titles;
+     bookmarks without a table ("FileOps error codes", "Web Command Error Codes") become sections.
+   - **Programming:** chapter / section / sub-section headings by font (Montserrat-Bold at 11 / 9.2 /
+     ~7.7 pt, standalone line). LMMono lines are never headings. With bookmarks, the bookmarks are used.
+5. The page Markdown is **cut at those markers**. A marker is located as a standalone Markdown line;
+   if the title line is missing (title rendered inside a table), the cut is placed at the metadata
+   table. The search for the next entry starts behind the current entry's own table, so no entry can
+   swallow the next one.
+6. **Heading markup is rewritten** consistently: entry title `##`, labels (`Syntax`, `Options`,
+   `Description`, `Example`) `###`; every other heading guessed by pymupdf4llm is demoted to text,
+   code-like ones become code blocks. Code blocks are never touched by these rewrites.
+7. **Metadata tables** are read from PDF coordinates (header cells and the value below them), not
+   from the rendered Markdown, which comes in three table variants and sometimes as plain text.
+   Header cells clipped at the page edge ("Pla") are matched by prefix.
+8. Special cases: the list of **obsolete commands** sits on multi-column index pages that the Markdown
+   conversion drops; it is read from the plain page text. The multi-column function group lists of
+   FunctionRef (pages 3–7) are skipped — the group of each function is in its metadata.
 
-Options (optional, not all commands have this field)
-Option1  │ Description
-Option2  │ Description
-
-[Deprecated Command] (optional, if deprecated)
-
-Description
-Body text...
-
-Example
-# comment
-Omnis code...
-```
-
-### Chunk size
-- Minimum: `~100` tokens (simple commands without options)
-- Maximum: `~600` tokens (commands with many options and a long example)
-- Average: `~250` tokens
-
-### No overlap
-These units are atomic and fully self-contained. Overlap would only add noise.
-
-### Deprecated commands
-**Keep them**, but mark them with metadata flag `deprecated: true`.
-Reason: developers working with legacy code still need this information. Retrieval can later filter them via metadata.
-
-### Pages to skip
-- Pages 1-10 completely (intro, group overviews, client command list, obsolete command list, copyright)
-- Detection rule: pages with < 200 characters of extracted text -> skip
-
-### Splitting approach after Markdown extraction
-After extraction, command names are rendered as H2 headings.
-`chunk.py` uses lookahead: an H2 heading is only treated as a real command boundary if a `|Command group|` table appears within the next 10 lines. This reliably filters out syntax demo headings.
-
-```python
-# Simplified view; real logic lives in scripts/chunk.py
-chunks = [c for c in h2_sections if 'Command group' in c]
-```
-
-### Metadata per chunk
-```json
-{
-  "id": "cmd_{command_name_slug}",
-  "text": "Command: Begin reversible block | Group: Constructs | Flag: NO | Reversible: NO | Client: NO | Platform: All\n\n## **Begin reversible block**\n...",
-  "metadata": {
-    "source": "CommandRef",
-    "command_name": "Begin reversible block",
-    "command_group": "Constructs",
-    "flag_affected": false,
-    "reversible": false,
-    "execute_on_client": false,
-    "platform": "All",
-    "deprecated": false,
-    "has_options": false
-  }
-}
-```
-
-The `text` field starts with a metadata line (`cmd_prefix()`), followed by a blank line and the full chunk Markdown. That gives the embedding model immediate context, even for short chunks.
-
-Metadata is extracted from the `|Command group|` table in the chunk text via regex (logic in `scripts/chunk.py: extract_command_metadata()`).
+Output: `output/extracted/<source>.json` (units with title, heading path, pages, Markdown, metadata)
+and `output/<source>_extracted.md` for manual inspection.
 
 ---
 
-## FunctionRef.pdf
+## Chunking (`scripts/chunk.py`)
 
-### Document structure
-- Pages 1-7: intro, function-group overview, client function list, copyright -> **skip**
-- Page 8-end: alphabetical function entries -> **chunk**
-
-### Chunk structure (observed)
-```text
-functionname()
-───────────────────────────────────────
-Function group │ Execute on client │ Platform(s)
-Number         │ YES               │ All
-───────────────────────────────────────
-Syntax
-functionname(parameter1[, parameter2])
-
-Description
-Body text...
-
-Example
-Calculate lResult as functionname(argument)
-# returns ...
-```
-
-### Chunk size
-- Minimum: `~80` tokens
-- Maximum: `~400` tokens
-- Average: `~180` tokens
-
-### Splitting approach
-Same lookahead logic as CommandRef: an H2 heading is only a real function boundary if a `|Function group|` table appears within the next 10 lines.
-
-### Rendering note
-
-The overview pages 4-7 (Function Groups tables) contain overlapping text in the PDF rendering. Since those pages are skipped (`skip_pages: range(7)`), this is not a problem for the RAG.
-
-### Metadata per chunk
-```json
-{
-  "id": "fn_{function_name}",
-  "text": "Function: abs() | Group: Number | Client: YES | Platform: All\n\n## abs()\n...",
-  "metadata": {
-    "source": "FunctionRef",
-    "function_name": "abs",
-    "function_signature": "abs()",
-    "function_group": "Number",
-    "execute_on_client": true,
-    "platform": "All",
-    "has_example": true
-  }
-}
-```
-
----
-
-## Programming_Omnis.pdf
-
-### Document structure (508 pages)
-
-| Chapter | Pages | RAG-relevant? |
-|---|---|---|
-| 1 — The Omnis Environment | 9-83 | **NO** — IDE navigation, screenshots |
-| 2 — Libraries and Classes | 84-114 | YES |
-| 3 — Omnis Programming | 115-156 | YES — core chapter |
-| 4 — Debugging Methods | 157-221 | **NO** — debugger UI |
-| 5 — Object Oriented Programming | 222-233 | YES |
-| 6 — List Programming | 234-249 | YES |
-| 7 — SQL Programming | 250-285 | YES |
-| 8 — SQL Classes and Notation | 286-300 | YES |
-| 9 — Server-Specific Programming | 301-368 | YES |
-| 10 — Report Programming | 369-405 | YES |
-| 11 — Window Components | 406-508 | YES (partially) |
-
-**Exclude chapters 1 and 4 entirely** -> saves about `~140` pages (27% of the document) and removes IDE screenshots and menu descriptions that add no RAG value.
-
-### Three chunk types
-
-**Type A — Concept chunk** (H2 section with explanatory text):
-Mostly prose with explanatory text, possibly with tables.
-Target size: `300-600` tokens.
-
-**Type B — Pattern chunk** (section primarily made of code examples):
-Contains Omnis code examples embedded in explanatory text.
-Never separate code examples from their explanation.
-Target size: `200-500` tokens.
-
-**Type C — Reference chunk** (tables/lists with reference data):
-For example variable scope tables, operator precedence tables, error codes.
-Keep as a single chunk, even if somewhat smaller.
-
-### What to remove
-```python
-import re
-
-def clean_programming_page(text: str) -> str:
-    # Remove figure captions
-    text = re.sub(r'\nFigure \d+:.*?\n', '\n', text)
-    # "About This Manual" boilerplate (page 7)
-    # Copyright pages
-    # Pages with < 150 chars (pure screenshot pages)
-    return text
-
-def is_relevant_page(page_text: str) -> bool:
-    return len(page_text.strip()) >= 150
-```
-
-### Splitting approach
-
-Every H2 heading in the extracted Markdown becomes one chunk. Oversized chunks (> 700 words) are split into 500-word pieces with 50-word overlap. Minimum size: 30 words (smaller chunks are discarded).
-
-**Overlap rule:** 50-word overlap when splitting large chunks.
-
-### Exclude chapters 1 and 4
-
-Already excluded at extraction time: `extract.py` does not pass those pages to `pymupdf4llm`. `chunk.py` additionally filters by `chapter_number in {1, 4}`.
-
-### Small chunks: no merging
-
-About 15% of Programming chunks are below 50 words. These come from:
-- Legitimate short sections (complete concepts in 30-50 words)
-- Code demo headings (the PDF uses code snippets as section titles)
-
-**Decision: do not merge neighboring chunks.** Reason: the H2 boundaries are semantic units, and merging would join unrelated sections, for example `"Closing a Library"` + `"Omnis VCS"`. `BAAI/bge-m3` handles short, self-contained chunks well enough for this corpus, and the metadata prefix gives short chunks additional retrieval context.
-
-### Metadata per chunk
+### Uniform chunk format
 
 ```json
 {
-  "id": "prog_ch03_{section_slug}",
-  "text": "Programming_Omnis | Chapter 3: Omnis Programming | Section: Variables\n\n## **Variables**\n...",
-  "metadata": {
-    "source": "Programming_Omnis",
-    "chapter_number": 3,
-    "chapter_title": "Omnis Programming",
-    "section": "Variables",
-    "word_count": 312
-  }
+  "id": "cmd_ok_message",
+  "corpus": "omnis-commands",
+  "title": "OK message",
+  "heading_path": ["OK message"],
+  "text": "## OK message\n\nCommand group: Message boxes | Flag affected: NO | ...",
+  "embed_text": "Omnis command: OK message | Group: Message boxes | ... | DEPRECATED\n\n## OK message ...",
+  "metadata": {"source": "CommandRef", "omnis_version": "11", "page_start": 178, "doc_key": "cmd_ok_message", ...}
 }
 ```
 
----
+- `text` is what a reader gets; `embed_text` adds one context line and is what gets embedded.
+- `doc_key` groups the parts of one entry; search returns one hit per `doc_key`.
+- Size limit 450 words. Longer entries are split at paragraph boundaries; oversized single blocks
+  are split by table rows (header repeated), code lines or sentences. Every part repeats the entry
+  header (title and metadata line).
 
-## Output Files
+### Commands and functions
 
-### Stage 1: Extracted Markdown
-```text
-/output/
-  CommandRef_extracted.md       (~500 KB)
-  FunctionRef_extracted.md      (~300 KB)
-  Programming_extracted.md      (~2 MB, without chapters 1+4)
-```
+- One entry = one chunk; the metadata line (`Command group: … | Flag affected: … | …`) replaces the
+  rendered table.
+- Metadata fields: `command_name`, `command_group`, `flag_affected`, `reversible`,
+  `execute_on_client`, `platform` (functions: `function_name`, `function_signature`,
+  `function_group`, …), `page_start`, `page_end`.
+- With the doc pack:
+  - `deprecated`, `deprecation` and `modern_equivalent` come from the Omnis 11.1 help (the PDF has no
+    reliable flag). 153 commands are classified as legacy there, e.g. `OK message`
+    (`deprecated_no_replacement`).
+  - Entries that exist in the 11.1 help but not in the PDF (Studio 11.0, rev. 35659) are added from the
+    help: `If`, `Else If`, `While`, `Until`, `coalesce()`, `bool()`, `charat()`, `FileOps.$copy()` …
+    (`source: OmnisDocPack`).
+  - PDF commands that the 11.1 help no longer lists get `in_help_11_1: false` and a note (119 legacy
+    commands such as the DDE and Advise groups).
 
-### Stage 2: JSON chunks (ready to embed)
-```text
-/output/chunks/
-  commands_chunks.json          (~400 entries, ~500 KB)
-  functions_chunks.json         (~350 entries, ~350 KB)
-  programming_chunks.json       (~300 entries, ~750 KB)
-```
+### Programming manual
 
-### Chunk format (uniform across all three collections)
-```json
-{
-  "id": "string (unique)",
-  "text": "string (full chunk text, metadata as readable prose at the front)",
-  "metadata": { ... }
-}
-```
+- One chunk per sub-section; `heading_path` = chapter › section › sub-section, repeated in the
+  embedding context line. All 17 chapters are included (v1 excluded chapters 1 and 4).
+- Units without a real body (a heading directly followed by a sub-heading) are merged into the next
+  unit of the same section instead of becoming near-empty chunks.
 
-The `text` field contains the metadata as a readable prefix so the embedding context is correct:
-```text
-"Calculate\nCommand group: Calculations | Flag: YES | Client: YES\n\nSyntax: Calculate variable as expression\n\nDescription: ..."
-```
+### Notation (doc pack)
 
----
+The PDFs contain no notation reference. With the doc pack (`--omnisdoc PATH` or `OMNISDOC_PACK`) each
+notation page (1,121 nodes) becomes:
 
-## Quality Control
-
-### Automatic checks
-```python
-def validate_chunk(chunk: dict) -> list[str]:
-    issues = []
-    tokens = len(chunk["text"].split())
-    if tokens < 30:
-        issues.append(f"Too small: {tokens} tokens")
-    if tokens > 1000:
-        issues.append(f"Too large: {tokens} tokens")
-    if "Figure" in chunk["text"] and ":" in chunk["text"]:
-        issues.append("Possible figure caption not removed")
-    return issues
-```
-
-### Manual spot checks after extraction
-After stage 1 (Markdown), verify:
-- [ ] Are command/function names correctly recognized as headings?
-- [ ] Are code blocks (`` ``` ``) formatted correctly?
-- [ ] Are metadata tables readable (not rendered as gibberish)?
-- [ ] No overlapping table text (known problem on FunctionRef pages 4-7)?
-
-### Test queries after ingestion
-```text
-omnis_commands:    "How do I use Begin reversible block?"
-                   "What commands set the flag?"
-omnis_functions:   "What parameters does binfrombase64() accept?"
-                   "How do I calculate average of list column?"
-omnis_programming: "What is the difference between instance and class variables?"
-                   "How do I navigate the object tree with $root?"
-```
+- a **node chunk**: description plus the names of its properties, methods, events and standard members,
+- **member chunks** of ~300 words: `- \`$line\` — The current line in the list …`, deprecated members
+  marked.
 
 ---
 
-## Script Structure
+## Validation (`scripts/validate.py`)
 
-```text
-/scripts/
-  extract.py          # PDF -> Markdown (hybrid: pymupdf4llm + pdfplumber)
-  chunk.py            # Markdown -> JSON chunks (with metadata prefix)
-  validate.py         # Chunk quality checks
-  embed_and_store.py  # JSON chunks -> vector database
-  import_to_postgres.py
-  import_to_docker_postgres.py
-```
+Hard checks (exit code 1):
 
-Each script runs independently. Output from step N becomes input to step N+1.
-That makes every step individually testable and repeatable when needed.
+- CommandRef: every bookmark from the first command on has a unit (499/499).
+- FunctionRef: entries = metadata tables in the PDF (357/357).
+- Programming: chapters 1–17 consecutive; no section title looks like code.
+- No ligature damage; unique ids; no empty or oversized chunk; all fields present.
+
+Informational: commands and functions that exist only in the doc pack or only in the PDF.
+Report: `output/validation_report.json`.

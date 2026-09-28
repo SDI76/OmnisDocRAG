@@ -3,9 +3,9 @@
   "params": {
     "name": "search_omnis_docs",
     "arguments": {
-      "query": "$sendallref semantics and differences to $ref",
-      "mode": "concept",
-      "k_programming": 14
+      "query": "\"reversible block\" OR \"Begin reversible\"",
+      "mode": "fulltext",
+      "top_k": 5
     }
   }
 }

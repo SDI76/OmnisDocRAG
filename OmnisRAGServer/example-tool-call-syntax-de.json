@@ -3,8 +3,7 @@
   "params": {
     "name": "search_omnis_syntax",
     "arguments": {
-      "query": "Wie ist die exakte Syntax von $sendall inklusive Parametern?",
-      "query_language": "de"
+      "query": "Wie ist die exakte Syntax von $sendall inklusive Parametern?"
     }
   }
 }

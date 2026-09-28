@@ -49,7 +49,7 @@ For Omnis, BM25 is **not optional**. Notation lookups are common and lexically v
 **Reasoning:**
 - Strong multilingual support (German/English), relevant because queries may be in German while the content is in English
 - Runs locally via `sentence-transformers`, no API key, no cost, no cloud dependency
-- 1024 dimensions, which is sufficient for about `~2355` chunks of a proprietary niche corpus
+- 1024 dimensions, which is sufficient for about `~6000` chunks of a proprietary niche corpus
 - Same model for indexing (`embed_and_store.py`) and runtime (`ragserver.py`), so retrieval stays consistent
 
 **Specifications:**
@@ -128,7 +128,7 @@ rag.corpus -> rag.document -> rag.chunk -> rag.embedding
 
 Key properties:
 
-- one database with three corpora: `omnis-commands`, `omnis-functions`, `omnis-programming`
+- one database with four corpora: `omnis-commands`, `omnis-functions`, `omnis-programming`, `omnis-notation`
 - HNSW index for dense retrieval
 - BM25/full-text via `tsvector`
 - hybrid search via Reciprocal Rank Fusion in SQL functions

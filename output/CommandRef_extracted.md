@@ -1,6 +1,168 @@
+<!-- p1-1 | Command information -->
+## Command information
+
+Each command has the following information, as well as the syntax, description, and an Omnis code example. 
+
+|Command group|Flag affected|Reversible|Execute on Client|Platform(s)|
+|---|---|---|---|---|
+|Functional group,e.g.|Whether or not (YES/NO) the|Whether or not (YES/NO)|Whether or not (YES/NO) the|Which platform the|
+|“Constructs”|command sets the flag when it|the command is reversed|command can be executed in a|command is available on,|
+||executes; if the command|when it is executed within a|client method in the JavaScript|including: Windows, Linux,|
+||executes successfully the flag is|reversible block; see_Begin_|Client; see also Client commands|macOS; All indicates the|
+||set to True, if it fails the flag is|_reversible block_command.||command is available on all|
+||set to False.|||platforms|
+
+<!-- p1-2 | Command Groups -->
+## Command Groups
+
+In versions of Omnis Studio prior to version 10.x the commands were arranged in groups in the Method Editor, but the command groups no longer appear in the Code Editor. The commands are listed here in the same functional groups for your convenience only. 
+
+|Calculations|Classes|Constructs|Debugger|
+|---|---|---|---|
+|Error|Events|External|Externals|
+|handlers||com-||
+|||mands||
+|Libraries|Message|Methods|Operating|
+||boxes||system|
+|Parameters|Reports|SQL|Text|
+|and|and|Object||
+|variables|Printing|Com-||
+|||mands||
+|Threads||||
+
+_The following commands apply to desktop apps only, and should not be used in web or mobile apps._ 
+
+|Changing|Clipboard|Data|Data|
+|---|---|---|---|
+|data||files|manage-|
+||||ment|
+|Enter data|Exchanging|Fields|Files|
+||data|||
+|Finding|Importing|List lines|Lists|
+|data|and Ex-|||
+||porting|||
+|Menus|Omnis|Report|Report|
+||environ-|destina-|parame-|
+||ment|tions|ters|
+|Searches|Sort|Tasks|Toolbars|
+||fields|||
+
+Windows
+
+<!-- p2-2 | Client Commands -->
+## Client Commands
+
+The following commands can be executed in a client method in the JavaScript Client. 
+
+Command # Comment Begin text block Break to end of switch asof 35949 Breakpoint Calculate Case Default Do Do inherited Do method Else Else If calculation Else If flag false Else If flag true End For End If End Switch End text block End While For field value Get text block If calculation If flag false If flag true JavaScript: Jump to start of loop OK message On On default Quit event handler Quit method Repeat Send to trace log Set reference Sound bell Switch Text: Until calculation Until flag false Until flag true While calculation While flag false While flag true
+
+<!-- p3-3 | Obsolete Commands -->
+## Obsolete Commands
+
+There were several commands or command groups marked as ‘Obsolete’ in versions of Omnis Studio prior to Studio 10.0 and these have been removed from Omnis Studio and will be commented out in converted libraries: for the benefit of existing users, the obsolete commands are listed here: Obsolete Commands
+
+Commands marked OBSOLETE COMMAND:
+
+- Autocommit
+- Begin SQL script
+- Build list from select table
+- Build list of event recipients
+- Cancel event recipient
+- Cancel publisher
+- Cancel subscriber
+- Close client import file
+- Close cursor
+- Commit current session
+- Declare cursor for
+- Delete client import file
+- Describe cursors
+- Describe database
+- Describe results
+- Describe server table
+- Describe sessions
+- Disable automatic publications
+- Disable automatic subscriptions
+- Disable receiving of Apple events
+- Enable automatic publications
+- Enable automatic subscriptions
+- Enable receiving of Apple events
+- End SQL script
+- Execute SQL script
+- Fetch current row
+- Fetch first row
+- Fetch last row
+- Fetch next row
+- Fetch previous row
+- Get SQL script
+- Logoff from host
+- Logon to host
+- Make file class from server table
+- Make schema from server table
+- Map fields to host
+- Open client import file
+- Open cursor
+- Open desk accessory
+- Perform SQL
+- Prepare current cursor
+- Prompt for event recipient
+- Prompt for word server
+- Publish field
+- Publish now
+- Quit cursor(s)
+- Reset cursor(s)
+- Retrieve rows to file
+- Rollback current session
+- Send core event
+- Send core event with return value
+- Send database event
+- Send finder event
+- Send to publisher
+- Send word services event
+- Server specific keyword
+- Set batch size
+- Set character mapping
+- Set client import file name
+- Set current cursor
+- Set current session
+- Set database version
+- Set event recipient
+- Set hostname
+- Set password
+- Set publisher options
+- Set SQL blob preferences
+- Set SQL script
+- Set SQL separators
+- Set subscriber options
+- Set transaction mode
+- Set username
+- SQL:
+- Start session
+- Subscribe field
+- Subscribe now
+- Use event recipient
+
+<!-- p3-11 | Command Filters -->
+## Command Filters
+
+The commands in Omnis perform many different functions, including many legacy features that are no longer required for creating web and mobile apps using the JavaScript Client. There is a filter mechanism in the Method Editor to filter the list of commands that are displayed in the **Code Assistant** help list, primarily to remove any old commands, including those for managing Omnis datafiles. 
+
+Note you can still use the excluded commands in your code, and methods in converted libraries using these commands will continue to work – the filters just hide the commands from the Code Assistant help list. 
+
+The command filter is set under the **Filter Commands** submenu in the **Modify** menu in the Method Editor: note this is only visible when the cursor is in Code Editor, while editing a line of code. The **Exclude Old Commands** filter is enabled by default, which excludes over 200 old commands, plus there are other filters available that exclude smaller subsets of commands. You can disable the current filter using the **No Filter** option, in which case all the commands available in Omnis will be shown in the Code Assistant help list. 
+
+**Copyright info** 
+
+The software this document describes is furnished under a license agreement. The software may be used or copied only in accordance with the terms of the agreement. Names of persons, corporations, or products used in the tutorials and examples of this manual are fictitious. No part of this publication may be reproduced, transmitted, stored in a retrieval system or translated into any language in any form by any means without the written permission of Omnis Software. © Omnis Software, and its licensors 2023. All rights reserved. Portions © Copyright Microsoft Corporation. Regular expressions Copyright (c) 1986,1993,1995 University of Toronto. © 1999-2023 The Apache Software Foundation. All rights reserved. This product includes software developed by the Apache Software Foundation (http://www.apache.org/). Specifically, this product uses Json-smart published under Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0) © 2001-2023 Python Software Foundation; All Rights Reserved. The iOS application wrapper uses UICKeyChainStore created by http://kishikawakatsumi.com and governed by the MIT license. Omnis® and Omnis Studio® are registered trademarks of Omnis Software. Microsoft, MS, MS-DOS, Visual Basic, Windows, Windows Vista, Windows Mobile, Win32, Win32s are registered trademarks, and Windows NT, Visual C++ are trademarks of Microsoft Corporation in the US and other countries. Apple, the Apple logo, Mac OS, Macintosh, iPhone, and iPod touch are registered trademarks and iPad is a trademark of Apple, Inc. IBM, DB2, and INFORMIX are registered trademarks of International Business Machines Corporation. ICU is Copyright © 1995-2023 International Business Machines Corporation and others. UNIX is a registered trademark in the US and other countries exclusively licensed by X/Open Company Ltd. Portions Copyright (c) 1996-2023, The PostgreSQL Global Development Group Portions Copyright (c) 1994, The Regents of the University of California Oracle, Java, and MySQL are registered trademarks of Oracle Corporation and/or its affiliates SYBASE, Net-Library, Open Client, DB-Library and CT-Library are registered trademarks of Sybase Inc. Acrobat is a registered trademark of Adobe Systems, Inc. CodeWarrior is a trademark of Metrowerks, Inc. This software is based in part on ChartDirector, copyright Advanced Software Engineering (www.advsofteng.com). This software is based in part on the work of the Independent JPEG Group. This software is based in part of the work of the FreeType Team. Other products mentioned are trademarks or registered trademarks of their corporations. 
+
+**Lists** 
+
+**Commands** 
+
+The **Lists** group of commands are no longer visible in the Code Assistant in the Code Editor (they will not appear when you type the first few characters), although they are still present in Studio 11 and will continue to function in legacy code. You can show these commands by disabling the appropriate Command Filter in the Modify menu in the Code Editor. 
+
 **List lines** 
 
-## **Commands** 
+**Commands** 
 
 The **List Lines** group of commands are no longer visible in the Code Assistant in the Code Editor (they will not appear when you type the first few characters), although they are still present in Studio 11 and will continue to function in legacy code. You can show these commands by disabling the appropriate Command Filter in the Modify menu in the Code Editor. 
 
@@ -19,7 +181,7 @@ You should use the equivalent methods where available, such as $add() instead of
 |selection|from list|selected|line in|
 |for line(s)||and|list|
 |||saved||
-|Restore|Save|Select|Set fnal|
+|Restore|Save|Select|Set final|
 |selection|selection|list|line|
 |for line(s)|for line(s)|line(s)|number|
 |Swap|Test if list|XOR||
@@ -27,21 +189,18 @@ You should use the equivalent methods where available, such as $add() instead of
 |and|selected|and||
 |saved||saved||
 
+**# Comment**
 
+<!-- p11-12 | # Comment -->
+## # Comment
 
-## **# Comment** 
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **#** _message_ 
 
-## **Description** 
+### Description
 
 This command allows you to add comments to your code. You can either add a new comment, or you can “comment out” existing lines in your code. 
 
@@ -53,19 +212,9 @@ Note that the Sta:, Text: and JavaScript: commands do not allow inline comments.
 
 To “comment out” lines of code, i.e. to stop the code executing, select the method line or multiple lines and press Ctrl+/. Use the same keypress to uncomment previously commented out lines of code (in this case, the comment text must be a valid command to be uncommented). 
 
-11 
-
-
-
 ```
 # here are some comments
-```
-
-```
 # variable delay set by lDelay
-```
-
-```
 # adjust Until calculation to increase/decrease delay
 Calculate lCount as 1
 Repeat ## this is an in-line comment
@@ -73,79 +222,67 @@ Calculate lCount as lCount+1
 Until lCount>=lDelay*10
 ```
 
-## **Accept advise requests** 
+<!-- p12-12 | Accept advise requests -->
+## Accept advise requests
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
-
-
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
 **Syntax Accept advise requests** ([ _Accept_ ]) 
 
-**Options** 
+### Options
 
 **Accept** If specified, the mode identified by the command is enabled 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as server. This command enables or disables responses to a request Advise message from a client. With the _Accept_ check box selected, Omnis will respond to an Advise request message specifying a valid field name by repeatedly sending the field value to the client at appropriate times. If the _Accept_ option is unchecked, all conversations with Advises in force will be terminated unless the command is part of a reversible block. 
 
-## **Example** 
+### Example
 
 ```
 Accept advise requests (Accept)
 ```
 
-## **Accept commands** 
+<!-- p12-13 | Accept commands -->
+## Accept commands
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
-|**Syntax**||||
-|**Accept commands**([_Accept_])||||
-|**Options**||||
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
+### Syntax
+**Accept commands**([_Accept_])
+### Options
 
 Accept If specified, the mode identified by the command is enabled 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as server. This command determines whether Omnis will accept commands from the client program. When **Accept commands** is in force, Omnis will respond to a DDE EXECUTE message by attempting to execute a command string sent by the client program. All conversations are terminated when you close your Omnis library. 
 
-12 
-
-
-
-## **Example** 
+### Example
 
 ```
 Accept advise requests (Accept)
 Accept commands (Accept)
 ```
 
-## **Accept field requests** 
+<!-- p13-13 | Accept field requests -->
+## Accept field requests
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Accept field requests** ([ _Accept_ ]) 
 
-## **Options** 
+### Options
 
 Accept If specified, the mode identified by the command is enabled 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as server. This command enables or disables responses to a request for field values issued by a client application. With the _Accept_ option selected, Omnis will respond to a Request message specifying a valid field name by sending the field value to the client program. Values are taken from the current record buffer. Values are only sent when Omnis is in enter data mode or when no methods are running. 
 
-## **Example** 
+### Example
 
 ```
 Accept advise requests (Accept)
@@ -153,53 +290,43 @@ Accept commands (Accept)
 Accept field requests (Accept)
 ```
 
-## **Accept field values** 
+<!-- p13-14 | Accept field values -->
+## Accept field values
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Accept field values** ([ _Accept_ ]) 
 
-## **Options** 
+### Options
 
 Accept If specified, the mode identified by the command is enabled 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as server. This command determines whether Omnis is able to receive data from a client via a DDE POKE message. With the _Accept_ option selected, Omnis will respond to a Poke message specifying a valid field or variable name, by setting the value of that field to the value transmitted by the client program. Values are stored in the current record buffer and, if the relevant field is on the top window, that window is redrawn. 
 
 Field values are only accepted when Omnis is in enter data mode, Prompted find, or when no methods are running. All conversations are terminated when you close your Omnis library. 
 
-13 
+### Example
 
+`Accept advise requests (Accept) Accept field values (Accept)`
 
+<!-- p14-14 | Add line to list -->
+## Add line to list
 
-## **Example** 
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-## `Accept advise requests (Accept) Accept field values (Accept)` 
-
-## **Add line to list** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Add line to list** { _line-number_ ( _values_ ) {default is end of list}} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command adds a new line to the current list using the current field values in the CRB or values you specify in the list of values. Any conversions required between data types are carried out automatically. The flag is cleared if the line cannot be added, either because the maximum number of lines in the list or the memory limits have been exceeded. 
 
@@ -211,147 +338,111 @@ Set current list lMyList
 Define list {lName,lAge}
 Add line to list {('Fred',10)}
 Add line to list {('George',20)}
-```
-
-```
 # Insert the values of the variables lName and lAge to lMyList at line 1
 Calculate lName as 'Harry'
 Calculate lAge as 22
 Add line to list {1 (lName,lAge
-```
-
-```
 # If no values are defiened, the current values of the variables
 # used in the Define List are added
 Add line to list
-```
-
-```
 # Alternatively, you can use the $add() method to add lines to your list
 Do lMyList.$define(lName,lAge)
 Do lMyList.$add('Fred',10)
 Do lMyList.$add('George',20)
-```
-
-```
 # You can also use the $addbefore() and $addafter() methods to add
 # lines at a specific position in the list
 Do lMyList.$addbefore(1,'Harry',22)
 ```
 
-14 
+<!-- p15-15 | Advise on find/next/previous -->
+## Advise on find/next/previous
 
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
-**Advise on find/next/previous** 
+Advise on find/next/previous ([ Accept ])
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
-
-
-
-## **Syntax** 
-
-## **Advise on find/next/previous** ([ _Accept_ ]) 
-
-## **Options** 
+### Options
 
 Accept If specified, the mode identified by the command is enabled 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as server. This command determines when Omnis is permitted to send requested Advise messages to the client program. When Advise requests have been received from a client, the _Set server mode_ command determines when Omnis is permitted to send field values that have changed. In addition to the _Set server mode_ options, the three commands **Advise on Find/next/previous** _, Advise on OK,_ and _A_ dv _ise on Redraw_ let you toggle individual options on or off. **Advise on Find/next/previous** lets you control this particular option without affecting the other two. 
 
-## **Example** 
+### Example
 
 ```
 Advise on find/next/previous (Accept)
 ```
 
-## **Advise on OK** 
+<!-- p15-15 | Advise on OK -->
+## Advise on OK
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Advise on OK** ([ _Accept_ ]) 
 
-## **Options** 
+### Options
 
 Accept If specified, the mode identified by the command is enabled 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as server. This command determines when Omnis is permitted to send requested Advise messages to the client program. When Advise requests have been received from a client, the _Set server mode_ command determines when Omnis is permitted to send field values that have changed. In addition to the _Set server mode_ options, the three commands _Advise on Find/next/previous,_ **Advise on OK** _,_ and _Advise on Redraw_ let you toggle individual options on or off. The **Advise on OK** command lets you control this particular option without affecting the other two. 
 
-## **Example** 
+### Example
 
 ```
 Advise on OK (Accept) ## enable advise on OK
 Advise on OK ## disable advise on OK
 ```
 
-15 
+<!-- p16-16 | Advise on redraw -->
+## Advise on redraw
 
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
-**Advise on redraw** 
+Advise on redraw ([ Accept ])
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
-
-
-
-## **Syntax** 
-
-## **Advise on redraw** ([ _Accept_ ]) 
-
-## **Options** 
+### Options
 
 Accept If specified, the mode identified by the command is enabled 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as server. This command determines when Omnis is permitted to send requested Advise messages to the client program. When Advise requests have been received from a client, the _Set server mode_ command determines when Omnis is permitted to send field values that have changed. In addition to the _Set server mode_ options, the three commands _Advise on Find/next/previous, Advise on OK,_ and **Advise on redraw** let you toggle individual options on or off. The **Advise on redraw** command lets you control this particular option without affecting the other two. 
 
-## **Example** 
+### Example
 
 ```
 Advise on redraw (Accept) ## enable advise on redraw
 Advise on redraw ## disable advise on redraw
 ```
 
-## **AND selected and saved** 
+<!-- p16-17 | AND selected and saved -->
+## AND selected and saved
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **AND selected and saved** ([ _All lines_ ]) { _line-number_ ( _calculation_ )} 
 
-## **Options** 
+### Options
 
 All lines If specified, the command affects all the lines in the list 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-16 
-
-
-
-## **Description** 
+### Description
 
 This command performs a logical AND of the Saved selection with the Current selection. You can specify a particular line in the list by entering either a number or a calculation. The _All lines_ option performs the AND for all lines of the current list. 
 
@@ -361,16 +452,23 @@ The list data structure contains the column definitions, the field values for ea
 
 The **AND selected and saved** command performs a logical AND on the saved and current state, and puts the result into the Current selection. Hence, for a particular line, if both the Current and Saved states are selected, the Current state remains selected, but if either or both states are deselected, the resulting Current state will become deselected. 
 
-|Saved State|Current State|Resulting Current State|
-|---|---|---|
-|Selected|Selected|Selected|
-|Deselected|Selected|Deselected|
-|Selected|Deselected|Deselected|
-|Deselected|Deselected|Deselected|
+Saved State
+Current State
+Resulting Current State
+Selected
+Selected
+Selected
+Deselected
+Selected
+Deselected
+Selected
+Deselected
+Deselected
+Deselected
+Deselected
+Deselected
 
-
-
-## **Example** 
+### Example
 
 ```
 # Line 3 remains selected as it is the only line selected
@@ -388,57 +486,43 @@ Select list line(s) {3}
 AND selected and saved (All lines)
 ```
 
-## **Begin critical block** 
+<!-- p17-18 | Begin critical block -->
+## Begin critical block
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Threads|NO|NO|NO|All|
+Command group: Threads | Flag affected: NO | Reversible: NO | Execute on client: P NO A
 
+### Syntax
 
+Begin critical block
 
-## **Syntax** 
-
-## **Begin critical block** 
-
-## **Description** 
+### Description
 
 **Begin critical block** is only applicable to the multithreaded server. It marks the start of a _critical block_ , namely a section of code which needs to execute in single threaded mode without allowing other client methods to execute. You use _End critical block_ to mark the end of a critical block. 
 
 One example of when you should use a critical block is as follows. Class variables are shared by all clients. Simple atomic operations, such as the direct assignment of a value to a class variable are safe. Other operations, such as when a method call is involved, could cause problems, because the method call might be interrupted by another thread. To avoid this, use a critical block. 
 
-17 
+### Example
 
-
-
-## **Example** 
-
-## `Begin critical block` 
-
+`Begin critical block`
 ```
 Calculate cClassVar as $cinst.$getvalue()
-```
-
-```
 End critical block
 ```
 
-## **Begin print job** 
+<!-- p18-18 | Begin print job -->
+## Begin print job
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|NO<br>NO<br>All|
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Begin print job** ([ _Send to PDF_ ]) 
 
-## **Options** 
+### Options
 
 Send to PDF If specified, the print job sends its reports to a single PDF file rather than a printer document 
 
-## **Description** 
+### Description
 
 This command defines the beginning of an Omnis print job which is ended by the command _End print job_ . Only one print job can be started at any time: you cannot nest **Begin print job** commands. 
 
@@ -452,14 +536,11 @@ You cannot change the page setup while a print job is in progress, although Omni
 
 The **Begin print job** and _End print job_ commands only apply to reports sent to a printer, via the printer report destination. 
 
-## **Example** 
+### Example
 
 ```
 # Create a print job and send 2 reports to the printer
 Begin print job
-```
-
-```
 Set report name rMyReport
 Print report
 Set report name rMyReport2
@@ -467,44 +548,28 @@ Print report
 End print job
 ```
 
-## **Begin reversible block** 
+<!-- p18-19 | Begin reversible block -->
+## Begin reversible block
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|NO<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Begin reversible block** 
 
-18 
-
-
-
-## **Description** 
+### Description
 
 This command begins a reversible block of commands. All reversible commands enclowsed within the commands Begin reversible block/End reversible block are reversed when the method containing this block finishes. However, a reversible block in the $construct() method of a window class reverses when the window is closed not when the method is terminated as is normally the case. Omnis always steps backwards through a reversible block of commands, thus the first command is reversed last. 
 
 Reversible blocks let you create subroutines that restore the values of variables, the current record buffer, and so on, to their previous state when the method terminates. Most commands are reversible: those that are not usually involve an irreversible action such as changing the data in an Omnis data file or running another program. Methods called from within a reversible block are not reversed. 
 
-## **Example** 
+### Example
 
 ```
 # A method can contain more than one block of reversible commands. In this case,
-```
-
-```
 # commands contained within all the blocks are reversed when the method terminates.
 # All the commands in the following example are reversed when the method containing
-```
-
-```
 # the block is finished
-```
-
-```
 Begin reversible block
 Disable menu line mMyMenu/5
 Set current list iMyList
@@ -512,17 +577,8 @@ Build open window list (Clear list )
 Calculate iVar as 0
 Open window instance wMyWindow
 End reversible block
-```
-
-```
 # When this block is reversed:
-```
-
-```
 # The window instance wMyWindow is closed
-```
-
-```
 # iVar returns to its former value
 ```
 
@@ -539,14 +595,8 @@ Hide fields {Entry1,Entry2}
 Install menu mCustomers
 End reversible block
 OK message (Icon) {MCUSTOMERS is now visible}
-```
-
-```
 # When this method ends, first MCUSTOMERS is removed, then the fields are shown.
 # In the following example, the current list is iMyList
-```
-
-```
 Begin reversible block
 Set current list iMyList2
 Define list {fAccounts.Code,fAccounts.Surname,fAccounts.Balance}
@@ -554,61 +604,41 @@ Set main file {fAccounts}
 Build list from select table
 Enter data
 End reversible block
-```
-
-```
 # When this method terminates and the command block is reversed, the Main file is reset,
 # the former list definition is restored and the current list is restored to iMyList.
 ```
 
-## **Begin statement** 
+<!-- p19-20 | Begin statement -->
+## Begin statement
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|SQL Object Commands|NO|NO<br>NO<br>All|
+Command group: SQL Object Commands | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Begin statement** ([ _Carriage return_ ][, _Linefeed_ ]) 
 
-19 
+### Options
+Carriage return
+If specified, the command appends a carriage return, after it appends each line of the statement
+Linefeed
+If specified, the command appends a line feed, after it appends each line of the statement
 
-
-
-|**Options**||
-|---|---|
-|Carriage return|If specifed, the command appends a carriage return, after it appends each line of the statement|
-|Linefeed|If specifed, the command appends a line feed, after it appends each line of the statement|
-
-
-
-## **Description** 
+### Description
 
 This command defines the start of a block of SQL statements and text to be stored in the SQL buffer for the current method stack. The current content of the SQL buffer is cleared when you execute this command. The _End statement_ command defines the end of the block. The lines are not checked by Omnis in any way and must be valid SQL in order for the server to be able to use them. To use the SQL buffer, you call the _$prepare_ or _$execdirect_ method of a SQL statement object, passing no parameters. 
 
 The _Carriage return_ option causes Omnis to insert a carriage return character between each line of the SQL statement. The _Linefeed_ option causes Omnis to insert a linefeed character between each line of the SQL statement. If you select both _Carriage return_ and _Linefeed_ , then Omnis inserts a carriage return followed by a linefeed. If you select neither option, Omnis separates the statement lines with a space. One example of when you would use these options, is when you use _Begin statement_ , _Sta:, End statement,_ and _$execdirect_ , to add a stored procedure to the database. This makes the procedure more readable when you view it. 
 
-## **Example** 
+### Example
 
 ```
 # Open a multi-threaded omnis sql connection to
 # the datafile mydatafile and create a statement to
-```
-
-```
 # select rows from the table Customers
 Calculate lHostname as con(sys(115),'mydatafile.df1')
 Do iSessObj.$logon(lHostname,'','','MYSESSION')
 Do iSessObj.$newstatement('MyStatement') Returns lStatObj
-```
-
-```
 Begin statement
-```
-
-```
 Sta: Select * From Customers
 Sta: Where Cust_ID > 100
 End statement
@@ -616,41 +646,34 @@ Do lStatObj.$execdirect()
 Do lStatObj.$fetch(lMyList,kFetchAll)
 ```
 
-## **Begin text block** 
+<!-- p20-21 | Begin text block -->
+## Begin text block
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Text|NO|NO|YES|All|
+Command group: Text | Flag affected: NO | Reversible: NO | Execute on client: P YES A
 
-
-
-## **Syntax** 
+### Syntax
 
 **Begin text block** ([ _Keep current contents_ ][,Carriage return][,Linefeed]) 
 
-## **Options** 
+### Options
 
-|Keep current contents|If specifed, the command keeps the current contents of the text block rather than|
-|---|---|
-||setting it to empty|
-|Carriage return|If specifed, Omnis appends a carriage return after it appends the text from a Line:|
-||command in the block. If the Carriage return and Linefeed options are both omitted|
-||then Omnis appends a platform newline after each Line: command|
-|Linefeed|If specifed, Omnis appends a line feed after it appends the text from a Line:|
-||command in the block. If the Carriage return and Linefeed options are both omitted|
-||then Omnis appends a platform newline after each Line: command|
+Keep current contents
+If specified, the command keeps the current contents of the text block rather than
+setting it to empty
+Carriage return
+If specified, Omnis appends a carriage return after it appends the text from a Line:
+command in the block. If the Carriage return and Linefeed options are both omitted
+then Omnis appends a platform newline after each Line: command
+Linefeed
+If specified, Omnis appends a line feed after it appends the text from a Line:
+command in the block. If the Carriage return and Linefeed options are both omitted
+then Omnis appends a platform newline after each Line: command
 
-
-
-20 
-
-
-
-## **Description** 
+### Description
 
 This command defines the start of a block of text to be stored in the text buffer for the current method stack. The **Begin text block** command clears the text buffer by default, and adds the text in subsequent Line: and _Text:_ commands to the text buffer. However, you can keep the current contents of the buffer by checking the _Keep current contents_ option, in which case text is appended to current text in the buffer. You build the text block using the Line: and _Text:_ commands, which support leading and trailing spaces and can contain square bracket notation. The _Carriage return_ and _Linefeed_ options specify the line delimiter added after each Line: command; if you omit both of these options, Omnis adds the platform specific newline character sequence after each Line: command. The _End text block_ command defines the end of the text block, and you can return the contents of the text buffer using the _Get text block_ command. 
 
-## **Example** 
+### Example
 
 ```
 Begin text block
@@ -660,118 +683,84 @@ Begin text block
 
 ```
 Text: stops, what is a work station?
-```
-
-```
 End text block
-```
-
-```
 Get text block lTextString
 OK message {[lTextString]}
 ```
 
-## **Break to end of loop** 
+<!-- p21-21 | Break to end of loop -->
+## Break to end of loop
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+Break to end of loop
 
-## **Syntax** 
-
-## **Break to end of loop** 
-
-## **Description** 
+### Description
 
 This command terminates a Repeat _,_ While or For loop, passing control to the command following the Until _,_ End While or End For command. An If command is usually placed before the Break to end of loop to determine the condition under which a break occurs. 
 
 You cannot use the _Break to end of loop_ command to break out of a Switch construct. In this case, you must use the Break to end of switch command. 
 
-## **Example** 
+### Example
 
 ```
 # loop until user replies yes to yes/no message or lCount=100
 While lCount<-100
-```
-
-```
 Yes/No message {Break to end of loop ?}
 If flag true
-```
-
-```
 Break to end of loop
 End If
 Calculate lCount as lCount+1
 End While
 ```
 
-## **Break to end of switch** 
+<!-- p21-22 | Break to end of switch -->
+## Break to end of switch
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Constructs|NO|NO|YES|All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: P YES A
 
-
-
-21 
-
-
-
-**Syntax** 
+### Syntax
 
 **Break to end of switch** 
 
-## **Description** 
+### Description
 
 This command causes Omnis to jump out of the current Case statement (i.e. terminate the Case before the end of Case is reached), and resume method execution after the End Switch command. You use it in conjunction with the Switch and Case commands. 
 
-## **Example** 
+### Example
 
 ```
 # If lCount equals 1 or 2 the ok message following the Break to end of switch never gets shown
 Switch lCount
-```
-
-```
 Case 1
-```
-
-```
 OK message {lCount equals 1}
 Break to end of switch
 OK message {I never run}
 Case 2
-```
-
-```
 OK message {lCount equals 2}
 Break to end of switch
 OK message {I never run}
 Default
-```
-
-```
 OK message {lCount not equal to 1 or 2}
 End Switch
 ```
 
-## **Breakpoint** 
+<!-- p22-22 | Breakpoint -->
+## Breakpoint
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|upto 35948 Debugger|NO|NO|NO<br>All|
-|asof 35949 Debugger|NO|NO|YES (see note below)<br>All|
+Command group: upto 35948 Debugger asof 35949 Debugger | Flag affected: NO NO | Reversible: NO NO | Execute on client: NO YES (see note below)
 
+upto 35948 Debugger
+asof 35949 Debugger
+YES (see note below)
 
-
-## **Syntax** 
+### Syntax
 
 Breakpoint {message} 
 
-## **Description** 
+### Description
 
 This command places a breakpoint at a command line in a method where you want to stop execution, to check your coding for example. You can include a message with the command which is displayed in the debug window when the break occurs. The command does nothing in the Runtime version of Omnis. 
 
@@ -783,153 +772,104 @@ The Breakpoint command is ignored if executed on a thread running on a multi-thr
 
 NOTE: The _Breakpoint_ command can be used in client-executed methods to set a ‘hard’ breakpoint in the code, but note that this will only be hit if the web browser developer tools are open. It will then break into the browser’s debugger, in the JavaScript code which was generated from your client-executed method. The browser dev tools can usually be opened using the F12 key. 
 
-## **Example** 
+### Example
 
 ```
 # hit breakpoint when line 5 is processed so we can check the values of lMyList columns
 For lMyList.$line from 1 to lMyList.$linecount step 1
-```
-
-```
 If lMyList.$line=5
-```
-
-```
 Do lMyList.$loadcols()
-```
-
-```
 Breakpoint {check lMyList columns}
-```
-
-```
 End If
-```
-
-```
 End For
 ```
 
-22 
+<!-- p23-23 | Bring window instance to front -->
+## Bring window instance to front
 
+Command group: Windows | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
-**Bring window instance to front** 
+Bring window instance to front window-instance-name
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|NO|NO|NO<br>All|
+### Description
 
-
-
-## **Syntax** 
-
-## **Bring window instance to front** window-instance-name 
-
-## **Description** 
-
-## **Example** 
+### Example
 
 ```
 # Bring the window instance wMyWindow
 # to the front if it is already open
-```
-
-```
 Test for window open {wMyWindow}
-```
-
-```
 If flag true
-```
-
-```
 Bring window instance to front wMyWindow
-```
-
-```
 Else
-```
-
-```
 Open window instance wMyWindow
 End If
 ```
 
-## **Build export format list** 
+<!-- p23-23 | Build export format list -->
+## Build export format list
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Importing and Exporting|YES|YES<br>NO<br>All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Build export format list** ([ _Clear list_ ]) 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list, and defnes it to have a single hash|
-|---|---|
-||variable column, before executing|
+Clear list
+If specified, the command empties the current list, and defines it to have a single hash
+variable column, before executing
 
-
-
-## **Description** 
+### Description
 
 This command builds a list containing the name of each export format. The list is built in the current list for which you must define a single column to contain the export format. 
 
 The _Clear list_ option clears the current list and redefines it to include only the #S4 field. With this option, the command becomes reversible. 
 
-## **Example** 
+### Example
 
 ```
 Set current list lExportFormatList
-```
-
-```
 # clear list option defines the list as a single column #S4
 Build export format list (Clear list )
 ```
 
-23 
+<!-- p24-24 | Build externals list -->
+## Build externals list
 
+Command group: Externals | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-## **Build externals list** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Externals|YES|YES|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Build externals list** ([ _Clear list_ ]) 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list, and defnes it to have a single hash|
-|---|---|
-||variable column, before executing|
+Clear list
+If specified, the command empties the current list, and defines it to have a single hash
+variable column, before executing
 
-
-
-## **Description** 
+### Description
 
 This command builds a list of the external routines in the external folder. The list is placed in the current list for which you must define the following columns 
 
-|Col|1 (Character)|Col 2 (Character|Col 3 (Number)|Col 4 (Character)|
-|---|---|---|---|---|
-|File|name|Routine name|Routine index or ID|Routine type|
-
-
+Col
+1 (Character)
+Col 2 (Character
+Col 3 (Number)
+Col 4 (Character)
+File
+name
+Routine name
+Routine index or ID
+Routine type
 
 The _Clear list_ option clears the current list. The command becomes reversible with this option. 
 
-## **Example** 
+### Example
 
 ```
 Begin reversible block
@@ -939,97 +879,75 @@ Define list {iExtName,iExtRoutine,iExtRoutineIndex,iExtRoutineType}
 Build externals list
 ```
 
-## **Build field names list** 
+<!-- p24-25 | Build field names list -->
+## Build field names list
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Files|YES|YES|NO|All|
+Command group: Files | Flag affected: YES | Reversible: YES | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **Build field names list** ([Clear list][,Full names]) {file-name} 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list, and defnes it to have a single hash|
-|---|---|
-||variable column, before executing|
-|Full names|If specifed, names in the list are prefxed with their fle class name|
+Clear list
+If specified, the command empties the current list, and defines it to have a single hash
+variable column, before executing
+Full names
+If specified, names in the list are prefixed with their file class name
 
-
-
-24 
-
-
-
-## **Description** 
+### Description
 
 This command builds a list of field names for the specified file class in the current list. You must specify the following columns in the current list. 
 
-|Column 1 (Character)|Column 2 (Character)|Column 3 (Character)|
-|---|---|---|
-|Field name|Field type and length|Description; for index felds only|
-
-
+Column 1 (Character)
+Column 2 (Character)
+Column 3 (Character)
+Field name
+Field type and length
+Description; for index fields only
 
 When you use the Clear list option you get column 1 only defined as #S5. With this option the command becomes reversible. The flag is cleared if the value of LIST.$linemax prevents a complete list from being built. 
 
 The Full names option creates a list in which the fields are prefixed with the file class name, for example, PO_DATE becomes FPORDERS.PO_DATE. 
 
-## **Example** 
+### Example
 
 ```
 # Build a list of the field names in the file class fAccounts
 Set current list lFieldList
-```
-
-```
 Build field names list (Clear list ,Full nam) {fAccounts}
-```
-
-```
 # alternatively $makelist can be used
-```
-
-```
 Do $files.fAccounts.$objs.$makelist($ref.$name) Returns lFieldList
 ```
 
-## **Build file list** 
+<!-- p25-25 | Build file list -->
+## Build file list
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Files|YES|YES|NO|All|
+Command group: Files | Flag affected: YES | Reversible: YES | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **Build file list** ([Clear list]) 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list, and defnes it to have a single hash|
-|---|---|
-||variable column, before executing|
+Clear list
+If specified, the command empties the current list, and defines it to have a single hash
+variable column, before executing
 
-
-
-## **Description** 
+### Description
 
 This command builds a list containing the name of each file class in the current library. The list is built in the current list for which you must specify the following columns. 
 
-|Column 1 (Character)|Column 2 (Character)|
-|---|---|
-|File name|Description for fle (if you have entered one)|
-
-
+Column 1 (Character)
+Column 2 (Character)
+File name
+Description for file (if you have entered one)
 
 When you use the _Clear list_ option you get column 1 only defined as #S5. With this option the command becomes reversible, that is, the original contents of the list are restored. The flag is cleared if the number of lines in the list exceeds LIST.$linemax. 
 
-## **Example** 
+### Example
 
 ```
 # Build a list of file classes in the current library
@@ -1039,23 +957,16 @@ Build file list (Clear list )
 Do $files.$makelist($ref.$name) Returns lFileList
 ```
 
-25 
+<!-- p26-26 | Build indexes -->
+## Build indexes
 
+Command group: Data management | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-**Build indexes** 
-
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Data management|YES|NO|NO|All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Build indexes** { _file-name_ } 
 
-## **Description** 
+### Description
 
 This command rebuilds all the indexes for the specified file which have been dropped with the Drop indexes command. Drop indexes deletes all the indexes for the specified file apart from the sequence number index. **Build indexes** checks that all the indexes defined in the file class actually exist in the data file and builds those which are not there. This command does not build any indexes which already exist even if they are in a damaged state. 
 
@@ -1067,117 +978,80 @@ If a working message with a count is open while the command is executing, the co
 
 The flag is set if at least one index is successfully rebuilt. Note that the command is not reversible. 
 
-## **Example** 
+### Example
 
 ```
 Do not flush data
 Drop indexes {fCustomers}
 Repeat
-```
-
-```
 Working message {Building indexes...}
 Build indexes {fCustomers}
-```
-
-```
 Until flag true
 ```
 
-## **Build installed menu list** 
+<!-- p26-27 | Build installed menu list -->
+## Build installed menu list
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Menus|YES|YES|NO|All|
+Command group: Menus | Flag affected: YES | Reversible: YES | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **Build installed menu list** ([Clear list]) 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list and defnes it to have a single hash|
-|---|---|
-||variable column before executing|
+Clear list
+If specified, the command empties the current list and defines it to have a single hash
+variable column before executing
 
-
-
-26 
-
-
-
-## **Description** 
+### Description
 
 This command builds a list containing the name of all menu instances on the main Omnis menu bar, starting from the left. All the standard Omnis menus such as **File** and **Edit** are ignored. The list is built in the current list for which you must define the following columns: 
 
-|Column 1 (Character)|Column 2 (Character)|
-|---|---|
-|Menu instance name|Description for menu class (if one has been entered)|
-
-
+Column 1 (Character)
+Column 2 (Character)
+Menu instance name
+Description for menu class (if one has been entered)
 
 When you use the Clear list option you get column 1 only defined as #S5 with a 15 character column width. With this option, the command becomes reversible. 
 
 Menu instances from libraries other than the current library are prefixed with their library names. The flag is cleared if the command fails due to a shortage of memory. 
 
-## **Example** 
+### Example
 
 ```
 # Build a list of all menu instances installed on the
-```
-
-```
 # main Omnis menu bar
-```
-
-```
 Set current list lMenuList
-```
-
-```
 Define list {lMenuName,lMenuDesc}
 Build installed menu list
-```
-
-```
 # Alternatively, you can use $makelist
 Do $imenus.$makelist($ref.$name) Returns lMenuList
 Do lMenuList.$redefine(lMenuName)
 ```
 
-## **Build list columns list** 
+<!-- p27-28 | Build list columns list -->
+## Build list columns list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|YES|YES|NO<br>All|
+Command group: Lists | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Build list columns list** list-or-row-name ([Clear list]) 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list and defnes it to have a single hash|
-|---|---|
-||variable column before executing|
+Clear list
+If specified, the command empties the current list and defines it to have a single hash
+variable column before executing
 
-
-
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command builds a list containing the column names and data types of the current or specified list. This information is placed in the current list. If the current list contains one column, it contains the column names only. The current list column headings are ignored, but to obtain all the available information, you define the list with two columns as follows: 
-
-27 
-
-
 
 Col 1 (Character) Col 2 (Character) List Column name List Column data type 
 
@@ -1185,21 +1059,12 @@ The _Clear list_ option clears and defines the current list to contain one colum
 
 The flag is cleared if the value of LIST. _$linemax_ prevents a complete list from being built. The following method and the list of data it loads into the list illustrate the typical values produced: 
 
-## **Example** 
+### Example
 
 ```
 Do iMyList.$define(iPODate,iPONumber,iPOBatched,iSUContact,iITUnitPrice)
-```
-
-```
 Set current list iColsList
-```
-
-```
 Define list {iColName,iColType}
-```
-
-```
 Build list columns list iMyList
 ```
 
@@ -1217,43 +1082,36 @@ Build list columns list iMyList
 
 - `# Or you do the following:` 
 
-- `Calculate iColsList as iMyList.$cols.$makelist($ref.$name,$ref.$coltype)` 
+- `Calculate iColsList as iMyList.$cols.$makelist($ref.$name,$ref.$coltype)`
 
-## **Build list from file** 
+<!-- p28-29 | Build list from file -->
+## Build list from file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|YES|NO|NO<br>All|
+Command group: Lists | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Build list from file** on field-name ([Exact match][,Use search][,Use sort]) 
 
-## **Options** 
+### Options
 
-|Exact match|If specifed, the index value of the feld in suitable records must equal the current|
-|---|---|
-||value|
-|Use search|If specifed, the command uses the current search to select data|
-|Use sort|If specifed, the command uses the current sort feld(s) to order the data|
+Exact match
+If specified, the index value of the field in suitable records must equal the current
+value
+Use search
+If specified, the command uses the current search to select data
+Use sort
+If specified, the command uses the current sort field(s) to order the data
 
-
-
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command builds a list of data from the main file using a specified index field. The records are selected and corresponding field values added to the list in the order of the specified index field. You must set the main file before using the command. 
 
 If the Exact match option is specified, only records matching the current value of the specified field are added to the list. Similarly, if the Use search check box is selected, only records matching the current search class are added. In both cases, an error occurs if neither a field nor a search class is specified. 
-
-28 
-
-
 
 When large files are involved, that is, those that may require more than the maximum number of available lines (the value of LIST. _$linemax_ ), you can use the flag false condition to detect when an incomplete list is built. 
 
@@ -1261,326 +1119,234 @@ Building a list using this command does not affect the current record buffer and
 
 The Use sort option lets you use the database records in sorted order without first having to load them into a list. You use Set sort field to specify a sort field after which **Build list from file** (Use sort) creates a sorted table of records in memory before loading them into the list. The main advantage of this method is that the sort fields do not have to be read into the list at all. The Sort field order overrides the index field order but if the sort field is non-indexed, the index is used as the order in which to gather up records before sorting. Multi-level sorts are possible by using repeated Set sort field commands to accumulate the required sorting order. Since sort levels are cumulative you should first clear any existing ones with Clear sort fields. 
 
-## **Example** 
+### Example
 
 ```
 # This example compiles a list of all records sorted in order of descending fCustomers.Surname
 # and within each value, in increasing fCustomers.FirstName order
-```
-
-```
 Set current list iMyList
-```
-
-```
 Set main file {fCustomers}
-```
-
-```
 Define list {fCustomers.Surname,fCustomers.FirstName}
-```
-
-```
 Clear sort fields
-```
-
-```
 Set sort field fCustomers.Surname (Descending)
-```
-
-```
 Set sort field fCustomers.FirstName
-```
-
-```
 # Note fCustomers.CustomerID is not in the list
-```
-
-```
 Build list from file on fCustomers.CustomerID (Use sort)
 ```
 
-## **Build menu list** 
+<!-- p29-30 | Build menu list -->
+## Build menu list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|YES|YES|NO<br>All|
+Command group: Menus | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Build menu list** ([ _Clear list_ ]) 
 
-## **Options** 
+### Options
 
 Clear list If specified, the command empties the current list and defines it to have a single hash variable column before executing 
 
-## **Description** 
+### Description
 
 This command builds a list containing the name of each menu class in the current library. The list is built in the current list for which the columns must have been defined. The columns are 
 
-|Column 1 (Character)|Column 2 (Character)|
-|---|---|
-|Menu class name|Description for menu (if one has been entered)|
-
-
+Column 1 (Character)
+Column 2 (Character)
+Menu class name
+Description for menu (if one has been entered)
 
 The Clear list option clears the current list and redefines it to include only the #S5 field. With this option, the command becomes reversible but you get column 1 only. 
 
-29 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Build a list of all menu classes in the current library
 Set current list lMenuList
 Define list {lMenuName,lMenuDesc}
 Build menu list
-```
-
-```
 # Alternatively, you can use $makelist
 Do $menus.$makelist($ref.$name) Returns lMenuList
 Do lMenuList.$redefine(lMenuName)
 ```
 
-## **Build open window list** 
+<!-- p30-30 | Build open window list -->
+## Build open window list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|YES|YES|NO<br>All|
+Command group: Windows | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Build open window list** ([ _Clear list_ ]) 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list and defnes it to have a single hash|
-|---|---|
-||variable column before executing|
+Clear list
+If specified, the command empties the current list and defines it to have a single hash
+variable column before executing
 
-
-
-## **Description** 
+### Description
 
 This command builds a list containing the name of each window instance, starting with the topmost window instance. The window instance names are stored in the first column of the list. You can also return the position and size coordinates of each window instance in the second to fifth columns. The list is built in the current list for which you must define the following columns: 
 
-|Col 1 (Character)|Col 2 (Long Int)|Col 3 (Long Int)|Col 4 (Long Int)<br>Col 5 (Long Int)|
-|---|---|---|---|
-|Window instance name|/left window coord|/top window coord|/right window coord<br>/bottom window coord|
-
-
+Col 1 (Character)
+Col 2 (Long Int)
+Col 3 (Long Int)
+Col 4 (Long Int)
+Col 5 (Long Int)
+Window instance name
+/left window coord
+/top window coord
+/right window coord
+/bottom window coord
 
 If you use the _Clear list_ option, the list will contain one column only defined as #S5, so the window coordinates are not returned. Also, with the _Clear list_ option selected, the command is reversible, that is, the list definition and contents are restored when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 # Build a list of open windows
 Set current list lWindowList
 Do lWindowList.$define(lName,lLeft,lTop,lRight,lBottom)
 Build open window list
-```
-
-```
 # Alternatively, notation can be used to build a list
 # of open windows
 Do $iwindows.$makelist($ref.$name) Returns lWindowList
 Do lWindowList.$redefine(lName)
 ```
 
-## **Build report list** 
+<!-- p30-31 | Build report list -->
+## Build report list
 
-30 
+Command group: Reports and Printing | Flag affected: YES | Reversible: YES
 
-
-
-Command group Flag affected Reversible Reports and Printing YES YES 
-
-## **Syntax** 
+### Syntax
 
 **Build report list** ([Clear list]) 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list and defnes it to have a single hash|
-|---|---|
-||variable column before executing|
+Clear list
+If specified, the command empties the current list and defines it to have a single hash
+variable column before executing
 
-
-
-## **Description** 
+### Description
 
 This command builds a list containing the name of each report class in the current library. The list is built in the current list for which the columns must have been defined. The columns are 
 
-|Column 1 (Character)|Column 2 (Character|
-|---|---|
-|Report class name|Description for report (if one has been entered)|
-
-
+Column 1 (Character)
+Column 2 (Character
+Report class name
+Description for report (if one has been entered)
 
 You get column 1 only when you use the Clear list option. 
 
 The _Clear list_ option clears the current list and redefines it to include only the #S5 field. With this option the command becomes reversible. 
 
-## **Example** 
+### Example
 
 ```
 # Build a list of report classes in the current library
 Set current list lReportList
 Define list {lClass,lDesc}
 Build report list
-```
-
-```
 # Alternatively, you can use notation to build a list
 # of report classes
-```
-
-```
 Do $clib.$reports.$makelist($ref.$name,$ref.$desc) Returns lReportList
 Do lReportList.$redefine(lClass,lDesc)
 ```
 
-## **Build search list** 
+<!-- p31-32 | Build search list -->
+## Build search list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Searches|YES|YES|NO<br>All|
+Command group: Searches | Flag affected: YES | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Build search list ([ Clear list ])
 
-## **Syntax** 
+### Options
 
-## **Build search list** ([ _Clear list_ ]) 
+Clear list
+If specified, the command empties the current list and defines it to have a single hash
+variable column before executing
 
-## **Options** 
-
-|Clear list|If specifed, the command empties the current list and defnes it to have a single hash|
-|---|---|
-||variable column before executing|
-
-
-
-31 
-
-
-
-## **Description** 
+### Description
 
 This command builds a list containing the name of each search class in the current library. The list is built in the current list for which the columns must have been defined. The columns are 
 
-|Column 1 (Character)|Column 2 (Character)|
-|---|---|
-|Search class name|Description for search (if one has been entered)|
+Column 1 (Character)
+Column 2 (Character)
+Search class name
+Description for search (if one has been entered)
 
-
-
-## You get column 1 only when you use the Clear list option. 
+You get column 1 only when you use the Clear list option.
 
 The _Clear list_ option clears the current list and redefines it to include only the #S5 field. With the _Clear list_ option, the command is reversible. The flag is cleared if the value of LIST. _$linemax_ prevents a complete list from being built. 
 
-## **Example** 
+### Example
 
 ```
 # build a list of the available search classes
-```
-
-```
 Set current list lSearchList
-```
-
-```
 Build search list (Clear list )
-```
-
-```
 # or use the following notation
-```
-
-```
 Do $clib.$searches.$makelist($ref.$name) Returns lSearchList
 ```
 
-## **Build window list** 
+<!-- p32-33 | Build window list -->
+## Build window list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|YES|YES|NO<br>All|
+Command group: Windows | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Build window list** ([Clear list]) 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list and defnes it to have a single hash|
-|---|---|
-||variable column before executing|
+Clear list
+If specified, the command empties the current list and defines it to have a single hash
+variable column before executing
 
-
-
-## **Description** 
+### Description
 
 This command builds a list containing the name of each window class in the current library. The list is built in the current list for which you must define the following columns 
 
-|Column|1 (Character)|Column 2 (Character)|
-|---|---|---|
-|Window|class name|Description for window (if one has been entered)|
-
-
+Column
+1 (Character)
+Column 2 (Character)
+Window
+class name
+Description for window (if one has been entered)
 
 You get column 1 only when you use the Clear list option, but the command becomes reversible. 
 
 The Clear list option clears the current list and redefines it to include only the #S5 field. With the Clear list option, the command becomes reversible. 
 
-32 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Build a list of all window classes in the current library
 Set current list lWindowList
 Do lWindowList.$define(lName,lDesc)
 Build window list
-```
-
-```
 # Alternatively, notation can be used to build the list
-```
-
-```
 # of window classes
-```
-
-```
 Do $clib.$windows.$makelist($ref.$name,$ref.$desc) Returns lWindowList
 Do lWindowList.$redefine(lName,lDesc)
 ```
 
-## **Calculate** 
+<!-- p33-34 | Calculate -->
+## Calculate
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Calculations|NO|YES|YES<br>All|
+Command group: Calculations | Flag affected: NO | Reversible: YES | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Calculate** field-name as calculation 
 
-## **Description** 
+### Description
 
 This command assigns a new value to a data field or variable. The form of the command is “Calculate X as Y”, where X is a valid data field or variable name and Y is either a valid data field or variable name, value, calculation, or notation. When Calculate is executed the state of the flag is unchanged, unless #F is recalculated by this command. 
 
@@ -1588,7 +1354,7 @@ You can use Calculate in a reversible block. The data field returns to its initi
 
 Warning the Calculate command does not redraw a calculated field so if your field is on a window you must use the Redraw command or the $redraw() method after the Calculate command to reflect the change. 
 
-## **Operator Precedence** 
+Operator Precedence
 
 Mathematical expressions are evaluated using the operator precedence so that in the absence of brackets, * and / operations are evaluated before + and -. The full ordering from highest to lowest precedence is: 
 
@@ -1604,56 +1370,34 @@ unary minus
 
 For example, if you execute the command “Calculate lVar1 as 10-2*3” the calculation part is evaluated as 10-(2*3) 
 
-## **Example** 
+### Example
 
 ```
 # set the local variable lVar1 equal to the contents of lVar2
 Calculate lVar1 as lVar2
-```
-
-```
 # set the local variable lPrice to 10.99 and lQty to 2
 Calculate lPrice as 10.99
-```
-
-```
 Calculate lQty as 2
-```
-
-33 
-
-
-
-```
 # calculate the local variable lTotal as lPrice multiplied by lQty
 Calculate lTotal as lPrice*lQty
-```
-
-```
 # you can also operate on variables using notation, for example, calculate the
 # local list variable lClassList as a list of all classes in the current library
 Calculate lClassList as $clib.$classes.$makelist($ref.$name)
-```
-
-```
 # however some operations are better performed using the Do command, for example
 # bring the window instance wMywindow to the front
 Do $iwindows.wMywindow.$bringtofront()
 ```
 
-## **Call DLL** 
+<!-- p34-34 | Call DLL -->
+## Call DLL
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|Windows|
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO W
 
-
-
-## **Syntax** 
+### Syntax
 
 **Call DLL** (library, procedure [,parameters…]) **Returns** return-value 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -1661,7 +1405,7 @@ This command calls a procedure in a DLL, which you must have previously register
 
 The parameters are passed to the procedure when it is called, and must match the type-definition passed to Register DLL. The return value of Call DLL is the return value of procedure, and has the type specified by the type-definition. Register and Call DLL commands support 64-bit type specifiers. 
 
-## **Example** 
+### Example
 
 ```
 # Flash the Omnis window to attract the user's attention
@@ -1685,23 +1429,16 @@ Call DLL ("KERNEL32.DLL","CloseHandle",#1) Returns #50
 Calculate #1 as binlength(#S1)
 ```
 
-## **Call external routine** 
+<!-- p34-35 | Call external routine -->
+## Call external routine
 
-34 
+Command group: Externals | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Externals|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Call external routine** _routine-name_ or _library-name_ / _routine-name_ ( _parameters_ ) **Returns** _return-value_ 
 
-## **Description** 
+### Description
 
 This command calls an external routine with mode ext_call and returns a value from the external in the specified return-field. The return value is placed in the specified field by the external code using the predefined field reference Ref_returnval with the functions SetFldVal or SetFldNval. The flag is set if the external routine is found and the call is made but this does not necessarily mean that the external code has executed correctly. The flag is cleared if the routine is not found. Note that the routine cannot use the flag to pass information back to the method. 
 
@@ -1709,29 +1446,26 @@ You can pass parameters to the external code by enclosing a comma-separated list
 
 In the routine itself, the parameters are read using the usual GetFldVal or GetFldNval with the predefined references Ref_parm1, Ref_parm2, and so on, Ref_parmcnt gives the number of parameters passed. If the field name is passed as a parameter, you can use SetFldVal or SetFldNval with Ref_parm1, and so on, to change the field’s value. 
 
-## **Example** 
+### Example
 
 ```
 Call external routine MathsLib/sqr (iNumber) Returns iNumber2
 ```
 
-## **Cancel advises** 
+<!-- p35-36 | Cancel advises -->
+## Cancel advises
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|NO|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Cancel advises** _field-name_ ([ _All channels_ ]) 
 
-## **Options** 
+### Options
 
 All channels If specified, the command applies to all DDE channels, rather than just the current channel 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as client. This command cancels one or more Request advises from the current channel. If you omit the field name, all Request advises to the current channel are canceled. If you specify a field name, all Request advises to the current channel which refer to that field name are canceled. 
 
@@ -1741,48 +1475,32 @@ If you use the All channels option, all channels are cancelled. There is no need
 
 When Omnis issues a Request advises to a DDE server, Omnis is in effect saying “Tell me if this value changes and send me an update”. The Enter data command must be running to allow the incoming data to get through. 
 
-35 
-
-
-
-## **Example** 
+### Example
 
 ```
 Yes/No message {Do you want updates?}
 If flag false
-```
-
-```
 Cancel advises (All channels)
 Quit method
 Else
-```
-
-```
 Request advises iCompany {Company}
 Request advises iAddress {Address}
 End If
-```
-
-```
 Prepare for insert
 Enter data
 Update files if flag set
 ```
 
-## **Cancel async method** 
+<!-- p36-36 | Cancel async method -->
+## Cancel async method
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|YES|NO|NO<br>All|
+Command group: Methods | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Cancel async method** { _id-to-cancel_ ( _return-value-from-do-async-method_ )} 
 
-## **Description** 
+### Description
 
 This command allows you to cancel the execution of a method that is executing as a result of a call to the Do async method command. 
 
@@ -1790,34 +1508,27 @@ This command takes a single parameter id-to-cancel, which is the asynchronous ca
 
 This command sets the flag if it has marked the async method for cancellation. Omnis only checks to see if the method is marked for cancellation after the completion of each method command, so cancellation may not occur immediately. Also, if you are executing a sensitive block of code, which should not be cancelled in this way, you can use the Begin critical block and End critical block commands around the sensitive code. Omnis will only cancel the method execution when the thread ends the critical block. If the flag is cleared, then either the asynchronous call id is invalid, or the method has finished. After successfully cancelling a method call, Omnis still sends the $asynccomplete message, but with an error text parameter that indicates that the call was cancelled. 
 
-## Note 
+### Note
 
 You can only call Cancel async method when running in the normal foreground thread. 
 
-## **Example** 
+### Example
 
 ```
 # iCallId was returned by Do async method
 Cancel async method {iCallId}
 ```
 
-## **Cancel prepare for update** 
+<!-- p36-37 | Cancel prepare for update -->
+## Cancel prepare for update
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|NO|NO|NO<br>All|
+Command group: Changing data | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Cancel prepare for update
 
-## **Syntax** 
-
-## **Cancel prepare for update** 
-
-36 
-
-
-
-## **Description** 
+### Description
 
 This command cancels the Prepare for update mode and releases any semaphores which may have been set. You use the Prepare for edit/insert command to prepare Omnis for editing or insertion of records. It is usually followed by Update files which is the usual way of terminating the Prepare for… state but you can also terminate this state with Cancel prepare for update. It must be followed by commands which prevent an Update files command from being encountered. 
 
@@ -1825,7 +1536,7 @@ When you execute a Prepare for… command in multi-user mode, semaphores are use
 
 You can use this command within a timer method to implement a timed record release. 
 
-## **Example** 
+### Example
 
 ```
 Set timer method 600 sec TimerMethod
@@ -1841,35 +1552,26 @@ Queue cancel
 End If
 ```
 
-## **Case** 
+<!-- p37-38 | Case -->
+## Case
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Case** constant-value or expression 
 
-## **Description** 
+### Description
 
 The Case statement is part of a Switch construct that chooses one of an alternative set of options. The options in a Switch construct are defined by the subsequent Case commands. The Case command takes either a constant, field name, single calculation, or a comma-separated series of calculations. You must enclose string literals in quotes. Date values must match the date format in #FDT. 
 
 You can use the Break to end of switch command to jump out of the current Case statement and resume method execution after the _End Switch_ command. Note you cannot use the _Break to end of loop_ command to break out of a Switch construct. 
 
-## **Example** 
+### Example
 
 ```
 # Show the direction lPosition equals. eg. if lPosition equals 3 show 'South' in the ok message
-```
-
-```
 Switch lPosition
-```
-
-```
 Case 1
 Calculate lDirection as 'North'
 Case 2
@@ -1879,52 +1581,30 @@ Calculate lDirection as 'South'
 Case 4
 Calculate lDirection as 'West'
 End Switch
-```
-
-37 
-
-
-
-```
 OK message {Position [lCount] = [lDirection]}
-```
-
-```
 # Multiple conditions can be used in a comma-separated list to one Case statement.
 # Default is used to specify commands that should run if the value is not one of
-```
-
-```
 # those specified in the Case statements
 Switch lDirection
-```
-
-```
 Case 'North','South'
 OK message {The direction is North or South}
 Case 'East','West'
 OK message {The direction is East or West}
 Default
-```
-
-```
 OK message {The direction is Unknown} ## # lDirection is none of the above
 End Switch
 ```
 
-## **CGIDecode** 
+<!-- p38-38 | CGIDecode -->
+## CGIDecode
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|All|
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **CGIDecode** ( _stream_ [, _mapplustospace_ {Default kTrue}]) **Returns** _decoded-stream_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -1942,40 +1622,19 @@ DecodedStream is an Omnis Character or Binary field that receives the resulting 
 
 Note: The HTTPHeader, HTTPParse and HTTPPost commands automatically perform CGI encoding or decoding, as appropriate. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lStream as 'Name: Charlie Malone,Company: Omnis Software'
 CGIEncode (lStream) Returns lEncodedStream
 CGIDecode (lEncodedStream) Returns lDecodedStream
-```
-
-```
 # lDecodedStream now contains the following:
-```
-
-```
 # Name: Charlie Malone,Company: Omnis Software
-```
-
-```
 Calculate lStream as 'Name: Charlie Malone+Friend,Company: Omnis Software'
 CGIEncode (lStream) Returns lEncodedStream
-```
-
-```
 CGIDecode (lEncodedStream,kFalse) Returns lDecodedStream
-```
-
-```
 # lDecodedStream now contains the following:
-```
-
-```
 # Name: Charlie Malone+Friend,Company: Omnis Software
-```
-
-```
 CGIDecode (lEncodedStream) Returns lDecodedStream
 ```
 
@@ -1983,29 +1642,19 @@ CGIDecode (lEncodedStream) Returns lDecodedStream
 
 ```
 # Name: Charlie Malone Friend,Company: Omnis Software
-```
-
-```
 # Note the + has been turned into a space character
 ```
 
-38 
+<!-- p39-39 | CGIEncode -->
+## CGIEncode
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-## **CGIEncode** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **CGIEncode** ( _stream_ [, _mapplustohex_ {Default kFalse}]) **Returns** _encoded-stream_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -2023,32 +1672,29 @@ EncodedStream is an Omnis Character or Binary field that receives the resulting 
 
 Note: The HTTPHeader, HTTPParse and HTTPPost commands automatically perform CGI encoding or decoding, as appropriate. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lStream as 'Name: Charlie Malone,Company: Omnis Software'
 CGIEncode (lStream) Returns lEncodedStream
 ```
 
-## **Change user password** 
+<!-- p39-39 | Change user password -->
+## Change user password
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Libraries|NO|NO|NO<br>All|
+Command group: Libraries | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Change user password
 
-## **Syntax** 
-
-## **Change user password** 
-
-## **Description** 
+### Description
 
 This command opens the Password dialog in which the user can change the current password. The menus are redrawn and lists and variable values (apart from #UL) are unaffected. 
 
 If the current user is the master user, passwords in the #PASSWORDS class can be changed. In addition, the command gives the user the choice of using another password to re-enter the current library at a different user level, thus gaining access to different areas of the library. If a user re-enters at a different level, the value of #UL will change (within the range 0–8) to reflect that new user level. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt the user for a password as specified in #PASSWORDS
@@ -2057,23 +1703,18 @@ Change user password
 OK message {The current user level is [#UL]}
 ```
 
-39 
+<!-- p40-40 | Change working directory -->
+## Change working directory
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-**Change working directory** 
+### Syntax
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Change working directory ( path ) Returns err-code
 
-
-
-## **Syntax** 
-
-## **Change working directory** ( _path_ ) **Returns** _err-code_ 
-
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -2083,36 +1724,34 @@ On Windows, **Change working directory** only switches directories on the same d
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 Change working directory ("c:\omnis\html") Returns lErrCode ## windows
 Change working directory ("/omnis/html") Returns lErrCode ## linux
 ```
 
-## **Check data** 
+<!-- p40-41 | Check data -->
+## Check data
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|YES|NO|NO<br>All|
+Command group: Data management | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Check data** ([ _Perform repairs_ ][, _Check data file structure_ ][, _Check records_ ][, _Check indexes_ ]) { _list-of-files_ (F1,F2,..,Fn) (leave empty to select all)} 
 
-## **Options** 
+### Options
 
-|Perform repairs|If selected,repairs to the data fle are automatically carried out|
-|---|---|
-|Check data fle structure|If specifed,the command checks the overall structure of the data fle|
-|Check records|If specifed,the command checks the records in the specifed fles|
-|Check indexes|If specifed,the command checks the indexes in the specifed fles|
+Perform repairs
+If selected,repairs to the data file are automatically carried out
+Check data file structure
+If specified,the command checks the overall structure of the data file
+Check records
+If specified,the command checks the records in the specified files
+Check indexes
+If specified,the command checks the indexes in the specified files
 
-
-
-## **Description** 
+### Description
 
 This command checks the data for the specified file or list of files, and works only when one user is logged onto the data file. If you omit a file name or list of files, all the files with slots in the current data file are checked. If the specified file name does not include a data file name as part of the notation, the default data file for that file is assumed. If the file is closed or memory-only, the command does not execute and returns with the flag false. 
 
@@ -2120,65 +1759,43 @@ There are Check data file structure, Check records, and Check indexes checkbox o
 
 If you are not running in single user mode, this command automatically checks that only one user is using the data file (the command fails with flag false if this is not true), and further users are prevented from logging onto the data until the command completes. 
 
-40 
-
-
-
 If a working message with a count is open while the command is executing, the count will be incremented at regular intervals. The command may take a long time to execute and it is not possible to cancel execution even if a working message with cancel box is open. 
 
 The command sets the flag if it completes successfully and clears the flag otherwise. It is not reversible. 
 
-## **Example** 
+### Example
 
 ```
 Check data (Check records) {fOrders}
 If flag true
-```
-
-```
 Yes/No message {View Log?}
 If flag true
 Open check data log
 End If
-```
-
-```
 Else
-```
-
-```
 End If
 ```
 
-## **Check menu line** 
+<!-- p41-41 | Check menu line -->
+## Check menu line
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Check menu line** _line_ or _instance-name_ / _line_ 
 
-## **Description** 
+### Description
 
 This command places a check mark on the specified line of a menu instance to show that the option has been selected. You specify the menu instance name and the number of the menu line you want to check. 
 
 You can remove the check mark with Uncheck menu line. If you use this command in a reversible block, the check mark is removed when the method terminates. Nothing happens if the menu instance is not installed on the menu bar. 
 
-## **Example** 
+### Example
 
 ```
 # Test whether a line in the menu instance is checked and
-```
-
-```
 # either check or uncheck it accordingly.
-```
-
-```
 Install menu mView
 Test for menu line checked mView/Large
 If flag true
@@ -2187,70 +1804,51 @@ Else
 Check menu line mView/Large
 End If
 # Alternatively, you change the $checked property of a line
-```
-
-```
 # in the menu instance using notation
 Do $imenus.mView.$objs.Large.$checked.$assign(kTrue)
 ```
 
-## **Clear all files** 
+<!-- p41-42 | Clear all files -->
+## Clear all files
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Files|NO|YES|NO<br>All|
+Command group: Files | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-41 
-
-
-
-**Syntax** 
+### Syntax
 
 **Clear all files** 
 
-## **Description** 
+### Description
 
 This command clears the current record buffer of all file variables for all open libraries and all open data files, including any memoryonly files. However, it does not clear the hash variables. Window instances are not automatically redrawn so you must follow it by Redraw if you want the screen to reflect the current state of the buffer. 
 
 This command is reversible for read-only and read-write files; the command reverses by re-reading each record into the current record buffer. Note that using this command in a reversible block with a memory-only file will clear the current record buffer for that file when the command reverses. 
 
-## **Example** 
+### Example
 
 ```
 # Clear all file variables from the current record buffer and
 # redraw the current window instance
-```
-
-```
 Clear all files
 Do $cinst.$redraw()
 ```
 
-## **Clear check data log** 
+<!-- p42-42 | Clear check data log -->
+## Clear check data log
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|NO|NO|NO<br>All|
+Command group: Data management | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Clear check data log
 
-## **Syntax** 
-
-## **Clear check data log** 
-
-## **Description** 
+### Description
 
 This command clears the check data log, which stores all the results of a check data operation. To clear the log, there is no need for the log to be open. 
 
-## **Example** 
+### Example
 
 ```
 Check data (Check records) {fOrders}
-```
-
-```
 If flag true
 Yes/No message {View Log?}
 If flag true
@@ -2260,41 +1858,29 @@ Yes/No message {Clear the log?}
 If flag true
 Clear check data log
 End If
-```
-
-```
 End If
-```
-
-```
 Else
-```
-
-```
 End If
 ```
 
-## **Clear class variables** 
+<!-- p42-43 | Clear class variables -->
+## Clear class variables
 
-42 
-
-
+Command group: Parameters and variables | Flag affected: NO | Reversible: NO
 
 Flag affected NO NO 
 
-Command group Parameters and variables 
+### Syntax
 
-## **Syntax** 
+Clear class variables
 
-## **Clear class variables** 
-
-## **Description** 
+### Description
 
 This command clears any class variables used within the class and clears the memory used for the class variables. Clear class variables is placed in a method within the class where you want to clear variables. 
 
 A class variable is initialized to empty or its initial value the first time it is referenced. It remains allocated until the class variables for its class are cleared. The class variables for all classes are cleared when the library file is closed. 
 
-## **Example** 
+### Example
 
 ```
 # Transfer values from class variables to instance
@@ -2308,47 +1894,36 @@ Calculate iVar3 as cVar3
 Clear class variables ## all class variables are now empty
 ```
 
-## **Clear data** 
+<!-- p43-44 | Clear data -->
+## Clear data
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Clipboard|YES|NO|NO<br>All|
+Command group: Clipboard | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Clear data** field-name ([Redraw field][,All windows]) 
 
-## **Options** 
+### Options
 
-|Redraw feld|If specifed, the command reloads affected window felds with the new value of the data feld, after it has performed|
-|---|---|
-||the operation; note that this takes the ‘All windows’ option into account|
-|All windows|If specifed, the command applies to all open window instances, rather than just the top open window instance|
+Redraw field
+If specified, the command reloads affected window fields with the new value of the data field, after it has performed
+the operation; note that this takes the ‘All windows’ option into account
+All windows
+If specified, the command applies to all open window instances, rather than just the top open window instance
 
-
-
-## **Description** 
+### Description
 
 This command clears the data from the specified field or current selection. The data is lost and is not placed on the clipboard. If you do not specify a field, the current field’s data is cleared (assuming there is a selection). 
 
 In the case of a null selection when the cursor is merely flashing in a field and no characters are selected, **Clear data** will literally clear “nothing”. 
 
-43 
-
-
-
-## **Example** 
+### Example
 
 ```
 # The following method is placed behind a entry field named 'Price' on a window and
 # checks if the value entered is over 5000. If it is, the value entered into the field
 # is cleared and the cursor remains in the field.
 On evAfter
-```
-
-```
 If iPrice>5000
 Yes/No message {Is this price correct?}
 If flag false
@@ -2358,25 +1933,22 @@ End If
 End If
 ```
 
-## **Clear DDE channel item names** 
+<!-- p44-44 | Clear DDE channel item names -->
+## Clear DDE channel item names
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Clear DDE channel item names
 
-## **Syntax** 
-
-## **Clear DDE channel item names** 
-
-## **Description** 
+### Description
 
 DDE command, Omnis as client. This command clears all server data item names selected for use with a print-to-channel report. You use this command when exporting data via a DDE channel to another Windows application. The channel item names become the item names into which the server places the fields printed in the Omnis report. 
 
 Clear DDE channel item names clears all the item names set up with Set DDE channel item name. 
 
-## **Example** 
+### Example
 
 ```
 Set DDE channel number {2}
@@ -2390,30 +1962,20 @@ Set DDE channel item nam {R1,C1}
 Set DDE channel item nam {R2,C1}
 # ...
 Set DDE channel item name {R50,C1}
-```
-
-```
 Print report
 End If
 ```
 
-## **Clear find table** 
+<!-- p44-45 | Clear find table -->
+## Clear find table
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|NO|NO|NO<br>All|
+Command group: Finding data | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Clear find table** 
 
-44 
-
-
-
-## **Description** 
+### Description
 
 This command clears the find table for the current main file and releases the memory it used. 
 
@@ -2421,40 +1983,34 @@ When a Find, Next or Previous command is encountered, Omnis uses the Index, Sear
 
 For a large file, a substantial amount of RAM may be used. 
 
-## **Example** 
+### Example
 
 ```
 # Clear the find table after the first overdrawn account is found
 Set main file {fAccounts}
-```
-
-```
 Set search as calculation {fAccounts.Balance<0}
 Find first on fAccounts.Code (Use search)
 Clear find table
 ```
 
-## **Clear line in list** 
+<!-- p45-45 | Clear line in list -->
+## Clear line in list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Clear line in list** { _line-number_ ( _calculation_ )} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command clears the values stored in the specified line of the current list. You can specify the line number in a calculation, otherwise the current line ( _LIST.$line_ ) is used. The flag is cleared if the list is empty or if the line is beyond the current end of the list. 
 
-## **Example** 
+### Example
 
 ```
 # Clear values from any lines in the list that have a
@@ -2474,31 +2030,24 @@ End For
 Do lMyList.1.$clear()
 ```
 
-45 
+<!-- p46-46 | Clear list -->
+## Clear list
 
+Command group: Lists | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-## **Clear list** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|NO|YES|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Clear list** ([ _Hash lists_ ]) 
 
-## **Options** 
+### Options
 
 Hash lists If specified, the command clears #L1-#L8 rather than the current list. When this option is specified, the command is not reversible 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command clears all the lines in the current list and frees the memory they occupy. It does not alter the definition of the list. If you use **Clear list** as part of a reversible block, the list lines will be reloaded when the method containing the reversible block finishes. The list is only reloaded if it occupies 50,000 bytes of storage or less. Executing Clear list for a smart list sets $smartlist to kFalse, meaning that it is no longer a smart list. 
 
@@ -2506,7 +2055,7 @@ The All Lists option only clears the hash variable lists #L1 to #L8: all other l
 
 The following method builds a list of data formats depending on the type of graph selected by the user. Before the method is built the list is cleared using the **Clear list** command; this ensures the list is initialized and completely empty of data. 
 
-## **Example** 
+### Example
 
 ```
 Set current list iMyList
@@ -2515,43 +2064,27 @@ Clear list
 Do iMyList.$clear()
 ```
 
-## **Clear main & connected** 
+<!-- p46-47 | Clear main & connected -->
+## Clear main & connected
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Files|NO|YES|NO<br>All|
+Command group: Files | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Clear main & connected
 
-## **Syntax** 
-
-## **Clear main & connected** 
-
-## **Description** 
+### Description
 
 This command clears the memory of current records from the main file and any files connected to the main file. The windows are not automatically redrawn so you must follow it with a Redraw window-name command if you want the screen to reflect the current state of the buffer. 
 
 You can use **Clear main & connected** to release locked records to other users. 
 
-46 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Clear the current record buffer of file variables from fAccounts
-```
-
-```
 # and any connected file classes if insert is cancelled
-```
-
-```
 # $construct of window class
-```
-
-```
 Set main file {fAccounts}
 Prepare for insert
 Enter data
@@ -2560,25 +2093,22 @@ Clear main & con
 End If
 ```
 
-## **Clear main file** 
+<!-- p47-47 | Clear main file -->
+## Clear main file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Files|NO|YES|NO<br>All|
+Command group: Files | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Clear main file
 
-## **Syntax** 
-
-## **Clear main file** 
-
-## **Description** 
+### Description
 
 This command clears the main file record from the current record buffer. The command does not clear the values taken from the other files. 
 
 The **Clear main file** command does not redraw the window so remember to include an explicit Redraw window command if you want the screen to reflect the contents of the buffer. 
 
-## **Example** 
+### Example
 
 ```
 # Clear the current record buffer of file variables from the main
@@ -2588,33 +2118,26 @@ Clear main file
 Do $cinst.$redraw()
 ```
 
-## **Clear method stack** 
+<!-- p47-48 | Clear method stack -->
+## Clear method stack
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|NO|NO|NO<br>All|
+Command group: Methods | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Clear method stack
 
-## **Syntax** 
-
-## **Clear method stack** 
-
-## **Description** 
+### Description
 
 This command cancels all currently executing methods and clears the method stack. A **Clear method stack** at the beginning of a method terminates all the methods in the chain which called the current method but without quitting the current method. $control() methods are not cleared. 
 
 As each method calls another, a return point is stored so that control can pass to the command following Do method or Do code method as the called method terminates. When the current method terminates, control returns to the method which was running before it was called. 
 
-47 
-
-
-
 The **Clear method stack** command clears all the return points and is used if the method commences a completely new operation. This command followed by a Quit method is the same as Quit all methods. 
 
 **WARNING** It is unwise to clear the method stack if local variables have been passed as fieldname parameters and you continue executing the current method. This will break all local variables on the stack. 
 
-## **Example** 
+### Example
 
 ```
 # Calling method
@@ -2631,19 +2154,16 @@ OK message {iMyVAR=[iMyVar]}
 Quit method
 ```
 
-## **Clear range of fields** 
+<!-- p48-48 | Clear range of fields -->
+## Clear range of fields
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Files|NO|YES|NO|All|
+Command group: Files | Flag affected: NO | Reversible: YES | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **Clear range of fields** first-data-name **to** final-data-name 
 
-## **Description** 
+### Description
 
 This command clears the specified range of fields from the current record buffer. 
 
@@ -2651,7 +2171,7 @@ Note that _first-data-name_ and _last-data-name_ identify the first and last fie
 
 When used in a reversible block, the fields cleared are restored when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 # Clear the current record buffer of fields Surname to Balance
@@ -2660,72 +2180,44 @@ Clear range of fields fAccounts.Surname to fAccounts.Balance
 Do $cinst.$redraw()
 ```
 
-## **Clear search class** 
+<!-- p48-49 | Clear search class -->
+## Clear search class
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Searches|NO|YES|NO<br>All|
+Command group: Searches | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Clear search class** 
 
-48 
-
-
-
-## **Description** 
+### Description
 
 This command clears the current search class so you can print a report using all records. This also frees the memory required by the search class. 
 
 If you use **Clear search class** in a reversible block, the search class reverts to its former setting when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 Set report name rMyReport
-```
-
-```
 Set search name sMySearch
-```
-
-```
 # sys(81) returns the current search class
-```
-
-```
 Yes/No message Use Search (Icon) {Do you wish to use the search class '[sys(81)]' ?}
 If flag false
-```
-
-```
 Clear search class
-```
-
-```
 End If
-```
-
-```
 Print report (Use search)
 ```
 
-## **Clear selected files** 
+<!-- p49-49 | Clear selected files -->
+## Clear selected files
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Files|NO|YES|NO<br>All|
+Command group: Files | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Clear selected files** {list-of-files (F1,F2,..,Fn)} 
 
-## **Description** 
+### Description
 
 This command clears the current record buffer of records from the specified files. The command is particularly useful in a multi-user system where it may be necessary to remove only certain files so that they are not locked. 
 
@@ -2733,167 +2225,113 @@ In the method editor, a list of files is displayed. You can Ctrl/Cmnd-click on t
 
 This command is reversible for read-only and read-write files; the command reverses by re-reading each record into the current record buffer. Note that using this command in a reversible block with a memory-only file will clear the current record buffer for that file when the command reverses. 
 
-## **Example** 
+### Example
 
 ```
 # Clear the current record buffer of records from fAccounts
-```
-
-```
 # and fInvoices and redraw the current window instance
-```
-
-```
 Clear selected files {fAccounts,fInvoices}
 Do $cinst.$redraw()
 ```
 
-## **Clear sort fields** 
+<!-- p49-50 | Clear sort fields -->
+## Clear sort fields
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Sort felds|NO|YES|NO<br>All|
+Command group: Sort fields | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 Clear sort fields 
 
-49 
-
-
-
-## **Description** 
+### Description
 
 This command removes the sort fields that are currently active. This enables the data to be printed without any sorting taking place. Alternatively, the command removes the current sort fields so you can specify new sort levels with _Set sort field_ . 
 
 If you use **Clear sort fields** in a reversible block, the original sort values are restored when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 # Remove the current sort fields and then set the sort
-```
-
-```
 # field as Surname
-```
-
-```
 Clear sort fields
-```
-
-```
 Set sort field fAccounts.Surname
-```
-
-```
 Set report name rMyReport
-```
-
-```
 Send to screen
-```
-
-```
 Print report
 ```
 
-## **Clear timer method** 
+<!-- p50-50 | Clear timer method -->
+## Clear timer method
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Methods|NO|YES|NO|All|
+Command group: Methods | Flag affected: NO | Reversible: YES | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **Clear timer method** 
 
-## **Description** 
+### Description
 
 This command clears or cancels the current timer method. Usually a timer method remains in operation until the library is closed or an error occurs. In a reversible block, the current timer method is restored when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 # Clear the timer method after it is called so that is
-```
-
-```
 # only called once
-```
-
-```
 Set timer method 5 sec Timer
 ```
 
-## `# method Timer` 
-
+`# method Timer`
 ```
 OK message {Timer method triggered once only}
 Clear timer method
 ```
 
-## **Clear trace log** 
+<!-- p50-50 | Clear trace log -->
+## Clear trace log
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Debugger|NO|NO|NO<br>All|
+Command group: Debugger | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Clear trace log
 
-## **Syntax** 
+### Description
 
-## **Clear trace log** 
+This command clears the trace log.
 
-## **Description** 
+<!-- p51-51 | Close all designs -->
+## Close all designs
 
-This command clears the trace log. 
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-50 
+### Syntax
 
+Close all designs
 
-
-## **Close all designs** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Close all designs** 
-
-## **Description** 
+### Description
 
 This command closes all the design windows currently open, including all instances of the method editor. 
 
-## **Example** 
+### Example
 
-## `Close all designs` 
+`Close all designs`
 
-## **Close all windows** 
+<!-- p51-51 | Close all windows -->
+## Close all windows
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|NO|NO|NO<br>All|
+Command group: Windows | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Close all windows
 
-## **Syntax** 
-
-## **Close all windows** 
-
-## **Description** 
+### Description
 
 This command closes all open window instances in all open libraries, and automatically cancels any working message. The **Close all windows** command does not close private instances which do not belong to the current task. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt to close all open windows
@@ -2906,187 +2344,121 @@ End If
 Do $root.$iwindows.$sendall($ref.$close())
 ```
 
-## **Close check data log** 
+<!-- p51-52 | Close check data log -->
+## Close check data log
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|NO|NO|NO<br>All|
+Command group: Data management | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Close check data log** 
 
-51 
-
-
-
-## **Description** 
+### Description
 
 This command closes the check data log if it is open. The command is not reversible and the flag is not affected. 
 
-## **Example** 
+### Example
 
 ```
 Check data (Check records) {fOrders}
-```
-
-```
 If flag true
-```
-
-```
 Yes/No message {View Log?}
-```
-
-```
 If flag true
 Open check data log (Do not wait for user)
-```
-
-```
 End If
-```
-
-```
 # leave log window open
-```
-
-```
 Else
-```
-
-```
 End If
-```
-
-```
 # now close log
-```
-
-```
 Close check data log
 ```
 
-## **Close data file** 
+<!-- p52-52 | Close data file -->
+## Close data file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data fles|YES|NO|NO<br>All|
+Command group: Data files | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Close data file** { _internal-name_ (leave empty to close all)} 
 
-## **Description** 
+### Description
 
 This command closes the open data file with the specified internal name, or closes all the open data files if no name is specified. It sets the flag if at least one data file is closed. It clears the flag and does nothing (that is, does not generate a runtime error) if the specified internal name does not correspond to an open data file. 
 
 Note that data files have a notation property $allowclose, which when set to kFalse, prevents **Close data file** , the data file notation, and the Data File Browser from closing the file. 
 
-## **Example** 
+### Example
 
 ```
 # check the $allowclose property of myDataFile
-```
-
-```
 If $root.$datas.myDataFile.$allowclose
-```
-
-```
 Close data file {myDataFile}
 End If
 ```
 
-## **Close DDE channel** 
+<!-- p52-53 | Close DDE channel -->
+## Close DDE channel
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|NO|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Close DDE channel** ([ _All channels_ ]) 
 
-52 
-
-
-
-**Options** 
+### Options
 
 All channels If specified, the command applies to all DDE channels, rather than just the current channel 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as client. This command closes the current channel. If you use the _All channels_ option, all open DDE channels are closed. No error occurs if the current channel is not open. 
 
-## **Example** 
+### Example
 
 ```
 Set DDE channel number {2}
 Open DDE channel {Omnis|Country}
 If flag false
 OK message {The Country library is not running}
-```
-
-```
 Else
-```
-
-```
 Do method TransferData
-```
-
-```
 Close DDE channel
-```
-
-```
 OK message {Update finished}
 End If
 ```
 
-## **Close design** 
+<!-- p53-53 | Close design -->
+## Close design
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|_Classes_|YES|NO|NO<br>All|
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Close design** { _class-name_ } 
 
-## **Description** 
+### Description
 
 This command closes the specified design class. Trying to close a class which is not open simply clears the flag. 
 
-## **Example** 
+### Example
 
 ```
 Close design
 ```
 
-## **Close file** 
+<!-- p53-54 | Close file -->
+## Close file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Close file** ( _refnum_ ) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -3094,52 +2466,36 @@ This command closes a file previously opened by the Open file command. You speci
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-53 
-
-
-
-## **Example** 
+### Example
 
 ```
 # read a text file then close it
-```
-
-```
 Calculate lPathname as con(sys(115),'html',sys(9),'serverusagetask.htm')
 Open file (lPathname,lRefNum) Returns lErrCode ## opens the file
-```
-
-```
 Read file as character (lRefNum,lFile) Returns lErrCode ## reads the file contents into lFile
 Close file (lRefNum) Returns lErrCode ## now close the file
 ```
 
-## **Close import file** 
+<!-- p54-54 | Close import file -->
+## Close import file
 
-Command group Importing and Exporting 
+Command group: Importing and Exporting | Flag affected: NO | Reversible: NO
 
-|Flag affected|Rev|
-|---|---|
-|NO|NO|
+Rev
 
-
-
-## **Syntax** 
+### Syntax
 
 **Close import file** 
 
-## **Description** 
+### Description
 
 This command closes the current import file. You should use it once the data has been read in. 
 
-## **Example** 
+### Example
 
 ```
 # Import from a csv file called myImport.txt in the root of your omnis tree
 Calculate lImportPath as con(sys(115),'myImport.txt')
-```
-
-```
 Set import file name {[lImportPath]}
 Prepare for import from file {Delimited (commas)}
 Import data lImportList
@@ -3147,19 +2503,16 @@ End import
 Close import file
 ```
 
-## **Close library** 
+<!-- p54-55 | Close library -->
+## Close library
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Libraries|YES|NO|NO<br>All|
+Command group: Libraries | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Close library** _internal-name_ (leave empty to close all) 
 
-## **Description** 
+### Description
 
 This command closes the open library file with the specified internal name, or closes all the open library files if no name is specified. It sets the flag if at least one library file is closed. It clears the flag and does nothing if the specified internal name does not correspond to an open library. 
 
@@ -3167,17 +2520,10 @@ Note that the internal name for a library defaults to its physical file name fro
 
 Closing a library closes all windows, reports, and menus belonging to that library which are open or installed. It also disposes of the CRBs for the file classes and class variables belonging to that library, closes all lookup files opened by that library, and if there is a running method from that library on the stack, clears the method stack. If the method stack is cleared, the command following the current executing command will not execute, and it is not possible to test the flag value returned from the command. 
 
-54 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Open and close the library mylib.lbs from the root
-```
-
-```
 # of your Omnis studio tree
 Calculate lLibPath as con(sys(115),'mylib.lbs')
 Open library (Do not close others) [lLibPath],MYLIB
@@ -3189,93 +2535,66 @@ End If
 End If
 ```
 
-## **Close lookup file** 
+<!-- p55-55 | Close lookup file -->
+## Close lookup file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data fles|YES|NO|NO<br>All|
+Command group: Data files | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Close lookup file** { _lookup-name_ } 
 
-## **Description** 
+### Description
 
 This command closes the lookup file which matches the reference name given in the parameters. Each lookup file is given a reference label when it is opened. In this example it is “City”. 
 
 If the reference label given in the Open lookup file command is omitted, you can omit the lookup name in the Close lookup file command. If the specified lookup file is closed, the flag is set; if the lookup file doesn’t exist, the flag is cleared. 
 
-## **Example** 
+### Example
 
 ```
 Open lookup file {City,Lookup.df1,fCities}
 If flag true
-```
-
-```
 OK message {The city you require is [lookup('City','I',2)]}
 End If
-```
-
-```
 Close lookup file {City}
 ```
 
-## **Close other windows** 
+<!-- p55-56 | Close other windows -->
+## Close other windows
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|NO|NO|NO<br>All|
+Command group: Windows | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Close other windows
 
-## **Syntax** 
-
-## **Close other windows** 
-
-## **Description** 
+### Description
 
 This command closes all but the top window instance. As window instances are not automatically closed in Omnis, you can use this command to close all window instances except the top window instance. The **Close other windows** command does not close private instances which do not belong to the current task. 
 
-55 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Close all other windows
-```
-
-```
 If len(sys(51)) ## more than 1 window open
-```
-
-```
 Close other windows
-```
-
-```
 End If
 ```
 
-## **Close port** 
+<!-- p56-56 | Close port -->
+## Close port
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|NO|NO<br>NO<br>All|
-|**Syntax**|||
-|**Close port**|||
+Command group: Report destinations | Flag affected: NO | Reversible: NO
 
+### Syntax
+**Close port**
 
-
-## **Description** 
+### Description
 
 This command closes the current port. You should use it after the data has been transferred. 
 
-## **Example** 
+### Example
 
 ```
 Set port name {COM1:}
@@ -3288,23 +2607,20 @@ Do method ImportData
 Close import file
 ```
 
-## **Close print or export file** 
+<!-- p56-56 | Close print or export file -->
+## Close print or export file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|NO|NO<br>NO<br>All|
+Command group: Report destinations | Flag affected: NO | Reversible: NO
 
+### Syntax
 
+Close print or export file
 
-## **Syntax** 
-
-## **Close print or export file** 
-
-## **Description** 
+### Description
 
 This command closes the current print or export file. You use it after the data has been written to the file. If the file is left open, subsequent data printed to the file is added to the end of the earlier data. 
 
-## **Example** 
+### Example
 
 ```
 Send to file
@@ -3315,210 +2631,132 @@ Print report
 Close print or export file
 ```
 
-56 
+<!-- p57-57 | Close task instance -->
+## Close task instance
 
+Command group: Tasks | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
-## **Close task instance** 
+Close task instance instance-name
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Tasks|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Close task instance** _instance-name_ 
-
-## **Description** 
+### Description
 
 This command closes the specified task instance. 
 
-## **Example** 
+### Example
 
 ```
 Close task instance tkMyTask
 # or do it like this
-```
-
-```
 Do $itasks.tkMyTask.$close()
 ```
 
-## **Close top window** 
+<!-- p57-57 | Close top window -->
+## Close top window
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|YES|NO|NO<br>All|
+Command group: Windows | Flag affected: YES | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Close top window
 
-## **Syntax** 
-
-## **Close top window** 
-
-## **Description** 
+### Description
 
 This command closes the top window instance. As window instances are not automatically closed in Omnis, you can use this command to close the top window. No error occurs if there is no window open. This command clears the flag and does nothing if the top window is a private instance not belonging to the current task. 
 
-## **Example** 
+### Example
 
 ```
 # Close the top window if it is called 'wMyWindow'
 If sys(50)='wMyWindow'
-```
-
-```
 Close top window
-```
-
-```
 End If
-```
-
-```
 # Alternatively, use notation to close the top window
 Do $topwind.$close()
 ```
 
-## **Close trace log** 
+<!-- p57-58 | Close trace log -->
+## Close trace log
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Debugger|NO|NO|NO<br>All|
+Command group: Debugger | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Close trace log** 
 
-57 
+### Description
 
+This command closes the trace log.
 
+<!-- p58-58 | Close window instance -->
+## Close window instance
 
-## **Description** 
+Command group: Windows | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-This command closes the trace log. 
-
-## **Close window instance** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Close window instance** _window-instance-name_ 
 
-## **Description** 
+### Description
 
 This command closes the specified window instance. **Close window instance** clears the flag and does nothing if the window is a private instance belonging to the current task. Alternatively you can use the $close() method to close a window instance. 
 
-## **Example** 
+### Example
 
 ```
 Test for window open {wMyWindow}
-```
-
-```
 If flag true
-```
-
-```
 Close window instance wMyWindow
-```
-
-```
 End If
-```
-
-```
 # Alternatively, you can do it like this
 Do $root.$iwindows.wMyWindow.$close()
 ```
 
-## **Close working message** 
+<!-- p58-58 | Close working message -->
+## Close working message
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Message boxes|NO|NO|NO<br>All|
+Command group: Message boxes | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Close working message
 
-## **Syntax** 
-
-## **Close working message** 
-
-## **Description** 
+### Description
 
 This command closes the current working message. No error occurs if there is no working message displayed. Working messages close themselves when methods stop running and control returns to the user. Once a working message is displayed, a call to another method leaves the message on the window. The message is not cleared automatically until the first method ends. 
 
-## **Example** 
+### Example
 
 ```
 # Close the working message before this method
-```
-
-```
 # has finished
-```
-
-```
 Working message {Processing Record [lCount]}
-```
-
-```
 For lCount from 1 to 20000 step 1
-```
-
-```
 Redraw working message
-```
-
-```
 End For
-```
-
-```
 Close working message
 For lCount from 1 to 50000 step 1
-```
-
-```
 Calculate lValue as lValue+lCount
-```
-
-```
 End For
 ```
 
-58 
+<!-- p59-59 | Context help -->
+## Context help
 
+Command group: Operating system | Flag affected: YES | Reversible: NO
 
-
-**Context help** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Operating system|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Context help** { _command_ ( _parameters_ )} 
 
-## **Description** 
+### Description
 
 This command provides context help to the user: note this only applies to fat client or desktop apps, not web & mobile apps created using the JavaScript Client. 
 
 You specify a command mode option, and depending on the mode you can specify the help file name and context id. The command mode options are constants listed in the Catalog. 
 
-## _kHelpContextMode_ 
+kHelpContextMode
 
 initiates context help mode, showing a ‘?’ cursor. 
 
@@ -3538,7 +2776,7 @@ To implement context help for an object or area, you set the help id as a decima
 
 When the user clicks on an object with the help cursor or presses the F1/Help key, Omnis looks for the help id. If it finds none for a window object, menu line, or toolbar control, it then looks in the next higher containing object. 
 
-## **Example** 
+### Example
 
 - `# Show the file index.htm from the omnis help folder` 
 
@@ -3552,25 +2790,20 @@ When the user clicks on an object with the help cursor or presses the F1/Help ke
 
 - `# located in the Help folder` 
 
-- `Context help {kHelpContextMode}` 
+- `Context help {kHelpContextMode}`
 
-## **Copy file** 
+<!-- p59-60 | Copy file -->
+## Copy file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Copy file** ( _from_ - _path_ [, _to_ - _path_ ]) **Returns** _err-code_ 
 
-59 
-
-
-
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -3580,45 +2813,39 @@ When constructing the path to a file or folder, you can use sys(9) to insert the
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lPathname as con(sys(115),'html',sys(9),'serverusagetask.htm')
 Calculate lNewPath as con(sys(115),'html',sys(9),'serverusagetask2.htm')
 Copy file (lPathname,lNewPath) Returns lErrCode
-```
-
-```
 # copies the file in lPathName to the filename contained in lNewPath
 ```
 
-## **Copy list definition** 
+<!-- p60-61 | Copy list definition -->
+## Copy list definition
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|YES|NO|NO<br>All|
+Command group: Lists | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Copy list definition** list-or-row-name ([Clear list]) 
 
-## **Options** 
+### Options
 
 Clear list If specified, the command empties the current list and removes its column definitions before executing 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command redefines the column headings of the current list by copying the columns and data structure from the specified list. If the current list contains data and you do not clear the list, no change is made to the internal structure of the list; in this case, columns are neither added nor removed, merely renamed and the command is similar to Redefine list. 
 
 When the current list is empty or the Clear list option chosen, the command is the equivalent to ‘Define the list so that it matches the specified list’. 
 
-## **Example** 
+### Example
 
 ```
 Set current list iList1
@@ -3626,13 +2853,6 @@ Define list {iCol1Date,iCol2Num,iCol3Char}
 Add line to list
 Set current list iList2
 Define list {iCol4Date,iCol5Num,iCol6Char}
-```
-
-60 
-
-
-
-```
 Add line to list
 # now change the definition of iList2 to match iList1
 Copy list definition iList1 (Clear list )
@@ -3640,51 +2860,42 @@ Copy list definition iList1 (Clear list )
 Do iList2.$copydefinition(iList1)
 ```
 
-## **Copy to clipboard** 
+<!-- p61-61 | Copy to clipboard -->
+## Copy to clipboard
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Clipboard|YES|NO|NO<br>All|
+Command group: Clipboard | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Copy to clipboard** _field-name_ 
 
-## **Description** 
+### Description
 
 This command copies the contents of the specified field or current selection and places it on the clipboard. In the case of a null selection when the cursor is merely flashing in a field and no characters are selected, the **Copy to clipboard** command will literally copy “nothing”. 
 
-## **Example** 
+### Example
 
 ```
 # Copy one field to another then clear the first field
 Copy to clipboard iName
-```
-
-```
 Paste from clipboard iDeliveryName (Redraw field)
 Clear data iName (Redraw field)
 ```
 
-## **Create data file** 
+<!-- p61-62 | Create data file -->
+## Create data file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data fles|YES|NO|NO<br>All|
+Command group: Data files | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Create data file** ([Do not close other data]) {file-name, internal-name} 
 
-## **Options** 
+### Options
 
 Do not close other data If specified, the command does not close all open data files before opening the specified data file 
 
-## **Description** 
+### Description
 
 This command creates and opens a new and empty, single segment data file, which becomes the “current” data file. You can specify the path name of the file to be created and the internal name for the open data file. 
 
@@ -3694,56 +2905,33 @@ If the disk file with the specified path name cannot be created (and opened), th
 
 **WARNING** : If the file and path name is the same as an existing data file, all segments for that data file are deleted before the new file is created. If the data file was open, it is closed and deleted; a new and empty data file is then reopened. 
 
-61 
-
-
-
-## **Example** 
+### Example
 
 ```
 Yes/No message {Do you wish to add a new company?}
 If flag true
-```
-
-```
 # method to do some preparatory code for the new datafile and generate the company name
 Do method Insert Company
-```
-
-```
 # creates a datafile in the same folder as the omnis executable
-```
-
-```
 # the name of the datafile is the value of the character variable iCompany
 Create data file (Do not close other dat) {(con(sys(115),iCompany,'.df1')/[iCompany]}
-```
-
-```
 End If
-```
-
-```
 # or do it like this
-```
-
-```
 Do $datas.$add(con(sys(115),iCompany,'.df1'),kTrue,[iCompany])
 ```
 
-## **Create directory** 
+<!-- p62-62 | Create directory -->
+## Create directory
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Create directory** ( _path_ ) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -3753,7 +2941,7 @@ When constructing the path to a file or folder, you can use sys(9) to insert the
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lDirName as con(sys(115),'MyNewDirectory')
@@ -3761,23 +2949,18 @@ Calculate lDirName as con(sys(115),'MyNewDirectory')
 Create directory (lDirName) Returns lErrCode
 ```
 
-## **Create file** 
+<!-- p62-63 | Create file -->
+## Create file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Create file** ( _path_ ) **Returns** _err-code_ 
 
-62 
-
-
-
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -3787,7 +2970,7 @@ When constructing the path to a file or folder, you can use sys(9) to insert the
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lPathname as con(sys(115),'MyNewFile.txt')
@@ -3795,23 +2978,20 @@ Calculate lPathname as con(sys(115),'MyNewFile.txt')
 Create file (lPathname) Returns lErrCode
 ```
 
-## **Create library** 
+<!-- p63-63 | Create library -->
+## Create library
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Libraries|YES|NO|NO<br>All|
+Command group: Libraries | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Create library** ([Do not close others]) library-pathname, internal-name 
 
-Options 
+### Options
 
 Do not close others If specified, the command does not close all open libraries before opening the specified library 
 
-## **Description** 
+### Description
 
 This command creates and opens a new library file. You specify the full pathname and internal name of the library. The internal name is an alias that you supply and use in your methods to refer to that library file. 
 
@@ -3821,45 +3001,35 @@ A **Do not close others** option can also be specified so that you can open mult
 
 **WARNING** If the path name is the same as an existing library, the existing library is overwritten. If the existing library is open, it is closed and deleted and a new, empty library is opened. 
 
-## **Example** 
+### Example
 
 ```
 # Create a library named mylib.lbs in the root of your Omnis Studio tree
 Calculate lLibPath as con(sys(115),'mylib.lbs')
 Create library (Do not close others) [lLibPath]
 If flag true
-```
-
-```
 OK message {Library created!}
 End If
 ```
 
-63 
+<!-- p64-64 | Cut to clipboard -->
+## Cut to clipboard
 
+Command group: Clipboard | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**Cut to clipboard** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Clipboard|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Cut to clipboard** field-name ([Redraw field][,All windows]) 
 
-## **Options** 
+### Options
 
 Redraw field If specified, the command reloads affected window fields with the new value of the data field,after it has performed the operation; note that this takes the ‘All windows’ option into account All windows If specified, the command applies to all open window instances, rather than just the top open window instance 
 
-## **Description** 
+### Description
 
 This command cuts the contents of the specified field or current selection and places it on the clipboard. In the case of a null selection when the cursor is merely flashing in a field and no characters are selected, **Cut to clipboard** will literally cut “nothing”. 
 
-## **Example** 
+### Example
 
 ```
 # Cut iName to the clipboard and paste it into iDeliveryName
@@ -3867,87 +3037,62 @@ Cut to clipboard iName (Redraw field)
 Paste from clipboard iDeliveryName (Redraw field)
 ```
 
-## **Default** 
+<!-- p64-64 | Default -->
+## Default
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|_Constructs_|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+Default
 
-## **Syntax** 
-
-## **Default** 
-
-## **Description** 
+### Description
 
 This command marks the block of commands to be run when there is no matching case in a Switch statement. When a Switch– Case construct is used, the Default command marks the start of a block of commands that are executed if none of the preceding Case statements are executed. 
 
-## **Example** 
+### Example
 
 ```
 # Sound the bell if lName is not equal to Fred or Jim
 Switch lName
-```
-
-```
 Case 'Fred'
 OK message {Fred}
 Case 'Jim'
 OK message {Jim}
 Default
-```
-
-```
 OK message (Sound bell ) {Neither Fred nor Jim}
 End Switch
 ```
 
-64 
+<!-- p65-65 | Define list -->
+## Define list
 
+Command group: Lists | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-## **Define list** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|NO|YES|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Define list** { _list-of-field-or-file-names_ (F1,F2..F3,F4)} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command defines the variables or file class field names to be used as the column definitions for the current list; it should follow Set current list. The variables or fields used in the definition also describe the data type and length for each column of data held. This command clears the definition and data in the current list. When reversed, the contents and definition of the current list are restored to their former values. Duplicate names are ignored in your list of variables or fields. 
 
-## **Example** 
+### Example
 
 ```
 Set current list iList1
 # define columns iCol1Date, iCol2Num & iCol3Char for the current list
 Define list {iCol1Date,iCol2Num,iCol3Char}
-```
-
-```
 # same as before but ignores the duplicate reference to iCol3Char
 Define list {iCol1Date,iCol2Num,iCol3Char,iCol3Char}
 # define the list based upon all the columns in the file class fCustomers
 Define list {fCustomers}
-```
-
-```
 # Alternatively, you can avoid using Set Current List by using the following notation
 Do iList1.$define(iCol1Date,iCol2Num,iCol3Char)
-```
-
-```
 # define the list based upon a table,schema or query class
 Do iList1.$definefromsqlclass('myTableOrSchemaOrQueryClass')
 ```
@@ -3958,34 +3103,24 @@ Do iList1.$definefromsqlclass('myTableOrSchemaOrQueryClass')
 # Normally, the length of a column is set by the type or length of the variable or field defined for
 # the column, therefore the column length for a default character variable would be 10 million.
 # However, when you define the list you can truncate the data stored in the column using
-```
-
-```
 # VariableName/N. For example to use only the first 10 characters of the variable iCol3Char in column 3
 Define list {iCol1Date,iCol2Num,iCol3Char/10}
 ```
 
-## **Define list from SQL class** 
+<!-- p65-66 | Define list from SQL class -->
+## Define list from SQL class
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|NO|YES|NO<br>All|
+Command group: Lists | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Define list from SQL class** _query_ , _schema_ , or _table-name_ ( _parameters_ ) 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-65 
-
-
-
-## **Description** 
+### Description
 
 This command defines the column names and data types for the current list based on the specified schema, query, or table class. 
 
@@ -3993,115 +3128,72 @@ This results in the creation of a new table instance associated with the list. I
 
 When reversed, the contents and definition of the list are restored to their former values. 
 
-## **Example** 
+### Example
 
 ```
 Set current list iMyList
 Define list from SQL class sMySchema
 # or do it this way
-```
-
-```
 Do iMyList.$definefromsqlclass('sMySchema')
 ```
 
-## **Delete** 
+<!-- p66-66 | Delete -->
+## Delete
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|YES|NO|NO<br>All|
-
-
+Command group: Changing data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
 **Syntax Delete** 
 
-## **Description** 
+### Description
 
 This command deletes the current record in the main file without prompting the user to confirm the command, so you should use it with caution. The flag is set if the record is deleted, or cleared if there is no main file record. The flag is also cleared if the Do not wait for semaphores option is on and the record is locked. 
 
-## **Example** 
+### Example
 
 ```
 # The following example deletes records selected by a search class.
 Set main file {fAccounts}
-```
-
-```
 Set search name sOverDrawn
-```
-
-```
 Find first on fAccounts.Code (Use search)
-```
-
-```
 Repeat
-```
-
-```
 Delete
 Next
-```
-
-```
 Until flag false
-```
-
-```
 # This example checks the semaphore and tells the user if the record is locked:
 Do not wait for semaphores
-```
-
-```
 Delete
-```
-
-```
 If flag false
-```
-
-```
 OK message (Sound bell ) {Record in use and can't be deleted}
 End If
 ```
 
-## **Delete class** 
+<!-- p66-67 | Delete class -->
+## Delete class
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|YES|NO|NO<br>All|
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Delete class** { _class-name_ } 
 
-66 
-
-
-
-## **Description** 
+### Description
 
 This command deletes the specified library class. It is not possible to delete a file class, an installed menu or an open window. It is also not possible to delete a class if one of its methods is currently executing, that is, if it is somewhere on the method stack. Deleting a class does not reduce the library file size. It does, however, create free library file blocks so that creation of another class may be possible without further increase in library size. Errors, such as attempting to delete a name that does not exist, simply clear the flag and display an error message. 
 
-## **Example** 
+### Example
 
-## `Delete class {sUser}` 
+`Delete class {sUser}`
 
-## **Delete data** 
+<!-- p67-67 | Delete data -->
+## Delete data
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|YES|NO|NO<br>All|
+Command group: Data management | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Delete data** { _file-name_ } 
 
-## **Description** 
+### Description
 
 This command deletes all the data and indexes for a specified file in a data file. The data and indexes for a file class are called a “slot”. You can delete a slot only if and when one user is logged onto the data file. 
 
@@ -4109,40 +3201,29 @@ If a specified file name does not include a data file name as part of the notati
 
 If a working message with a count is open while the command is executing, the count will be incremented at regular intervals. The command may take a long time to execute, and it is not possible to cancel execution even if a working message with cancel box is open. The command sets the flag if it completes successfully and clears the flag otherwise. It is not reversible. 
 
-## **Example** 
+### Example
 
 ```
 Delete data {fCustomers}
 If flag true
-```
-
-```
 OK message {Data for fCustomers has been deleted}
 Else
-```
-
-```
 OK message Error {Data could not be deleted}
 End If
 ```
 
-## **Delete file** 
+<!-- p67-68 | Delete file -->
+## Delete file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Delete file** ( _path_ ) **Returns** _err-code_ 
 
-67 
-
-
-
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -4152,7 +3233,7 @@ It returns an error code (See Error Codes), or zero if no error occurs.
 
 When constructing the path to a file or folder, you can use sys(9) to insert the correct path delimiter for the current platform: \ (backslash) on Windows, or / (forward-slash) for Unix and 64-bit macOS (: colon on 32-bit macOS). In addition, you can use sys(115) to return the full pathname of the folder containing the Omnis executable, including the terminating path separator, which might be useful to reference files in the Omnis tree. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lPathname as con(sys(115),'html',sys(9),'serverusagetask.htm')
@@ -4160,36 +3241,30 @@ Calculate lNewPath as con(sys(115),'html',sys(9),'serverusagetask2.htm')
 Copy file (lPathname,lNewPath) Returns lErrCode ## copies the file in
 Does file exist (lNewPath) Returns lStatus ## see if the file exists
 If lStatus
-```
-
-```
 Delete file (lNewPath) Returns lErrCode ## delete it
 End If
 ```
 
-## **Delete line in list** 
+<!-- p68-69 | Delete line in list -->
+## Delete line in list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Delete line in list** { _line-number_ ( _calculation_ )} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command deletes the specified line of the current list by moving all the lines below the specified line up one line. If the line number is not specified or if it evaluates to 0, the current line _LIST.$line_ is deleted. The line in a list selected by the user can determine the value of LIST.$line and is the line deleted if no parameters are specified. LIST.$line is unchanged by the command unless it was the final line and that line is deleted; in this case LIST.$line is set to the new final line number. The command never releases any of the memory used by the list. 
 
 The flag is cleared if the list is empty or if the line is beyond the current end of the list; otherwise, the flag is set. 
 
-## **Example** 
+### Example
 
 ```
 # Delete all but the first 2 lines in the list
@@ -4200,44 +3275,31 @@ Add line to list {('George',20)}
 Add line to list {('Harry',22)}
 Add line to list {('William',31)}
 Add line to list {('David',62)}
-```
-
-68 
-
-
-
-```
 While lMyList.$linecount>2
 Delete line in list {1}
 End While
-```
-
-```
 # Alternatively you can use $remove to delete a line from a list
 Do lMyList.$remove(1)
 ```
 
-## **Delete selected lines** 
+<!-- p69-69 | Delete selected lines -->
+## Delete selected lines
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Delete selected lines
 
-## **Syntax** 
-
-## **Delete selected lines** 
-
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command deletes all the selected lines from the current list. This is carried out in memory and has no effect on the lists stored in the data file unless a Prepare for Insert/ Edit command is performed.LIST.$line is unaffected unless it is left at a value beyond the end of the list, in which case it is set to LIST.$linecount. 
 
-## **Example** 
+### Example
 
 ```
 # Build a list and delete all lines except line 3
@@ -4251,75 +3313,56 @@ Invert selection for line(s) {3}
 Delete selected lines
 ```
 
-## **Delete with confirmation** 
+<!-- p69-70 | Delete with confirmation -->
+## Delete with confirmation
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Changing data|YES|NO|NO|All|
+Command group: Changing data | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 Delete with confirmation { _message_ } 
 
-## **Description** 
+### Description
 
 This command displays a message asking the user to confirm or cancel the deletion and, if confirmation is granted, deletes the current record in the main file. An error is reported if there is no main file. 
 
 If a message is not specified, Omnis uses a default message. The message can contain square-bracket notation which is evaluated when the command is executed. If the current record is deleted, the flag is set, otherwise it is cleared. If the Do not wait for semaphores option is on, the flag is cleared if the record is locked. 
 
-69 
-
-
-
-## **Example** 
+### Example
 
 ```
 # This example allows selected records in the main file to be deleted:
 Set main file {fAccounts}
-```
-
-```
 Set search as calculation {fAccounts.Balance<0}
 Find first on fAccounts.Code (Use search)
 While flag true
-```
-
-```
 Delete with confirmation {Delete [fAccounts.Surname]'s record?}
-```
-
-```
 Next (Use search)
 End While
 ```
 
-## **Deselect list line(s)** 
+<!-- p70-70 | Deselect list line(s) -->
+## Deselect list line(s)
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Deselect list line(s)** ([ _All lines_ ]) { _line-number_ ( _calculation_ )} 
 
-## **Options** 
+### Options
 
 All lines If specified, the command affects all the lines in the list 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command deselects the specified list line. The specified line of the current list is deselected and is shown without highlight on a window list field when redrawn. You can specify the line number as a calculation. The _All lines_ option deselects all lines of the current list. When a list is saved in the data file, the line selection state is stored. 
 
-## **Example** 
+### Example
 
 ```
 # Build a list and deselect line 5
@@ -4334,23 +3377,16 @@ Deselect list line(s) {(lMyList.$linecount/2)}
 Do lMyList.5.$selected.$assign(kFalse) ## select line 5
 ```
 
-## **Disable all menus and toolbars** 
+<!-- p70-71 | Disable all menus and toolbars -->
+## Disable all menus and toolbars
 
-70 
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Disable all menus and toolbars
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Disable all menus and toolbars** 
-
-## **Description** 
+### Description
 
 The Disable all menus and toolbars command disables all top-level menus and toolbars in the main Omnis menu bar or application docking areas (i.e. not toolbars or menus installed in window classes). For toolbars, the command sets the active state of the docking areas and disables everything without changing its appearance. The menus and toolbars can be enabled using the Enable all menus and toolbars command. 
 
@@ -4363,7 +3399,7 @@ Do $imenus.$sendall($ref.$enabled.$assign(kFalse))
 Do $itoolbars.$sendall($ref.$enabled.$assign(kFalse))
 ```
 
-## **Example** 
+### Example
 
 ```
 # Disable all menus and toolbars unless
@@ -4371,341 +3407,196 @@ Do $itoolbars.$sendall($ref.$enabled.$assign(kFalse))
 Disable all menus and toolbars
 Prompt for input Password : Returns lPassword
 If low(lPassword)='password'
-```
-
-```
 Enable all menus and toolbars
 End If
 ```
 
-## **Disable cancel test at loops** 
+<!-- p71-72 | Disable cancel test at loops -->
+## Disable cancel test at loops
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|_Constructs_|NO|YES|NO<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Disable cancel test at loops
 
-## **Syntax** 
-
-## **Disable cancel test at loops** 
-
-## **Description** 
+### Description
 
 Normally, Omnis tests if the user wishes to cancel execution of the method, at the end of each loop and during lengthy operations such as searching or sorting a large list. The user requests a cancel by either clicking on a working message Cancel button, or by pressing Ctrl-Break under Windows, Ctrl-C under Linux, or Cmnd-period under macOS. Use this command to disable these tests, meaning that the cancel key combination and clicks on a working message cancel button will be ignored. 
 
 This command is reversed with Enable cancel test at loops, or if placed in a reversible block. 
 
-71 
-
-
-
-## **Example** 
+### Example
 
 ```
 # delete all overdrawn accounts without interruption by the user requesting a cancel
 Set main file {fAccounts}
-```
-
-```
 Set search as calculation {fAccounts.Balance<0}
 Find on fAccounts.Code (Use search)
-```
-
-```
 Disable cancel test at loops
-```
-
-```
 While flag true
-```
-
-```
 Working message (Repeat count) {Deleting Account [fAccounts.Code]}
 Delete
-```
-
-```
 Next on fAccounts.Code (Exact match)
-```
-
-```
 End While
 ```
 
-## **Disable enter & escape keys** 
+<!-- p72-72 | Disable enter & escape keys -->
+## Disable enter & escape keys
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Enter data|NO|YES|NO|All|
+Command group: Enter data | Flag affected: NO | Reversible: YES | Execute on client: P NO A
 
+### Syntax
 
+Disable enter & escape keys
 
-## **Syntax** 
-
-## **Disable enter & escape keys** 
-
-## **Description** 
+### Description
 
 This command disables the Enter key on all platforms; on Windows and Linux, it also disables the Escape key, whereas on macOS it also disables the Escape key and Cmnd-period. In other words, it disables the keyboard equivalents of the OK and Cancel pushbuttons. For example, you can use it during enter data mode to prevent the user from prematurely updating records by hitting the Enter key, when they attempt to start a new line. The option will remain set until either it is reversed with an Enable command, a new library is selected, or it is reversed as part of a reversible block. 
 
 Before using this command in a method that initiates an Enter data command, ensure that the user has some way of ending data entry, that is, by installing an OK and a Cancel pushbutton, or by using a $control() method that detects the end of data entry. 
 
-## **Example** 
+### Example
 
 ```
 # $construct of window class
-```
-
-```
 Begin reversible block
-```
-
-```
 Disable enter & escape keys
-```
-
-```
 End reversible block
-```
-
-```
 Enter data
 If flag true
 OK message {OK Button Pressed}
 End If
 ```
 
-## **Disable fields** 
+<!-- p72-73 | Disable fields -->
+## Disable fields
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Fields|NO|NO|NO<br>All|
+Command group: Fields | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Disable fields** { _list-of-field-names_ (Name1,Name2,…)} 
 
-72 
-
-
-
-## **Description** 
+### Description
 
 This command disables the specified field or list of fields, making them inactive during Enter data and Prompted find. Thus the data entry cursor skips a disabled entry field when in data entry mode, find, and so on, and disabled pushbuttons cannot be clicked. If an entry field with scroll bar is disabled, you can tab to it but not change the data. You can reverse **Disable fields** or enable a display field using Enable fields. 
 
-## **Example** 
+### Example
 
 ```
 # disable 2 fields
-```
-
-```
 Begin reversible block
 Disable fields {myField1,myField2}
 End reversible block
-```
-
-```
 Do method CheckCredit
-```
-
-```
 Quit method
-```
-
-```
 # now this method ends and the fields are re-enabled as they are in a reversible block
 # to disable a single field on the current window
-```
-
-```
 Do $cwind.$objs.myField1.$enabled.$assign(kFalse)
-```
-
-```
 # to disable all fields on the current window like this
-```
-
-```
 Do $cwind.$objs.$sendall($ref.$enabled.$assign(kFalse))
 ```
 
-## **Disable menu line** 
+<!-- p73-73 | Disable menu line -->
+## Disable menu line
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Disable menu line** _line_ or _instance-name_ / _line_ 
 
-## **Description** 
+### Description
 
 This command disables the specified line of a menu instance, that is, the menu line becomes grayed out and cannot be selected. You specify the menu-instance-name and the number of the menu line you want to disable. You can disable a complete menu instance by disabling line zero, that is the menu title. 
 
 You can reverse **Disable menu line** with the Enable menu line command or, you can use it in a reversible block. Nothing happens if the specified menu instance is not installed on the menu bar. 
 
-## **Example** 
+### Example
 
 ```
 # Install the menu mView and disable a menu line,
-```
-
-```
 # the reversible block causes the menu line to be
-```
-
-```
 # re-enabled when the method has finished
-```
-
-```
 Install menu mView
-```
-
-```
 Begin reversible block
 Disable menu line mView/Large
-```
-
-```
 End reversible block
-```
-
-```
 # Alternatively, you can set the $enabled property of a
-```
-
-```
 # menu line using notation
 Do $menus.mView.$obj.Large.$enabled(kFalse)
 ```
 
-## **Disable relational finds** 
+<!-- p73-74 | Disable relational finds -->
+## Disable relational finds
 
-73 
+Command group: Finding data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Disable relational finds
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|NO|YES|NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Disable relational finds** 
-
-## **Description** 
+### Description
 
 This command reverses the action of Enable relational finds. The default situation is reinstated, that is, the main file and its connected parent files are joined using the Omnis connection. 
 
-## **Example** 
+### Example
 
 ```
 # Build a sorted combined list of parent and child data
-```
-
-```
 # using an existing omnis connection
-```
-
-```
 Disable relational finds ## this is the default action
-```
-
-```
 Set main file {fChild}
-```
-
-```
 Set current list lMyList
 Define list {fChild,fParent}
 Set sort field fParent.ID
 Build list from file (Use sort)
 ```
 
-## **Do** 
+<!-- p74-75 | Do -->
+## Do
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Calculations|NO|NO|YES<br>All|
+Command group: Calculations | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Do** calculation **Returns** return-value 
 
-## **Description** 
+### Description
 
 This command executes the specified calculation, which is typically some notation that operates on a particular object or part of your library. It returns a value if you specify a _return-value,_ which can be a variable of any type. 
 
 Note that where the return field is an item reference, the command sets the reference but does not assign to it: you must do this with Calculate or Do Itemref.$assign(value). 
 
-## **Example** 
+### Example
 
 ```
 # open a new window instance of the window class wMyWindow maximized
 Do $clib.$windows.wMyWindow.$open('*',kWindowMaximize)
-```
-
-```
 # redraw the current window instance
 Do $cwind.$redraw()
-```
-
-```
 # redraw EntryField1 on the top window
 Do $topwind.$objs.EntryField1.$redraw()
-```
-
-```
 # return a list in the local variable lClassList of all classes in the current library
 Do $clib.$classes.$makelist($ref.$name) Returns lClassList
-```
-
-```
 # close all open window instances
-```
-
-74 
-
-
-
-```
 Do $iwindows.$sendall($ref.$close())
-```
-
-```
 # set the $textcolor property of the current object to red
-```
-
-```
 # the optional return field can be used to check whether the operation succeeded
 Do $cobj.textcolor.$assign(kRed) Returns lFlag
 ```
 
-## **Do async method** 
+<!-- p75-76 | Do async method -->
+## Do async method
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|NO|NO|NO<br>All|
+Command group: Methods | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Do async method** remote-task-class/method-name (parameters) **Returns** return-value 
 
-## **Description** 
+### Description
 
 This command uses the Web Services server to execute a method asynchronously in the background, while the user continues to work with the application. Because it uses the Web Services server, you can only use this command if you meet some serial number requirements: you need a Web edition serial number, and for the development version, a Web Services serial number. 
 
@@ -4713,11 +3604,11 @@ This command runs the specified remote task method. The method must have a name 
 
 The _return-value_ is a long integer that uniquely identifies the call to the method. This is referred to as the _asynchronous call id_ . You use the _asynchronous call id_ to cancel the asynchronous method with the Cancel async method command, and to associate the completion message (see below) with the method call. 
 
-## **Passing Parameters** 
+Passing Parameters
 
 You can include a list of parameters with the **Do async method** command which are passed to the called method. If the called method has fewer parameters than values passed to it, the extra values are ignored. 
 
-## **Completion Message** 
+Completion Message
 
 When the method executing in the background finishes, Omnis sends a message to the task instance that was current when **Do async method** was called. The message is 
 
@@ -4725,7 +3616,7 @@ _$asynccomplete(iCallId,cErrText,vRetVal)_
 
 where iCallId is the asynchronous call id returned by **Do async method** , and vRetVal is the return value of the method executed in the background, unless an error occurred, in which case cErrText is not empty, and contains information about the error. 
 
-## **Notes** 
+### Notes
 
 You can only call **Do async method** when running in the normal foreground thread. 
 
@@ -4741,99 +3632,53 @@ If the library containing the remote task closes before the method finishes, Omn
 
 Only use critical blocks for very short time periods in asynchronous methods, as the user interface will be unresponsive while code is running in a critical block. 
 
-75 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Run the method $backgroundmethod asynchronously in the background - it prints a report, which the completion
 # Returned long integer iCallId uniquely identifies the method call
-```
-
-```
 Do async method REMOTETASK/$backgroundmethod ('rReport') Returns iCallId
-```
-
-```
 # $backgroundmethod (implemented in remote task, and marked as a Web Service static method):
 # Print the report identified by the parameter to memory, and return the resulting report
 Calculate $devices.Memory.$visible as kTrue
-```
-
-```
 Do $cdevice.$assign(kDevMemory)
-```
-
-```
 Do $prefs.$reportdataname.$assign(iReport)
-```
-
-```
 Set report name [pReportName]
-```
-
-```
 # Note that Print report can be used in the multi-threaded Web Client server from Studio 4.1.5 onwards
 Print report
-```
-
-```
 Quit method iReport
-```
-
-```
 If len(pErrorText)=0
-```
-
-```
 Send to screen
-```
-
-```
 Print report from memory pReport
-```
-
-```
 End If
 ```
 
-## **Do code method** 
+<!-- p76-76 | Do code method -->
+## Do code method
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|NO|NO|NO<br>All|
+Command group: Methods | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Do code method** code-class/method-name (parameters) **Returns** return-value 
 
-## **Description** 
+### Description
 
 This command runs the specified code class method, and accepts a value back from the called method. The specified _methodname_ must be in the code class _code-class_ . The command accepts a value back from the called method if you specify a _return-value_ . The return field can be a variable of any type. 
 
 When a code class method is executed using this command, control is passed to the called method but the value of $cinst is unchanged, therefore the code in the code class method can refer to $cinst. When the code class method has executed, control passes back to the original executing method. The current task is not affected by execution moving to the code class. 
 
-## **Passing Parameters** 
+Passing Parameters
 
 You can include a list of parameters with the **Do code method** command which are passed to the called method. If the called method has fewer parameters than values passed to it, the extra values are ignored. 
 
 Note that where the return field is an item reference, the command sets the reference but does not assign to it: you must do this with Calculate or Do Itemref.$assign(value). 
 
-## **Example** 
+### Example
 
 ```
 # Call the method myMethod in the code class
-```
-
-```
 # myCodeClass on a click event and pass the
-```
-
-```
 # value of iMyVar as a parameter
 ```
 
@@ -4841,31 +3686,24 @@ Note that where the return field is an item reference, the command sets the refe
 
    - `Calculate iMyVar as 100` 
 
-   - `Do code method myCodeClass/myMethod (iMyVar)` 
+   - `Do code method myCodeClass/myMethod (iMyVar)`
 
-76 
+<!-- p77-77 | Do default -->
+## Do default
 
+Command group: Calculations | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-## **Do default** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Calculations|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Do default** Returns _return-value_ 
 
-## **Description** 
+### Description
 
 This command is used within the code for a custom property, and performs the default behavior for the built-in property with the same name as a custom property. **Do default** sets the flag if some built-in processing for the property exists. 
 
 Note that where the return field is an item reference, the command sets the reference but does not assign to it: you must do this with Calculate or Do Itemref.$assign(value). 
 
-## **Example** 
+### Example
 
 ```
 # Adding a method called $horzscroll.$assign to a window causes this method to be executed whenever
@@ -4883,75 +3721,47 @@ Note that where the return field is an item reference, the command sets the refe
 
 ```
 Else
-```
-
-```
 # assign a horz scroll bar
-```
-
-```
 Do default
-```
-
-```
 End If
 ```
 
-## **Do inherited** 
+<!-- p77-77 | Do inherited -->
+## Do inherited
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Calculations|YES|NO|YES<br>All|
+Command group: Calculations | Flag affected: YES | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Do inherited** Returns _return-value_ 
 
-## **Description** 
+### Description
 
 This command runs the superclass method with the same name as the currently executing method in the current subclass. For example, you can use **Do inherited** in the $construct() method of a subclass to execute the $construct() method of its superclass. Similarly you can run the $destruct() method in a superclass from a subclass. 
 
 The flag is set if a method with the name of the current method is found in one of the superclasses. 
 
-## **Example** 
+### Example
 
 ```
 # $construct method
 Do inherited ## do superclass construct
-```
-
-```
 # $destruct method
-```
-
-```
 Do inherited ## do superclass destruct
-```
-
-```
 # a method in a superclass can also be called using the $inherited method
 Do $inherited.$mymethod
 ```
 
-77 
+<!-- p78-78 | Do method -->
+## Do method
 
+Command group: Methods | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-## **Do method** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|NO|NO|YES<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Do method** method-name (parameters) **Returns** return-value 
 
-## **Description** 
+### Description
 
 This command runs the specified method in the current class, and accepts a value back from the called method. If you use the **Do method** command in a field or line method, Omnis searches for the specified method in the field or line methods for the class, and then searches in the class methods. If the specified method is not found there is an error. 
 
@@ -4959,15 +3769,15 @@ The command accepts a value back from the recipient or receiving method if you s
 
 When another method is executed using this command, control is passed to the called method. When the called method has executed, control passes back to the original executing method. Note that you should use Do code method if you want to run a method in a code class, that is, a method outside the current class. 
 
-## **Passing Parameters** 
+Passing Parameters
 
 You can include a list of parameters with **Do method** which are passed to the called method. The parameters are taken in the order they appear in the parameter list and placed in the parameter variables in the called method. You can pass a reference to a field by using the special parameter variable type Field reference. This means that the called method can make changes to the field passed to it. 
 
-## **Recursion** 
+Recursion
 
 Omnis allows a method to call itself, but will eventually run out of stack if the recursion does not terminate, or becomes too deep. 
 
-## **Example** 
+### Example
 
 ```
 # Call the method myMethod in the current instance which
@@ -4987,23 +3797,16 @@ Do method $ctask.$mytaskmethod
 Do $cinst.$mymethod
 ```
 
-## **Do not flush data** 
+<!-- p78-79 | Do not flush data -->
+## Do not flush data
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|YES|YES|NO<br>All|
+Command group: Changing data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-78 
-
-
-
-**Syntax** 
+### Syntax
 
 **Do not flush data** 
 
-## **Description** 
+### Description
 
 This command causes all data file operations to be carried out without writing the changed data to disk at each Update files or Delete. The command is designed to speed up data file operations when the user is prepared to take the extra risk of data loss. 
 
@@ -5013,7 +3816,7 @@ If you use Test for only one user at the beginning of the method, further users 
 
 The command sets the flag if the state of the ‘Do not flush data’ mode is changed. When placed in a reversible block, the command restores the previous state of the ‘Do not flush’ flag upon the termination of the method. 
 
-## **Example** 
+### Example
 
 ```
 # fast import
@@ -5022,17 +3825,11 @@ If flag true
 Do not flush data
 Drop indexes
 End If
-```
-
-```
 Prompt for import file
 Prepare for import from file {Delimited(tabs)}
 Import data lImportList
 End import
 Close import file
-```
-
-```
 For each line in list from 1 to lImportList.$linecount step 1
 Prepare for insert ## transfer list to file
 Load from list
@@ -5043,29 +3840,22 @@ Build indexes ## rebuild indexes
 Flush data ## Changes mode back to 'Flush data'
 ```
 
-## **Do not wait for semaphores** 
+<!-- p79-80 | Do not wait for semaphores -->
+## Do not wait for semaphores
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|NO|YES|NO<br>All|
+Command group: Changing data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Do not wait for semaphores
 
-## **Syntax** 
-
-## **Do not wait for semaphores** 
-
-## **Description** 
+### Description
 
 This command causes all commands which set semaphores to return with a flag clear if the semaphore is not available. 
 
 If **Do not wait for semaphores** is run first in a method, it will ensure that any subsequent commands that lock records, such as Prepare for…, Update commands, do not wait for records to be released. It causes the command to return a flag false and control to return immediately to the method, if a record is locked. 
 
-79 
-
-
-
-## **Semaphores** 
+Semaphores
 
 Semaphores are internal flags or indicators set in the data file to show other users that the record has been required elsewhere for editing. Semaphores are only set when running in multi-user mode, that is, the data file is located on a networked server, a Mac volume or on a DOS machine on which SHARE has been run. 
 
@@ -5075,7 +3865,7 @@ The Edit/Insert commands always wait for a semaphore, as do automatic find entry
 
 The example below illustrates how any command which causes a change in record locking requirements can fail (returning flag false). If, when in ‘Prepare for’ mode, a Single file find cannot lock the new record, it returns a flag false. This could mean either that the record could not be found, or that it was in use by another workstation. For this reason, it was made read-only before the Single file find and then changed to read/write. Note also that Update files can fail if the file cannot be locked while the indexes are re-sorted. 
 
-## **Example** 
+### Example
 
 ```
 Do not wait for semaphores
@@ -5096,55 +3886,41 @@ Until flag true
 End If
 ```
 
-## **Do redirect** 
+<!-- p80-80 | Do redirect -->
+## Do redirect
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Calculations|YES|NO|NO<br>All|
+Command group: Calculations | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Do redirect** notation-for-object **Returns** return-value 
 
-## **Description** 
+### Description
 
 This command redirects execution from a custom property to any other public method. You specify the notation (or a calculation which evaluates to a reference to an object) for the recipient. The recipient of the custom property being processed is $crecipient. The flag is set if the recipient exists and handles the property with a built-in or custom property. 
 
-## **Example** 
+### Example
 
 ```
 Do $cwind.$setup ## the call to $setup in current window instance ..
-```
-
-```
 # $setup method of the window instance
 Do redirect $cwind.$objs.EntryField ## .. is diverted ..
-```
-
-```
 # $setup method of EntryField ## .. to here
 OK message {redirected to [$crecipient().$name]}
 ```
 
-80 
+<!-- p81-81 | Does file exist -->
+## Does file exist
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-**Does file exist** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Does file exist** ( _file_ | _folder_ - _name_ ) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -5154,7 +3930,7 @@ When constructing the path to a file or folder, you can use sys(9) to insert the
 
 See also, the command Test if file exists. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lPathname as con(sys(115),'html',sys(9),'serverusagetask.htm')
@@ -5162,26 +3938,20 @@ Calculate lNewPath as con(sys(115),'html',sys(9),'serverusagetask2.htm')
 Copy file (lPathname,lNewPath) Returns lErrCode ## copies the file in
 Does file exist (lNewPath) Returns lStatus ## see if the file exists
 If lStatus
-```
-
-```
 Delete file (lNewPath) Returns lErrCode ## delete it
 End If
 ```
 
-## **Drop indexes** 
+<!-- p81-82 | Drop indexes -->
+## Drop indexes
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|YES|NO|NO<br>All|
+Command group: Data management | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Drop indexes** { _file-name_ } 
 
-## **Description** 
+### Description
 
 This command deletes all the indexes for the specified file apart from the record sequence number index. This enables intensive operations such as data import to proceed without the overhead of updating all the indexes. You can use Build indexes to rebuild the indexes which were dropped. 
 
@@ -5193,51 +3963,32 @@ If a working message with a count is open while the command is executing, the co
 
 The command is not reversible: it sets the flag if it completes successfully and clears it otherwise, for example if there is more than one user logged onto the data file. 
 
-81 
-
-
-
-## **Example** 
+### Example
 
 ```
 # fast import
-```
-
-```
 Do not flush data
-```
-
-```
 Drop indexes {fCustomers} ## drop the indexes
-```
-
-```
 Do method ImportData ## import the data
-```
-
-```
 Build indexes {fCustomers} ## rebuild the indexes
 ```
 
-## **Duplicate class** 
+<!-- p82-82 | Duplicate class -->
+## Duplicate class
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|YES|NO|NO<br>All|
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Duplicate class** { _class-name_ / _new-name_ } 
 
-## **Description** 
+### Description
 
 This command creates a new library class by duplicating an existing one. The name for the new class is specified in addition to the class you want to duplicate. Errors, such as attempting to use a name that is already in use, simply clear the flag and display an error message. 
 
 Typical uses of this command are to allow users to make changes to reports and searches. 
 
-## **Example** 
+### Example
 
 ```
 Duplicate class {sArea/sUser}
@@ -5248,27 +3999,20 @@ Print report (Use search)
 End If
 ```
 
-## **Else** 
+<!-- p82-83 | Else -->
+## Else
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+Else
 
-## **Syntax** 
-
-## **Else** 
-
-## **Description** 
+### Description
 
 This command is used after an If command to mark the beginning of some commands that are carried out if the condition in the preceding If command is false. 
 
-82 
-
-
-
-## **Example** 
+### Example
 
 ```
 # In the example below, the value of lGender is tested against the condition
@@ -5284,9 +4028,6 @@ OK message (Sound bell ) {GENDER Unknown for this record}
 End If
 # The same result could also be obtained using a switch statement
 Switch lGender
-```
-
-```
 Case 'M'
 OK message {Record is MALE}
 Case 'F'
@@ -5296,81 +4037,59 @@ OK message (Sound bell ) {GENDER Unknown for this record}
 End Switch
 ```
 
-## **Else If calculation** 
+<!-- p83-83 | Else If calculation -->
+## Else If calculation
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Else If** calculation 
 
-## **Description** 
+### Description
 
-This command is used after an If command to mark the beginning of some commands that are carried out if the condition in the preceding If command is false, or the calculation in the Else If command is true. 
+This command is used after an If command to mark the beginning of some commands that are carried out if the condition in the preceding If command is false, or the calculation in the Else If command is true.
 
-## **Else If flag false** 
+<!-- p83-84 | Else If flag false -->
+## Else If flag false
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+Else If flag false
 
-## **Syntax** 
-
-## **Else If flag false** 
-
-## **Description** 
+### Description
 
 This command is used after an _If_ statement and provides a marker before a series of commands that have to be carried out if the flag is false. 
 
-83 
-
-
-
-## **Example** 
+### Example
 
 ```
 # In the example below, the value of lGender is tested against the condition
-```
-
-```
 # false if cancel if pressed.
-```
-
-```
 Prompt for input Please enter your nam Returns lName (Cancel button)
 If flag true
-```
-
-```
 OK message {Your name is [lName]}
 Else If flag false ## cancel button pressed
 OK message {No name entered}
 End If
 ```
 
-## **Else If flag true** 
+<!-- p84-84 | Else If flag true -->
+## Else If flag true
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+Else If flag true
 
-## **Syntax** 
-
-## **Else If flag true** 
-
-## **Description** 
+### Description
 
 This command follows an If statement and provides a marker before a series of commands that have to be carried out if the flag is true and if the value does not meet the condition specified in the If statement. 
 
-## **Example** 
+### Example
 
 ```
 # use the Yes/No message to set or clear the flag
@@ -5382,46 +4101,27 @@ OK message {flag is 1}
 End If
 ```
 
-## **Enable all menus and toolbars** 
+<!-- p84-85 | Enable all menus and toolbars -->
+## Enable all menus and toolbars
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Enable all menus and toolbars
 
-## **Syntax** 
-
-## **Enable all menus and toolbars** 
-
-## **Description** 
+### Description
 
 This command enables all top-level menus and toolbars in the main Omnis menu bar or application docking areas (i.e. not toolbars or menus installed in window classes). It reverses the action of Disable all menus and toolbars. This command will not enable a menu which has been disabled by disabling line zero. Such a menu can only be enabled by enabling line zero. 
 
-84 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Enable all menus and toolbars if the correct
-```
-
-```
 # password is enterd
-```
-
-```
 Disable all menus and toolbars
-```
-
-```
 Prompt for input Password : Returns lPassword
 If low(lPassword)='password'
-```
-
-```
 Enable all menus and toolbars
 ```
 
@@ -5429,81 +4129,56 @@ Enable all menus and toolbars
 
 ```
 # Alternatively, you can enable all user installed menu
-```
-
-```
 # and toolbar instances by setting the $enabled property
 Do $imenus.$sendall($ref.$enabled.$assign(kTrue))
-```
-
-```
 Do $itoolbars.$sendall($ref.$enabled.$assign(kTrue))
 ```
 
-## **Enable cancel test at loops** 
+<!-- p85-85 | Enable cancel test at loops -->
+## Enable cancel test at loops
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|YES|NO<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Enable cancel test at loops
 
-## **Syntax** 
-
-## **Enable cancel test at loops** 
-
-## **Description** 
+### Description
 
 This command causes Omnis to test if the user wishes to cancel execution of the method, at the end of each loop and during lengthy operations such as searching or sorting a large list. The user requests a cancel by either clicking on a working message Cancel button, or by pressing Ctrl-Break under Windows, Ctrl-C under Linux, or Cmnd-period under macOS. This command reverses the Disable cancel test at loops command. Unless Omnis has executed a Disable cancel test at loops, cancel testing is carried out automatically. 
 
-## **Example** 
+### Example
 
 ```
 # delete all overdrawn accounts without interruption by the user requesting a cancel
 Set main file {fAccounts}
-```
-
-```
 Set search as calculation {fAccounts.Balance<0}
 Find on fAccounts.Code (Use search)
 Disable cancel test at loops
 While flag true
 Working message (Repeat count) {Deleting Account [fAccounts.Code]}
 Delete
-```
-
-```
 Next on fAccounts.Code (Exact match)
-```
-
-```
 End While
 Enable cancel test at loops ## enable break key for next loop
 ```
 
-## **Enable enter & escape keys** 
+<!-- p85-86 | Enable enter & escape keys -->
+## Enable enter & escape keys
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Enter data|NO|YES|NO<br>All|
+Command group: Enter data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Enable enter & escape keys
 
-## **Syntax** 
-
-## **Enable enter & escape keys** 
-
-85 
-
-
-
-## **Description** 
+### Description
 
 This command enables the Enter key on all platforms; on Windows and Linux, it also enables the Escape key, whereas on macOS it also enables the Escape key and Cmnd-period. It reverses the action of the Disable enter & escape keys command. 
 
 In some libraries where the user may accidentally press Enter and terminate enter data mode, it is useful to disable the Enter key. 
 
-## **Example** 
+### Example
 
 ```
 # $construct of window class
@@ -5512,48 +4187,33 @@ Enter data
 If flag true
 OK message {OK Button Pressed}
 End If
-```
-
-```
 Enable enter & escape keys
 ```
 
-## **Enable fields** 
+<!-- p86-86 | Enable fields -->
+## Enable fields
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Fields|NO|NO|NO<br>All|
+Command group: Fields | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Enable fields** { _list-of-field-names_ (Name1,Name2,…)} 
 
-## **Description** 
+### Description
 
 This command enables the specified field or list of fields. You can use it to reverse the Disable fields command, or turn Display fields into Entry fields temporarily. 
 
-## **Example** 
+### Example
 
 ```
 # enable 2 fields
-```
-
-```
 Begin reversible block
 Enable fields {myField1,myField2}
-```
-
-```
 End reversible block
 Prepare for insert
 Enter data
 Update files if flag set
 Quit method
-```
-
-```
 # now this method ends and the fields are re-disabled as they are in a reversible block
 # to enable a single field on the current window
 Do $cwind.$objs.myField1.$enabled.$assign(kTrue)
@@ -5561,41 +4221,25 @@ Do $cwind.$objs.myField1.$enabled.$assign(kTrue)
 Do $cwind.$objs.$sendall($ref.$enabled.$assign(kTrue))
 ```
 
-## **Enable menu line** 
+<!-- p86-87 | Enable menu line -->
+## Enable menu line
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Enable menu line** _line_ or _instance-name_ / _line_ 
 
-86 
-
-
-
-## **Description** 
+### Description
 
 This command enables the specified line of a menu instance. It reverses the Disable menu line command. However, you cannot enable a line using this command if you have no access to it, or if there is no current record. You specify the menu-instance-name and the number of the menu line you want to enable. The command clears the flag if the menu instance is not installed or if the line cannot be enabled. 
 
-## **Example** 
+### Example
 
 ```
 # Install the menu mView and enable the menu line
-```
-
-```
 # 'Large' if it is currently disabled
-```
-
-```
 Install menu mView
-```
-
-```
 Disable menu line mView/Large
 Test for menu line enabled mView/Large
 If flag false
@@ -5603,23 +4247,20 @@ Enable menu line mView/Large
 End If
 ```
 
-## **Enable relational finds** 
+<!-- p87-87 | Enable relational finds -->
+## Enable relational finds
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|NO|YES|NO<br>All|
+Command group: Finding data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Enable relational finds** ([ _Use connections_ ]) { _list-of-files_ (F1,F2,..,Fn)} 
 
-## **Options** 
+### Options
 
 Use connections If specified, all connections between the joined files are made when building the table 
 
-## **Description** 
+### Description
 
 This command causes all find tables to be built relationally, ignoring the main file. The file list is a list of files to be joined and, if Use connections is checked, all connections between the joined files are made when building the table. In effect, the connections provide the relational joins, that is, “sequence number = sequence number”. 
 
@@ -5627,53 +4268,37 @@ When relational finds are enabled, the index field specified for find and build 
 
 The Disable relational finds command causes a reversion to the default situation where the main file and its connected parent files are joined using the connections. The Enable relational finds and Disable relational finds commands are both reversible and do not affect the flag. 
 
-## **Example** 
+### Example
 
 ```
 Set current list lMyList
 Define list {fChild,fParent,fGrandParent}
 # Build a relational child/parent/grandparent list using omnis connections
 Enable relational finds (Use con) {fChild,fParent,fGrandparent}
-```
-
-```
 Build list from file
-```
-
-```
 # Build a relational list of records ignoring omnis connections from fParent
-```
-
-```
 # and fChild of parents with children less than 4 years old
 Set search as calculation {fParent.ID=fChild.Parent_ID&fChild.Age<4}
 Enable relational finds {fParent,fChild}
 Build list from file (Use search)
 ```
 
-87 
+<!-- p88-88 | Enclose exported text in quotes -->
+## Enclose exported text in quotes
 
+Command group: Importing and Exporting | Flag affected: NO | Reversible: NO
 
+### Syntax
 
-**Enclose exported text in quotes** 
+Enclose exported text in quotes ([ Enable ])
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Importing and Exporting|NO|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Enclose exported text in quotes** ([ _Enable_ ]) 
-
-## **Options** 
+### Options
 
 Enable If specified, all text exported in tab, comma and user delimited format is enclosed in quotes; executing the command without this option specified will cause text to be exported without quotes 
 
-## **Description** 
+### Description
 
-## **Example** 
+### Example
 
 ```
 Set report name rMyReport
@@ -5685,25 +4310,22 @@ Print report
 Do $clib.$prefs.$exportedquotes.$assign(kFalse)
 ```
 
-## **End critical block** 
+<!-- p88-88 | End critical block -->
+## End critical block
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Threads|NO|NO|NO<br>All|
+Command group: Threads | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+End critical block
 
-## **Syntax** 
-
-## **End critical block** 
-
-## **Description** 
+### Description
 
 **End critical block** is only applicable to the multithreaded server. It marks the end of a critical block. 
 
 See Begin critical block for more information on critical blocks. 
 
-## **Example** 
+### Example
 
 ```
 Begin critical block
@@ -5711,29 +4333,22 @@ Calculate cClassVar as $cinst.$getvalue()
 End critical block
 ```
 
-## **End export** 
+<!-- p88-89 | End export -->
+## End export
 
-88 
+Command group: Importing and Exporting | Flag affected: NO | Reversible: NO
 
+Rev
 
+### Syntax
 
-Command group Importing and Exporting 
+End export
 
-|Flag affected|Rev|
-|---|---|
-|NO|NO|
-
-
-
-## **Syntax** 
-
-## **End export** 
-
-## **Description** 
+### Description
 
 This command ends the export of data from an Omnis list or row variable. 
 
-## **Example** 
+### Example
 
 ```
 # export to a file called myExport.txt in the root of your omnis tree
@@ -5745,23 +4360,20 @@ End export
 Close print or export file
 ```
 
-## **End For** 
+<!-- p89-89 | End For -->
+## End For
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **End For** 
 
-## **Description** 
+### Description
 
 This command ends a For loop. The two For loops For field value and For each line in list perform looping type operations. The End For command terminates both these commands. 
 
-## **Example** 
+### Example
 
 ```
 Do iMyList.$define(iMyCol1)
@@ -5778,27 +4390,20 @@ OK message {Line [iMyList.$line] = [iMyCol1]}
 End For
 ```
 
-## **End If** 
+<!-- p89-90 | End If -->
+## End If
 
-89 
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+End If
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
-
-
-
-## **Syntax** 
-
-## **End If** 
-
-## **Description** 
+### Description
 
 This command terminates an If statement once Omnis has executed the commands inside the If statement; it also marks the end of the commands to be executed as part of the If…Else Ifblock. Once the commands associated with the If…Else If block have been executed, control passes to the next command after End If. For every If command, you should have a corresponding End If command. 
 
-## **Example** 
+### Example
 
 ```
 For lCount from 1 to 100 step 1
@@ -5813,23 +4418,20 @@ End For
 OK message {Done}
 ```
 
-## **End import** 
+<!-- p90-90 | End import -->
+## End import
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Importing and Exporting|NO|NO<br>NO<br>All|
+Command group: Importing and Exporting | Flag affected: NO | Reversible: NO
 
+### Syntax
 
+End import
 
-## **Syntax** 
-
-## **End import** 
-
-## **Description** 
+### Description
 
 This command ends the import of data without closing the port, DDE channel, or file through which data is being imported. 
 
-## **Example** 
+### Example
 
 ```
 Prompt for import file
@@ -5839,23 +4441,16 @@ End import
 Close import file
 ```
 
-## **End print** 
+<!-- p90-91 | End print -->
+## End print
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|NO<br>NO<br>All|
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO
 
-
-
-90 
-
-
-
-**Syntax** 
+### Syntax
 
 **End print** {instance-name} 
 
-## **Description** 
+### Description
 
 This command terminates the specified report and prints the totals section. If you omit the report instance name the End print command terminates the most recently started report instance. The flag is cleared if no report instances exist. 
 
@@ -5863,7 +4458,7 @@ End print cancels the Prepare for print mode. You must include it after a Prepar
 
 You can print running totals of fields in the Record section by including the same fields in the Totals section of the report. Provided you choose the Totaled property for the field in the Record section, Omnis automatically maintains a running total. 
 
-## **Example** 
+### Example
 
 ```
 # Print report record by record
@@ -5881,19 +4476,16 @@ End print
 Do $ireports.rMyReport.$endprint()
 ```
 
-## **End print job** 
+<!-- p91-92 | End print job -->
+## End print job
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|NO<br>NO<br>All|
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO
 
+### Syntax
 
+End print job
 
-## **Syntax** 
-
-## **End print job** 
-
-## **Description** 
+### Description
 
 This command terminates a print job initiated with Begin print job and sends it to the printer. 
 
@@ -5905,18 +4497,11 @@ Issuing End print job immediately after Begin print job may result in an empty d
 
 Omnis automatically issues End print job at shutdown; it does not do this at any other time. 
 
-91 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Create a print job and send 2 reports to the printer
 Begin print job
-```
-
-```
 Set report name rMyReport
 Print report
 Set report name rMyReport2
@@ -5924,23 +4509,20 @@ Print report
 End print job
 ```
 
-## **End reversible block** 
+<!-- p92-93 | End reversible block -->
+## End reversible block
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|NO<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+End reversible block
 
-## **Syntax** 
-
-## **End reversible block** 
-
-## **Description** 
+### Description
 
 This command defines the end of a reversible block of commands. All reversible commands enclosed within the commands Begin reversible block/End reversible block are reversed when the method containing this block finishes. However, a reversible block in the $construct() method of a window class reverses when the window is closed and not when the method is terminated as is normally the case. 
 
-## **Example** 
+### Example
 
 ```
 # A method can contain more than one block of reversible commands. In this case,
@@ -5962,9 +4544,6 @@ This command defines the end of a reversible block of commands. All reversible c
 
 ```
 # The window instance wMyWindow is closed
-```
-
-```
 # iVar returns to its former value
 ```
 
@@ -5974,9 +4553,6 @@ This command defines the end of a reversible block of commands. All reversible c
 
 ```
 # Menu line 5 is enabled
-```
-
-```
 # The following method hides fields Entry1 and Entry2 and installs the menu mCustomers
 Begin reversible block
 Hide fields {Entry1,Entry2}
@@ -5993,61 +4569,36 @@ OK message (Icon) {MCUSTOMERS is now visible}
 Begin reversible block
 Set current list iMyList2
 Define list {fAccounts.Code,fAccounts.Surname,fAccounts.Balance}
-```
-
-92 
-
-
-
-```
 Set main file {fAccounts}
 Build list from select table
 Enter data
-```
-
-```
 End reversible block
-```
-
-```
 # When this method terminates and the command block is reversed, the Main file is reset,
 # the former list definition is restored and the current list is restored to iMyList.
 ```
 
-## **End statement** 
+<!-- p93-93 | End statement -->
+## End statement
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|SQL Object Commands|NO|NO<br>NO<br>All|
+Command group: SQL Object Commands | Flag affected: NO | Reversible: NO
 
+### Syntax
 
+End statement
 
-## **Syntax** 
-
-## **End statement** 
-
-## **Description** 
+### Description
 
 This command marks the end of a block of Sta: commands that build the SQL buffer for the current method stack. The Begin statement command defines the start of the block. 
 
-## **Example** 
+### Example
 
 ```
 # Open a multi-threaded omnis sql connection to
 # the datafile mydatafile and create a statement to
-```
-
-```
 # select rows from the table Customers
-```
-
-```
 Calculate lHostname as con(sys(115),'mydatafile.df1')
 Do iSessObj.$logon(lHostname,'','','MYSESSION')
 Do iSessObj.$newstatement('MyStatement') Returns lStatObj
-```
-
-```
 Begin statement
 Sta: Select * From Customers
 Sta: Where Cust_ID > 100
@@ -6056,70 +4607,48 @@ Do lStatObj.$execdirect()
 Do lStatObj.$fetch(lMyList,kFetchAll)
 ```
 
-## **End Switch** 
+<!-- p93-94 | End Switch -->
+## End Switch
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+End Switch
 
-## **Syntax** 
-
-## **End Switch** 
-
-## **Description** 
+### Description
 
 This command terminates a **Switch** statement and defines the point where method execution continues after each **Case** statement. 
 
-93 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Select the correct graph window depending on the graph type selected in the pGraphType parameter.
-```
-
-```
 # Declare Parameter GraphType (Short integer (0 to 255))
 Switch pGraphType
-```
-
-```
 Case kGRpie
 Open window instance wGraphPieWindow
 Case kGRbars,kGRarea,kGRlines
-```
-
-```
 Open window instance wGraph2DWindow
 Case kGR3D
-```
-
-```
 Open window instance wGraph3DWindow
 End Switch
 ```
 
-## **End text block** 
+<!-- p94-94 | End text block -->
+## End text block
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Text|NO|NO|YES<br>All|
+Command group: Text | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+End text block
 
-## **Syntax** 
-
-## **End text block** 
-
-## **Description** 
+### Description
 
 This command marks the end of a block of text which is placed in the text buffer for the current method stack. You build up the text block using the Begin text block and Text: commands. Following an End text block, you can return the contents of the text buffer using the Get text block command. 
 
-## **Example** 
+### Example
 
 ```
 Begin text block
@@ -6131,27 +4660,20 @@ Get text block lTextString
 OK message {[lTextString]}
 ```
 
-## **End While** 
+<!-- p94-95 | End While -->
+## End While
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+End While
 
-## **Syntax** 
-
-## **End While** 
-
-## **Description** 
+### Description
 
 This command marks the end of a **While** loop. When the condition specified at the start of the loop is not fulfilled (testing the flag or calculation) the command after the **End While** command is executed. Each loop that begins with a **While** command must terminate with an **End While** command, otherwise an error occurs. 
 
-94 
-
-
-
-## **Example** 
+### Example
 
 ```
 Calculate lCount as 1
@@ -6166,19 +4688,16 @@ Until lCount>=3
 OK message {Count=[lCount]} ## prints 'Count=3'
 ```
 
-## **Enter data** 
+<!-- p95-95 | Enter data -->
+## Enter data
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Enter data|YES|NO|NO<br>All|
+Command group: Enter data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Enter data until** _termination-condition_ (leave blank to terminate on OK or Cancel) 
 
-## **Description** 
+### Description
 
 This command puts Omnis into enter data mode which allows data to be entered via the current window. An error is generated if there is no open window. It initiates an internal control loop which does the following: 
 
@@ -6194,7 +4713,7 @@ This command puts Omnis into enter data mode which allows data to be entered via
 
 By default, the **Enter data** command waits for an evOK or evCancel event. When these events are triggered enter data mode is terminated (assuming the window is not in modeless enter data mode). However you can include a termination condition with **Enter data** which causes enter data mode to continue until the expression becomes true. 
 
-## **Example** 
+### Example
 
 ```
 # $construct of window class
@@ -6209,27 +4728,20 @@ End If
 Calculate iValue as 0
 ```
 
-95 
+<!-- p96-96 | Export data -->
+## Export data
 
+Command group: Importing and Exporting | Flag affected: NO | Reversible: NO
 
-
-**Export data** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Importing and Exporting|NO|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Export data** list-or-row-name 
 
-## **Description** 
+### Description
 
 This command exports data from an Omnis list or row variable. 
 
-## **Example** 
+### Example
 
 ```
 # export to a file called myExport.txt in the root of your omnis tree
@@ -6241,33 +4753,30 @@ End export
 Close print or export file
 ```
 
-## **Export fields** 
+<!-- p96-96 | Export fields -->
+## Export fields
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Importing and Exporting|YES|NO<br>NO<br>All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Export fields** index-name ([Indirect][,Use search][,Disable messages]) {list-of-field-names (Name1,Name2,…)} 
 
-## **Options** 
+### Options
 
-|Indirect|If specifed, the command uses the contents of the frst feld as the list of felds|
-|---|---|
-|Use search|If specifed, the command uses the current search to select data|
-|Disable messages|If specifed, the command does not open messages requiring a user response and instead it writes a limited|
-||amount of information to the trace log|
+Indirect
+If specified, the command uses the contents of the first field as the list of fields
+Use search
+If specified, the command uses the current search to select data
+Disable messages
+If specified, the command does not open messages requiring a user response and instead it writes a limited
+amount of information to the trace log
 
-
-
-## **Description** 
+### Description
 
 **Export fields** exports the data for the list of fields to the current export file. It provides runtime access to the functionality of the export data dialog in the IDE. The command sets the main file for the export to the file corresponding to the first field in the list. The index-name is the optional name of the indexed field which determines the order of the exported data. 
 
-## **Example** 
+### Example
 
 ```
 # export to a file called myExport.txt in the root of your omnis tree
@@ -6276,55 +4785,50 @@ Set print or export file name {[lExportPath]}
 Prepare for export to file {Delimited (commas)}
 Export fields fCustomers.CustomerID {fCustomers.Surname,fCustomers.FirstName}
 End export
-```
-
-```
 Close print or export file
 ```
 
-96 
+<!-- p97-97 | FileOps error codes -->
+## FileOps error codes
 
+Error Code
+Error Text
+Too few parameters passed on the command line
+Out of memory error
+Undefined error
+No operation on this platform
+-30
+Unable to delete directory or file
+-36
+Disk IO error (or error during operation)
+-39
+End of file reached during Read file as character or Read file as binary
+-43
+File not found
+-48
+File or directory already exists
+-51
+Bad file reference number
+-59
+Problem during rename
 
+<!-- p97-98 | Find -->
+## Find
 
-**FileOps error codes** 
+Command group: Finding data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-|Error Code|Error Text|
-|---|---|
-|1|Too few parameters passed on the command line|
-|12|Out of memory error|
-|998|Undefned error|
-|999|No operation on this platform|
-|-30|Unable to delete directory or fle|
-|-36|Disk IO error (or error during operation)|
-|-39|End of fle reached during Read fle as character or Read fle as binary|
-|-43|File not found|
-|-48|File or directory already exists|
-|-51|Bad fle reference number|
-|-59|Problem during rename|
-
-
-
-## **Find** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|YES|YES|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Find** on field-name ([Exact match][,Use search]) {calculation} 
 
-## **Options** 
+### Options
 
-|Exact match|If specifed, the index value of the feld in suitable records must equal the current value|
-|---|---|
-|Use search|If specifed, the command uses the current search to select data|
+Exact match
+If specified, the index value of the field in suitable records must equal the current value
+Use search
+If specified, the command uses the current search to select data
 
-
-
-## **Description** 
+### Description
 
 This command builds a find table and locates the first record in the table, that is, it loads the main and connected files into the current record buffer. The flag is false and the buffer is cleared if no record is found. 
 
@@ -6338,13 +4842,9 @@ Omnis can perform a **Find** with an Exact match requirement. In this case, the 
 
 You use the exact match option to locate child records connected to a current parent record. 
 
-## **Clearing the find table** 
+Clearing the find table
 
 The find table is cleared if: 
-
-97 
-
-
 
 - A Clear find table command is executed with the same main file setting. 
 
@@ -6352,13 +4852,10 @@ The find table is cleared if:
 
 - A Next/Previous command with a new (non-blank) index or a Use Search or Exact match option where the original Find had none, is used. 
 
-## **Example** 
+### Example
 
 ```
 # Find all invoices belonging to account lMyAccCode
-```
-
-```
 Prompt for input Account Code ? Returns lMyAccCode (Cancel button)
 If flag true
 Set main file {fInvoices}
@@ -6367,34 +4864,27 @@ Find on fInvoices.InvNum (Exact match,Use search)
 While flag true
 OK message {Found Invoice [fInvoices.InvNum] for account [fInvoices.AccCode]}
 Next
-```
-
-```
 End While
 End If
 ```
 
-## **Find first** 
+<!-- p98-99 | Find first -->
+## Find first
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|YES|YES|NO<br>All|
+Command group: Finding data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Find first on** field-name ([Use search][,Use sort]) 
 
-## **Options** 
+### Options
 
-|Use search|If specifed, the command uses the current search to select data|
-|---|---|
-|Use sort|If specifed, the command uses the current sort feld(s) to order the data|
+Use search
+If specified, the command uses the current search to select data
+Use sort
+If specified, the command uses the current sort field(s) to order the data
 
-
-
-## **Description** 
+### Description
 
 This command automatically locates the first record in a file using the index for the specified field. If no field is given, the record sequence number is used. The main and connected files are read into the CRB if a valid first record is found. The flag is set false if no record is found. 
 
@@ -6412,11 +4902,7 @@ The find table is cleared if:
 
 If you use the _Find first_ command within a reversible block, it is reversed when the method finishes, that is, the main and connected records are restored. However, if the data within the original record has been deleted or changed, it will not be possible to completely restore the buffer. 
 
-98 
-
-
-
-## **Example** 
+### Example
 
 - `# Find the first account with a negative balance, but restore` 
 
@@ -6428,29 +4914,25 @@ If you use the _Find first_ command within a reversible block, it is reversed wh
 
    - `Find first on fAccounts.Code (Use search)` 
 
-- `End reversible block` 
+- `End reversible block`
 
-## **Find last** 
+<!-- p99-99 | Find last -->
+## Find last
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|YES|YES|NO<br>All|
+Command group: Finding data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Find last on** field-name ([Use search][,Use sort]) 
 
-## **Options** 
+### Options
 
-|Use search|If specifed, the command uses the current search to select data|
-|---|---|
-|Use sort|If specifed, the command uses the current sort feld(s) to order the data|
+Use search
+If specified, the command uses the current search to select data
+Use sort
+If specified, the command uses the current sort field(s) to order the data
 
-
-
-## **Description** 
+### Description
 
 This command automatically locates and displays the last record in a file using a specified indexed field. You can use the Find last command to locate the last record added to a file by using the record sequencing number as the index. The flag is set false if no record is found. 
 
@@ -6460,7 +4942,7 @@ Whenever you use a Find command, a find table is created which determines the or
 
 The Use Sort option works in conjunction with the current sort fields (see Set sort field) to create a table of entries from the data file which are sorted into an order set by up to 9 sort fields. Refer to the Find command for details of the find table and its use. 
 
-## **Example** 
+### Example
 
 ```
 # Find the last account record in the file, but restore
@@ -6472,25 +4954,18 @@ The Use Sort option works in conjunction with the current sort fields (see Set s
 
    - `Set main file {fAccounts} Find last on fAccounts.Code (Use search)` 
 
-- `End reversible block` 
+- `End reversible block`
 
-## **Floating default data file** 
+<!-- p99-100 | Floating default data file -->
+## Floating default data file
 
-99 
+Command group: Data files | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data fles|NO|YES|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Floating default data file** { _list-of-files_ (F1,F2,..,Fn)} 
 
-## **Description** 
+### Description
 
 This command sets the default data file as the current data file and changes whenever the current data file changes. You use Floating default data file in libraries which open more than one data file at once. The default behavior in Omnis is that, as each new data file is opened, it becomes the “current” data file. The concept of a current data file is important when your commands refer to file classes without specifying a data file. 
 
@@ -6498,7 +4973,7 @@ The Floating default data file command sets the default data file, for the speci
 
 The command does not change the flag but is reversible, that is, the previous default data files are restored when the method containing the command in a reversible block terminates. 
 
-## **Example** 
+### Example
 
 ```
 # To specify the data file, you can use Set Default Data File to associate a file class with the
@@ -6514,43 +4989,30 @@ Set current data file {Data1}
 
 - `# is set to a different data file. To return to the default state where the default data file "floats"` 
 
-- `# to whatever the current data file is, you can use: Floating default data file {fCustomers}` 
+- `# to whatever the current data file is, you can use: Floating default data file {fCustomers}`
 
-## **Flush data** 
+<!-- p100-101 | Flush data -->
+## Flush data
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|YES|YES|NO<br>All|
+Command group: Changing data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Flush data
 
-## **Syntax** 
-
-## **Flush data** 
-
-## **Description** 
+### Description
 
 This command reverses Do not flush data and reverts to the default mode where the changed data is immediately written to disk after each Update files or Delete command. 
 
 The command sets the flag if the state of the ‘Do not flush data’ mode is changed and is reversible, restoring the previous state of the ‘Do not flush’ flag when reversed. If the previous mode was ‘Do not flush data’, Flush data will cause any modified data which has not been written to disk, to be written on the next Update files or Delete. 
 
-## **Example** 
+### Example
 
 ```
 # fast import
 Test for only one user
 If flag true
-```
-
-```
 Do not flush data
-```
-
-100 
-
-
-
-```
 Drop indexes
 End If
 Prompt for import file
@@ -6565,31 +5027,25 @@ Update files
 End For
 Flush data now ## writes the data immediately to disk
 Build indexes ## rebuild indexes
-```
-
-```
 Flush data ## Changes mode back to 'Flush data'
 ```
 
-## **Flush data now** 
+<!-- p101-101 | Flush data now -->
+## Flush data now
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Changing data|NO|NO|NO|All|
+Command group: Changing data | Flag affected: NO | Reversible: NO | Execute on client: P NO A
 
+### Syntax
 
+Flush data now
 
-## **Syntax** 
-
-## **Flush data now** 
-
-## **Description** 
+### Description
 
 This command causes any modified data which has not been written to disk to be immediately written to disk. This command will only do something if a Do not flush data command has been executed. 
 
 This command leaves the flag unaffected and is not reversible. 
 
-## **Example** 
+### Example
 
 ```
 # fast import
@@ -6613,27 +5069,20 @@ Build indexes ## rebuild indexes
 Flush data ## Changes mode back to 'Flush data'
 ```
 
-**For each line in list** 
+<!-- p101-102 | For each line in list -->
+## For each line in list
 
-101 
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **For each line in list** ([ _Selected lines only_ ][, _Descending_ ]) **from** _start_ **to** _stop_ **step** _step_ 
 
-## **Options** 
+### Options
 
 Selected lines only If specified,the for loop only operates on the selected lines in the list Descending 
 
-## **Description** 
+### Description
 
 This command marks the beginning of a loop that processes the lines of the current list. You must specify the current list before executing the For loop. The For loop is a convenient way to write While/ End While loops to step through each line of a list. With the Selected lines only option, the loop will skip over any lines encountered that are not selected. 
 
@@ -6643,7 +5092,7 @@ You can use Jump to start of loop within the loop to continue the next iteration
 
 For each line in list operates on the current list. The matching End For will also operate on the current list. Unpredictable behavior will result if the current list is changed and not restored within the For/ End For construct. 
 
-## **Example** 
+### Example
 
 ```
 Prepare for print
@@ -6665,23 +5114,16 @@ End While
 End print
 ```
 
-## **For field value** 
+<!-- p102-103 | For field value -->
+## For field value
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **For** field-name **from** start **to** stop **step** step 
 
-102 
-
-
-
-## **Description** 
+### Description
 
 This command marks the beginning of a For loop which defines a series of commands to be repeated a number of times. You use fieldname as a counter that is automatically incremented by the step value each time the End For statement is reached. 
 
@@ -6689,7 +5131,7 @@ The values involved must all be numbers, preferably integers. If start value is 
 
 The end value is evaluated once at the start of the loop, and saved, for performance reasons, so changing the end value during the loop will have no effect. You can use Jump to start of loop within the loop to continue the next iteration of the loop. Similarly, you can terminate the loop early using Break to end of loop if desired. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lString as ''
@@ -6704,19 +5146,16 @@ End For
 OK message {String=[lString]} ## shows 'String=9876543210'
 ```
 
-## **FTPChmod** 
+<!-- p103-103 | FTPChmod -->
+## FTPChmod
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPChmod** (socket,filename,mode) **Returns** status 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -6732,34 +5171,24 @@ Mode is an Omnis Character field containing the system-dependent file-protection
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # allow owner to read/write & execute, group to read & execute and world to read-only this file
 Calculate lFileMode as 754
-```
-
-```
 FTPChmod (iFTPSocket,lFileName,lFileMode) Returns lErrCode
 ```
 
-103 
+<!-- p104-105 | FTPConnect -->
+## FTPConnect
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-## **FTPConnect** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **FTPConnect** ( _serveraddr_ , _username_ , _password_ [, _port_ , _errorprotocoltext_ , _secure_ {Default zero insecure;1 secure;2 use AUTH TLS}, _verify_ {Default kTrue}, _charset_ {Default kUniTypeAuto}]) **Returns** _socket_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -6793,40 +5222,27 @@ _Charset_ specifies the character set used for exchanging pathnames with the FTP
 
 If you specify kUniTypeAuto, after **FTPConnect** establishes a connection, it sends a FEAT command to the server to determine if the server supports UTF8. If the server supports UTF8, then the connection uses UTF8 as the charset, otherwise it uses kUniTypeNativeCharacters. 
 
-104 
-
-
-
 _Socket_ is an Omnis Long Integer field, which receives the result of the command. If the command successfully establishes a connection and logs on to the server, Socket has a value >= 0; you pass this value to the other FTP commands, to execute requests on this connection. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 FTPConnect (iServerAddress,iUserName,iPassword) Returns iFTPSocket
 If iFTPSocket<0
-```
-
-```
 FTPGetLastStatus (iServerReplyText) Returns lErrCode
-```
-
-```
 End If
 ```
 
-## **FTPCwd** 
+<!-- p105-105 | FTPCwd -->
+## FTPCwd
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPCwd** ( _socket_ , _newdir_ ) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -6848,39 +5264,26 @@ Consult the documentation for the server to determine the authoritative acceptab
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lNewDirectory as '../testFolder'
-```
-
-```
 FTPCwd (iFTPSocket,lNewDirectory) Returns lErrCode
 If lErrCode
-```
-
-```
 OK message FTP Error {[con("Error setting FTP directory",kCr,"Error code : ",lErrCode)]}
 End If
 ```
 
-105 
+<!-- p106-106 | FTPDelete -->
+## FTPDelete
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-## **FTPDelete** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **FTPDelete** ( _socket_ , _filename_ [, _directory_ {Default kFalse}]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -6896,75 +5299,56 @@ Directory is an optional Boolean (that defaults to kFalse) which you pass as kTr
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lFileName as 'myFileToDelete'
 FTPDelete (iFTPSocket,lFileName) Returns lErrCode
-```
-
-```
 If lErrCode
-```
-
-```
 OK message FTP Error {[con("Error deleting ",lFileName,kCr,"Status code: ",lErrCode)]}
 End If
 ```
 
-## **FTPDisconnect** 
+<!-- p106-107 | FTPDisconnect -->
+## FTPDisconnect
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+### Syntax
 
+FTPDisconnect ( socket ) Returns status
 
-## **Syntax** 
-
-## **FTPDisconnect** ( _socket_ ) **Returns** _status_ 
-
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This Web command is multi-threaded,allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
-## **FTPDisconnect** closes a connection to an FTP server. 
+FTPDisconnect closes a connection to an FTP server.
 
 Socket is an Omnis Long Integer field containing a socket opened to an FTP server using FTPConnect. 
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-106 
-
-
-
-## **Example** 
+### Example
 
 ```
 FTPDisconnect (iFTPSocket) Returns lErrCode
 If lErrCode
-```
-
-```
 OK message FTP Error {[con("Error disconnecting from FTP server ",kCr,"Error code : ",lErrCode)]}
 End If
 ```
 
-## **FTPGet** 
+<!-- p107-107 | FTPGet -->
+## FTPGet
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|All|
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPGet** (socket,remotefile,localfile[,filetype,creator]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -6988,64 +5372,33 @@ FileType and Creator are optional arguments, which the command uses on the Macin
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # set file transfer mode to asci
-```
-
-```
 FTPType (iFTPSocket,0) Returns lErrCode
-```
-
-```
 If not(lErrCode)
-```
-
-```
 # assumes you are already in the correct folder on the ftp server so only the file name is needed
 Calculate lRemoteFile as 'myFileToDownload.txt'
-```
-
-```
 # identify where to download the file to
 Calculate lLocalFileName as con(sys(115),'downloadFolder',sys(9),lRemoteFile)
-```
-
-```
 # download the file
 FTPGet (iFTPSocket,lRemoteFile,lLocalFileName) Returns lErrCode
-```
-
-```
 If lErrCode
-```
-
-```
+End If
 End If
 ```
 
-```
-End If
-```
+<!-- p108-108 | FTPGetBinary -->
+## FTPGetBinary
 
-107 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-**FTPGetBinary** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **FTPGetBinary** (socket,remotefile,binfield) **Returns** status 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7061,43 +5414,19 @@ BinField is an Omnis Binary or Character field that will receive the contents of
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # set file transfer mode to binary
-```
-
-```
 FTPType (iFTPSocket,1) Returns lErrCode
-```
-
-```
 If not(lErrCode)
-```
-
-```
 # assumes you are already in the correct folder on the ftp server so only the file name is needed
 Calculate lRemoteFile as 'omnis.exe'
-```
-
-```
 # download the file
-```
-
-```
 FTPGetBinary (iFTPSocket,lRemoteFile,lBinField) Returns lErrCode
-```
-
-```
 If lErrCode
-```
-
-```
 OK message FTP Error {[con("Error transferring file ",upp(lRemoteFile),"Error code : ",lErrCode)]}
 Else
-```
-
-```
 # select where to save the file to on the local machine
 ```
 
@@ -7107,42 +5436,23 @@ Else
 
 ```
 Do lFileOps.$createfile(con(lNewPath,sys(9),lRemoteFile))
-```
-
-```
 # write the binary contents downloaded from the FTP server to the new local file
 Do lFileOps.$writefile(lBinField)
-```
-
-```
+End If
+End If
 End If
 ```
 
-```
-End If
-```
+<!-- p108-109 | FTPGetLastStatus -->
+## FTPGetLastStatus
 
-```
-End If
-```
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-## **FTPGetLastStatus** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **FTPGetLastStatus** ( _socket_ [, _protocoltext_ ]) **Returns** _status_ 
 
-108 
-
-
-
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7164,19 +5474,13 @@ Note that “->” prefixes text sent to the server, and “<-” prefixes text 
 
 Status is an Omnis Long Integer field which receives the return status of the last FTP command executed. This information is really redundant, but is provided for compatibility. The value returned is one of the negative error codes. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Example to show how to get the error message from the FTP server when the download fails
 # set file transfer mode to asci
-```
-
-```
 FTPType (iFTPSocket,0) Returns lErrCode
 If not(lErrCode)
-```
-
-```
 # assumes you are already in the correct folder on the ftp server so only the file name is needed Calculate
 # identify where to download the file to
 Calculate lLocalFileName as con(sys(115),'downloadFolder',sys(9),lRemoteFile)
@@ -7191,19 +5495,16 @@ End If
 End If
 ```
 
-## **FTPList** 
+<!-- p109-110 | FTPList -->
+## FTPList
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|All|
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPList** (socket,list[,pathname,mode]) **Returns** status 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7211,25 +5512,34 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 
 **FTPList** lists files on the FTP server. 
 
-109 
-
-
-
 Socket is an Omnis Long Integer field containing a socket opened to an FTP server using FTPConnect. 
 
 List is an Omnis List field containing a single column of type Character. This list receives the file listing information, one line per file, returned by the remote FTP server. The list is dependent on the type of the remote server and may be in long or short format, depending on the Mode parameter. 
 
 **Note** : Very often, FTP servers return long-format listings in a Linux file listing format. At a minimum, this file information contains the filename, but usually includes other information. The Omnis method must parse this information to find the filename and other information. For example 
 
-|ListItem||||||
-|---|---|---|---|---|---|
-|total 123||||||
-|drwxr-xr-x|4|userid|mygroup|Jan 1 1999|.|
-|drwxr-xr-x|6|root|root|Jan 1 1999|..|
-|-rw——-|1|userid|mygroup|Jan 16 1998|myfle|
-|-rw-r—r—|2|userid|mygroup|Jan 16 1998|myotherfle|
-
-
+ListItem
+total 123
+drwxr-xr-x
+userid
+mygroup
+Jan 1 1999
+.
+drwxr-xr-x
+root
+root
+Jan 1 1999
+..
+-rw——-
+userid
+mygroup
+Jan 16 1998
+myfile
+-rw-r—r—
+userid
+mygroup
+Jan 16 1998
+myotherfile
 
 Where the columns in the character string correspond to protection, file size, username and group of the file owner, the date last modified and the name of the file. The files “.” and “..” represent the current and parent directories, respectively, which may neither be retrieved nor changed. 
 
@@ -7239,53 +5549,34 @@ Pathname is an optional Omnis Character field that contains a pathname or wildca
 
 Mode is an optional numeric value which indicates whether the server should return a short or long format listing. If omitted, it defaults to zero. 
 
-|Code|Meaning|
-|---|---|
-|0|Filename-only listing|
-|1|Long-format listing|
-
-
+Code
+Meaning
+Filename-only listing
+Long-format listing
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix 
 
-## **Example** 
+### Example
 
-## `Do iMyList.$define(iListColumn)` 
-
+`Do iMyList.$define(iListColumn)`
 ```
 # return a long format listing of the current directory into the list variable iMyList
 FTPList (iFTPSocket,iMyList,,1) Returns lErrCode
-```
-
-```
 If lErrCode
-```
-
-```
 FTPGetLastStatus (iServerReplyText) Returns lErrCode
-```
-
-```
 End If
 ```
 
-## **FTPMkdir** 
+<!-- p110-111 | FTPMkdir -->
+## FTPMkdir
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPMkdir** ( _socket_ , _dirname_ ) **Returns** _status_ 
 
-110 
-
-
-
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7301,45 +5592,27 @@ DirName is an Omnis Character field containing the pathname of the new directory
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # create a new directory called myNewDirectory in the directory Test
-```
-
-```
 Calculate lDirName as '/Test/myNewDirectory'
-```
-
-```
 FTPMkdir (iFTPSocket,lDirName) Returns lErrCode
-```
-
-```
 If lErrCode
-```
-
-```
 FTPGetLastStatus (iServerReplyText) Returns lErrCode
-```
-
-```
 End If
 ```
 
-## **FTPPut** 
+<!-- p111-112 | FTPPut -->
+## FTPPut
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPPut** (socket,localfile,remotefile) **Returns** status 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7355,21 +5628,11 @@ RemoteFile is an Omnis Character field containing the pathname of the destinatio
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-111 
-
-
-
-## **Example** 
+### Example
 
 ```
 # upload an ascii file to a FTP server
-```
-
-```
 # set file transfer mode to asci
-```
-
-```
 FTPType (iFTPSocket,0) Returns lErrCode
 ```
 
@@ -7385,30 +5648,21 @@ FTPPut (iFTPSocket,lLocalFileName,lRemoteFile) Returns lErrCode
 
 ```
 FTPGetLastStatus (iServerReplyText) Returns lErrCode
-```
-
-```
 OK message FTP Error {[con("Error uploading file",upp(lLocalFileName)," to ",upp(lRemoteFile),kCr,"Details
 End If
-```
-
-```
 End If
 ```
 
-## **FTPPutBinary** 
+<!-- p112-112 | FTPPutBinary -->
+## FTPPutBinary
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPPutBinary** (socket,binfield,remotefile) **Returns** status 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7424,70 +5678,36 @@ RemoteFile is an Omnis Character field containing the pathname of the destinatio
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # upload a binary file to a FTP server
 # set file transfer mode to binary
 FTPType (iFTPSocket,1) Returns lErrCode
-```
-
-```
 If not(lErrCode)
-```
-
-```
 # select the binary file to upload
-```
-
-```
 Do FileOps.$getfilename(lDirName,'Select the binary file to upload','*.*',sys(115))
 Do lFileOps.$openfile(lDirName)
-```
-
-```
 # read contents into an Omnis binary variable
-```
-
-```
 Do lFileOps.$readfile(lBinField)
-```
-
-```
 Calculate lRemoteFile as '/Test/upload/myUploadedFile'
 FTPPutBinary (iFTPSocket,lBinField,lRemoteFile) Returns lErrCode
 If lErrCode
-```
-
-```
 FTPGetLastStatus (iServerReplyText) Returns lErrCode
-```
-
-```
+End If
 End If
 ```
 
-```
-End If
-```
+<!-- p113-113 | FTPPwd -->
+## FTPPwd
 
-112 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **FTPPwd** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **FTPPwd** (socket) **Returns** server-directory 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7501,41 +5721,26 @@ ServerDirectory is an Omnis Character field that receives the pathname of the cu
 
 Note: The value returned depends upon the operating system of the remote server. Many FTP servers return a Linux-style pathname, but do not assume that this is the case. 
 
-## **Example** 
+### Example
 
 ```
 # return the current working directory on the FTP server
-```
-
-```
 FTPPwd (iFTPSocket) Returns lDirectory
-```
-
-```
 If lDirectory<0 ;; an error has occurred
-```
-
-```
 FTPGetLastStatus (iServerReplyText) Returns lErrCode
-```
-
-```
 End If
 ```
 
-## **FTPReceiveCommandReplyLine** 
+<!-- p113-114 | FTPReceiveCommandReplyLine -->
+## FTPReceiveCommandReplyLine
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+### Syntax
 
+FTPReceiveCommandReplyLine ( socket ) Returns reply
 
-## **Syntax** 
-
-## **FTPReceiveCommandReplyLine** ( _socket_ ) **Returns** _reply_ 
-
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7547,35 +5752,24 @@ Socket is an Omnis Long Integer field containing a socket opened to an FTP serve
 
 Reply is an Omnis Character variable containing the reply from the server. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-113 
+### Example
 
-
-
-## **Example** 
-
-## `FTPSendCommand (iFTPSocket,'pwd')` 
-
+`FTPSendCommand (iFTPSocket,'pwd')`
 ```
 # return the current directory
-```
-
-```
 FTPReceiveCommandReplyLine (iFTPSocket) Returns lDirName
 ```
 
-## **FTPRename** 
+<!-- p114-114 | FTPRename -->
+## FTPRename
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPRename** ( _socket_ , _oldname_ , _newname_ ) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7593,13 +5787,10 @@ Status is an Omnis Long Integer field which receives the result of executing the
 
 **Note** : Local filename conventions may not be acceptable to the remote system. 
 
-## **Example** 
+### Example
 
 ```
 # rename a file or folder in the current working directory
-```
-
-```
 FTPRename (iFTPSocket,lFileName,lNewFileName) Returns lErrCode
 ```
 
@@ -7611,29 +5802,22 @@ FTPRename (iFTPSocket,lFileName,lNewFileName) Returns lErrCode
 End If
 ```
 
-## **FTPSendCommand** 
+<!-- p114-115 | FTPSendCommand -->
+## FTPSendCommand
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPSendCommand** ( _socket_ , _command_ ) **Returns** _status_ 
 
-114 
+### Description
 
-
-
-## **Description** 
-
-## **Note:** The flag is set according to whether Omnis was able to make a call to this external command. 
+Note: The flag is set according to whether Omnis was able to make a call to this external command.
 
 This Web command is multi-threaded, allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
-## **FTPSendCommand** sends a command to the FTP server. 
+FTPSendCommand sends a command to the FTP server.
 
 Socket is an Omnis Long Integer field containing a socket opened to an FTP server using FTPConnect. 
 
@@ -7641,39 +5825,30 @@ Command is an Omnis Character variable containing the command and its parameters
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 FTPSendCommand (iFTPSocket,'pwd')
-```
-
-```
 # return the current directory
-```
-
-```
 FTPReceiveCommandReplyLine (iFTPSocket) Returns lDirName
 ```
 
-## **FTPSetConfig** 
+<!-- p115-116 | FTPSetConfig -->
+## FTPSetConfig
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPSetConfig** ( _proc_ [, _activeonly_ {Default zero for no;1 for yes}]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This Web command is multi-threaded, allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
-## **FTPSetConfig** provides the FTP commands with configuration information. 
+FTPSetConfig provides the FTP commands with configuration information.
 
 Proc is an Omnis Character field containing the name of an Omnis method used to report the progress of FTP operations which transfer data (FTPGet, FTPGetBinary, FTPList, FTPPut and FTPPutBinary); for example MYLIBRARY.MYCODE/MYPROC. You can clear the current setting for the FTP progress proc, by passing an empty value. 
 
@@ -7691,41 +5866,26 @@ FTP data transfer commands call the progress proc (if specified) while data tran
 
 The FTP data transfer commands always first attempt to use passive mode to transfer data. In passive mode, the client initiates the data connection to the server. This is the recommended mode of operation (see RFC1579, “Firewall Friendly FTP). Most FTP servers support passive mode, although there are some which do not. In this case, if the attempt to use passive mode fails, the FTP commands use active mode to transfer data. In this case, the server initiates the data connection to a port on the client. 
 
-115 
+### Example
 
-
-
-## **Example** 
-
-## `# setup the config method` 
-
-## `FTPSetConfig ('cCode/FTPProgress')` 
-
+`# setup the config method`
+`FTPSetConfig ('cCode/FTPProgress')`
 ```
 # Then in code class cCode/FTPProgress
-```
-
-```
 # 3 parameter variables (all defined as long integer)
-```
-
-```
 OK message {Socket [pSocket] - TransferredSoFar [pTransferredSoFar] - TotalToTransfer [pTotalToTransfer]}
 ```
 
-## **FTPSite** 
+<!-- p116-116 | FTPSite -->
+## FTPSite
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPSite** ( _socket_ , _parameters_ ) Returns status 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7739,27 +5899,23 @@ Parameters is an Omnis Character variable containing the host specific command a
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
-## `# execute a FTP site specific command` 
-
+`# execute a FTP site specific command`
 ```
 FTPSite (iFTPSocket,'SITE CHMOD 744 /test/myFileToChange') Returns lErrText
 ```
 
-## **FTPType** 
+<!-- p116-117 | FTPType -->
+## FTPType
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **FTPType** ( _socket_ , _filetype_ ) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7767,26 +5923,22 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 
 **FTPType** specifies the type of data transfer used by FTPGet and FTPPut, as ASCII or binary. In ASCII mode, line separators and other text formatting characters will be changed to the characters required by the local or remote system. In binary mode, line separators and other text formatting characters are not changed. If the information to be transferred is not text, use **FTPType** to change the 
 
-116 
-
-
-
 transfer mode to binary. Otherwise, binary files such as archives, images, Omnis Libraries, and executable files may be corrupted by the processing of bytes that coincide with text-formatting characters. 
 
 Socket is an Omnis Long Integer field containing a socket opened to an FTP server using FTPConnect. 
 
 FileType is a number indicating the type of subsequent FTPGet and FTPPut transfers on this socket. 
 
-|Value|Transfer Mode|
-|---|---|
-|kFalse/Zero|ASCII|
-|kTrue/One|Binary|
-
-
+Value
+Transfer Mode
+kFalse/Zero
+ASCII
+kTrue/One
+Binary
 
 Status is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # set file transfer mode to ascii
@@ -7794,15 +5946,9 @@ FTPType (iFTPSocket,0) Returns lErrCode
 If not(lErrCode)
 # assumes you are already in the correct folder on the ftp server so only the file name is needed
 Calculate lRemoteFile as 'myFileToDownload.txt'
-```
-
-```
 # identify where to download the file to
 # here we decide to put the download file into a folder called downloadFolder within the current Omnis tree
 Calculate lLocalFileName as con(sys(115),'downloadFolder',sys(9),lRemoteFile)
-```
-
-```
 # download the file
 FTPGet (iFTPSocket,lRemoteFile,lLocalFileName) Returns lErrCode
 If lErrCode
@@ -7813,19 +5959,18 @@ End If
 End If
 ```
 
-## **Get file info** 
+<!-- p117-118 | Get file info -->
+## Get file info
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Get file info** ( _path, type, creator, log-size, phy-size, creat-date, creat-time, mod-date, mod-time_ ) **Returns** err-code 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7837,30 +5982,25 @@ It returns an error code (See Error Codes), or zero if no error occurs.
 
 When constructing the path to a file or folder, you can use sys(9) to insert the correct path delimiter for the current platform: \ (backslash) on Windows, or / (forward-slash) for Unix and 64-bit macOS (: colon on 32-bit macOS). In addition, you can use sys(115) to return the full pathname of the folder containing the Omnis executable, including the terminating path separator, which might be useful to reference files in the Omnis tree. 
 
-117 
-
-
-
-## **Example** 
+### Example
 
 ```
 # return the file info for the omnis executable
 Calculate lFileName as con(sys(115),'omnis.exe')
 ```
 
-## **Get file name** 
+<!-- p118-118 | Get file name -->
+## Get file name
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO W
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Get file name** ( _path_ [, _dialog_ - _title_ ] [, _file_ - _type…_ ]) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7874,35 +6014,31 @@ The optional file-type parameter limits the choice of file types available.
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **File types** 
+File types
 
 You can specify one or more extensions (using wildcard patterns like those used in many DOS and shell commands) separated by semicolons. For example, “*.TXT” would specify text files only. 
 
-## **Example** 
+### Example
 
 ```
 # open the Get File dialog and show only omnis libraries
 Get file name (lFilePath,'Select the library to open','*.lbs') Returns lErrCode
 # open the Get File dialog and show only text files
-```
-
-```
 Get file name (lFilePath,'Select the library to open','*.txt;*.doc') Returns lErrCode
 ```
 
-## **Get file read-only attribute** 
+<!-- p118-119 | Get file read-only attribute -->
+## Get file read-only attribute
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Get file read-only attribute** ( _path_ , _read_ - _flag_ ) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7910,34 +6046,26 @@ This command returns the current read-only attribute of the file specified in pa
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-118 
-
-
-
-## **Example** 
+### Example
 
 ```
 # returns the read-only attribute of the omnis.exe in the omnis tree
 Calculate lFileName as con(sys(115),'omnis.exe')
-```
-
-```
 Get file read-only attribute (lFileName,lFileAttribute) Returns lErrCode
 ```
 
-## **Get files** 
+<!-- p119-119 | Get files -->
+## Get files
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Get files** (list-name, first-column, path, file-type [,creator-type] [,8.3]) **Returns** err-code 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -7957,40 +6085,28 @@ When constructing the path to a file or folder, you can use sys(9) to insert the
 
 The following example uses **Get files** to build a list of all the libraries in the folder returned by sys(10). 
 
-## **Example** 
+### Example
 
-## `Do lFileList.$define(lFileName)` 
-
+`Do lFileList.$define(lFileName)`
 ```
 # get the path of the examples folder in the studio tree
 Calculate lPathname as con(sys(115),'welcome',sys(9),'examples')
-```
-
-```
 # return the list of all example libraries
-```
-
-```
 Get files (lFileList,lFileName,lPathname,'*.lbs') Returns lErrCode
 ```
 
-## **Get folders** 
+<!-- p119-120 | Get folders -->
+## Get folders
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Get folders** ( _list-name_ , _first-column_ , _path_ [, _8.3_ ]) **Returns** err-code 
 
-119 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8002,54 +6118,33 @@ On Windows, you can also supply the 8.3 parameter. This defaults to kFalse. If y
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 # obtain a list of the folders in the root of your machine
 Do lFolderList.$define(lFolderName)
-```
-
-```
 Switch platform()
-```
-
-```
 Case 'U'
-```
-
-```
 Get folders (lFolderList,lFolderName,'/')
-```
-
-```
 Default
-```
-
-```
 Get folders (lFolderList,lFolderName,'C:\')
-```
-
-```
 End Switch
 ```
 
-## **Get statement** 
+<!-- p120-120 | Get statement -->
+## Get statement
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|SQL Object Commands|NO|NO<br>NO<br>All|
+Command group: SQL Object Commands | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Get statement** _field-name_ 
 
-## **Description** 
+### Description
 
 This command loads the contents of the SQL statement buffer into a specified field or variable. The field-name parameter can be any Omnis character field or variable. The buffer holds all SQL statements and text entered since the last Begin statement command which have not yet been executed. The square brackets and SQL functions will have been evaluated but the values of indirect @[] square bracket notation will not be available. 
 
-## **Example** 
+### Example
 
 ```
 # Show the sql to the user before creating the table MY_TABLE
@@ -8068,94 +6163,73 @@ Do lStatObj.$execdirect()
 End If
 ```
 
-120 
+<!-- p121-121 | Get text block -->
+## Get text block
 
+Command group: Text | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-## **Get text block** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Text|NO|NO|YES<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Get text block** _field-name_ 
 
-## **Description** 
+### Description
 
 This command loads the current contents of the text buffer for the current method stack into the specified field or variable. You build up the text block using the Begin text block and Text: commands. Following an End text block, you can return the contents of the text buffer using the **Get text block** command. 
 
-## **Example** 
+### Example
 
 ```
 Begin text block
 Text: Thought for the day: (Carriage return)
 Text: If a train station is where the train
-```
-
-```
 Text: stops, what is a work station?
-```
-
-```
 End text block
 Get text block lTextString
 OK message {[lTextString]}
 ```
 
-## **Get working directory** 
+<!-- p121-121 | Get working directory -->
+## Get working directory
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Get working directory** ( _path_ ) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 Returns the current working directory into path. 
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
-## **Example** 
+### Example
 
 ```
 # return the current working directory
 Get working directory (lDirectory)
 ```
 
-## **Go to next selected line** 
+<!-- p121-122 | Go to next selected line -->
+## Go to next selected line
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Go to next selected line** ([ _From start_ ][, _Backwards_ ]) 
 
-121 
-
-
-
-**Options** 
+### Options
 
 From start If specified, the command starts with the first line of the list rather than the line immediately after the current line Backwards If specified, the command steps through the list in reverse order; when used with ‘From start’ the command starts at the end of the list, otherwise if ‘From start’ is not specified, it starts with the line before the current line 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command scans a list for selected lines and goes to the first one it finds. It sets the current line (LIST.$line) for the current list (#CLIST) equal to the next selected line in that list. 
 
@@ -8163,7 +6237,7 @@ The **Go to next selected line** command steps through the list starting at the 
 
 The Backwards option causes the list to be searched in descending order; the From start option causes the list to be searched from the start. If both options Backwards and From start are selected, the list is searched from the end. 
 
-## **Example** 
+### Example
 
 ```
 # Transfer the value from line 3 to the 2 selected lines
@@ -8182,69 +6256,47 @@ Go to next selected line
 Replace line in list
 ```
 
-## **Hide docking area** 
+<!-- p122-123 | Hide docking area -->
+## Hide docking area
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Toolbars|NO|NO|NO<br>All|
+Command group: Toolbars | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Hide docking area** { _docking-area_ (e.g. kDockingAreaBottom)} 
 
-## **Description** 
+### Description
 
 This command closes either the top, bottom, left, or right docking area. The docking area is specified using one of the docking area constants: kDockingAreaTop, kDockingAreaBottom, kDockingAreaLeft, or kDockingAreaRight. 
 
 When you close a library, Omnis does not automatically close any docking areas that are open. You must explicitly hide each docking area using Hide docking area. Leaving docking areas open and closing the library containing those docking areas can cause problems in your application. 
 
-122 
-
-
-
-## **Example** 
+### Example
 
 ```
 Show docking area {kDockingAreaLeft}
 # install toolbar on left docking area
-```
-
-```
 Install toolbar {tbMyToolbar}
-```
-
-```
 # when the library closes, hide the docking area
 Hide docking area {kDockingAreaLeft}
-```
-
-```
 # alternatively you can use the following notation
-```
-
-```
 Do $root.$prefs.$dockingareas.$assign(kDockingAreaNone)
 ```
 
-## **Hide fields** 
+<!-- p123-123 | Hide fields -->
+## Hide fields
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Fields|NO|YES|NO<br>All|
+Command group: Fields | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Hide fields** { _list-of-field-names_ (Name1,Name2,…)} 
 
-## **Description** 
+### Description
 
 This command hides the specified field or list of fields. You can display hidden fields with Show fields. 
 
-## **Example** 
+### Example
 
 ```
 Yes/No message {Do you want to hide fields?}
@@ -8255,39 +6307,23 @@ End reversible block
 End If
 # do something
 Quit method
-```
-
-```
 # now this method ends and the fields are re-shown as they are in a reversible block
 # To hide a single field on the current window
-```
-
-```
 Do $cwind.$objs.myField1.$visible.$assign(kFalse)
-```
-
-```
 # to hide all fields on the current window
 Do $cwind.$objs.$sendall($ref.$visible.$assign(kFalse))
 ```
 
-## **HTTPClose** 
+<!-- p123-124 | HTTPClose -->
+## HTTPClose
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPClose** ( _socket_ [, _option_ {Default zero for complete;1 for partial;2 for abort}]) **Returns** _status_ 
 
-123 
-
-
-
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8307,44 +6343,32 @@ Option is an optional Omnis Integer field, which has the value zero for a comple
 
 Status is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Connect to the server IP address iHostName on port iPort, send
 # the message iMessage and then close the socket
 Calculate iHostName as '0.0.0.0'
-```
-
-```
 Calculate iPort as 6000
-```
-
-```
 Calculate lMessage as 'Hello remote application'
 HTTPOpen (iHostName,iPort) Returns iSocket
 If iSocket>0
-```
-
-```
 # connected
 HTTPSend (iSocket,lMessage) Returns lCharCount
 End If
 HTTPClose (iSocket)
 ```
 
-## **HTTPGet** 
+<!-- p124-126 | HTTPGet -->
+## HTTPGet
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPGet** ( _host_ , _uri_ [, _cgilist_ , _hdrlist_ , _service_ | _port_ , _secure_ {Default kFalse}, _verify_ {Default kTrue}, _map_ + {Default kFalse}]) **Returns** _socket_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8352,24 +6376,22 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 
 **HTTPGet** is a client command that submits a GET HTTP request to a Web server. 
 
-124 
-
-
-
 Host is a Character field containing the hostname or IP address of the Web server. 
 
 URI is a Character field containing the URI to GET from the Web Server. For example, “/default.html”, or “/cgi-bin/mycgiscript” 
 
 CGIList is an optional parameter. It is an Omnis list with two character columns. The list contains the CGI arguments to be appended to the URI. There is one row for each CGI argument. For example 
 
-|Attribute|Value|
-|---|---|
-|Name|John Smith|
-|City|Podunk|
-|Alive|On|
-|Submit|Please|
-
-
+Attribute
+Value
+Name
+John Smith
+City
+Podunk
+Alive
+On
+Submit
+Please
 
 **Note** : Before the values are sent to the Web server, **HTTPGet** automatically performs any CGI encoding required to pass special characters in the arguments. There is no need to call the CGIEncode command. 
 
@@ -8377,12 +6399,12 @@ HdrList is an optional parameter. It is an Omnis list with two character columns
 
 For example 
 
-|Header name|Value|
-|---|---|
-|User-Agent|My Client|
-|Content-type|text/html|
-
-
+Header name
+Value
+User-Agent
+My Client
+Content-type
+text/html
 
 Service|Port is an optional parameter that specifies the service name or port number of the server. If you specify a service name, the lookup for the port number occurs locally. If you omit this argument, it defaults to the port number specified in the host, or if none is present, it defaults to 80 or 443, the default port for HTTP or HTTPS respectively (depending on the value of Secure). 
 
@@ -8396,30 +6418,20 @@ Socket receives the result of the request. **HTTPGet** opens a connection to the
 
 HTTPGet adds the following header fields by default: 
 
-|Attribute|Value|
-|---|---|
-|Accept|*/*|
-|User-Agent|Omnis Software – Omnis|
-
-
+Attribute
+Value
+Accept
+*/*
+User-Agent
+Omnis Software – Omnis
 
 **Note** : After calling **HTTPGet** , you can call HTTPSend to send your own content, before you read the response, provided that you include Content-type and Content-length headers in the HdrList. 
 
-125 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Open a connection to the web server and read the server response
-```
-
-```
 # into lBuffer
-```
-
-```
 Calculate iHostName as '0.0.0.0'
 Do lCGIList.$define(lAttribute,lValue)
 Do lCGIList.$add('Name','John Smith')
@@ -8429,19 +6441,16 @@ HTTPRead (iSocket,lBuffer) Returns lCharCount
 HTTPClose (iSocket) Returns lStatus
 ```
 
-## **HTTPHeader** 
+<!-- p126-127 | HTTPHeader -->
+## HTTPHeader
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPHeader** ( _socket_ , _status_ , _headerlist_ ) **Returns** length 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8453,65 +6462,58 @@ Socket is an Omnis Long Integer field containing the number of a socket that has
 
 Status is an Omnis Long Integer field containing an HTTP status code. The status code may change the way in which any following HTML or other information displays on the Web browser. The following table contains the status codes which **HTTPHeader** recognises. Other status codes are accepted, but **HTTPHeader** then sends “Unknown status” as the text for the code. 
 
-|Code|Meaning|
-|---|---|
-|200|The request was completed successfully|
-|201|The request was a POST method and was completed successfully. Data was sent to|
-||the server, and a new resource was created as a result of the request.|
-|202|A GET method returned only partial results.|
-|204|The request was completed successfully, but there is no new information. The|
-||browser will continue to display the document from which the request originated.|
-|301|The requested URL has moved permanently|
-|302|The requested URL has moved temporarily|
-|304|The GET request included a header with an If-Modifed-Since feld. However, the|
-||server found that the data requested had not been modifed since the date in this|
-||feld. The document was not resent (the Web browser will probably display it from|
-||its cache).|
-|400|The request syntax was wrong|
-|401|The request requires an Authorization feld but the client did not specify one.|
-||Usually results in a username and password to be displayed|
-|403|Access is forbidden|
-|404|The request URL could not be found.|
+Code
+Meaning
+The request was completed successfully
+The request was a POST method and was completed successfully. Data was sent to
+the server, and a new resource was created as a result of the request.
+A GET method returned only partial results.
+The request was completed successfully, but there is no new information. The
+browser will continue to display the document from which the request originated.
+The requested URL has moved permanently
+The requested URL has moved temporarily
+The GET request included a header with an If-Modified-Since field. However, the
+server found that the data requested had not been modified since the date in this
+field. The document was not resent (the Web browser will probably display it from
+its cache).
+The request syntax was wrong
+The request requires an Authorization field but the client did not specify one.
+Usually results in a username and password to be displayed
+Access is forbidden
+The request URL could not be found.
 
-
-
-126 
-
-
-
-|Code|Meaning|
-|---|---|
-|500|The server has encountered an internal error and cannot continue with the request.|
-|501|The server does not support this method|
-|502|Bad gateway|
-|503|Service unavailable|
-
-
+Code
+Meaning
+The server has encountered an internal error and cannot continue with the request.
+The server does not support this method
+Bad gateway
+Service unavailable
 
 _HeaderList_ is an Omnis list with two character columns. The list contains the headers to send. Note that HTTPHeader automatically sends some headers, so do not provide those (see below). 
 
 At a minimum, for Omnis to return normal Web-page HTML text to the client, you should send a header containing the line: 
 
-|Header name|Value|
-|---|---|
-|Content-type|text/html|
-
-
+Header name
+Value
+Content-type
+text/html
 
 **HTTPHeader** automatically includes the following lines in all HTTP response headers: 
 
-|Attribute|Value|
-|---|---|
-|Content-type|text/html (only if the_HeaderList_does not contain a Content-type header)|
-|Date|The current GMT date and time in HTTP header format|
-|Server|Omnis|
-|MIME-version|1.0|
-
-
+Attribute
+Value
+Content-type
+text/html (only if the_HeaderList_does not contain a Content-type header)
+Date
+The current GMT date and time in HTTP header format
+Server
+Omnis
+MIME-version
+1.0
 
 _Length_ is an Omnis Long Integer field which receives the number of characters sent, or an error code less than zero. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # When a new connection is received call the method $newconnection
@@ -8522,29 +6524,22 @@ Do lHeaderList.$define(lAttribute,lValue)
 HTTPHeader (iSocket,200,lHeaderList) Returns lCharCount
 ```
 
-## **HTTPMethod** 
+<!-- p127-128 | HTTPMethod -->
+## HTTPMethod
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPMethod** ( _socket, uri, method, requesthdrlist, requestcontent, responsestatuscode, responsehdrrow, responsecontent_ ) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 HTTPMethod is a new client command that submits to a Web Server an HTTP request to execute a specified HTTP method. 
 
 This Web command requires an existing socket opened with HTTPOpen in order to submit the request. Note that this allows you to sequentially submit more than one request using the same socket connection subject to the rules of HTTP e.g. if the server returns a connection close header in its response, no more requests can be sent on the connection: at this point you need to use HTTPClose 
-
-127 
-
-
 
 to free the socket resources and open a new connection if you want to send more requests to the server. Re-using a connection like this can be a significant performance improvement, especially when using a secure connection, where the connection set-up time is relatively costly. 
 
@@ -8558,12 +6553,12 @@ _RequestHdrList_ is an Omnis list with two character columns. The list contains 
 
 For example: 
 
-|Header name|Value|
-|---|---|
-|User-Agent|My Client|
-|Content-type|text/html|
-
-
+Header name
+Value
+User-Agent
+My Client
+Content-type
+text/html
 
 _RequestContent_ is the content to send to the server with the request. It only makes sense to send content with certain methods, e.g. POST. You can supply either character data, which the command converts to UTF-8 before sending, or binary data. 
 
@@ -8573,21 +6568,18 @@ _ResponseHdrRow_ is a row variable which Omnis populates with the headers receiv
 
 _ResponseContent_ is a binary or character field into which the command stores the content (if any) received in the response from the server. If this is a character field, the command assumes the content is UTF-8 encoded, and converts from UTF-8 to character before storing the response in the field. 
 
-_Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure. 
+_Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure.
 
-## **HTTPOpen** 
+<!-- p128-129 | HTTPOpen -->
+## HTTPOpen
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPOpen** ( _hostname_ [, _service_ | _port_ , _secure_ {Default kFalse}, _verify_ {Default kTrue}, _useproxy_ {Default kTrue}]) **Returns** _socket_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8601,10 +6593,6 @@ www.myhost.com or 255.255.255.254
 
 _Service|Port_ is an optional parameter that specifies the service name or port number of the server. If you specify a service name, the lookup for the port number occurs locally. If you omit this argument, it defaults to 80 or 443, the default port for HTTP or HTTPS respectively (depending on the value of Secure). 
 
-128 
-
-
-
 _Secure_ is an optional Boolean parameter which indicates if a secure connection is required to the server. Pass kTrue for a secure connection, in which case the built-in security technology will be used, so on Windows ‘Secure Channel’ (Schannel) is used, on macOS ‘Secure Transport’ is used, and on Linux OpenSSL is used. 
 
 _Verify_ is an optional Boolean parameter which is only significant when Secure is not kFalse. When Verify is kTrue, the command instructs the installed SSL library to verify the server’s identity using its certificate; if the verification fails, then the connection will not be established. You can pass Verify as kFalse, to turn off this verification; in this case, the connection will still be encrypted, but there is a chance the server is an impostor. In order to perform the verification, the installed SSL library uses the Certificate Authority Certificates in the cacerts sub-folder of the secure folder in the Omnis folder. If you use your own Certificate Authority to self-sign certificates, you can place its certificate in the cacerts folder, and the installed SSL library will use it after you restart Omnis. 
@@ -8613,13 +6601,10 @@ If _useproxy_ is kTrue (the default), and proxy server parameters have been set 
 
 If **HTTPOpen** succeeds, socket receives a positive number which is the socket for the new connection to the server. Otherwise, socket receives a negative error code. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Connect to the server IP address iHostName on port iPort and send
-```
-
-```
 # the message iMessage
 Calculate iHostName as '0.0.0.0'
 Calculate iPort as 6000
@@ -8631,19 +6616,16 @@ HTTPSend (iSocket,lMessage) Returns lCharCount
 End If
 ```
 
-## **HTTPPage** 
+<!-- p129-130 | HTTPPage -->
+## HTTPPage
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPPage** ( _url_ [, _service_ | _port_ , _verify_ {Default kTrue}]) **Returns** _html-text_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8659,13 +6641,9 @@ Service|Port is an optional parameter that specifies the service name or port nu
 
 The primary role of **HTTPPage** is to grab, simply and quickly, the HTML text source of the page specified by the URL. The URL may also specify a CGI name and arguments, but it is simpler to access CGIs by using the HTTPPost or HTTPGet functions. 
 
-129 
-
-
-
 If an error occurs, the command returns a negative number to Page. Otherwise, Page receives the contents of the specified URL. In other words, it receives the complete HTTP response for the URL, including the status line and the headers. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Read the html content from lURL into the character variable lHtmlPage
@@ -8673,19 +6651,16 @@ Calculate lUrl as 'http://www.omnis.net/news/index.html'
 HTTPPage (lUrl) Returns lHtmlPage
 ```
 
-## **HTTPParse** 
+<!-- p130-131 | HTTPParse -->
+## HTTPParse
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPParse** ( _message_ , _headerlist_ , _method_ , _httpver_ [, _uri_ , _cgilist_ ]) **Returns** status 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8699,15 +6674,17 @@ _HeaderList_ is an Omnis list with two character columns. The list receives the 
 
 For example, after the call, the list might contain entries such as: 
 
-|Attribute|Value|
-|---|---|
-|Date|The current GMT date and time in HTTP header|
-|User-Agent|NCSA Mosaic for the X Window System/2.4 libwww/2.12 modifed|
-|Accept|/|
-|Content-type|Application/x-www-form-urlencoded|
-|Content-length|1234|
-
-
+Attribute
+Value
+Date
+The current GMT date and time in HTTP header
+User-Agent
+NCSA Mosaic for the X Window System/2.4 libwww/2.12 modified
+Accept
+/
+Content-type
+Application/x-www-form-urlencoded
+Content-length
 
 **Note: HTTPParse** automatically strips the colons after the attribute names. 
 
@@ -8725,30 +6702,25 @@ CGIList is an Omnis list field with two character columns. It receives the CGI a
 Name:
 ```
 
-130 
-
-
-
-## `City:` 
-
-## `Are you alive?` 
-
+`City:`
+`Are you alive?`
 and the user types in John Smith, Podunk and checks the City field, after **HTTPParse** , CGIList contains: 
 
-|Attribute|Value|
-|---|---|
-|Name|John Smith|
-|City|Podunk|
-|Alive|Yes|
-|Submit|Please|
-
-
+Attribute
+Value
+Name
+John Smith
+City
+Podunk
+Alive
+Submit
+Please
 
 **Note** : Before the data is stored in the list, **HTTPParse** automatically decodes any CGI encoding required to pass special characters. There is no need to call the CGIDecode command. 
 
 Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # When a new connection is received call the method $newconnection
@@ -8761,19 +6733,16 @@ Do lCGIList.$define(lAttribute,lValue)
 HTTPParse (lBuffer,lHeaderList,lMethod,lHttpVersion,lUri,lCGIList) Returns lStatus
 ```
 
-## **HTTPPost** 
+<!-- p131-132 | HTTPPost -->
+## HTTPPost
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPPost** ( _host_ , _uri_ [, _cgilist_ , _hdrlist_ , _service_ | _port_ , _secure_ {Default kFalse}, _verify_ {Default kTrue}, _map_ + {Default kFalse}]) **Returns** _socket_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8787,17 +6756,14 @@ URI is a Character field containing the URI to GET from the Web Server. For exam
 
 CGIList is an optional parameter. It is an Omnis list with two character columns. The list contains the CGI arguments to be posted to the URI. These will be sent as content of type “application/x-www-form-urlencoded”. There is one row for each CGI argument. For example 
 
-|Attribute|Value|
-|---|---|
-|Name|John Smith|
-|City|Podunk|
-|Alive|On|
-
-
-
-131 
-
-
+Attribute
+Value
+Name
+John Smith
+City
+Podunk
+Alive
+On
 
 Attribute Value Submit Please 
 
@@ -8823,18 +6789,20 @@ _Socket_ receives the result of the request. **HTTPPost** opens a connection to 
 
 **HTTPPost** adds the following header fields by default: 
 
-|Attribute|Value|
-|---|---|
-|Accept|*/*|
-|Content-length|The length of the content (Only if you supply CGI arguments)|
-|Content-type|application/x-www-form-urlencoded (Only if you supply CGI arguments)|
-|User-Agent|Omnis Software – Omnis|
-
-
+Attribute
+Value
+Accept
+*/*
+Content-length
+The length of the content (Only if you supply CGI arguments)
+Content-type
+application/x-www-form-urlencoded (Only if you supply CGI arguments)
+User-Agent
+Omnis Software – Omnis
 
 **Note** : After calling **HTTPPost** , you can call HTTPSend to send your own content, before you read the response, provided that you include Content-type and Content-length headers in the HdrList. 
 
-## **Example** 
+### Example
 
 ```
 # Post a HTTP request to the server lServer listening on port 6001
@@ -8845,23 +6813,16 @@ Calculate lServer as '0.0.0.0.0.0'
 HTTPPost (lServer,'\default',lCGIList,lHeaderList,6001) Returns iSocket
 ```
 
-132 
+<!-- p133-133 | HTTPRead -->
+## HTTPRead
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-## **HTTPRead** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPRead** ( _socket_ , _buffer_ [, _type_ {Default zero for server; Non-zero for client}]) **Returns** _received-byte-count_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8879,45 +6840,26 @@ _Received-byte-count_ is a long Integer field which receives the number of bytes
 
 **Note** : **HTTPRead** always operates in blocking mode, and will timeout after the connection is inactive for the comms timeout value (which can be changed from its default of 1 minute using the command WebDevSetConfig). The server reads until the HTTP request header is complete, and it has received content of the correct size. The client behaves similarly, but will also treat graceful closure of the connection as marking the end of the response. 
 
-## **Example** 
+### Example
 
 ```
 # When a new connection is received call the method $newconnection
-```
-
-```
 # to read the message
-```
-
-```
 HTTPServer ('$newconnection',6001) Returns lStatus
-```
-
-```
 # method $newconnection
-```
-
-```
 HTTPRead (iSocket,lBuffer) Returns lByteCount
 ```
 
-## **HTTPSend** 
+<!-- p133-134 | HTTPSend -->
+## HTTPSend
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPSend** (socket,buffer) **Returns** sent-byte-count 
 
-133 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -8935,7 +6877,7 @@ If the socket is in non-blocking mode, **HTTPSend** sends as much data as it can
 
 If an error occurs, **HTTPSend** returns a negative error code 
 
-## **Notes** 
+### Notes
 
 If the connection to the server is secure, **HTTPSend** always sends the data in blocking mode. 
 
@@ -8943,13 +6885,10 @@ Non-blocking sockets return an error code of -10035 if the socket cannot accept 
 
 It does not make sense to send a character field on a non-blocking socket, because the sent-byte-count corresponds to the sent UTF-8 bytes. 
 
-## **Example** 
+### Example
 
 ```
 # Connect to the server IP address iHostName on port iPort and send
-```
-
-```
 # the message iMessage
 Calculate iHostName as '0.0.0.0'
 Calculate iPort as 6000
@@ -8957,36 +6896,26 @@ Calculate lMessage as 'Hello remote application'
 TCPConnect (iHostName,iPort) Returns iSocket
 If iSocket>0
 # connected
-```
-
-```
 HTTPSend (iSocket,lMessage) Returns lByteCount
 End If
 ```
 
-## **HTTPServer** 
+<!-- p134-135 | HTTPServer -->
+## HTTPServer
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPServer** ( _webproc_ , _port_ [, _workingmessage_ {Default non-zero for visible; zero for invisible}]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This Web command is multi-threaded, allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
 **HTTPServer** invokes a listening socket on a specified port, to receive incoming HTTP requests. This command optionally shows an Omnis working message with the count of accepted connections. **HTTPServer** calls a user-specified Omnis method each time a new connection arrives. The user function receives the socket number for the new HTTP connection. 
-
-134 
-
-
 
 _WebProc_ is an Omnis Character field containing the name of the Omnis method to be called when a connection arrives. The method receives one parameter, the number of the socket for the new HTTP connection. For example, MYLIBRARY.MYCODE/MYPROC. 
 
@@ -8998,7 +6927,7 @@ Caution: You must close the socket with HTTPClose before quitting the Omnis meth
 
 The command returns an integer status, which is less than zero if an error occurs. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## Stopping **HTTPServer** 
+Stopping HTTPServer
 
 Once started, **HTTPServer** runs indefinitely until it is stopped. There are three ways to stop **HTTPServer** : 
 
@@ -9008,13 +6937,10 @@ Once started, **HTTPServer** runs indefinitely until it is stopped. There are th
 
 3. Set the Omnis flag to false before returning from the WebProc method. Obviously, you need to make sure the flag is true before returning, if you wish to process further connections 
 
-## **Example** 
+### Example
 
 ```
 # Listen for incoming http requests on port 6001, call the
-```
-
-```
 # method $newconnection in the current instance when a
 ```
 
@@ -9024,19 +6950,16 @@ Once started, **HTTPServer** runs indefinitely until it is stopped. There are th
 HTTPServer ('$newconnection',6001) Returns lStatus
 ```
 
-## **HTTPSetAuthentication** 
+<!-- p135-135 | HTTPSetAuthentication -->
+## HTTPSetAuthentication
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPSetAuthentication** ( _socket_ , _type_ , _username_ , _password_ ) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9050,25 +6973,18 @@ _Username_ is a character field containing the user name for basic authenticatio
 
 _Password_ is a character field containing the password for basic authentication. 
 
-_Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure. 
+_Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure.
 
-## **HTTPSetProxyServer** 
+<!-- p135-136 | HTTPSetProxyServer -->
+## HTTPSetProxyServer
 
-135 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPSetProxyServer** ([ _hostname_ , _service_ | _port_ , _secure_ {Default kFalse}, _verify_ {Default kTrue}]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 Note: The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9080,8 +6996,7 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 
 Hostname is a Character field containing the hostname or IP address of the HTTP proxy server. For example: 
 
-## `www.myhost.com or 255.255.255.254` 
-
+`www.myhost.com or 255.255.255.254`
 _Service|Port_ is an optional parameter that specifies the service name or port number of the proxy server. If you specify a service name, the lookup for the port number occurs locally. If you omit this argument, it defaults to 80 or 443, the default port for HTTP or HTTPS respectively (depending on the value of Secure). 
 
 _Secure_ is an optional Boolean parameter which indicates if a secure connection is required to the server. Pass kTrue for a secure connection, in which case the built-in security technology will be used, so on Windows ‘Secure Channel’ (Schannel) is used, on macOS ‘Secure Transport’ is used, and on Linux OpenSSL is used. 
@@ -9090,42 +7005,26 @@ _Verify_ is an optional Boolean parameter which is only significant when Secure 
 
 The command returns an integer status, which is less than zero if an error occurs. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # All requests to HTTPGet, HTTPPost and HTTPPage connect to this proxy server
 Calculate lHostName as "my.proxy.com"
-```
-
-```
 Calculate lPort as "8080"
-```
-
-```
 HTTPSetProxyServer (lHostName,lPort)
-```
-
-```
 HTTPSetProxyServer
 ```
 
-## **HTTPSplitHTML** 
+<!-- p136-137 | HTTPSplitHTML -->
+## HTTPSplitHTML
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPSplitHTML** ( _message_ , _tagtextlist_ ) **Returns** _status_ 
 
-136 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9139,35 +7038,26 @@ _TagtextList_ is an Omnis list defined to have three columns, all character. Col
 
 The command returns an integer status, which is less than zero if an error occurs. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Parse the html from lURL into the list lHtmlTagList
-```
-
-```
 Calculate lUrl as 'http://www.omnis.net/'
-```
-
-```
 HTTPPage (lUrl) Returns lHtmlPage
 Do lHtmlTagList.$define(lOpeningHtmlTag,lHtmlText,lClosingHtmlTag)
 HTTPSplitHTML (lHtmlPage,lHtmlTagList)
 ```
 
-## **HTTPSplitURL** 
+<!-- p137-137 | HTTPSplitURL -->
+## HTTPSplitURL
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **HTTPSplitURL** ( _url_ , _hostname_ , _uri_ ) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9183,165 +7073,114 @@ _URI_ is an Omnis Character field that receives URI parsed out of the URL. For e
 
 The command returns an integer status, which is less than zero if an error occurs. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Split lUrl into lHostname and lUri
-```
-
-```
 Calculate lUrl as 'http://www.omnis.net/news/index.html'
 HTTPSplitURL (lUrl,lHostName,lUri) Returns lStatus
 # lHostName = www.omnis.net, lUri = /news/index.html
 ```
 
-137 
+<!-- p138-138 | If calculation -->
+## If calculation
 
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-## **If calculation** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **If** calculation 
 
-## **Description** 
+### Description
 
 This command tests the result of the calculation and branches if zero. If the result of the calculation is non-zero, the result of the test will be true; a result of zero is interpreted as false. As with all **If** commands, control passes to the next command in the method if the result is true, otherwise to the next End If, Else or Else If in the method. 
 
-## **Example** 
+### Example
 
 ```
 If pSecurityLevel=1
-```
-
-```
 Open window instance wAministrator
-```
-
-```
 Else
-```
-
-```
 OK message {This feature is only available to the Administrator}
 End If
 ```
 
-## **If canceled** 
+<!-- p138-139 | If canceled -->
+## If canceled
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|NO<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **If canceled** ([ _No refresh_ ]) 
 
-## **Options** 
+### Options
 
-|No refresh|If specifed, the command does not refresh the screen; this may|
-|---|---|
-||result in improved performance on some platforms, especially when|
-||the command is used in each iteration of a loop|
+No refresh
+If specified, the command does not refresh the screen; this may
+result in improved performance on some platforms, especially when
+the command is used in each iteration of a loop
 
-
-
-## **Description** 
+### Description
 
 This command tests whether the user wishes to cancel execution of the current method, and branches if not. The user requests a cancel by either clicking on a working message Cancel button, or by pressing Ctrl-Break under Windows, Ctrl-C under Linux, or Cmndperiod under macOS. If Enable cancel test at loops is switched on, a loop or other processing may detect a cancel and quit all methods before it is detected by an If canceled command. 
 
-## **Example** 
+### Example
 
 ```
 Calculate #F as 1
 Disable cancel test at loops
 Working message (Cancel button) {Doing some work}
 Repeat
-```
-
-```
 Redraw working message
 If canceled
-```
-
-138 
-
-
-
-```
 OK message (Icon,Sound bell ) {Method Terminated.}
 Quit method
 End If
-```
-
-```
 Until flag false
 ```
 
-## **If flag false** 
+<!-- p139-139 | If flag false -->
+## If flag false
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+If flag false
 
-## **Syntax** 
-
-## **If flag false** 
-
-## **Description** 
+### Description
 
 This command lets you implement a branch or change of processing order within a method depending on the result of the previous command. It tests the flag and if it is false, the commands following the **If flag false** are executed. However, if the flag is true, control branches to the next Else, Else If or End If in the method. 
 
-## **Example** 
+### Example
 
 ```
 # Open the window wMyWindow if it is not already open
 Test for window open {wMyWindow}
-```
-
-```
 If flag false
-```
-
-```
 Open window instance wMyWindow
 End If
 ```
 
-## **If flag true** 
+<!-- p139-139 | If flag true -->
+## If flag true
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
-|**Syntax**||||
-|**If fag true**||||
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
+**If flag true**
 
-
-## **Description** 
+### Description
 
 This command lets you implement a branch or change of processing order within a method depending on the result of the previous command. It tests the flag and if it is true, the commands following the **If flag true** are executed. However, if the flag is false, control branches to the next Else, Else If or End If in the method. 
 
-## **Example** 
+### Example
 
 ```
 # Test if list line selected sets the flag to true if the line is selected
 Set current list iMyList
 Test if list line selected {2}
-```
-
-```
 If flag true
 ```
 
@@ -9353,23 +7192,16 @@ If flag true
 End If
 ```
 
-139 
+<!-- p140-140 | IMAPCheck -->
+## IMAPCheck
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-## **IMAPCheck** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPCheck** ( _socket_ [, _stsproc_ , _responselist_ ]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9387,35 +7219,25 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 IMAPCheck (iIMAPSocket) Returns lStatus
 If lStatus<0
-```
-
-```
 # The CHECK command failed
 End If
 ```
 
-## **IMAPConnect** 
+<!-- p140-141 | IMAPConnect -->
+## IMAPConnect
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPConnect** ( _server_ , _username_ , _password_ [, _stsproc_ , _responselist_ , _secure_ {Default zero insecure;1 secure;2 use STARTTLS}, _verify_ {Default kTrue}]) **Returns** _socket_ 
 
-140 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9441,7 +7263,7 @@ _Secure_ is an optional Boolean parameter which indicates if a secure connection
 
 _Verify_ is an optional Boolean parameter which is only significant when Secure is not kFalse. When Verify is kTrue, the command instructs the installed SSL library to verify the server’s identity using its certificate; if the verification fails, then the connection will not be established. You can pass Verify as kFalse, to turn off this verification; in this case, the connection will still be encrypted, but there is a chance the server is an impostor. In order to perform the verification, the installed SSL library uses the Certificate Authority Certificates in the cacerts sub-folder of the secure folder in the Omnis folder. If you use your own Certificate Authority to self-sign certificates, you can place its certificate in the cacerts folder, and the installed SSL library will use it after you restart Omnis. 
 
-## **Example** 
+### Example
 
 ```
 # Establish a connection to the IMAP server lServer for user
@@ -9451,30 +7273,20 @@ Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
 IMAPConnect (lServer,lUserName,lPassword) Returns iIMAPSocket
 If iIMAPSocket<0
-```
-
-```
 # Connection failed
 End If
 ```
 
-141 
+<!-- p142-142 | IMAPCopyMessage -->
+## IMAPCopyMessage
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-## **IMAPCopyMessage** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPCopyMessage** ( _socket_ , _messageuid_ , _destmailboxname_ [, _stsproc_ , _responselist_ ]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9500,23 +7312,14 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Copy message with UID 142 from INBOX to sub-folder Test of INBOX
 Calculate iMailbox as "INBOX"
-```
-
-```
 IMAPSelectMailbox (iIMAPSocket,iMailbox,iMessages,iRecent,iUIDNext,iUIDValidity,iUnseen) Returns lStatus
 If lStatus>=0
-```
-
-```
 Calculate iMailbox as "INBOX.Test"
-```
-
-```
 Calculate iUID as 142
 IMAPCopyMessage (iIMAPSocket,iUID,iMailbox) Returns lStatus
 If lStatus<0
@@ -9525,33 +7328,26 @@ End If
 End If
 ```
 
-142 
+<!-- p143-143 | IMAPCreateMailbox -->
+## IMAPCreateMailbox
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-## **IMAPCreateMailbox** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPCreateMailbox** ( _socket_ , _mailboxname_ [, _stsproc_ , _responselist_ ]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This Web command is multi-threaded, allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
-## **IMAPCreateMailbox** creates a new mailbox on the IMAP server. 
+IMAPCreateMailbox creates a new mailbox on the IMAP server.
 
 _Socket_ is an Omnis Long Integer field containing a socket opened to an IMAP server using IMAPConnect. 
 
-## _Mailboxname_ is the name of the mailbox to be created. 
+Mailboxname is the name of the mailbox to be created.
 
 IMAP mailbox names are left-to-right hierarchical using a single character to separate levels of hierarchy. If you execute IMAPListMailboxes with empty RefName and MailboxName parameters, the returned list has a single line from which you can access the hierarchy separator. 
 
@@ -9563,44 +7359,28 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Create a new folder Test in the INBOX.
-```
-
-```
 # "." is the hierarchy separator
-```
-
-```
 Calculate iMailbox as "INBOX.Test"
 IMAPCreateMailbox (iIMAPSocket,iMailbox) Returns lStatus
 If lStatus<0
-```
-
-```
 # The CREATE command failed
 End If
 ```
 
-## **IMAPDeleteMailbox** 
+<!-- p143-144 | IMAPDeleteMailbox -->
+## IMAPDeleteMailbox
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPDeleteMailbox** (socket,mailboxname[,stsproc,responselist]) **Returns** status 
 
-143 
-
-
-
-## **Description** 
+### Description
 
 **Note:** The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9622,79 +7402,60 @@ Responselist is an optional parameter into which this command places response li
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Delete folder Test from the INBOX.
-```
-
-```
 # "." is the hierarchy separator
-```
-
-```
 Calculate iMailbox as "INBOX.Test"
 IMAPDeleteMailbox (iIMAPSocket,iMailbox) Returns lStatus
 If lStatus<0
-```
-
-```
 # The DELETE command failed
 End If
 ```
 
-## **IMAPDisconnect** 
+<!-- p144-145 | IMAPDisconnect -->
+## IMAPDisconnect
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPDisconnect** (socket[,stsproc,responselist]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This Web command is multi-threaded, allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
-## **IMAPDisconnect** closes a connection to an IMAP server. 
+IMAPDisconnect closes a connection to an IMAP server.
 
 Socket is an Omnis Long Integer field containing a socket opened to an IMAP server using IMAPConnect. 
 
 Stsproc is an optional parameter containing the name of an Omnis method that this command calls with status messages. This command calls the method with no parameters, and the status information in the variable #S1. The status information logs protocol messages exchanged on the connection to the server. 
 
-144 
-
-
-
 Responselist is an optional parameter into which this command places response lines received from the IMAP server. Before calling this command, define the responselist to have a single Character column. When the command returns successfully, the response list contains the untagged and tagged responses received from the IMAP server as a result of executing this command. These sometimes include unsolicited information, for example, an update on the current number of messages in the selected mailbox. Each line in the response list is a response line received from the server. See RFC 3501 for more details, if you need to handle this sort of information. 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Close the connection to the IMAP server
 IMAPDisconnect (iIMAPSocket)
 ```
 
-## **IMAPExpungeMessages** 
+<!-- p145-145 | IMAPExpungeMessages -->
+## IMAPExpungeMessages
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPExpungeMessages** ( _socket_ [, _stsproc_ , _responselist_ ]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9712,36 +7473,26 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Delete messages in the selected mailbox with the \Deleted flag
 IMAPExpungeMessages (iIMAPSocket) Returns lStatus
 If lStatus<0
-```
-
-```
 # The EXPUNGE command failed
 End If
 ```
 
-145 
+<!-- p146-147 | IMAPListMailboxes -->
+## IMAPListMailboxes
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-## **IMAPListMailboxes** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPListMailboxes** (socket,refname,mailboxname,list[,stsproc,responselist]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9757,24 +7508,29 @@ _Mailboxname_ is an Omnis Character field. The command encloses mailboxname in d
 
 _List_ receives the mailboxes returned by the server. Before calling the command, you must define the list to have seven columns, as follows: 
 
-|Column|Contains|
-|---|---|
-|HasChildren|A long integer which receives the \HasChildren fag value for the mailbox. Not all servers support this fag,|
-||and even when a server supports the fag, it may not always supply a value for this fag. Supported values|
-||are kFalse if the mailbox has the \HasNoChildren fag, kTrue if the mailbox has the \HasChildren fag,|
-||and kUnknown if the mailbox has neither of these fags.|
-|NoInferiors|A long integer which receives the \NoInferiors fag value for the mailbox. kTrue if the mailbox has the|
-||\NoInferiors fag, kFalse if not.|
-|NoSelect|A long integer which receives the \NoSelect fag value for the mailbox. kTrue if the mailbox has the|
-||\NoSelect fag, kFalse if not.|
-|Marked|A long integer which receives the \Marked fag value for the mailbox. kTrue if the mailbox has the \Marked|
-||fag, kFalse if not.|
-|UnMarked|A long integer which receives the \UnMarked fag value for the mailbox. kTrue if the mailbox has the|
-||\UnMarked fag, kFalse if not.|
-|Separator|The mailbox hierarchy separator character|
-|MailboxName|The mailbox name|
-
-
+Column
+Contains
+HasChildren
+A long integer which receives the \HasChildren flag value for the mailbox. Not all servers support this flag,
+and even when a server supports the flag, it may not always supply a value for this flag. Supported values
+are kFalse if the mailbox has the \HasNoChildren flag, kTrue if the mailbox has the \HasChildren flag,
+and kUnknown if the mailbox has neither of these flags.
+NoInferiors
+A long integer which receives the \NoInferiors flag value for the mailbox. kTrue if the mailbox has the
+\NoInferiors flag, kFalse if not.
+NoSelect
+A long integer which receives the \NoSelect flag value for the mailbox. kTrue if the mailbox has the
+\NoSelect flag, kFalse if not.
+Marked
+A long integer which receives the \Marked flag value for the mailbox. kTrue if the mailbox has the \Marked
+flag, kFalse if not.
+UnMarked
+A long integer which receives the \UnMarked flag value for the mailbox. kTrue if the mailbox has the
+\UnMarked flag, kFalse if not.
+Separator
+The mailbox hierarchy separator character
+MailboxName
+The mailbox name
 
 _Stsproc_ is an optional parameter containing the name of an Omnis method that this command calls with status messages. This command calls the method with no parameters, and the status information in the variable #S1. The status information logs protocol messages exchanged on the connection to the server. 
 
@@ -9782,55 +7538,30 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-146 
-
-
-
-## **Example** 
+### Example
 
 ```
 # List all mailboxes (folders) in the INBOX (INBOX is a standard IMAP mailbox)
-```
-
-```
 # "." is the hierarchy separator
-```
-
-```
 Do iMailboxList.$define(iHasChildren,iNoInferiors,iNoselect,iMarked,iUnmarked,iSeparator,iMailbox)
 Calculate iRefName as "INBOX."
-```
-
-```
 Calculate iMailbox as "%"
-```
-
-```
 IMAPListMailboxes (iIMAPSocket,iRefName,iMailbox,iMailboxList) Returns lStatus
 If lStatus<0
-```
-
-```
 # Command failed
-```
-
-```
 End If
 ```
 
-## **IMAPListMessages** 
+<!-- p147-148 | IMAPListMessages -->
+## IMAPListMessages
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|All|
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPListMessages** (socket,list[,stsproc,responselist]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9844,65 +7575,59 @@ _Socket_ is an Omnis Long Integer field containing a socket opened to an IMAP se
 
 _List_ receives the list of messages in the mailbox. Before calling the command, you must defined the list to have nine columns, as follows: 
 
-|Column|Contains|
-|---|---|
-|UID|A long integer which receives the IMAP Unique Identifer (UID) of the message. Note that the line|
-||number in the list is the IMAP message sequence number, at the point the list was generated. It is|
-||safest to use UIDs to identify messages.|
-|Size|A long integer which receives the RFC 822 size in bytes of the message.|
-|InternalDate|A date-time which receives the Internal Date of the message. This is typically the date and time that|
-||the message was placed in the mailbox.|
-|Answered|A long integer which is set to kTrue if the message has the Answered fag, kFalse if not.|
-|Deleted|A long integer which is set to kTrue if the message has the Deleted fag, kFalse if not.|
-|Draft|A long integer which is set to kTrue if the message has the Draft fag, kFalse if not.|
-|Flagged|A long integer which is set to kTrue if the message has the Flagged fag, kFalse if not.|
-|Recent|A long integer which is set to kTrue if the message has the Recent fag, kFalse if not.|
-|Seen|A long integer which is set to kTrue if the message has the Seen fag, kFalse if not.|
-
-
+Column
+Contains
+UID
+A long integer which receives the IMAP Unique Identifier (UID) of the message. Note that the line
+number in the list is the IMAP message sequence number, at the point the list was generated. It is
+safest to use UIDs to identify messages.
+Size
+A long integer which receives the RFC 822 size in bytes of the message.
+InternalDate
+A date-time which receives the Internal Date of the message. This is typically the date and time that
+the message was placed in the mailbox.
+Answered
+A long integer which is set to kTrue if the message has the Answered flag, kFalse if not.
+Deleted
+A long integer which is set to kTrue if the message has the Deleted flag, kFalse if not.
+Draft
+A long integer which is set to kTrue if the message has the Draft flag, kFalse if not.
+Flagged
+A long integer which is set to kTrue if the message has the Flagged flag, kFalse if not.
+Recent
+A long integer which is set to kTrue if the message has the Recent flag, kFalse if not.
+Seen
+A long integer which is set to kTrue if the message has the Seen flag, kFalse if not.
 
 _Stsproc_ is an optional parameter containing the name of an Omnis method that this command calls with status messages. This command calls the method with no parameters, and the status information in the variable #S1. The status information logs protocol messages exchanged on the connection to the server. 
 
 _Responselist_ is an optional parameter into which this command places response lines received from the IMAP server. Before calling this command, define the responselist to have a single Character column. When the command returns successfully, the response list contains the untagged and tagged responses received from the IMAP server as a result of executing this command. These sometimes 
 
-147 
-
-
-
 include unsolicited information, for example, an update on the current number of messages in the selected mailbox. Each line in the response list is a response line received from the server. See RFC 3501 for more details, if you need to handle this sort of information. 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # List all messages in the currently selected mailbox
 Do iMessageList.$define(iUID,iSize,iInternalDate,iAnswered,iDeleted,iDraft,iFlagged,iRecent,iSeen)
 IMAPListMessages (iIMAPSocket,iMessageList) Returns lStatus
 If lStatus<0
-```
-
-```
 # Command failed
-```
-
-```
 End If
 ```
 
-## **IMAPListSubscribedMailboxes** 
+<!-- p148-149 | IMAPListSubscribedMailboxes -->
+## IMAPListSubscribedMailboxes
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPListSubscribedMailboxes** (socket,refname,mailboxname,list[,stsproc,responselist]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -9918,34 +7643,33 @@ _Mailboxname_ is an Omnis Character field. The command encloses mailboxname in d
 
 _List_ receives the mailboxes returned by the server. Before calling the command, you must define the list to have seven columns, as follows: 
 
-|Column|Contains|
-|---|---|
-|HasChildren|A long integer which receives the \HasChildren fag value for the mailbox. Not all|
-||servers support this fag, and even when a server supports the fag, it may not|
-||always supply a value for this fag. Supported values are kFalse if the mailbox has|
-||the \HasNoChildren fag, kTrue if the mailbox has the \HasChildren fag,|
-||and kUnknown if the mailbox has neither of these fags.|
-|NoInferiors|A long integer which receives the \NoInferiors fag value for the mailbox. kTrue if|
-||the mailbox has the \NoInferiors fag, kFalse if not.|
-|NoSelect|A long integer which receives the \NoSelect fag value for the mailbox. kTrue if the|
-||mailbox has the \NoSelect fag, kFalse if not.|
+Column
+Contains
+HasChildren
+A long integer which receives the \HasChildren flag value for the mailbox. Not all
+servers support this flag, and even when a server supports the flag, it may not
+always supply a value for this flag. Supported values are kFalse if the mailbox has
+the \HasNoChildren flag, kTrue if the mailbox has the \HasChildren flag,
+and kUnknown if the mailbox has neither of these flags.
+NoInferiors
+A long integer which receives the \NoInferiors flag value for the mailbox. kTrue if
+the mailbox has the \NoInferiors flag, kFalse if not.
+NoSelect
+A long integer which receives the \NoSelect flag value for the mailbox. kTrue if the
+mailbox has the \NoSelect flag, kFalse if not.
 
-
-
-148 
-
-
-
-|Column|Contains|
-|---|---|
-|Marked|A long integer which receives the \Marked fag value for the mailbox. kTrue if the|
-||mailbox has the \Marked fag, kFalse if not.|
-|UnMarked|A long integer which receives the \UnMarked fag value for the mailbox. kTrue if the|
-||mailbox has the \UnMarked fag, kFalse if not.|
-|Separator|The mailbox hierarchy separator character|
-|MailboxName|The mailbox name|
-
-
+Column
+Contains
+Marked
+A long integer which receives the \Marked flag value for the mailbox. kTrue if the
+mailbox has the \Marked flag, kFalse if not.
+UnMarked
+A long integer which receives the \UnMarked flag value for the mailbox. kTrue if the
+mailbox has the \UnMarked flag, kFalse if not.
+Separator
+The mailbox hierarchy separator character
+MailboxName
+The mailbox name
 
 _Stsproc_ is an optional parameter containing the name of an Omnis method that this command calls with status messages. This command calls the method with no parameters, and the status information in the variable #S1. The status information logs protocol messages exchanged on the connection to the server. 
 
@@ -9953,48 +7677,30 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # List all subscribed mailboxes (folders) in the INBOX (INBOX is a standard IMAP mailbox)
-```
-
-```
 # "." is the hierarchy separator
-```
-
-```
 Do iMailboxList.$define(iHasChildren,iNoInferiors,iNoselect,iMarked,iUnmarked,iSeparator,iMailbox)
 Calculate iRefName as "INBOX."
-```
-
-```
 Calculate iMailbox as "%"
-```
-
-```
 IMAPListSubscribedMailboxes (iIMAPSocket,iRefName,iMailbox,iMailboxList) Returns lStatus
 If lStatus<0
-```
-
-```
 # Command failed
 End If
 ```
 
-## **IMAPNoOp** 
+<!-- p149-150 | IMAPNoOp -->
+## IMAPNoOp
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPNoOp** (socket[,stsproc,responselist]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -10006,44 +7712,31 @@ _Socket_ is an Omnis Long Integer field containing a socket opened to an IMAP se
 
 _Stsproc_ is an optional parameter containing the name of an Omnis method that this command calls with status messages. This command calls the method with no parameters, and the status information in the variable #S1. The status information logs protocol messages exchanged on the connection to the server. 
 
-149 
-
-
-
 _Responselist_ is an optional parameter into which this command places response lines received from the IMAP server. Before calling this command, define the responselist to have a single Character column. When the command returns successfully, the response list contains the untagged and tagged responses received from the IMAP server as a result of executing this command. These sometimes include unsolicited information, for example, an update on the current number of messages in the selected mailbox. Each line in the response list is a response line received from the server. See RFC 3501 for more details, if you need to handle this sort of information. 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Issue a NOOP command to poll the server
 Do iResponseList.$define(iResponse)
-```
-
-```
 IMAPNoOp (iIMAPSocket,"",iResponseList) Returns lStatus
 If lStatus<0
-```
-
-```
 # NOOP command failed
 End If
 ```
 
-## **IMAPRecvHeaders** 
+<!-- p150-151 | IMAPRecvHeaders -->
+## IMAPRecvHeaders
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPRecvHeaders** (socket,messageuid,headers[,stsproc,responselist]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -10065,40 +7758,27 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-150 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Receive headers for message with UID 142 in the currently selected mailbox
 Calculate iUID as 142
-```
-
-```
 IMAPRecvHeaders (iIMAPSocket,iUID,lHeaders) Returns lStatus
 If lStatus<0
-```
-
-```
 # Command failed
 End If
 ```
 
-## **IMAPRecvMessage** 
+<!-- p151-151 | IMAPRecvMessage -->
+## IMAPRecvMessage
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPRecvMessage** (socket,messageuid,message[,stsproc,responselist]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -10120,46 +7800,33 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Receive message with UID 142 in the currently selected mailbox
 Calculate iUID as 142
-```
-
-```
 IMAPRecvMessage (iIMAPSocket,iUID,lMessage) Returns lStatus
 If lStatus<0
-```
-
-```
 # Command failed
 End If
 ```
 
-151 
+<!-- p152-152 | IMAPRenameMailbox -->
+## IMAPRenameMailbox
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-## **IMAPRenameMailbox** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPRenameMailbox** (socket,oldmailboxname,newmailboxname[,stsproc,responselist]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This Web command is multi-threaded, allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
-## **IMAPRenameMailbox** renames a mailbox. 
+IMAPRenameMailbox renames a mailbox.
 
 _Socket_ is an Omnis Long Integer field containing a socket opened to an IMAP server using IMAPConnect. 
 
@@ -10173,45 +7840,29 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Rename folder Test in the INBOX to Test2
-```
-
-```
 # "." is the hierarchy separator
-```
-
-```
 Calculate iMailbox as "INBOX.Test"
 Calculate iNewMailbox as "INBOX.Test2"
 IMAPRenameMailbox (iIMAPSocket,iMailbox,iNewMailbox) Returns lStatus
 If lStatus<0
-```
-
-```
 # RENAME command failed
 End If
 ```
 
-## **IMAPSelectMailbox** 
+<!-- p152-153 | IMAPSelectMailbox -->
+## IMAPSelectMailbox
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPSelectMailbox** (socket,mailboxname,messages,recent,uidnext,uidvalidity,unseen[,stsproc,responselist]) **Returns** status 
 
-152 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -10243,43 +7894,27 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Make INBOX the currently selected mailbox
-```
-
-```
 Calculate iMailbox as "INBOX"
-```
-
-```
 IMAPSelectMailbox (iIMAPSocket,iMailbox,iMessages,iRecent,iUIDNext,iUIDValidity,iUnseen) Returns lStatus
 If lStatus<0
-```
-
-```
 # SELECT command failed
 End If
 ```
 
-## **IMAPSetMessageFlags** 
+<!-- p153-154 | IMAPSetMessageFlags -->
+## IMAPSetMessageFlags
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPSetMessageFlags** (socket,messageuid,answered,deleted,draft,flagged,seen[,stsproc,responselist]) **Returns** status 
 
-153 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -10287,13 +7922,14 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 
 **IMAPSetMessageFlags** adds and removes flags for a message in the currently selected mailbox. Each flag value can be passed as follows: 
 
-|Value|Meaning|
-|---|---|
-|kFalse|Remove the fag from the message.|
-|kTrue|Add the fag to the message.|
-|kUnknown|Leave the fag unchanged.|
-
-
+Value
+Meaning
+kFalse
+Remove the flag from the message.
+kTrue
+Add the flag to the message.
+kUnknown
+Leave the flag unchanged.
 
 Before using this command, you must select a mailbox using the IMAPSelectMailbox command 
 
@@ -10321,14 +7957,11 @@ Note:
 
 You use **IMAPSetMessageFlags** to delete a message, by adding the \Deleted flag to the message. You can then permanently delete all messages in the currently selected mailbox with the \Deleted flag set, by calling IMAPExpungeMessages 
 
-## **Example** 
+### Example
 
 ```
 # Mark message 142 in the currently selected mailbox as deleted
 Calculate iUID as 142
-```
-
-```
 Calculate iAnswered as kUnknown
 Calculate iDeleted as kTrue
 Calculate iDraft as kUnknown
@@ -10336,33 +7969,20 @@ Calculate iFlagged as kUnknown
 Calculate iSeen as kUnknown
 IMAPSetMessageFlags (iIMAPSocket,iUID,iAnswered,iDeleted,iDraft,iFlagged,iSeen) Returns lStatus
 If lStatus<0
-```
-
-```
 # Command failed
-```
-
-```
 End If
 ```
 
-154 
+<!-- p155-155 | IMAPSubscribeMailbox -->
+## IMAPSubscribeMailbox
 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-**IMAPSubscribeMailbox** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPSubscribeMailbox** (socket,mailboxname[,stsproc,responselist]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -10384,44 +8004,28 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Add INBOX.Test to the subscribed mailboxes
-```
-
-```
 # "." is the hierarchy separator
-```
-
-```
 Calculate iMailbox as "INBOX.Test"
 IMAPSubscribeMailbox (iIMAPSocket,iMailbox) Returns lStatus
 If lStatus<0
-```
-
-```
 # SUBSCRIBE command failed
 End If
 ```
 
-## **IMAPUnsubscribeMailbox** 
+<!-- p155-156 | IMAPUnsubscribeMailbox -->
+## IMAPUnsubscribeMailbox
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **IMAPUnsubscribeMailbox** (socket,mailboxname[,stsproc,responselist]) **Returns** status 
 
-155 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -10431,7 +8035,7 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 
 _Socket_ is an Omnis Long Integer field containing a socket opened to an IMAP server using IMAPConnect. 
 
-## _Mailboxname_ is the name of the mailbox. 
+Mailboxname is the name of the mailbox.
 
 IMAP mailbox names are left-to-right hierarchical using a single character to separate levels of hierarchy. If you execute IMAPListMailboxes with empty RefName and MailboxName parameters, the returned list has a single line from which you can access the hierarchy separator. 
 
@@ -10443,43 +8047,28 @@ _Responselist_ is an optional parameter into which this command places response 
 
 This command returns an integer, which is less than zero if an error occurred. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Remove INBOX.Test from the subscribed mailboxes
-```
-
-```
 # "." is the hierarchy separator
-```
-
-```
 Calculate iMailbox as "INBOX.Test"
-```
-
-```
 IMAPUnsubscribeMailbox (iIMAPSocket,iMailbox) Returns lStatus
 If lStatus<0
-```
-
-```
 # UNSUBSCRIBE command failed
 End If
 ```
 
-## **Import data** 
+<!-- p156-157 | Import data -->
+## Import data
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Importing and Exporting|YES|NO<br>NO<br>All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Import data** list-or-row-name 
 
-## **Description** 
+### Description
 
 This command reads the next data item into the specified list or row variable. You use the **Import data** command to import data from a file or port. Once you select an import file or port, and issue a Prepare for import command, Import data adds the data to the specified list or row variable. 
 
@@ -10487,22 +8076,15 @@ If a record is successfully read from the file or port, Omnis sets the flag. An 
 
 After the import is complete, you should follow **Import data** with an End import and the appropriate Close import file or Close port. 
 
-156 
-
-
-
 There is a one-to-one mapping between the columns or fields in the import file and the columns in the list or row variable. Therefore, if there are fewer columns or fields in the import file than in the list or row, the excess import columns or fields are ignored. Likewise, if there are more columns in the list or row than in the import file, the excess columns are left blank. 
 
 The ‘LFonlyLineTermination’ item in the ‘default’ section of config.json allows you to control how carriage returns and line feeds are handled when importing data from a file. If true, when Omnis imports a tab- or comma-separated file and the file has no Carriage Return (CR) line separators, Omnis will then check for Line Feed (LF) line separators and use these to break record rows. 
 
-## **Example** 
+### Example
 
 ```
 # import from a csv file called myImport.txt in the root of your omnis tree
 Calculate lImportPath as con(sys(115),'myImport.txt')
-```
-
-```
 Set import file name {[lImportPath]}
 Prepare for import from file {Delimited (commas)}
 Import data lImportList
@@ -10510,28 +8092,24 @@ End import
 Close import file
 ```
 
-## **Import field from file** 
+<!-- p157-157 | Import field from file -->
+## Import field from file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Importing and Exporting|YES|NO<br>NO<br>All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Import field from file into** field-name ([Single character][,Leave in buffer]) 
 
-## **Options** 
+### Options
 
-|Single character|If specifed, the command reads a single character at a time|
-|---|---|
-|Leave in buffer|If specifed, the command leaves the data it returns in the buffer meaning|
-||that the next call to the command will return the same value|
+Single character
+If specified, the command reads a single character at a time
+Leave in buffer
+If specified, the command leaves the data it returns in the buffer meaning
+that the next call to the command will return the same value
 
-
-
-## **Description** 
+### Description
 
 This command reads a line of characters from the current import file to the specified field. It lets you read fields from a file without using a window and Import data. Usually the command reads a whole line at a time but there are options which modify this. 
 
@@ -10541,7 +8119,7 @@ The Leave in buffer option tells Omnis to read the string or single character bu
 
 An error will occur if the import file has not been opened; Omnis clears the flag on reaching the end of the file. Do not mix Import data and **Import field from file** because they use the input buffer in different ways. 
 
-## **Example** 
+### Example
 
 ```
 # import from a csv file called myImport.txt in the root of your omnis tree
@@ -10549,43 +8127,34 @@ Calculate lImportPath as con(sys(115),'myImport.txt')
 Set import file name {[lImportPath]}
 Prepare for import from file {Delimited (commas)}
 Repeat
-```
-
-```
 Import field from file int lImportField
 Until lImportField='start data'
 Do method ImportData
 Close import file
 ```
 
-157 
+<!-- p158-158 | Import field from port -->
+## Import field from port
 
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO
 
-
-**Import field from port** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Importing and Exporting|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Import field from port into** field-name ([Single character][,Leave in buffer][,Clear buffer][,Do not wait]) 
 
-## **Options** 
+### Options
 
-|Single character|If specifed the command reads a single character at a time|
-|---|---|
-|Leave in buffer|If specifed, the command leaves the data it returns in the buffer meaning that the next call to|
-||the command will return the same value|
-|Clear buffer|If specifed, the command clears the import buffer before executing|
-|Do not wait|If specifed, the command will not wait until data is available|
+Single character
+If specified the command reads a single character at a time
+Leave in buffer
+If specified, the command leaves the data it returns in the buffer meaning that the next call to
+the command will return the same value
+Clear buffer
+If specified, the command clears the import buffer before executing
+Do not wait
+If specified, the command will not wait until data is available
 
-
-
-## **Description** 
+### Description
 
 This command reads a line of characters from the current port to the specified field. **Import field from port** lets you read fields from a port without using a window and Import data. Usually the command reads a whole line at a time but there are options which modify this: 
 
@@ -10599,44 +8168,34 @@ Do not wait prevents Omnis from waiting until a string or character is available
 
 An error will occur if the import port has not been opened; Omnis clears the flag if nothing has been read. Do not mix the Import data and **Import field from port** commands because they use the input buffer in different ways. 
 
-## **Example** 
+### Example
 
 ```
 Set port name {COM1:}
 Prepare for import from port {One field per line}
 Repeat
-```
-
-```
 Import field from port int lImportField
 Until lImportField='start data'
 Do method ImportData
 Close import file
 ```
 
-## **Import fields** 
+<!-- p158-159 | Import fields -->
+## Import fields
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Importing and Exporting|YES|NO<br>NO<br>All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Import fields** (Insert records|Update records[,Indirect][,Disable messages]) {list-of-field-names (Name1,Name2,…)} 
 
-158 
-
-
-
 **Types** 
 
-## **Options** 
+### Options
 
 Insert records The command inserts new records Update records The command searches for existing records in the file and updates the records that it finds; data for which there is no matching record is ignored Indirect If specified, the command uses the contents of the first field as the list of fields Disable mesIf specified, the command does not open messages requiring a user sages response and instead it writes a limited amount of information to the trace log 
 
-## **Description** 
+### Description
 
 **Import fields** imports the data for the list of fields from the current import file into the data file. It provides runtime access to the functionality of the import data dialog in the IDE. The command sets the main file for the import to the file corresponding to the first field in the list. 
 
@@ -10644,14 +8203,11 @@ The Insert records option causes the command to insert new records for the data 
 
 The Update records option causes the command to search for an existing record in the data file, for each record in the file being imported, and then update that record. Import records for which there is no matching record in the data file are ignored. 
 
-## **Example** 
+### Example
 
 ```
 # import from a csv file called myImport.txt in the root of your omnis tree
 Calculate lImportPath as con(sys(115),'myImport.txt')
-```
-
-```
 Set import file name {[lImportPath]}
 Prepare for import from file {Delimited (commas)}
 Import fields (Insert records) {fCustomers.Surname,fCustomers.FirstName}
@@ -10659,27 +8215,20 @@ End import
 Close import file
 ```
 
-## **Insert line in list** 
+<!-- p159-160 | Insert line in list -->
+## Insert line in list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Insert line in list** { _line-number_ ( _values_ ) {default is current line}} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-159 
-
-
-
-## **Description** 
+### Description
 
 This command takes the current field values and inserts them at a particular line in the list. The new line is inserted before the specified line and all the lines below the specified line are moved down one place. 
 
@@ -10689,7 +8238,7 @@ You can specify the line number using a calculation. However, if the parameter f
 
 If there is no current line ( _LIST.$line_ = 0), the field values are added at the end of the list. If the line is beyond the current end of the list (for example, the LIST.$line given is greater than _LIST.$linecount_ ), **Insert line in list** is equivalent to _Add line to list_ . The flag is cleared if the list is already at its maximum size ( _LIST.$linemax_ ). 
 
-## **Example** 
+### Example
 
 ```
 # Insert 10 lines in between the 2 exisiting lines
@@ -10699,34 +8248,22 @@ Insert line in list {('Fred',10)}
 Insert line in list {('George',20)}
 For lCount from 1 to 10 step 1
 Insert line in list {2 ('Harry',22)}
-```
-
-```
 End For
-```
-
-```
 # Alternatively, you can use the $addbefore() and $addafter() methods to add lines to a list
 Do lMyList.$addbefore(1,'Harry',22)
-```
-
-```
 Do lMyList.$addafter(2,'William',31)
 ```
 
-## **Install menu** 
+<!-- p160-160 | Install menu -->
+## Install menu
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|YES|YES|NO<br>All|
+Command group: Menus | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Install menu** class-name[/instance-name] [(parameters)] 
 
-## **Description** 
+### Description
 
 This command installs an instance of the specified menu class on the main menu bar and assigns an instance name. The default instance name is the name of the menu class. The flag is set if the menu is installed. 
 
@@ -10734,13 +8271,10 @@ You can choose the menu class from a list containing your own menus in the curre
 
 If you use the **Install menu** command in a reversible block, the menu instance is removed from the menu bar when the method terminates. However, the order of the menus on the menu bar may not necessarily be the same as before. 
 
-## **Example** 
+### Example
 
 ```
 # Install the menu mView and pass the parameter
-```
-
-```
 # lView to its $construct method
 Calculate lView as 'Large'
 Install menu mView (lView)
@@ -10750,84 +8284,58 @@ Do $cinst.$objs.[pView].$checked.$assign(kTrue) ## Check the menu line pView
 Do $clib.$menus.mView.$open()
 ```
 
-160 
+<!-- p161-161 | Install toolbar -->
+## Install toolbar
 
+Command group: Toolbars | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-## **Install toolbar** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Toolbars|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Install toolbar** { _class_ [/ _instance_ ][/ _dock-area_ / _l_ / _t_ ][( _params_ )]{defaults are class settings}} 
 
-## **Description** 
+### Description
 
 This command installs the specified toolbar class into the named docking area. You specify the docking area using one of the toolbar constants: kDockingAreaTop, kDockingAreaBottom, kDockingAreaLeft,kDockingAreaRight, or kDockingAreaFloating. If you omit the docking area name the toolgroup is installed into the docking area specified in the class. You can install multiple toolbars onto the same docking area. 
 
 If the specified docking area is kDockingAreaFloating, then you can specify the left (/l) and top (/t) position of the toolbar instance in pixels . 
 
-## **Example** 
+### Example
 
 ```
 # show the left and right toolbar docking areas
 Show docking area {kDockingAreaLeft}
 Show docking area {kDockingAreaRight}
-```
-
-```
 # install a toolbar into each docking area
-```
-
-```
 Install toolbar {tbMyToolbar/kDockingAreaLeft}
 Install toolbar {tbMyOtherToolbar/kDockingAreaRight}
-```
-
-```
 # or you can install a toolbar notationally
-```
-
-```
 Do $clib.$toolbars.tbMyToolbar.$open('*',kDockingAreaLeft) Returns lToolBarRef
 ```
 
-## **Invert selection for line(s)** 
+<!-- p161-162 | Invert selection for line(s) -->
+## Invert selection for line(s)
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Invert selection for line(s)** ([ _All lines_ ]) { _line-number_ ( _calculation_ )} 
 
-## **Options** 
+### Options
 
 All lines If specified, the command affects all the lines in the list 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command inverts the selection state of a line, that is, from selected to deselected or vice-versa. You can specify a particular line in the list by entering either a number or a calculation. You can show the selection state on the window by invoking the Redraw lists (Selection only) command. 
 
 The All lines option inverts the selection states of all lines of the current list. If no line number is given, the current line selection is inverted. When a list is saved in the data file, the selection state of each line is stored. The following example selects all but the middle line of the list: 
 
-161 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Select list lines 2 and 4 and then invert the selection
@@ -10844,19 +8352,16 @@ Select list line(s) {4}
 Invert selection for line(s) (All lines)
 ```
 
-## **JavaScript:** 
+<!-- p162-162 | JavaScript: -->
+## JavaScript:
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Calculations|NO|NO|YES<br>All|
+Command group: Calculations | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **JavaScript:** javascript-code 
 
-## **Description** 
+### Description
 
 Use this command to insert raw JavaScript code into the method in the client methods JavaScript file. Consequently, this command cannot be run in a server method. 
 
@@ -10868,42 +8373,26 @@ You cannot insert an inline comment on any lines in a JavaScript: code block.
 Javascript: alert("I am an alert box!");
 ```
 
-## **Jump to start of loop** 
+<!-- p162-163 | Jump to start of loop -->
+## Jump to start of loop
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+Jump to start of loop
 
-## **Syntax** 
-
-## **Jump to start of loop** 
-
-## **Description** 
+### Description
 
 This command jumps to the Until or While command at the beginning of the current loop, missing out all commands after the jump. When used in a While–End While loop, **Jump to start of loop** jumps to the start of the loop so that Omnis can make the While test; the loop continues or terminates depending on the result of this test, whereas, Break to end of loop automatically terminates the loop regardless of the value of the condition. Placing a Jump outside a loop causes an error. 
 
-162 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Only calculate lBalance if an account number has been entered
 Calculate lBalance as 0
-```
-
-```
 Repeat
-```
-
-```
 Prompt for input Account Number Returns lAccountNumber (Cancel button)
-```
-
-```
 If flag false ## cancel button
 ```
 
@@ -10917,37 +8406,26 @@ If flag false ## cancel button
 
 ```
 End If
-```
-
-```
 Calculate lBalance as 100
-```
-
-```
 Until lBalance>0
 ```
 
-## **Launch program** 
+<!-- p163-164 | Launch program -->
+## Launch program
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Operating system|YES|NO<br>NO<br>All|
+Command group: Operating system | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Launch program** program-name|program-name,document-name **Returns** return-value ([Do not quit Omnis]) 
 
-## **Options** 
+### Options
 
-|Do not quit Omnis|This option is ignored on platforms other than macOS. When running on macOS, specify this option to|
-|---|---|
-||prevent Omnis from closing after launching the program|
+Do not quit Omnis
+This option is ignored on platforms other than macOS. When running on macOS, specify this option to
+prevent Omnis from closing after launching the program
 
-
-
-## **Description** 
+### Description
 
 This command launches the specified program. 
 
@@ -10967,21 +8445,14 @@ or
 
 /Applications/iTunes.app/Contents/macOS/iTunes 
 
-163 
-
-
-
 The default action is to quit Omnis, but the _Do not quit Omnis_ option lets you keep Omnis open. If you choose this option, Omnis will continue to run in the background, concurrently with the new program. A new program launched by Omnis will always be opened on top, even if Omnis is already in the background. The flag is set false if an error is detected, for example, if a program or file name cannot be found. When you execute **Launch program** , control passes from your application to the operating system and there is no automatic way of returning to Omnis. 
 
-## **Example** 
+### Example
 
 ```
 # Launch the specified program
 Launch program c:\windows\notepad.exe
 If flag false
-```
-
-```
 OK message (Icon,Sound bell ) {Couldn't find notepad.exe}
 End If
 ```
@@ -10993,41 +8464,31 @@ Calculate lMyScript as "/Users/user_1/my_script.sh"
 Launch program /System/Applications/Utilities/Terminal.app,[lMyScript] (Do not quit Omnis)
 ```
 
-## **Line:** 
+<!-- p164-164 | Line: -->
+## Line:
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Text|NO|NO|YES<br>All|
+Command group: Text | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Line:** _line-text_ 
 
-## **Description** 
+### Description
 
 Adds a line of text to the text buffer for the current method stack. The **Line:** command supports leading and trailing spaces and can contain square bracket notation, that is, you can include or add the contents of a variable to the text buffer. You build up the text block using the Begin text block and any combination of one or more _Text:_ or **Line:** commands. The Carriage return and Linefeed options of the _Begin text block_ command specify the line delimiter added to the text buffer after the text added by the **Line:** command. When you have placed one **Line:** command and you press Ctrl/Cmnd-N to create a new method line, a new **Line:** command is added. You should end a block of text with the End text block command, and you can return the contents of the text buffer using the Get text block command. 
 
-See the _Text:_ command which can have line specific options, unlike Line:. 
+See the _Text:_ command which can have line specific options, unlike Line:.
 
-## **Load connected records** 
+<!-- p164-165 | Load connected records -->
+## Load connected records
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|YES|YES|NO<br>All|
+Command group: Finding data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Load connected records** { _file-name_ } 
 
-164 
-
-
-
-## **Description** 
+### Description
 
 This command loads the connected records for the specified file. The **Load connected records** command ensures that the identity of the current connected records for the current record is correct. As Omnis automatically loads connected records of the main file into the current record buffer, this command is not usually required. However, in multi-user systems, this command ensures that, if any other workstation makes changes to the way in which records are connected, these changes will be reflected at the current workstation. 
 
@@ -11037,62 +8498,43 @@ If a parent record requires locking, another user is editing it, and the Wait fo
 
 If placed in a reversible block, the parent record reverts to its former value when the method terminates. If you need to read in grandparent records, you can add this command to the usual Next command: 
 
-## **Example** 
+### Example
 
 ```
 # Use load connected records to load the grandparent record,
-```
-
-```
 # as only the parent record of the main file is loaded after a find
 Set main file {fChild}
-```
-
-```
 Find first
-```
-
-```
 Load connected records {fParent}
-```
-
-```
 Do $cinst.$redraw()
 ```
 
-## **Load error handler** 
+<!-- p165-166 | Load error handler -->
+## Load error handler
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Error handlers|NO|YES|NO<br>All|
+Command group: Error handlers | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Load error handler** ([All libraries]) [name/]name (first-error-number, last-error-number) 
 
-## **Options** 
+### Options
 
 All libraries If specified, the error handler applies to errors encountered in all libraries, rather than just the calling library 
 
-## **Description** 
+### Description
 
 This command loads a specified method which handles errors which may occur within a library. You can specify a range of error codes to be handled by the handler by giving the first and last error number. If no range is specified, the handler is called for all errors. Errors are either Fatal or Warning. 
 
 Error codes such as kerrUnqindex, kerrBadnotation, kerrSQL, can also be used as parameters. The Catalog window lists all the constants available in Omnis. 
 
-## **Fatal errors** 
+Fatal errors
 
 A fatal error is one that normally stops method execution and drops into the debugger if available. The error code #ERRCODE is displayed on the status line in the debugger and is greater than 100,000. 
 
-## **Warning errors** 
+Warning errors
 
 A warning error is one that does not normally quit the method nor report an error description. The error code #ERRCODE is displayed on the status line in the debugger, if invoked, and is less than 100,000. 
-
-165 
-
-
 
 The check box option All libraries is provided. If this is not checked, the handler is called only for errors encountered in the library which loaded the error handler. This command leaves the flag unaffected and is reversible; that is, the handler is unloaded when the command is reversed. An error handler remains loaded until it is unloaded or the library containing the handler method is closed. Error handlers loaded within an error handler always unload when that error handler terminates. 
 
@@ -11102,7 +8544,7 @@ An error handler can use one of the Set error action commands (SEA) to set what 
 
 If an error occurs within an error handler, that error is handled in the usual way except that the original error handler will not be used (even if it could handle that error). It is possible to load error handlers within an error handler; these are meant to deal with errors within the handler and are unloaded automatically when the error handler completes execution. 
 
-## **Example** 
+### Example
 
 - `# pCode is defined as a Long Integer` 
 
@@ -11116,32 +8558,14 @@ If an error occurs within an error handler, that error is handled in the usual w
 
 ```
 End If
-```
-
-```
 # The following example handles the error returned by the data manager when an attempt to
-```
-
-```
 # duplicate a unique index occurs on update:
 Load error handler cMyErrorHandler/Errors
 Prepare for edit
 Enter data
-```
-
-```
 Update files if flag set
-```
-
-```
 # In the method Errors of code class cMyErrorHandler
-```
-
-```
 If pCode=kerrUnqindex
-```
-
-```
 OK message Error (Icon) {You have entered a duplicate field value/'X' has been appended to your entry}
 Calculate iValue as con(iValue,'X')
 ```
@@ -11164,23 +8588,16 @@ Else
 End If
 ```
 
-## **Load event handler** 
+<!-- p166-167 | Load event handler -->
+## Load event handler
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Externals|YES|YES|NO<br>All|
+Command group: Externals | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Load event handler** routine-name or library-name/routine-name (parameters) 
 
-166 
-
-
-
-## **Description** 
+### Description
 
 This command makes the specified external routine an event handler, enabling the routine to show its own windows, put its own menus on the menu bar, act as its own event filter, and so on. 
 
@@ -11196,25 +8613,22 @@ You can pass parameters to the external code by enclosing a comma-separated list
 
 In the routine itself, the parameters are read using the usual GetFldVal or GetFldNval with the predefined references Ref_parm1, Ref_parm2, and so on, Ref_parmcnt gives the number of parameters passed. If the field name is passed as a parameter, you can use SetFldVal or SetFldNval with Ref_parm1, and so on, to change the field’s value. 
 
-## **Example** 
+### Example
 
 ```
 Load event handler myEventHandler
 ```
 
-## **Load external routine** 
+<!-- p167-167 | Load external routine -->
+## Load external routine
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Externals|YES|YES|NO<br>All|
+Command group: Externals | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Load external routine** routine-name or library-name/routine-name (parameters) 
 
-## **Description** 
+### Description
 
 This command loads the specified external code into memory. You can enter the routine name as the parameter. If the library/resource is not in the EXTERNAL folder, the name of the file containing the library/resource and the library/resource name within that file are given as parameters. 
 
@@ -11224,43 +8638,36 @@ You can pass parameters to the external code by enclosing a comma-separated list
 
 In the routine itself, the parameters are read using the usual GetFldVal or GetFldNval with the predefined references Ref_parm1, Ref_parm2, and so on, Ref_parmcnt gives the number of parameters passed. If the field name is passed as a parameter, you can use SetFldVal or SetFldNval with Ref_parm1, and so on, to change the field’s value. 
 
-## **Example** 
+### Example
 
 ```
 Load external routine MathsLib/sqr (iNumber,iNumber2)
 ```
 
-167 
+<!-- p168-168 | Load from list -->
+## Load from list
 
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-## **Load from list** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Load from list** { _line-number_ ( _variable-names_ ) {default is current line}} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command transfers field values from the current list to the corresponding fields in the current record buffer. However, if you include a list of fields, the values in the current list are transferred to the specified fields (see example). Each column value, taken in the order it was defined, is copied to the corresponding field in the field list. 
 
-## **Field names parameter list** 
+Field names parameter list
 
 The command **Load from list** with ‘(CVAR1„CVAR12)’ specified will load the first column of the current line of the list into CVAR1, ignore the second column, and load the third column into LVAR12. If too few field names are specified, the other columns are not loaded. If too many field names are specified, the extra fields are cleared. Any conversions required between data types are carried out. 
 
 If the line number specified in the command line is empty, or if it evaluates to zero, the values are loaded from the current line. If the list is empty or if the line evaluates to a value greater than the total number of lines in the list, the flag is cleared and the fields in the parameter list or in the list definition are cleared. 
 
-## **Example** 
+### Example
 
 ```
 Set current list lMyList
@@ -11269,67 +8676,48 @@ Add line to list {('Fred',10)}
 Add line to list {('George',20)}
 Add line to list {('Harry',22)}
 Add line to list {('William',31)}
-```
-
-```
 Add line to list {('David',62)}
 Do lMyList.$line.$assign(4) ## set the current line
 Load from list ## load the values from the current line into lName and lAge
 Load from list {2} ## load the values from line 2 into lName and lAge
 Load from list {4 (lTmpName,lTmpAge)}
-```
-
-```
 # load the values from line 2 into lTmpName and lTmpAge
 ```
 
-## **Load page setup** 
+<!-- p168-169 | Load page setup -->
+## Load page setup
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Reports and Printing|NO|YES|NO<br>All|
+Command group: Reports and Printing | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-**Syntax** 
+### Syntax
 
 **Load page setup** 
 
-168 
-
-
-
-## **Description** 
+### Description
 
 This command loads the page setup from the current report class and makes it the current page setup. Every report class has optionally a page setup stored with it, for use when the report is printed. The flag is set if there is a current report class and it contains a page setup. When used in a reversible block the previous page setup is restored once the method has finished. 
 
 The stored page setup for a report class never becomes the current page setup unless a **Load page setup** command is issued. 
 
-## **Example** 
+### Example
 
 ```
 # Load the page setup for rMyReport
 Set report name rMyReport
 Load page setup
-```
-
-```
 Print report
 ```
 
-## **MailSplit** 
+<!-- p169-172 | MailSplit -->
+## MailSplit
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **MailSplit** ( _message_ , _headerlist_ , _body_ {Char|Bin|MIME-List}) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -11349,9 +8737,6 @@ Date: Mon, 12 Aug 1996 11:46:45 -0700
 From: someone@somedomain.com (PersonalName here)
 Message-Id: <199608121846.LAA09789@netcom8.netcom.com>
 To: someoneelse@somedomain.com
-```
-
-```
 Subject: This is an e-mail subject
 Hello from Omnis Software
 ```
@@ -11360,21 +8745,21 @@ _HeaderList_ is an Omnis list with two character columns. The list receives the 
 
 Attribute Value Received by omnis.net with SMTP; 12 Aug 1996 11:49:59 –0700 
 
-169 
-
-
-
-|Attribute|Value|
-|---|---|
-|Received|(from someone@localhost) by netcom8.netcom.com (8.6.13/Netcom)id LAA09789; Mon, 12 Aug 1996 11:46:45|
-||–0700|
-|Date|Mon, 12 Aug 1996 11:46:45 –0700|
-|From|someone@somedomain.com (PersonalName here)|
-|Message-Id|<199608121846.LAA09789@netcom8.netcom.com>|
-|To|someoneelse@somedomain.com|
-|Subject|This is an e-mail subject|
-
-
+Attribute
+Value
+Received
+(from someone@localhost) by netcom8.netcom.com (8.6.13/Netcom)id LAA09789; Mon, 12 Aug 1996 11:46:45
+–0700
+Date
+Mon, 12 Aug 1996 11:46:45 –0700
+From
+someone@somedomain.com (PersonalName here)
+Message-Id
+<199608121846.LAA09789@netcom8.netcom.com>
+To
+someoneelse@somedomain.com
+Subject
+This is an e-mail subject
 
 **Note** : Two header lines may have the same attribute name. This is within the RFC822 message header specification. In this case, the HeaderList has two lines with the same Attribute name, as with Received in the above example. Long header lines that are split and continued in the message header are concatenated into one line in the list, as with the second Received attribute in the above example. The colon at the end of the attribute is stripped. 
 
@@ -11384,11 +8769,11 @@ If Body is an Omnis character field, **MAILSplit** returns the body of the e-mai
 
 Alternatively, you can pass an Omnis list as the Body parameter. In this case, the HeaderList receives all of the headers, and the Body list receives either a single line containing the message body (if the message does not have MIME content), or a line for each MIME body part in the message body (if the message has MIME content). We discuss how MIME content is handled in this way below. 
 
-## **Header Values Containing International Characters** 
+Header Values Containing International Characters
 
 **MAILSplit** supports RFC 2047, for the UTF-8 and ISO8859-N character encodings. When it encounters text in header values that is encoded according to the RFC 2047 rules for the character encodings it supports, it converts the header value into its original value before storing it in the HeaderList. 
 
-## **MIME Content** 
+MIME Content
 
 MIME content can be thought of as a tree, which has a single root node, the message. Each node in the tree has a MIME type and a MIME subtype. 
 
@@ -11400,108 +8785,116 @@ Each node in the tree is referred to as a body part.
 
 The Body list receives a representation of the MIME content tree, with a line for each body part. Before calling **MAILSplit** , define a list with up to nine columns (the last three columns are optional): 
 
-|Column|Contains|
-|---|---|
-|Level|A long integer which indicates the level of this node in the tree. The single root node has|
-||level zero. The next level down is one, and so on. This will become clearer in some examples|
-||below.|
-|Content-type|The type of this body part e.g. “text” or “multipart”|
-|Content-subtype|The sub-type of this body part e.g. “plain”|
-|Filename|The name of the fle corresponding to this body-part. Used for leaf-nodes which are fle|
-||attachments.|
-|Character data|If the content-type is “text” or “message”, this column contains the data. Leaf nodes only.|
-|Binary data|If the content-type is not “text”, “message” or “multipart”, this column contains the data.|
-||Leaf nodes only.|
-|Character-set|The character set of the data. The commands only understand us-ascii and iso-8859-1. The|
-||latter is equivalent to the Ansi character set used on the Windows platforms. Character|
-||data in any other character set will not be handled correctly.|
+Column
+Contains
+Level
+A long integer which indicates the level of this node in the tree. The single root node has
+level zero. The next level down is one, and so on. This will become clearer in some examples
+below.
+Content-type
+The type of this body part e.g. “text” or “multipart”
+Content-subtype
+The sub-type of this body part e.g. “plain”
+Filename
+The name of the file corresponding to this body-part. Used for leaf-nodes which are file
+attachments.
+Character data
+If the content-type is “text” or “message”, this column contains the data. Leaf nodes only.
+Binary data
+If the content-type is not “text”, “message” or “multipart”, this column contains the data.
+Leaf nodes only.
+Character-set
+The character set of the data. The commands only understand us-ascii and iso-8859-1. The
+latter is equivalent to the Ansi character set used on the Windows platforms. Character
+data in any other character set will not be handled correctly.
 
+Column
+Contains
+Content-Transfer-Encoding
+How the data is encoded: “base64”, “quoted-printable”, “7bit” etc. The command handles
+decoding from base64 and quoted-printable, meaning that the data in the character and
+binary columns above has been decoded. On the Macintosh, character data in the
+iso-8859-1 character set has been converted to the Macintosh character set. On all
+platforms, the command replaces CRLFs with the Omnis newline character.
+Content-disposition
+The content disposition of the body part. Either empty, “attachment” or “inline”. This is a
+hint to the receiving application about how to handle the content. Inline body parts are
+intended to be displayed when the message is displayed, whereas attachments are
+considered separate from the main body of the mail message, and their display should not
+be automatic.
 
-
-170 
-
-
-
-|Column|Contains|
-|---|---|
-|Content-Transfer-Encoding|How the data is encoded: “base64”, “quoted-printable”, “7bit” etc. The command handles|
-||decoding from base64 and quoted-printable, meaning that the data in the character and|
-||binary columns above has been decoded. On the Macintosh, character data in the|
-||iso-8859-1 character set has been converted to the Macintosh character set. On all|
-||platforms, the command replaces CRLFs with the Omnis newline character.|
-|Content-disposition|The content disposition of the body part. Either empty, “attachment” or “inline”. This is a|
-||hint to the receiving application about how to handle the content. Inline body parts are|
-||intended to be displayed when the message is displayed, whereas attachments are|
-||considered separate from the main body of the mail message, and their display should not|
-||be automatic.|
-
-
-
-## Some example lists: 
+Some example lists:
 
 A message sent by a mailer such as Outlook Express, containing both text and HTML versions of the message text: 
 
-|Lev|Content-type|Content-subtype|File|Char|Bin<br>Char-set<br>Encoding<br>Disposition|
-|---|---|---|---|---|---|
-|0|multipart|Alternative||||
-|1|text|Plain||From Bob|iso-8859-1<br>quoted-printable|
-|1|text|Html||<!DOCTYPE HTML…|iso-8859-1<br>quoted-printable|
-
-
+Lev
+Content-type
+Content-subtype
+File
+Char
+Bin
+Char-set
+Encoding
+Disposition
+multipart
+Alternative
+text
+Plain
+From Bob
+iso-8859-1
+quoted-printable
+text
+Html
+<!DOCTYPE HTML…
+iso-8859-1
+quoted-printable
 
 A message sent by a mailer such as Outlook Express, containing both text and HTML versions of the message text, and having a single file attachment: 
 
-|Lev|Content-type|Content-subtype|File|Char|Bin<br>Char-set<br>Encoding<br>Disposition|
-|---|---|---|---|---|---|
-|0|multipart|mixed||||
-|1|multipart|alternative||||
-|2|text|plain||From Bob|iso-8859-1<br>quoted-printable|
-|2|text|html||<!DOCTYPE HTML…|iso-8859-1<br>quoted-printable|
-|1|application|octet-stream|App.h||This is my fle data…<br>base64<br>attachment|
+Lev
+Content-type
+Content-subtype
+File
+Char
+Bin
+Char-set
+Encoding
+Disposition
+multipart
+mixed
+multipart
+alternative
+text
+plain
+From Bob
+iso-8859-1
+quoted-printable
+text
+html
+<!DOCTYPE HTML…
+iso-8859-1
+quoted-printable
+application
+octet-stream
+App.h
+This is my file data…
+base64
+attachment
 
-
-
-## **Example** 
+### Example
 
 ```
 # Split and decompose pMessage as received from POP3Recv,POP3RecvHeaders,POP3RecvMessage,
-```
-
-```
 # IMAPRecvHeaders or IMAPRecvMessage
-```
-
-```
 # Return pDate, pFrom, pSubject and pBody (if message rather than headers) and save
-```
-
-```
 # any attachments in pEnclosurePath
-```
-
-```
 Do lHeaderList.$define(lAttribute,lValue)
-```
-
-```
 Do lMimeList.$define(lLevel,lContentType,lContentSubType,lFileName,lCharData,lBinData,lCharSet,lEncoding)
 MailSplit (pMessage,lHeaderList,lMimeList)
-```
-
-```
 # extract header information
-```
-
-```
 Do lHeaderList.$search(upp(lAttribute)='DATE'|upp(lAttribute)='FROM'|upp(lAttribute)='SUBJECT')
 Do lHeaderList.$first(kTrue,kFalse) Returns lLineRef
-```
-
-```
 While lLineRef
-```
-
-```
 Do lHeaderList.$loadcols()
 Switch upp(lAttribute)
 Case 'DATE'
@@ -11512,21 +8905,8 @@ Case 'SUBJECT'
 Calculate pSubject as lValue
 End Switch
 Do lHeaderList.$next(lLineRef,kTrue,kFalse)
-```
-
-```
 End While
-```
-
-```
 # decompose the MIME content from lMimeList
-```
-
-171 
-
-
-
-```
 For lMimeList.$line from 1 to lMimeList.$linecount step 1
 Do lMimeList.$loadcols()
 ```
@@ -11535,90 +8915,61 @@ Do lMimeList.$loadcols()
 
 ```
 End If
-```
-
-```
 If lFileName<>'' ## found file attachment, write the file to the enclosures folder
 Calculate lFilePath as con(pEnclosurePath,lFileName)
 Do lFileOps.$createfile(lFilePath)
 Do lFileOps.$openfile(lFilePath)
 Do lFileOps.$writefile(lBinData) Returns lReturnFlag
 Do lFileOps.$closefile()
-```
-
-```
 End If
 End For
 ```
 
-## **Maximize window instance** 
+<!-- p172-172 | Maximize window instance -->
+## Maximize window instance
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|NO|NO|NO<br>All|
+Command group: Windows | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Maximize window instance window-instance-name
 
-## **Syntax** 
-
-## **Maximize window instance** _window-instance-name_ 
-
-## **Description** 
+### Description
 
 Maximizes the specified window instance. 
 
-## **Example** 
+### Example
 
 ```
 # Maximize the window wMyWindow to full screen
 Maximize window instance wMyWindow
-```
-
-```
 # Alternatively, you can do it like this
-```
-
-```
 Do $cwind.$maximize()
-```
-
-```
 # Or like this
-```
-
-```
 Do $iwindows.wTest.$bringtofront(kTrue) ## if kTrue, the window instance is brought to the front restoring
 ```
 
-## **Merge list** 
+<!-- p172-173 | Merge list -->
+## Merge list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|YES|NO|NO<br>All|
+Command group: Lists | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Merge list** list-or-row-name ([Clear list][,Use search]) 
 
-## **Options** 
+### Options
 
-|Clear list|If specifed, the command empties the current list and defnes it to match the specifed list before executing|
-|---|---|
-|Use search|If specifed, the command uses the current search to select data|
+Clear list
+If specified, the command empties the current list and defines it to match the specified list before executing
+Use search
+If specified, the command uses the current search to select data
 
-
-
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-172 
-
-
-
-## **Description** 
+### Description
 
 This command adds the specified list to the end of the list previously specified as the current list. Once the list reaches its maximum size, the command finishes and clears the flag. Omnis does not check that the same fields are stored in the two lists (which they should be). If the same fields are not present, data is not transferred. 
 
@@ -11626,7 +8977,7 @@ If you use the _Clear list_ option, the current list is initially cleared and de
 
 If you use the _Use search_ option, only lines matching the search class are merged or added to the current list. All lines match if there is no current search class. 
 
-## **Example** 
+### Example
 
 ```
 # To merge the list iList1 to the current list iList2
@@ -11646,58 +8997,33 @@ Merge list iList1 (Use search)
 Do iList2.$merge(iList1)
 ```
 
-## **Message timeout** 
+<!-- p173-174 | Message timeout -->
+## Message timeout
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|NO|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Message timeout** { _interval_ (seconds)} 
 
-## **Description** 
+### Description
 
 This command specifies the time Omnis has to wait for DDE responses to messages sent to other applications. There is a default value of 30 seconds when Omnis is started. 
 
 The following general purpose method sets up a DDE channel by increasing the message timeout by 5 seconds until successful. You pass three parameters to the method, that is, the initial timeout, the channel number and the program ‘name|document’. 
 
-## **Example** 
+### Example
 
 ```
 # open dde channel
-```
-
-```
 # parameter pNum is short int
-```
-
-```
 # parameter pChannel is short int
-```
-
-```
 # parameter pProgDoc is character
 Set DDE channel number {pChannel}
-```
-
-```
 Repeat
-```
-
-```
 Message timeout {pNum}
 Open DDE channel {[pProgDoc]}
 If flag false
-```
-
-173 
-
-
-
-```
 Yes/No message {Give up 'Open DDE channel'?}
 If flag true
 Close DDE channel
@@ -11707,19 +9033,16 @@ Calculate pNum as pNum+5
 Until flag true
 ```
 
-## **Minimize window instance** 
+<!-- p174-174 | Minimize window instance -->
+## Minimize window instance
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|NO|NO|NO<br>All|
+Command group: Windows | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Minimize window instance window-instance-name
 
-## **Syntax** 
-
-## **Minimize window instance** _window-instance-name_ 
-
-## **Description** 
+### Description
 
 This command minimizes the specified window instance: 
 
@@ -11727,7 +9050,7 @@ This command minimizes the specified window instance:
 
 - On macOS, the window is shown as an icon in the dock. 
 
-## **Example** 
+### Example
 
 ```
 # Minimize the window wMyWindow to reduce it to an icon
@@ -11736,23 +9059,20 @@ Minimize window instance wMyWindow
 Do $cwind.$minimize()
 ```
 
-## **Modify class** 
+<!-- p174-174 | Modify class -->
+## Modify class
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|YES|NO|NO<br>All|
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Modify class** { _class-name_ } 
 
-## **Description** 
+### Description
 
 This command opens a library class in design mode. Method execution continues and does not wait for the design window to be closed. **Modify class** lets users modify new search and report classes created with the New class command. Opening a class in design mode when one of its methods is running causes a Quit all methods to be carried out before the design window opens. If the class does not exist, the command clears the flag. 
 
-## **Example** 
+### Example
 
 ```
 New class {Search Class/sOverDrawn}
@@ -11762,48 +9082,39 @@ Set search name sOverDrawn
 Print report (Use search)
 ```
 
-174 
+<!-- p175-175 | Modify methods -->
+## Modify methods
 
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-## **Modify methods** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Modify methods** { _class-name_ } 
 
-## **Description** 
+### Description
 
 This command opens the method editor for the specified class. Method execution continues and does not wait for the design window to be closed. Opening a method in design mode first causes a Quit all methods if one of the methods for that class is running. The flag is cleared if the specified class does not exist, or if it is a file, search, or report class. 
 
-## **Example** 
+### Example
 
-## `New class {Window/wMyWindow}` 
-
+`New class {Window/wMyWindow}`
 ```
 # open at the $construct() method for the window wMyWindow
 Modify methods {wMyWindow}
 ```
 
-## **Move file** 
+<!-- p175-175 | Move file -->
+## Move file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Move file** ( _from_ - _path_ , _to_ - _path_ ) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -11811,86 +9122,57 @@ This command moves the file specified in from-path to the folder named in to-pat
 
 **Move file** cannot move a file across volumes (disks). Use Copy file and Delete file instead. **Move file** cannot move directories. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt the user for a file to move together with a path
-```
-
-```
 # to move to and move the file
-```
-
-```
 Do FileOps.$putfilename(lPathname,'Select a file for moving','') Returns lReturnFlag
 If lReturnFlag
-```
-
-```
 Do FileOps.$selectdirectory(lNewPath,'Path to move to') Returns lReturnFlag
 If lReturnFlag
-```
-
-```
 Move file (lPathname,lNewPath) Returns lErrCode
-```
-
-```
+End If
 End If
 ```
 
-```
-End If
-```
+<!-- p176-176 | New class -->
+## New class
 
-175 
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **New class** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **New class** {superclass-name or class-type/name} 
 
-## **Description** 
+### Description
 
 This command creates a new class with the specified type and class name. For example, you can use New class in association with Modify class to allow users to create new search and report classes. Attempting to create a class with the same name as one which already exists clears the flag and displays an error message. 
 
-## **Example** 
+### Example
 
 ```
 New class {Window/wMywindow}
 Modify class {wMyWindow}
 ```
 
-## **Next** 
+<!-- p176-177 | Next -->
+## Next
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|YES|YES|NO<br>All|
+Command group: Finding data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Next on** field-name ([Exact match][,Use search]) 
 
-## **Options** 
+### Options
 
-|Exact match|If specifed, the index value of the feld in suitable records must equal the current value|
-|---|---|
-|Use search|If specifed, the command uses the current search to select data|
+Exact match
+If specified, the index value of the field in suitable records must equal the current value
+Use search
+If specified, the command uses the current search to select data
 
-
-
-## **Description** 
+### Description
 
 This command locates the next record using the current find table. The **Next** command works in the same way as the corresponding option on the Commands menu but with no redraw, allowing you to work through a file. It is usually used after a Find command which creates a find table of records. 
 
@@ -11910,56 +9192,37 @@ If the _Exact match_ option is chosen, the next record is loaded where the index
 
 If you use **Next** with a search, it builds a find table if necessary and finds the next record listed on the find table which meets the search criteria. 
 
-176 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Add 5% to all account balances
-```
-
-```
 Find first on fAccounts.Code
-```
-
-```
 While flag true
-```
-
-```
 Calculate fAccounts.Balance as fAccounts.Balance+((fAccounts.Balance/100)*5)
 Update files
 Next
-```
-
-```
 End While
 ```
 
-## **No/Yes message** 
+<!-- p177-177 | No/Yes message -->
+## No/Yes message
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Message boxes|YES|NO|NO<br>All|
+Command group: Message boxes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **No/Yes message** title ([Icon][,Sound bell][,Cancel button]) {message} 
 
-## **Options** 
+### Options
 
-|Icon|If specifed, the message displays an operating system specifc icon|
-|---|---|
-|Sound bell|If specifed, the system bell sounds when the command displays the message|
-|Cancel button|If specifed, the message has a cancel button|
+Icon
+If specified, the message displays an operating system specific icon
+Sound bell
+If specified, the system bell sounds when the command displays the message
+Cancel button
+If specified, the message has a cancel button
 
-
-
-## **Description** 
+### Description
 
 This command displays a message box containing the specified message and provides a No and a Yes pushbutton. You can include a Cancel button by checking the _Cancel button_ option. When the message box is displayed method execution is halted temporarily; it remains open until the user clicks on one of the buttons before continuing. The No button is the default button and can therefore be selected by pressing the Return key. 
 
@@ -11969,72 +9232,41 @@ For greater emphasis, you can select an Icon for the message box (the default �
 
 You can insert a **No/Yes message** at any appropriate point in a method. If the user clicks the No button, the flag is cleared; otherwise, a Yes sets the flag. You can use the msgcancelled() function to detect if the user pressed the Cancel button. 
 
-## **Example** 
+### Example
 
 ```
 # Open a No/Yes dialog and display the option selected
-```
-
-```
 No/Yes message My Editor (Icon,Cancel button) {Do you wish to save the changes you have made ?}
 If msgcancelled()
-```
-
-```
 OK message My Editor {Cancel button pressed}
-```
-
-```
 Else
-```
-
-```
 If flag true
 OK message My Editor {OK button pressed}
-```
-
-```
 Else
-```
-
-```
 OK message My Editor {Cancel button pressed}
-```
-
-```
+End If
 End If
 ```
 
-```
-End If
-```
+<!-- p178-178 | OK message -->
+## OK message
 
-177 
+Command group: Message boxes | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-**OK message** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Message boxes|NO|NO|YES<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **OK message** title ([Icon][,Sound bell][,Cancel button]) {message} 
 
-## **Options** 
+### Options
 
-|Icon|If specifed, the message displays an operating system specifc icon|
-|---|---|
-|Sound bell|If specifed, the system bell sounds when the command displays the message|
-|Cancel button|If specifed, the message has a cancel button|
+Icon
+If specified, the message displays an operating system specific icon
+Sound bell
+If specified, the system bell sounds when the command displays the message
+Cancel button
+If specified, the message has a cancel button
 
-
-
-## **Description** 
+### Description
 
 This command displays the specified message and waits for the user to click the OK or Cancel button before continuing. Method execution is halted temporarily while the message box is displayed. Note: for JavaScript client-executed methods this command uses a standard alert() or confirm() dialog. 
 
@@ -12046,27 +9278,20 @@ The message box displayed by this command has an OK button by default, but you c
 
 You can use square bracket notation in the message text to display the current value of fields and variables. 
 
-## **Example** 
+### Example
 
-‘ `omnis # Open a Ok messsage dialog, if cancel is pressed abort printing Calculate lUserName as 'My Name' OK message My Editor (Icon,Cancel button) {Ready to print, press Ok to continue} If msgcancelled() OK message My Editor {Printing aborted by user [lUserName]} Quit method End If` 1‘ 
+‘ `omnis # Open a Ok messsage dialog, if cancel is pressed abort printing Calculate lUserName as 'My Name' OK message My Editor (Icon,Cancel button) {Ready to print, press Ok to continue} If msgcancelled() OK message My Editor {Printing aborted by user [lUserName]} Quit method End If` 1‘
 
-## **On** 
+<!-- p178-179 | On -->
+## On
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|YES<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **On** _event-code_ or _codes_ (code1,code2,…) 
 
-178 
-
-
-
-## **Description** 
+### Description
 
 This command is used in an event handling method and marks the beginning of a code segment that executes when the specified event (or one of a number events) is received by the current event handling method. An **On** command also marks the end of any preceding **On** statement. You specify the event or list of events using the event constants. 
 
@@ -12076,120 +9301,94 @@ You should place any code which is to be executed for all events before the firs
 
 See also Quit event handler. 
 
-## **Example** 
+### Example
 
 ```
 # This example shows typical event handling for a field
-```
-
-```
 On evBefore
-```
-
-```
 # code to process an evBefore event
-```
-
-```
 On evAfter
-```
-
-```
 # code to process an evAfter event
 ```
 
-## `On evClick,evDoubleClick` 
-
+`On evClick,evDoubleClick`
 ```
 # code to process both evClick and evDoubleClick events
 ```
 
-## **On default** 
+<!-- p179-179 | On default -->
+## On default
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|YES<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+On default
 
-## **Syntax** 
-
-## **On default** 
-
-## **Description** 
+### Description
 
 This command is used in an event handling method and handles any events not handled by the preceding On commands. You use the On command to mark the beginning and end of an On statement. You should place any code which is to be executed for all events before the first On command. 
 
-## **Example** 
+### Example
 
 “‘omnis On evClick # process code for evClick event 
 
-On default # handle all other events “‘ 
+On default # handle all other events “‘
 
-## **Open check data log** 
+<!-- p179-180 | Open check data log -->
+## Open check data log
 
-179 
+Command group: Data management | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|NO|YES|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Open check data log** ([ _Do not wait for user_ ]) 
 
-## **Options** 
+### Options
 
 Do not wait for user Unless this option is specified, the user must close the window before method execution continues, and before doing anything else 
 
-## **Description** 
+### Description
 
 This command opens the check data log. If the Do not wait for user option is specified, execution continues with the next command, otherwise execution stops until the user has closed the log. You use the check data log to manage the problems encountered in a data file after the Check data command is run. The data log window lets you repair any problems listed in the window, print the contents of the log, or clear the log. 
 
-## **Example** 
+### Example
 
 ```
 Check data (Check indexes)
 Open check data log
 ```
 
-## **Open data file** 
+<!-- p180-182 | Open data file -->
+## Open data file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data fles|YES|NO|NO<br>All|
+Command group: Data files | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Open data file** ([Do not close other data][,Read-only][,No conversion by runtime][,Convert without user prompts][,Full Unicode conversion]) {file-name[,internal-name] or odb://[address:port:]name[,internal-name]} 
 
-## **Options** 
+### Options
 
 Do not close other dataIf specified, the command does not close all open data files before opening the specified data file 
 
-|Read-only|If specifed, the data fle is opened in read-only mode|
-|---|---|
-|No conver-|Omnis normally offers to convert data fles created by an earlier version of Omnis. If this option is|
-|sion by runtime|specifed, the runtime version of Omnis will not offer to convert the fle, and the command will fail|
-|Convert with-|If specifed, and conversion is allowed, Omnis will immediately perform the conversion without|
-|out user prompts|giving the user any prompts that require a response; also, the user cannot cancel the conversion|
-|Full Unicode con-|Unicode Studio only. If specifed, and convert without user prompts is specifed, do full Unicode|
-|version|conversion instead of quick conversion (quick conversion is only ok when you know all character|
-||data in the fle is 7 bit)|
+Read-only
+If specified, the data file is opened in read-only mode
+No conver-
+Omnis normally offers to convert data files created by an earlier version of Omnis. If this option is
+sion by runtime
+specified, the runtime version of Omnis will not offer to convert the file, and the command will fail
+Convert with-
+If specified, and conversion is allowed, Omnis will immediately perform the conversion without
+out user prompts
+giving the user any prompts that require a response; also, the user cannot cancel the conversion
+Full Unicode con-
+Unicode Studio only. If specified, and convert without user prompts is specified, do full Unicode
+version
+conversion instead of quick conversion (quick conversion is only ok when you know all character
+data in the file is 7 bit)
 
-
-
-180 
-
-
-
-## **Description** 
+### Description
 
 This command opens the specified Omnis data file (.df1 file) and makes that file the “current” data file, using either the pathname of the datafile, or the location of the datafile hosted via the Omnis Data Bridge (ODB). It clears the flag if the data file cannot be found or opened. If the _Do not close other data_ check box option is not specified, all existing data files are closed even if the command fails. Opening a data file which is already open will close and reopen that data file. The _Read-only_ Studio/Omnis 7 check box causes the data file to be opened in read-only mode. This lets you open an Omnis 7 data file in read-only mode in Omnis Studio without conversion taking place. 
 
@@ -12209,13 +9408,10 @@ If the data file is to be accessed using the Omnis Data Bridge (ODB), then inste
 
 where _address:port_ is the TCP/IP address and port number of the ODB server, e.g. 127.0.0.1:5900, and _name_ is the name of a data file accessed using the ODB server. You can omit address:port:, in which case Omnis uses the address and port stored in the $odbserver root preference. Note that the value of $odbserver is stored in the file odb.txt in the studio folder of the Omnis installation tree. 
 
-## **Example** 
+### Example
 
 ```
 Open data file {Sales.df1,Sales}
-```
-
-```
 If flag true
 Find first
 If flag true
@@ -12228,9 +9424,6 @@ Update files if flag set
 End If
 End If
 End If
-```
-
-```
 # Example 2 - Transfer datafile 1 to datafile 2
 Open data file {pOrders.df1,pOrders1}
 If flag true
@@ -12244,23 +9437,13 @@ Open data file {pOrders.df1,pOrders1}
 Next on fOrders.OrderNum
 End While
 End If
-```
-
-181 
-
-
-
-```
 # Example 3 - Open a data file on a specific ODB server
 Open data file {odb://127.0.0.1:5900:test}
-```
-
-```
 # Example 4 - Open a data file using the ODB server identified by $prefs.$odbserver
 Open data file {odb://test}
 ```
 
-## **Please note** : 
+Please note :
 
 - When the Open data file command is used with an odb:// prefix and an _internal-name_ parameter, a comma separator is still required, for example: 
 
@@ -12268,21 +9451,18 @@ Open data file {odb://test}
 Open data file odb://127.0.0.1:5900:test, myDatafile
 ```
 
-- In Studio 10.0 and above, curly braces are not required around the command parameters. 
+- In Studio 10.0 and above, curly braces are not required around the command parameters.
 
-## **Open DDE channel** 
+<!-- p182-182 | Open DDE channel -->
+## Open DDE channel
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|YES|YES|NO<br>Windows|
+Command group: Exchanging data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Open DDE channel** { _program-name_ | _topic-name_ } 
 
-## **Description** 
+### Description
 
 This command opens the current channel for exchanging data. If there is a valid response, the flag is set and the channel is successfully opened. If the channel is already open, the existing conversation is closed. 
 
@@ -12292,175 +9472,136 @@ This command is reversible, that is, a previous conversation will reopen if this
 
 When the command is used in a method containing a reversible block, and if a new conversation is initiated using the same channel number as an existing conversation, the original continues to process incoming messages only, and at the end of the method, the new conversation is stopped and the original becomes fully active. 
 
-## **Example** 
+### Example
 
 ```
 Set DDE channel number {2}
 Open DDE channel {Omnis|Country}
 If flag false
-```
-
-```
 OK message {The Country library is not running}
-```
-
-```
 Else
-```
-
-```
 Do method TransferData
-```
-
-```
 Close DDE channel
-```
-
-```
 OK message {Update finished}
 End If
 ```
 
-## **Open file** 
+<!-- p182-183 | Open file -->
+## Open file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-182 
-
-
-
-## **Syntax** 
+### Syntax
 
 **Open file** ( _path_ , _refnum_ [, _‘r’_ ]) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt the user for a file for opening
 Do FileOps.$putfilename(lPathname,'Select a file','') Returns lReturnFlag
 If lReturnFlag
-```
-
-```
 Open file (lPathname,lRefNum)
 End If
 ```
 
-## **Open library** 
+<!-- p183-184 | Open library -->
+## Open library
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Libraries|YES|NO|NO<br>All|
+Command group: Libraries | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Open library** ([Do not close others][,Enable conversion by runtime][,Do not open startup task][,Convert without user prompts]) libraryfile-name,internal-name,password (parameters) 
 
-## **Options** 
+### Options
 
-|Do not close oth-|If specifed, the command does not close all open libraries before opening the specifed library|
-|---|---|
-|ers||
-|Enable conver-|The development version of Omnis offers to convert libraries created by an earlier version of Omnis.|
-|sion by runtime|If this option is specifed, the runtime version of Omnis will also offer to convert such libraries|
-|Do not open startup|task<br>If specifed, the command does not construct an instance of the startup task when it opens the|
-||library|
-|Convert with-|If specifed, and conversion is allowed, Omnis will immediately perform the conversion without|
-|out user prompts|giving the user any prompts that require a response; also, the user cannot cancel the conversion|
+Do not close oth-
+If specified, the command does not close all open libraries before opening the specified library
+ers
+Enable conver-
+The development version of Omnis offers to convert libraries created by an earlier version of Omnis.
+sion by runtime
+If this option is specified, the runtime version of Omnis will also offer to convert such libraries
+Do not open startup
+task
+If specified, the command does not construct an instance of the startup task when it opens the
+library
+Convert with-
+If specified, and conversion is allowed, Omnis will immediately perform the conversion without
+out user prompts
+giving the user any prompts that require a response; also, the user cannot cancel the conversion
 
-
-
-## **Description** 
+### Description
 
 This command opens the specified library file and closes other libraries, if specified. You specify the library name (including path name if required), internal name, password, and startup method parameters of the library to be opened. If the disk file with the specified path name cannot be opened or is not a valid library, the flag is cleared and no libraries are closed. 
 
 If the _internal name_ of an opened library is specified, a check is made to ensure the internal name is unique among the open libraries, and a runtime error occurs if this is not the case. If no internal name is specified, the default internal name is the disk name of the file with the path name and suffix removed. For example, the internal name for ‘hd:myfiles:testlib.lbs’ is ‘testlib’. 
 
-## **Do not close others** 
+Do not close others
 
 The _Do not close others_ option lets you keep open all other libraries. Otherwise, all other open libraries are closed (see the Close library command for the consequences of closing a library). If an attempt is made to open a library which is already open, that library is closed and reopened. 
 
-## **Startup task** 
+Startup task
 
 If the _Do not open startup task_ option is specified, the startup task construct for the opened library is not called. Otherwise, the startup task $construct() method is called and the parameters for it are passed. The startup task instance name will be either the library name or the library internal name if it has one: it is not called Startup_Task. 
 
-183 
-
-
-
-## **Enable conversion by runtime** 
+Enable conversion by runtime
 
 If you select the _Enable conversion by runtime_ option, and the library was created with a previous version of Omnis, then the runtime version of Omnis can convert the library if the user allows. The default is that an Omnis runtime will not ask the user if they want to convert the library. 
 
-## **Passwords** 
+Passwords
 
 If a _password_ is specified, an attempt is made to open the library with that password. If it is not a valid password or no password is specified, the library is opened in the usual way, that is, if the library does not need a master password, it is opened at the master level; otherwise, the usual prompt for password dialog is opened (the library is closed and a flag false returned if this dialog is closed without a password being entered). 
 
-## **Example** 
+### Example
 
 ```
 # Open the library mylib.lbs from the root of your
-```
-
-```
 # omnis studio tree
-```
-
-```
 Calculate lLibPath as con(sys(115),'mylib.lbs')
 Open library (Do not close others) [lLibPath],MYLIB
 If flag true
-```
-
-```
 OK message {Library Opened!}
 End If
 ```
 
-## **Open lookup file** 
+<!-- p184-185 | Open lookup file -->
+## Open lookup file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|_Data fles_|YES|YES|NO<br>All|
+Command group: Data files | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Open lookup file** {lookup-name,data-file-name,file-class-name,index-field} **Open lookup file** lookup-name,data-file-name,file-classname,index-field (Studio 10 and later) 
 
-## **Description** 
+### Description
 
 This command opens an Omnis data file for use as a lookup file. You give each lookup file a reference name which you use in subsequent lookup() functions to select a particular data file and file class. You can open any Omnis data file as a lookup file, including any data file accessed via the Omnis Data Bridge (ODB). 
 
 In a lookup file, you can use the file classes to look up field values based on an indexed search. Each file class should consist of at least two fields: the first is the index (usually a character field), the second is any field type. For example, the data file Lookup.df1 has a file class called fCities with the following structure: 
 
-|File name|Field1|Field2|
-|---|---|---|
-|fPic|Char Indexed|Picture|
-|fCities|Char Indexed|Char|
-
-
+File name
+Field1
+Field2
+fPic
+Char Indexed
+Picture
+fCities
+Char Indexed
+Char
 
 The parameters for **Open lookup file** are separated by “,”. The first parameter is a label that you create to become the reference to that lookup “channel”. If you omit this label, Omnis assumes that you will use only one lookup file whereupon you can use lookup() without its first parameter. The label you give to each lookup is case-insensitive and if you use the same one twice, the previous lookup file is closed. A flag true is returned if the data file is found and opened. 
 
 The example at the bottom opens a data file called Lookup.df1 and assigns the label “City” to the lookup channel. The City lookup uses the file class fCities within that data file and uses the first index to search for the required data. The OK message uses lookup() to search the first indexed field for an exact match with the value “I”. If the match is found, the value of field 2 in the matched record is returned and displayed as part of the OK message. If no match is found, lookup() returns an empty value. 
-
-184 
-
-
 
 Note that the index and field are specified as _numbers_ because your particular library may not include the file class used in the lookup data file. If you omit either number, the default is to use the first field as the index, and the second as the field value to be returned in the lookup() function. 
 
@@ -12468,8 +9609,7 @@ Omnis opens the data file using the following rules. Omnis first tries to open t
 
 Under Windows and Linux, Omnis searches the paths included in the Omnis environment variable. The Omnis environment variable must contain a semicolon separated list of pathnames, for example: 
 
-## `C:\OMNIS\LOOKUPS#D:\OMNIS\LOOKUPS` 
-
+`C:\OMNIS\LOOKUPS#D:\OMNIS\LOOKUPS`
 Under macOS, Omnis searches the System folder, Omnis folder and then the root of each mounted volume, in that order. 
 
 The flag is set if the lookup is successful, that is, the data file is opened, the file slot exists and the indexed field is indeed indexed. The lookup file is closed if the command is reversed (see **Begin reversible block** ). 
@@ -12488,63 +9628,32 @@ You can maintain the data within the lookup file from within the library by:
 
 You can also load multiple data files with Open data file. 
 
-## **Example** 
+### Example
 
 ```
 Open lookup file {City,Lookup.df1,fCities,1}
-```
-
-```
 If flag true
-```
-
-```
 OK message {The city you require is [lookup('City','I',2)]}
-```
-
-```
 End If
-```
-
-```
 Open lookup file {City2,Lookup.df1,fCities2}
-```
-
-```
 Open lookup file {City,Lookup.df1,fCities}
-```
-
-```
 Open lookup file {Country,Lookup.df1,fCountries}
-```
-
-```
 # You can also open a lookup file accessed using the Omnis Data Bridge (ODB)
-```
-
-```
 Open lookup file {City,odb://127.0.0.1:5900:LookUpData,fCities,1}
 ```
 
-## **Open runtime data file browser** 
+<!-- p185-186 | Open runtime data file browser -->
+## Open runtime data file browser
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|NO|NO|NO<br>All|
+Command group: Data management | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Open runtime data file browser
 
-## **Syntax** 
+### Description
 
-## **Open runtime data file browser** 
-
-## **Description** 
-
-185 
-
-
-
-## **Example** 
+### Example
 
 ```
 Open data file {Salaries.df1}
@@ -12552,149 +9661,105 @@ Set current data file {Salaries}
 Open runtime data file browser
 ```
 
-## **Open task instance** 
+<!-- p186-186 | Open task instance -->
+## Open task instance
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Tasks|NO|NO|NO<br>All|
+Command group: Tasks | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Open task instance** class-name[/instance-name] [(parameters)] 
 
-## **Description** 
+### Description
 
 This command opens the specified task and assigns an instance name. You can include a list of parameters which are sent to the $construct() method in the task instance. Note that startup task instance is normally opened when the library opens: its name will be either the library name or the library internal name if it has one. 
 
-## **Example** 
+### Example
 
 ```
 Open task instance tkMyTask (1)
-```
-
-```
 # or do it like this
-```
-
-```
 Do $tasks.tkMyTask.$open('*',1) ## * is the default instance name
-```
-
-```
 # Then in the $construct of tkMyTask
-```
-
-```
 If pOpenWindow ## pOpenWindow is a boolean parameter variable
-```
-
-```
 Open window instance wMyWindow
-```
-
-```
 End If
 ```
 
-## **Open trace log** 
+<!-- p186-186 | Open trace log -->
+## Open trace log
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Debugger|NO|NO|NO<br>All|
+Command group: Debugger | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Open trace log** ([ _Clear trace log_ ]) 
 
-## **Options** 
+### Options
 
 Clear trace log If specified, the command clears the trace log 
 
-## **Description** 
+### Description
 
 This command opens the trace log. The trace log can also be opened via the Tools menu. 
 
-## **Example** 
+### Example
 
 ```
 # open the trace log and clear any existing messages
 Open trace log (Clear trace log )
 ```
 
-186 
+<!-- p187-188 | Open window instance -->
+## Open window instance
 
+Command group: Windows | Flag affected: NO | Reversible: YES | Execute on client: P NO A
 
-
-**Open window instance** 
-
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Windows|NO|YES|NO|All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Open window instance** _class_ [/ _instance_ ] [/ _l_ / _t_ / _r_ / _b_ / _cen_ / _max_ / _min_ / _stk_ ] [( _params_ )] 
 
-## **Description** 
+### Description
 
 This command opens an instance of the specified window class. You can specify the position and size of the window instance (using the left, top, right, bottom coordinates in pixels), and you can center, maximize, minimize, and stack the window. Furthermore, you can send a list of parameters to the window’s $construct() method. 
 
 **Open window instance** lets you open multiple instances of the same window class. The default instance name for a window is the class name, but if you want to open multiple instances of the same window class you must assign a unique name to each instance. Window instance names are case-sensitive. 
 
-## **Window Position and Size** 
+Window Position and Size
 
 You can specify the position of the top-left corner of the window instance by adding the coordinates to the end of the windowname/instance-name parameter, that is, window-name/instance-name/left/top. You specify the position in pixels, the origin being /0/0, that is, under the menu bar. By providing all four coordinates, you can specify the position and size of the window instance. 
 
-## **Centering and Stacking Windows** 
+Centering and Stacking Windows
 
 The /CEN option automatically centers the window instance. You can include the four window size coordinates with the /CEN option so the window is sized and centered. 
 
 The /STK option opens the window instance about 12 pixels (the stack offset) to the right and down from the current top window. When a stacked window reaches the edge of the screen, it is placed back at the top of the stack, offset slightly from the first window. 
 
-## **Maximizing and Minimizing Windows** 
+Maximizing and Minimizing Windows
 
 The /MAX option opens and maximizes the window instance. If you include the position and size coordinates with this option, the window is opened with the specified position and size and then maximized. 
 
 The /MIN option opens and minimizes the window instance. If you include the position and size coordinates with this option, the window is opened with the specified position and size and then minimized. 
 
-## **$construct() Method and Passing Parameters** 
+$construct() Method and Passing Parameters
 
 When you open a window instance, the $construct() method for that instance is run. In this method, you place commands which set up the conditions required by the window. For example, you may want to set the main file, build particular lists, and so on. Just as with Do method and Do code method you can send parameters to the window using **Open window instance.** 
 
 Reversible blocks in the $construct() method do not reverse until the window instance is closed, unlike a normal method whose reversible blocks reverse on termination of the method. 
 
-## **Example** 
+### Example
 
 ```
 # Open 2 instances of the window wMyWindow stacked
 Open window instance wMyWindow/wInst1/CEN
 Open window instance wMyWindow/wInst2/STK
-```
-
-```
 # Alternatively, you can let Omnis assign enumerated names to
 # multiple instances by specifying ‘*’ as the instance name.
 Open window instance wMywindow/*
 Open window instance wMywindow/*
 # Specify the size and location when opening the window wMyWindow
 Open window instance wMyWindow/*/10/10/100/100
-```
-
-```
 # Specify the size and location in variables
-```
-
-187 
-
-
-
-```
 Calculate lLeft as 10
 Calculate lRight as 100
 Calculate lTop as 10
@@ -12709,19 +9774,16 @@ Open window instance wMyWindow/*/MIN
 Open window instance wMyWindow/*/ (lMyVar1,lMyVar2)
 ```
 
-## **Optimize method** 
+<!-- p188-188 | Optimize method -->
+## Optimize method
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|NO|YES|NO<br>All|
+Command group: Methods | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Optimize method
 
-## **Syntax** 
-
-## **Optimize method** 
-
-## **Description** 
+### Description
 
 This command stores an optimized form of the method so when the method is executed for a second time it runs much faster. You should position this command so that it is the first executable statement of the method, except when you put it in a reversible block. Methods which are executed frequently, such as control methods and loops, are best optimized. The command is reversible and does not change the flag. 
 
@@ -12729,13 +9791,10 @@ This command stores an optimized form of the method so when the method is execut
 
 **WARNING** Optimizing too many methods will increase the memory used which may eventually result in a slowdown or worse. 
 
-## **Example** 
+### Example
 
 ```
 # Build a list of invoices for the first overdrawn account
-```
-
-```
 Optimize method
 Set main file {fAccounts}
 Set current list iInvoices
@@ -12749,31 +9808,24 @@ Next
 End While
 ```
 
-## **OR selected and saved** 
+<!-- p188-189 | OR selected and saved -->
+## OR selected and saved
 
-188 
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **OR selected and saved** ([ _All lines_ ]) { _line-number_ ( _calculation_ )} 
 
-## **Options** 
+### Options
 
 All lines If specified, the command affects all the lines in the list 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command performs a logical OR of the Saved selection with the Current selection. To allow sophisticated manipulation of data via lists, a list can store two selection states for each line; the “Current” and the “Saved” selection. The Current and Saved selections have nothing to do with saving data on the disk; they are no more than labels for two sets of selections. The lists may be held in memory and never saved to disk: they will still have a Current and Saved selection state for each line but they will be lost if not saved. When a list is stored in the data file, both sets of selections are stored. 
 
@@ -12781,20 +9833,27 @@ You can specify a particular line in the list by entering either a number or a c
 
 The **OR selected and saved** command performs a logical OR on the Saved and Current states and puts the result into the Current selection. Hence, if either or both the Current and Saved states are selected, the Current state becomes selected, but if both states are deselected, the resulting Current state will remain deselected. 
 
-## **Logic Table (S=selected, D=deselected)** 
+Logic Table (S=selected, D=deselected)
 
-|Saved|Current|Resulting Current State|
-|---|---|---|
-|S|S|S|
-|D|S|S|
-|S|D|S|
-|D|D|D|
-
-
+Saved
+Current
+Resulting Current State
+S
+S
+S
+D
+S
+S
+S
+D
+S
+D
+D
+D
 
 The _All lines_ option performs the OR on all lines of the current list. The following example selects all lines of the list. 
 
-## **Example** 
+### Example
 
 ```
 # Lines 3 and 5 remain selected as line 3 is the
@@ -12812,76 +9871,58 @@ Select list line(s) {5}
 OR selected and saved (All lines)
 ```
 
-189 
+<!-- p190-190 | Paste from clipboard -->
+## Paste from clipboard
 
+Command group: Clipboard | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**Paste from clipboard** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Clipboard|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Paste from clipboard** field-name ([Redraw field][,All windows]) 
 
-## **Options** 
+### Options
 
-|Redraw feld|If specifed, the command reloads|
-|---|---|
-||affected window felds with the new|
-||value of the data feld, after it has|
-||performed the operation; note that this|
-||takes the ‘All windows’ option into|
-||account|
-|All windows|If specifed, the command applies to all|
-||open window instances, rather than|
-||just the top open window instance|
+Redraw field
+If specified, the command reloads
+affected window fields with the new
+value of the data field, after it has
+performed the operation; note that this
+takes the ‘All windows’ option into
+account
+All windows
+If specified, the command applies to all
+open window instances, rather than
+just the top open window instance
 
-
-
-## **Description** 
+### Description
 
 This command pastes the contents of the clipboard into the specified field, current selection or at the insertion point. When the fieldname parameter is specified, **Paste from clipboard** pastes the contents of the clipboard into the field replacing the contents of the whole field. However, when the _field-name_ parameter is not specified the command will paste the contents of the clipboard at the current selection (a range of selected characters) or the insertion point within the current field. 
 
-## **Example** 
+### Example
 
 ```
 # Copy one field to another then clear the first field
 Copy to clipboard iName
-```
-
-```
 Paste from clipboard iDeliveryName (Redraw field)
 Clear data iName (Redraw field)
 ```
 
-## **POP3Connect** 
+<!-- p190-191 | POP3Connect -->
+## POP3Connect
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **POP3Connect** ( _server_ , _username_ , _password_ [, _stsproc_ , _secure_ {Default zero insecure;1 secure;2 use STARTTLS}, _verify_ {Default kTrue}]) **Returns** socket 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This Web command is multi-threaded, allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
 **POP3Connect** establishes a connection to a POP3 server. If **POP3Connect** succeeds, it returns the socket opened to the POP3 server. You can use this socket with the other POP3 commands which require a socket argument. If an error occurs, **POP3Connect** returns an error code, which is less than zero. Possible error codes are listed in the Web Command Error Codes Appendix. 
-
-190 
-
-
 
 Note that it is essential that you call POP3Disconnect when you have finished using the connection to the POP3 server. 
 
@@ -12901,7 +9942,7 @@ _Verify_ is an optional Boolean parameter which is only significant when Secure 
 
 _Socket_ is an Omnis Long integer field which receives the socket for the new connection. If an error occurs, **POP3Connect** returns an error code with a value less than zero. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Establish a connection to the POP3 server lServer for user
@@ -12912,29 +9953,22 @@ Calculate lPassword as 'mypassword'
 POP3Connect (lServer,lUserName,lPassword) Returns iSocket
 ```
 
-## **POP3DeleteMessage** 
+<!-- p191-192 | POP3DeleteMessage -->
+## POP3DeleteMessage
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **POP3DeleteMessage** ( _socket_ , _messagenumber_ [, _stsproc_ ]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This Web command is multi-threaded, allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
 **POP3DeleteMessage** marks a message stored on a POP3 server for deletion. The POP3 server deletes messages marked for deletion when you call POP3Disconnect. Before calling POP3Disconnect, you can call POP3UndoDeletes, to remove the deletion mark from all messages. 
-
-191 
-
-
 
 _Socket_ is an Omnis Long Integer field containing a socket opened to a POP3 server using POP3Connect. 
 
@@ -12944,38 +9978,29 @@ _StsProc_ is an optional parameter containing the name of an Omnis method that *
 
 _Status_ is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Delete the first message for user lUsername from the POP3
-```
-
-```
 # server lServer
 Calculate lServer as 'my.pop3.server'
 Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
 POP3Connect (lServer,lUserName,lPassword) Returns iSocket
 POP3DeleteMessage (iSocket,1)
-```
-
-```
 POP3Disconnect (iSocket) ## message is not deleted until disconnect
 ```
 
-## **POP3Disconnect** 
+<!-- p192-192 | POP3Disconnect -->
+## POP3Disconnect
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **POP3Disconnect** ( _socket_ [, _stsproc_ ]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -12989,7 +10014,7 @@ _StsProc_ is an optional parameter containing the name of an Omnis method that *
 
 _Status_ is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Close the connection to the POP3 server lServer
@@ -13000,23 +10025,16 @@ POP3Connect (lServer,lUserName,lPassword) Returns iSocket
 POP3Disconnect (iSocket)
 ```
 
-192 
+<!-- p193-193 | POP3ListMessages -->
+## POP3ListMessages
 
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-**POP3ListMessages** 
-
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **POP3ListMessages** ( _socket_ , _messagenumber_ {0 to list all}, _list_ [, _stsproc_ ]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -13036,45 +10054,29 @@ _StsProc_ is an optional parameter containing the name of an Omnis method that *
 
 _Status_ is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # List details of all messages for user lUserName not marked for
 # deletion on the POP3 server lServer in lMailList
-```
-
-```
 Calculate lServer as 'my.pop3.server'
-```
-
-```
 Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
 POP3Connect (lServer,lUserName,lPassword) Returns iSocket
 Do lMailList.$define(lMsgNum,lMsgSize)
-```
-
-```
 POP3ListMessages (iSocket,0,lMailList) Returns lStatus
 ```
 
-## **POP3MessageCount** 
+<!-- p193-194 | POP3MessageCount -->
+## POP3MessageCount
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **POP3MessageCount** ( _socket_ [, _stsproc_ ]) **Returns** _messagecount_ 
 
-193 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -13088,14 +10090,11 @@ _StsProc_ is an optional parameter containing the name of an Omnis method that *
 
 _MessageCount_ is an Omnis Long Integer field which receives the number of messages. If an error occurs, the returned value is an error code with a value less than zero. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Find out how many messages exist on the POP3 server lServer
 # for user lUserName
-```
-
-```
 Calculate lServer as 'my.pop3.server'
 Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
@@ -13103,19 +10102,16 @@ POP3Connect (lServer,lUserName,lPassword) Returns iSocket
 POP3MessageCount (iSocket) Returns lMessageCount
 ```
 
-## **POP3Recv** 
+<!-- p194-195 | POP3Recv -->
+## POP3Recv
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|All|
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **POP3Recv** ( _server_ , _user_ , _pass_ , _list_ [, _delete_ , _stsproc_ , _maxmessages_ , _secure_ {Default zero insecure;1 secure;2 use STARTTLS}, _verify_ {Default kTrue}]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -13131,10 +10127,6 @@ _Pass_ is an Omnis Character field containing the password for the account speci
 
 _List_ is an Omnis list field defined to contain a single column of type binary or character. The column receives the Internet e-mail messages, one per line. The column variable should be large enough to receive the e-mail message, including the header. Note that 
 
-194 
-
-
-
 you can pass the message data stored in each row to MailSplit, in order to parse the message. For correct results with many of the encodings supported by MailSplit you must define the list to have a binary column. 
 
 _Delete_ is an Omnis Boolean field which, if true, indicates that the messages will be deleted from the server once they have been downloaded into MailList. The default is false, so messages remain on the server if the argument is omitted. 
@@ -13149,7 +10141,7 @@ _Secure_ is an optional Boolean parameter which indicates if a secure connection
 
 _Verify_ is an optional Boolean parameter which is only significant when Secure is not kFalse. When Verify is kTrue, the command instructs the installed SSL library to verify the server’s identity using its certificate; if the verification fails, then the connection will not be established. You can pass Verify as kFalse, to turn off this verification; in this case, the connection will still be encrypted, but there is a chance the server is an impostor. In order to perform the verification, the installed SSL library uses the Certificate Authority Certificates in the cacerts sub-folder of the secure folder in the Omnis folder. If you use your own Certificate Authority to self-sign certificates, you can place its certificate in the cacerts folder, and the installed SSL library will use it after you restart Omnis. 
 
-## **Example** 
+### Example
 
 ```
 # Retrieve all messages for user lUsername from the POP3 server
@@ -13159,25 +10151,19 @@ Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
 Calculate lDelete as kTrue
 Do lMailList.$define(lMessage)
-```
-
-```
 POP3Recv (lServer,lUserName,lPassword,lMailList,lDelete) Returns lStatus
 ```
 
-## **POP3RecvHeaders** 
+<!-- p195-196 | POP3RecvHeaders -->
+## POP3RecvHeaders
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **POP3RecvHeaders** (socket,messagenumber,headers[,stsproc]) **Returns** status 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -13189,57 +10175,38 @@ _Socket_ is an Omnis Long Integer field containing a socket opened to a POP3 ser
 
 _MessageNumber_ is an Omnis Long Integer field which identifies the message for which the headers are to be read. Message numbers are assigned by the POP3 server, after you call POP3Connect, starting with 1 for the first message, 2 for the second, and so on. 
 
-195 
-
-
-
 _Headers_ is an Omnis Binary or Character field which receives the headers for the specified message. Note that you can pass the result to MailSplit, in order to parse the headers. When calling MailSplit, pass an empty list variable as the body argument. For correct results with many of the encodings supported by MailSplit you must receive into a Binary field. 
 
 _StsProc_ is an optional parameter containing the name of an Omnis method that **POP3RecvHeaders** calls with status messages. **POP3RecvHeaders** calls the method with no parameters, and the status information in the variable #S1. The status information logs protocol messages exchanged on the connection to the server. 
 
 _Status_ is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Note** 
+### Note
 
 _**POP3RecvHeaders**_ uses an optional POP3 protocol command, so that it may not work with all POP3 servers. 
 
-## **Example** 
+### Example
 
 ```
 # Read the header for the first message stored on the POP3 server
-```
-
-```
 # lServer for user lUserName
-```
-
-```
 Calculate lServer as 'my.pop3.server'
-```
-
-```
 Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
-```
-
-```
 POP3Connect (lServer,lUserName,lPassword) Returns iSocket
 POP3RecvHeaders (iSocket,1,lHeaders) Returns lStatus
 ```
 
-## **POP3RecvMessage** 
+<!-- p196-197 | POP3RecvMessage -->
+## POP3RecvMessage
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|All|
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **POP3RecvMessage** ( _socket_ , _messagenumber_ , _message_ [,stsproc]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -13257,18 +10224,11 @@ _StsProc_ is an optional parameter containing the name of an Omnis method that *
 
 _Status_ is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-196 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Read the first message stored on the POP3 server lServer for user
 # lUserName
-```
-
-```
 Calculate lServer as 'my.pop3.server'
 Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
@@ -13276,19 +10236,16 @@ POP3Connect (lServer,lUserName,lPassword) Returns iSocket
 POP3RecvMessage (iSocket,1,lMessage) Returns lStatus
 ```
 
-## **POP3Stat** 
+<!-- p197-198 | POP3Stat -->
+## POP3Stat
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **POP3Stat** ( _server_ , _user_ , _pass_ [, _stsproc_ , _secure_ {Default zero insecure;1 secure;2 use STARTTLS}, _verify_ {Default kTrue}]) **Returns** _waitingmessages_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -13312,45 +10269,29 @@ _Verify_ is an optional Boolean parameter which is only significant when Secure 
 
 _WaitingMessages_ is an Omnis Long Integer field which receives an error status, or the number of e-mail messages waiting to be collected on the specified server for the specified account. 
 
-197 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Check to see if there is any e-mail waiting to be received for lUserName
 Calculate lServer as 'my.pop3.server'
-```
-
-```
 Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
 POP3Stat (lServer,lUserName,lPassword) Returns lWaitingMessages
 If lWaitingMessages>0
-```
-
-```
 # receive mail
-```
-
-```
 End If
 ```
 
-## **POP3UndoDeletes** 
+<!-- p198-198 | POP3UndoDeletes -->
+## POP3UndoDeletes
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|External commands|YES|NO|NO|All|
+Command group: External commands | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **POP3UndoDeletes** ( _socket_ [, _stsproc_ ]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -13364,47 +10305,28 @@ _StsProc_ is an optional parameter containing the name of an Omnis method that *
 
 _Status_ is an Omnis Long Integer field which receives the result of executing the command. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Remove the deletion mark from all messages currently marked for
-```
-
-```
 # deletion on the POP3 Server lServer
-```
-
-```
 Calculate lServer as 'my.pop3.server'
-```
-
-```
 Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
-```
-
-```
 POP3Connect (lServer,lUserName,lPassword) Returns iSocket
 POP3UndoDeletes (iSocket) Returns lStatus
 ```
 
-## **Popup menu** 
+<!-- p198-199 | Popup menu -->
+## Popup menu
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Menus|YES|NO|NO|All|
+Command group: Menus | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **Popup menu** _menu-name_ ([ _x-coordinate_ , _y-coordinate_ , _menu-constructor-parameters_ ]) 
 
-198 
-
-
-
-## **Description** 
+### Description
 
 This command installs the specified menu as a popup menu at the specified location. The location is the x,y screen coordinate relative to the (0,0) position. Under Windows, the coordinate (0,0) is the point directly under the menu bar within the Omnis application window. Under Linux and macOS, (0,0) is literally the top left corner of the screen. If you omit the x,y coordinates the menu pops up at the current mouse/pointer position. 
 
@@ -13414,7 +10336,7 @@ The mouseover() function returns the mouse/pointer position relative to the open
 
 If desired, you can supply parameters after the x and y coordinates. The command passes these parameters to the constructor of the user-defined menu instance. When passing constructor parameters, leave the x and y coordinate parameters as either empty or #NULL to popup the menu in the current mouse position. 
 
-## **Example** 
+### Example
 
 ```
 # Prevent the default context menu appearing and open the menu mView instead
@@ -13424,21 +10346,18 @@ If desired, you can supply parameters after the x and y coordinates. The command
 
 - `On evRMouseDown ## requires the property $rmouseevents set to kTrue Process event and continue (Discard event)` 
 
-   - `Popup menu mView` 
+   - `Popup menu mView`
 
-## **Popup menu from list** 
+<!-- p199-199 | Popup menu from list -->
+## Popup menu from list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|YES|NO|NO<br>All|
+Command group: Menus | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Popup menu from list** _list-name_ **at** _x-coordinate, y-coordinate_ 
 
-## **Description** 
+### Description
 
 This command installs the specified list as a popup menu at the specified x,y screen location. Under Windows, the coordinate 0,0 is the point directly under the menu bar within the application area. Under Linux and macOS, 0,0 is literally the top left corner of the screen. If you omit the x,y coordinate from this command the menu pops up at the current mouse/pointer position. 
 
@@ -13448,31 +10367,24 @@ This command clears the flag if the user does not select a list line and LIST.$l
 
 The mouseover() function returns the mouse/pointer position relative to the open window and not the Omnis application window. Using this function to specify the x and y position of the popup menu may not produce the effect you want. 
 
-## **Example** 
+### Example
 
 - `# Prevent the default context menu appearing and open a menu containing the lines defined in the list # lMenuLines` 
 
 - `# $event of object on window class` 
 
-- `On evRMouseDown ## requires the property $rmouseevents set to kTrue Process event and continue (Discard event) Do lMenuLines.$define(lMenuLine) Do lMenuLines.$add('Option 1') Do lMenuLines.$add('Option 2') Do lMenuLines.$add('Option 3') Popup menu from list lMenuLines at` 
+- `On evRMouseDown ## requires the property $rmouseevents set to kTrue Process event and continue (Discard event) Do lMenuLines.$define(lMenuLine) Do lMenuLines.$add('Option 1') Do lMenuLines.$add('Option 2') Do lMenuLines.$add('Option 3') Popup menu from list lMenuLines at`
 
-199 
+<!-- p200-201 | Prepare for edit -->
+## Prepare for edit
 
+Command group: Changing data | Flag affected: YES | Reversible: YES | Execute on client: P NO A
 
+### Syntax
 
-**Prepare for edit** 
+Prepare for edit
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Changing data|YES|YES|NO|All|
-
-
-
-## **Syntax** 
-
-## **Prepare for edit** 
-
-## **Description** 
+### Description
 
 This command prepares Omnis for editing data. It brings records into memory ready for updating and rereads the current records when in multi-user mode in case another user has made a change to a record since it was read in. Your method can then alter the values of the records. The contents of the current record buffer are not written back to disk until Update files is encountered. 
 
@@ -13480,7 +10392,7 @@ If there is a window open and you require data to be entered via that window, En
 
 Prepare for edit/insert mode is cleared only by a Cancel prepare for update, Update files or Quit all methods command. You can build lists, print reports and change the main file in the middle of an update without cancelling the Prepare for… mode. 
 
-## **Multi-user considerations** 
+Multi-user considerations
 
 Records in the current record buffer from Read/write files will be locked when **Prepare for edit** is executed, so as to prevent simultaneous editing of a record. The lock is removed by Update files or any command which cancels the Prepare for mode. 
 
@@ -13488,18 +10400,12 @@ If Wait for semaphores is active, a **Prepare for edit** will wait for a record 
 
 In the following method, the Edit mode is used to process the whole of a file. Enter data is not used as no user intervention is required. Update files writes data to the disk and clears the Prepare for.. mode and record locks. 
 
-## **Example** 
+### Example
 
 ```
 # The following example is equivalent to the 'edit record' on the commands menu which can be installed using
 Prepare for edit
-```
-
-```
 Enter data
-```
-
-```
 If flag true
 Update files
 Else
@@ -13509,9 +10415,6 @@ End If
 # In the following method, the Edit mode is used to process the whole of a file. Enter data
 # is not used as no user intervention is required. Update files writes data to the disk and
 # clears the Prepare for.. mode and record locks.
-```
-
-```
 # In ‘Wait for semaphores’ mode:
 Set main file {fAccounts}
 Find first on fAccounts.Code
@@ -13526,13 +10429,6 @@ Set main file {fAccounts}
 Find first on fAccounts.Code
 While flag true
 Repeat
-```
-
-200 
-
-
-
-```
 Prepare for edit
 Until flag true
 Calculate fAccounts.Balance as fAccounts.Balance-10
@@ -13563,62 +10459,49 @@ Until #F|(lCount>lTries)
 Wait for semaphores
 ```
 
-## **Prepare for export to file** 
+<!-- p201-202 | Prepare for export to file -->
+## Prepare for export to file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Importing and Exporting|YES|NO|NO<br>All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Prepare for export to file** { _export-format_ } 
 
 Export Formats Delimited (commas) Delimited (tabs) One field per line Omnis data transfer Delimited (user delimiter) 
 
-## **Description** 
+### Description
 
 This command prepares to export records to a file in one of the specified data formats. The file must previously have been set using Set print or export file name. 
 
-## **Example** 
+### Example
 
 ```
 # export to a file called myExport.txt in the root of your omnis tree
 Calculate lExportPath as con(sys(115),'myExport.txt')
 Set print or export file name {[lExportPath]}
 Prepare for export to file {Delimited (commas)}
-```
-
-201 
-
-
-
-```
 Export data lExportList
 End export
 Close print or export file
 ```
 
-## **Prepare for export to port** 
+<!-- p202-202 | Prepare for export to port -->
+## Prepare for export to port
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Importing and Exporting|YES|NO|NO<br>All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Prepare for export to port** { _export-format_ } 
 
 Export Formats Delimited (commas) Delimited (tabs) One field per line Omnis data transfer Delimited (user delimiter) 
 
-## **Description** 
+### Description
 
 This command prepares to export records to a port in one of the specified data formats. The file must previously have been set using Set port name or Prompt for port name. 
 
-## **Example** 
+### Example
 
 ```
 # export to port Com1
@@ -13628,54 +10511,41 @@ Export data lExportList
 End export
 ```
 
-## **Prepare for import from client** 
+<!-- p202-203 | Prepare for import from client -->
+## Prepare for import from client
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Importing and Exporting|YES|NO|NO|Windows|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO | Execute on client: P NO W
 
-
-
-## **Syntax** 
+### Syntax
 
 **Prepare for import from client** { _export-format_ } 
 
 Export Format Delimited (commas) Delimited (tabs) One field per line Omnis data transfer Delimited (user delimiter) 
 
-**Description** 
+### Description
 
-202 
-
-
-
-## **Example** 
+### Example
 
 ```
 Prepare for import from client {Delimited (commas)}
 If flag true
-```
-
-```
 Import data lImportList
 End If
 End import
 ```
 
-## **Prepare for import from file** 
+<!-- p203-203 | Prepare for import from file -->
+## Prepare for import from file
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Importing and Exporting|YES|NO|NO|All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
+### Syntax
 
-
-## **Syntax** 
-
-## **Prepare for import from file** { _export-format_ } 
+Prepare for import from file { export-format }
 
 Export Formats Delimited (commas) Delimited (tabs) One field per line Omnis data transfer Delimited (user delimiter) 
 
-## **Description** 
+### Description
 
 This command prepares Omnis for a series of Import data commands. You must specify the format for the import data as the parameter, otherwise an error will occur. The parameter can contain square bracket notation but must evaluate to a valid import format name. You should use the Set import file name command to specify the name of the file to be read in. 
 
@@ -13687,14 +10557,11 @@ You can use a $control() method in conjunction with the Import data command.
 
 If there are too few fields on the window, imported fields will be lost. If there are too many, the extra fields are cleared. You can use the Do not flush command to speed up the import when there is only one user logged into the data file. 
 
-## **Example** 
+### Example
 
 ```
 # import from a csv file called myImport.txt in the root of your Omnis tree
 Calculate lImportPath as con(sys(115),'myImport.txt')
-```
-
-```
 Set import file name {[lImportPath]}
 Prepare for import from file Delimited (commas)
 Import data lImportList
@@ -13702,19 +10569,12 @@ End import
 Close import file
 ```
 
-## **Prepare for import from port** 
+<!-- p203-204 | Prepare for import from port -->
+## Prepare for import from port
 
-203 
+Command group: Importing and Exporting | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Importing and Exporting|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Prepare for import from port** { _export-format_ } 
 
@@ -13722,40 +10582,34 @@ Export Formats
 
 Delimited (commas) Delimited (tabs) One field per line Omnis data transfer Delimited (user delimiter) 
 
-## **Description** 
+### Description
 
 This command prepares Omnis for importing data from a port. It is similar to the Prepare for import from file command. The user can cancel the import of data while **Prepare for import from port** is waiting for data from the port. If this happens, Omnis clears the flag. 
 
 Set port name defines which port is used. Under macOS, the choice is 1 (Modem port) or 2 (Printer port). Under Linux and Windows, the choices are Com1:, Com2:, and so on. 
 
-## **Example** 
+### Example
 
 ```
 Set port name {COM1:}
 Prepare for import from port {One field per line}
 Repeat
-```
-
-```
 Import field from file int lImportField
 Until lImportField='start data'
 Do method ImportData
 Close import file
 ```
 
-## **Prepare for insert** 
+<!-- p204-205 | Prepare for insert -->
+## Prepare for insert
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|YES|YES|NO<br>All|
+Command group: Changing data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Prepare for insert
 
-## **Syntax** 
-
-## **Prepare for insert** 
-
-## **Description** 
+### Description
 
 This command prepares Omnis for inserting new data into the main file. It clears the main file and prepares to insert a new record into the main file. All Read/write non-main file records in the current record buffer are reread if a record has been changed. You can edit data in all the read/write files in the buffer, other than the main file. 
 
@@ -13767,56 +10621,37 @@ If the main file is changed while in Prepare for insert mode, the main file at t
 
 In multi-user mode, the Prepare for… commands reread the current records from the data file if another user has edited a record. 
 
-204 
-
-
-
-## **Example** 
+### Example
 
 ```
 # The following example is equivalent to the 'insert record' on the commands menu which can be
 # installed using 'Install menu *Commands'
-```
-
-```
 Prepare for insert
-```
-
-```
 Enter data
 If flag true
 Update files
-```
-
-```
 Else
-```
-
-```
 Clear main & con
 Redraw {wMyWindow}
 End If
 ```
 
-## **Prepare for insert with current values** 
+<!-- p205-205 | Prepare for insert with current values -->
+## Prepare for insert with current values
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|YES|YES|NO<br>All|
+Command group: Changing data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Prepare for insert with current values
 
-## **Syntax** 
-
-## **Prepare for insert with current values** 
-
-## **Description** 
+### Description
 
 This command prepares Omnis for inserting new data into the main file using the values in the current record buffer as a starting point. **Prepare for insert with current values** differs from Prepare for insert in that the fields in the main file are not cleared. 
 
 In multi-user mode, the Prepare for… commands reread the current records from the data file if another user has edited a record. 
 
-## **Example** 
+### Example
 
 ```
 Set main file {fAccounts}
@@ -13828,24 +10663,20 @@ Enter data
 Update files if flag set
 ```
 
-## **Prepare for print** 
+<!-- p205-206 | Prepare for print -->
+## Prepare for print
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|YES<br>NO<br>All|
-|**Syntax**|||
-|**Prepare for print**([_Ask for job setup_][,_Do not fnish others_]) {_instance-name_(_parameters_)}|||
-|**Options**|||
-|Ask for job setup|If specifed, the command opens the job setup dialog||
-|Do not fnish others|If not specifed, all reports in progress are terminated before the new report is started||
+Command group: Reports and Printing | Flag affected: YES | Reversible: YES
 
+### Syntax
+**Prepare for print**([_Ask for job setup_][,_Do not finish others_]) {_instance-name_(_parameters_)}
+### Options
+Ask for job setup
+If specified, the command opens the job setup dialog
+Do not finish others
+If not specified, all reports in progress are terminated before the new report is started
 
-
-205 
-
-
-
-## **Description** 
+### Description
 
 This command prepares Omnis for record-by-record report printing. You specify the report instance name and you can add a list of $construct parameters for the report instance. The default instance name is the name of the report class itself. 
 
@@ -13863,17 +10694,11 @@ When reports are printed record-by-record using Print record in a loop, the sort
 
 The **Prepare for print** mode is terminated or cancelled by End print. You must include an End print after a **Prepare for print** even if a totals section is not required. 
 
-## **Example** 
+### Example
 
 ```
 # Print report record by record
-```
-
-```
 Prompt for destination
-```
-
-```
 If flag true
 Set main file {fAccounts}
 Set report name rMyReport
@@ -13882,14 +10707,8 @@ Prepare for print
 Find first on fAccounts.Code
 While flag true
 # tVar1 is a sort field placed on line 1 of the report
-```
-
-```
 # class used to trigger subtotal section 1
 Calculate tVar1 as fAccounts.Surname
-```
-
-```
 Print record
 Next
 End While
@@ -13897,27 +10716,20 @@ End print
 End If
 ```
 
-## **Previous** 
+<!-- p206-207 | Previous -->
+## Previous
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|YES|YES|NO<br>All|
+Command group: Finding data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Previous on** _field-name_ ([ _Exact match_ ][, _Use search_ ]) 
 
-206 
-
-
-
-**Options** 
+### Options
 
 Exact match If specified, the index value of the field in suitable records must equal the current value Use search If specified, the command uses the current search to select data 
 
-## **Description** 
+### Description
 
 This command locates the previous record using the current find table. The **Previous** command works in the same way as the corresponding option on the Commands menu but with no redraw, allowing you to work through a file. It is usually used after a Find command which creates a find table of records. 
 
@@ -13933,124 +10745,78 @@ If the _Exact match_ option is chosen, the previous record with the same index v
 
 If you use **Previous** with a search, it finds the **previous** record listed on the index table which meets the search criteria. 
 
-## **Example** 
+### Example
 
 ```
 # Find records in descending order
 Find last on fAccounts.Code
-```
-
-```
 While flag true
 OK message {Found account [fAccounts.Code]}
-```
-
-```
 Update files
 Previous
-```
-
-```
 End While
 ```
 
-## **Print check data log** 
+<!-- p207-207 | Print check data log -->
+## Print check data log
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|NO|NO|NO<br>All|
+Command group: Data management | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Print check data log
 
-## **Syntax** 
-
-## **Print check data log** 
-
-## **Description** 
+### Description
 
 This command prints the current contents of the check data log to the current report destination. There is no need for the log to be open. 
 
-## **Example** 
+### Example
 
 ```
 Check data (Check indexes) ## all files
 If flag true
 Print check data log
-```
-
-```
 Else
-```
-
-```
 OK message {Check data only works if one user is logged on}
 End If
 ```
 
-207 
+<!-- p208-208 | Print class -->
+## Print class
 
+Command group: Classes | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-## **Print class** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Print class** { _class-name_ } 
 
-## **Description** 
+### Description
 
 This command prints the field list and methods (if any) for the specified class. The example prints the field list and/or methods for all the classes in the current library. 
 
-## **Example** 
+### Example
 
 ```
 # generate list of all classes in the current library
 Calculate iList as $clib.$classes.$makelist($ref.$name)
-```
-
-```
 Do iList.$redefine(iClassName)
-```
-
-```
 # loop through the list and print the results
-```
-
-```
 For lNum from 1 to iList.$linecount step 1
-```
-
-```
 Do iList.[lNum].$loadcols()
-```
-
-```
 Print class {[iClassName]}
-```
-
-```
 End For
 ```
 
-## **Print record** 
+<!-- p208-209 | Print record -->
+## Print record
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|NO<br>NO<br>All|
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Print record** { _instance-name_ } 
 
-## **Description** 
+### Description
 
 This command prints a single record of the specified report instance. You use it when printing a report on a record-by-record basis and usually within a loop. It provides greater control over the report generator than Print report. If you omit the report instance name **Print record** is applied to the most recently started report instance ($ireports.$first). 
 
@@ -14068,11 +10834,7 @@ The flag is cleared if:
 
 These errors will not cause Omnis to execute a Quit all methods. If the flag is cleared, Omnis will not execute any further **Print record** commands until it encounters another Prepare for print. 
 
-208 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Print report record by record
@@ -14088,29 +10850,26 @@ End While
 End print
 ```
 
-## **Print report** 
+<!-- p209-210 | Print report -->
+## Print report
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|NO<br>NO<br>All|
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Print report** ([ _Ask for job setup_ ][, _Use search_ ][, _Do not finish others_ ]) { _instance-name_ (parameters)} 
 
-## **Options** 
+### Options
 
-|Ask for job setup|If specifed, the command opens the job setup dialog|
-|---|---|
-|Use search|If specifed, the command uses the current search to select data|
-|Do not fnish others|If not specifed, all reports in progress are terminated before the new report is|
-||started|
+Ask for job setup
+If specified, the command opens the job setup dialog
+Use search
+If specified, the command uses the current search to select data
+Do not finish others
+If not specified, all reports in progress are terminated before the new report is
+started
 
-
-
-## **Description** 
+### Description
 
 This command prints the specified report instance to the selected output. You specify the report instance name and you can add a list of $construct parameters for the report instance. The default instance name is the name of the report class itself. 
 
@@ -14128,17 +10887,10 @@ The _Do not finish others_ option allows multiple reports to be in progress at t
 
 The flag is cleared if the report is cancelled before completion by the user or in the event of an error. Most errors will display a message but will not cause Omnis to Quit all methods. 
 
-209 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Print the report rMyReport
-```
-
-```
 Set report main file {fAccounts}
 Set report name rMyReport
 Clear sort fields
@@ -14147,21 +10899,18 @@ Send to screen
 Print report
 ```
 
-## **Print report from disk** 
+<!-- p210-210 | Print report from disk -->
+## Print report from disk
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|NO<br>NO<br>All|
-
-
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO
 
 **Syntax Print report from disk** { _file-name_ } 
 
-## **Description** 
+### Description
 
 This command prints the contents of the specified disk file to the current report destination. The specified file must contain output generated using the Disk printing device. 
 
-## **Example** 
+### Example
 
 ```
 # Print the report rMyReport to disk and then print
@@ -14176,37 +10925,24 @@ Send to screen
 Print report from disk {[lFileName]}
 ```
 
-## **Print report from memory** 
+<!-- p210-211 | Print report from memory -->
+## Print report from memory
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|NO<br>NO<br>All|
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Print report from memory** _field-name_ 
 
-## **Description** 
+### Description
 
 This command prints the contents of the specified binary field or variable to the current report destination. The specified field or variable must contain output generated using the Memory printing device. 
 
-210 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Print the report rMyReport to memory and then print
-```
-
-```
 # the report from memory to screen
-```
-
-```
 Set report name rMyReport
 Do $cdevice.$assign(kDevMemory)
 Do $prefs.$reportdataname.$assign(iBinVar)
@@ -14215,136 +10951,108 @@ Send to screen
 Print report from memory iBinVar
 ```
 
-## **Print top window** 
+<!-- p211-211 | Print top window -->
+## Print top window
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|YES|NO|NO<br>All|
+Command group: Windows | Flag affected: YES | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Print top window
 
-## **Syntax** 
-
-## **Print top window** 
-
-## **Description** 
+### Description
 
 This command prints the top window to the current print destination. 
 
 _Print top window_ scales the image if it is too big for the paper (or page preview). You can disable scaling by adding the “disablePrintTopWindowScaling” item to the “ide” section of the config.json file and setting it to true (if omitted, the setting is false by default and scaling will occur). 
 
-## **Example** 
+### Example
 
 ```
 # Print the current window to screen
-```
-
-```
 Send to page preview
-```
-
-```
 Print top window
 ```
 
-## **Print trace log** 
+<!-- p211-211 | Print trace log -->
+## Print trace log
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Debugger|NO|NO|NO<br>All|
+Command group: Debugger | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Print trace log
 
-## **Syntax** 
+### Description
 
-## **Print trace log** 
+This command prints the contents of the trace log to the current print destination.
 
-## **Description** 
+<!-- p211-212 | Process event and continue -->
+## Process event and continue
 
-This command prints the contents of the trace log to the current print destination. 
-
-## **Process event and continue** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
-
-
-
-211 
-
-
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
 **Process event and continue** ([ _Discard event_ ]) 
 
-## **Syntax** 
+### Syntax
 
-## **Options** 
+### Options
 
 Discard event If specified, Omnis discards the active event (meaning that no further processing will occur for that event) 
 
-## **Description** 
+### Description
 
 This command causes the current event to be processed immediately allowing the event handler method containing the command to continue to execute. Normally, the default processing for an event takes place when all the event handler methods dealing with the event have finished executing. It is not possible to have active unprocessed events when waiting for user input so the default processing is carried out for any active events after an Enter data command has been executed or at a debugger break. Therefore if required, you can use this command to override the default behavior and force events to be processed allowing the event handler method to continue. 
 
 The _Discard event_ option lets you discard the active event. 
 
-## **Example** 
+### Example
 
 ```
 # This code would cause the OK event to be thrown away before the Enter Data starts
-```
-
-```
 On evOK
 ```
 
 - `Process event and continue (Discard event)` 
 
-- `Open window instance wMyWindow Enter data` 
+- `Open window instance wMyWindow Enter data`
 
-## **Prompt for data file** 
+<!-- p212-213 | Prompt for data file -->
+## Prompt for data file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data fles|YES|NO|NO<br>All|
+Command group: Data files | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Prompt for data file** ([ _Do not close other data_ ][, _Read-only_ ][, _No conversion by runtime_ ][, _Convert without user prompts_ ][, _Full Unicode conversion_ ]) {[ _internal-name_ ] or odb://[address:port][,internal-name]} 
 
-## **Options** 
+### Options
 
-|Do not close other data|If specifed, the command does not close all|
-|---|---|
-||open data fles before opening the specifed|
-||data fle|
-|Read-only|If specifed, the data fle is opened in read-only|
-||mode|
-|No conversion by runtime|Omnis normally offers to convert data fles|
-||created by an earlier version of Omnis. If this|
-||option is specifed, the runtime version of|
-||Omnis will not offer to convert the fle, and the|
-||command will fail|
-|Convert without user prompts|If specifed, and conversion is allowed, Omnis|
-||will immediately perform the conversion|
-||without giving the user any prompts that|
-||require a response; also, the user cannot|
-||cancel the conversion|
-
-
-
-212 
-
-
+Do not close other data
+If specified, the command does not close all
+open data files before opening the specified
+data file
+Read-only
+If specified, the data file is opened in read-only
+mode
+No conversion by runtime
+Omnis normally offers to convert data files
+created by an earlier version of Omnis. If this
+option is specified, the runtime version of
+Omnis will not offer to convert the file, and the
+command will fail
+Convert without user prompts
+If specified, and conversion is allowed, Omnis
+will immediately perform the conversion
+without giving the user any prompts that
+require a response; also, the user cannot
+cancel the conversion
 
 Unicode Studio only. If specified, and convert without user prompts is specified, do full Unicode conversion instead of quick conversion (quick conversion is only ok when you know all character data in the file is 7 bit) 
 
 Full Unicode conversion 
 
-## **Description** 
+### Description
 
 This command prompts the user to enter the name of a data file. A dialog box is displayed that lets the user choose a data file. An error message e.g. “Unable to find data file” is generated if the selected file cannot be opened, and the user is forced to select another file name or Cancel. If the user selects Cancel, the flag is cleared and the original data file remains selected. 
 
@@ -14358,11 +11066,10 @@ If you select the _No conversion by runtime_ option, and the data file was creat
 
 If the data file is to be accessed using the ODB (Omnis Data Bridge), then you indicate this using a special syntax: 
 
-## `odb://[address:port]` 
-
+`odb://[address:port]`
 where address:port is the TCP/IP address and port number of the ODB server, e.g. 127.0.0.1:5900. Omnis opens a dialog that allows you to select a data file handled by the ODB server. You can omit address:port, in which case Omnis uses the address and port stored in the $odbserver root preference. Note that the value of $odbserver is stored in the file odb.txt in the studio folder of the Omnis installation tree. 
 
-## **Example** 
+### Example
 
 ```
 Test if file exists {Orders.df1}
@@ -14374,47 +11081,31 @@ If flag false
 Quit method
 End If
 End If
-```
-
-```
 # Example 2 - Prompt for a data file on a specific ODB server
 Prompt for data file {odb://127.0.0.1:5900}
-```
-
-```
 # Example 3 - Prompt for a data file using the ODB server identified by $prefs.$odbserver
 Prompt for data file {odb://}
 ```
 
-## **Prompt for destination** 
+<!-- p213-214 | Prompt for destination -->
+## Prompt for destination
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|YES|YES<br>NO<br>All|
+Command group: Report destinations | Flag affected: YES | Reversible: YES
 
-
-
-213 
-
-
-
-**Syntax** 
+### Syntax
 
 **Prompt for destination** 
 
-## **Description** 
+### Description
 
 This command displays the report destination window so that the user can select the destination for the report. The user can choose from destinations including: printer, screen, page preview, file, port, and clipboard. 
 
 If the command is part of a reversible block, the destination reverts to its former identity when the method terminates. If the user selects the Cancel button on the dialog, the flag is cleared. 
 
-## **Example** 
+### Example
 
 ```
 # allow user choice to where to print report to
-```
-
-```
 Set report name rMyReport
 Prompt for destination
 If flag true
@@ -14422,25 +11113,22 @@ Print report
 End If
 ```
 
-## **Prompt for import file** 
+<!-- p214-214 | Prompt for import file -->
+## Prompt for import file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Importing and Exporting|YES|YES|NO<br>All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Prompt for import file
 
-## **Syntax** 
-
-## **Prompt for import file** 
-
-## **Description** 
+### Description
 
 This command prompts the user to select the name of the import file. The flag is set if the import file is successfully selected, otherwise a Cancel clears the flag, closes the current file and closes the dialog. You use the selected file in any subsequent Import data commands. 
 
 If you use **Prompt for import file** in a reversible block, the import file is closed when the method containing the reversible block terminates. 
 
-## **Example** 
+### Example
 
 ```
 Prompt for import file
@@ -14450,39 +11138,34 @@ End import
 Close import file
 ```
 
-## **Prompt for input** 
+<!-- p214-215 | Prompt for input -->
+## Prompt for input
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Message boxes|YES|NO|NO<br>All|
+Command group: Message boxes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Prompt for input** _prompt/title/icon-id/max-chars_ **Returns** _return-value_ ([ _Sound bell_ ][, _Cancel button_ ][, _Upper case only_ ][, _Password entry_ ][, _Prompt above entry_ ]) 
 
-214 
+### Options
 
+Sound bell
+If specified, the system bell sounds when the
+command displays the message
+Cancel button
+If specified, the message has a cancel button
+Upper case only
+If specified, all input is converted to upper
+case at the user interface
+Password entry
+If specified, all input is displayed as ‘*’ or a
+solid circle at the user interface
+Prompt above entry
+If specified, the prompt is displayed above
+the entry field rather than the default which
+is to the left of the entry field
 
-
-**Options** 
-
-|Sound bell|If specifed, the system bell sounds when the|
-|---|---|
-||command displays the message|
-|Cancel button|If specifed, the message has a cancel button|
-|Upper case only|If specifed, all input is converted to upper|
-||case at the user interface|
-|Password entry|If specifed, all input is displayed as ‘*’ or a|
-||solid circle at the user interface|
-|Prompt above entry|If specifed, the prompt is displayed above|
-||the entry feld rather than the default which|
-||is to the left of the entry feld|
-
-
-
-## **Description** 
+### Description
 
 This command opens a message box requesting a value from the user. You can specify the text for the prompt, title and icon for the message box, and the maximum number of characters for the input. If the user enters a value and presses OK, the command sets the flag and returns the user value. The command is not reversible. 
 
@@ -14492,59 +11175,46 @@ You can specify an icon for the message box using the icon-id of an icon from th
 
 The _Sound bell_ option causes the system beep to sound when the message box opens. The _Cancel button_ option adds a Cancel button to the message box. The flag returns false if the user presses the Cancel button. The _Upper case_ only option forces all input to be upper case, while the _Password entry_ option hides the input, by displaying ‘*’ for each character entered. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt for a username and greet the user
-```
-
-```
 Prompt for input Please enter your nam Returns lUserName (Sound bell ,Cancel button,Prompt above entry)
 If len(lUserName)
-```
-
-```
 OK message (Icon) {Hello [lUserName]}
 End If
 ```
 
-## **Prompt for library** 
+<!-- p215-216 | Prompt for library -->
+## Prompt for library
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Libraries|YES|NO|NO<br>All|
+Command group: Libraries | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Prompt for library** ([ _Do not close others_ ][, _Enable conversion by runtime_ ][, _Do not open startup task_ ][, _Convert without user prompts_ ]) { _internal-name_ ( _startup-parameters_ )} 
 
-## **Options** 
+### Options
 
 Do not close others 
 
 If specified, the command does not close all open libraries before opening the specified library 
 
-215 
+Enable conversion by runtime
+The development version of Omnis offers to convert
+libraries created by an earlier version of Omnis. If this
+option is specified, the runtime version of Omnis will also
+offer to convert such libraries
+Do not open startup task
+If specified, the command does not construct an instance
+of the startup task when it opens the library
+Convert without user prompts
+If specified, and conversion is allowed, Omnis will
+immediately perform the conversion without giving the
+user any prompts that require a response; also, the user
+cannot cancel the conversion
 
-
-
-|Enable conversion by runtime|The development version of Omnis offers to convert|
-|---|---|
-||libraries created by an earlier version of Omnis. If this|
-||option is specifed, the runtime version of Omnis will also|
-||offer to convert such libraries|
-|Do not open startup task|If specifed, the command does not construct an instance|
-||of the startup task when it opens the library|
-|Convert without user prompts|If specifed, and conversion is allowed, Omnis will|
-||immediately perform the conversion without giving the|
-||user any prompts that require a response; also, the user|
-||cannot cancel the conversion|
-
-
-
-## **Description** 
+### Description
 
 This command prompts the user for a library file. You can specify the _internal name_ and startup task construct _parameters_ of the library to be opened, together with the _Do not close others_ , _Do not open startup task_ , and _Enable conversion by runtime_ options. 
 
@@ -14552,29 +11222,26 @@ If the _internal name_ of an opened library is specified, a check is made to ens
 
 If an attempt is made to open a library which is already open, that library is closed and reopened. Refer to Close Library for the consequences of closing a library. If the user cancels the Select Library dialog, the flag is cleared and no libraries are closed. 
 
-## **Do not close others** 
+Do not close others
 
 The _Do not close others_ option lets you keep open all other libraries. If the Do not close others option is not selected, then all other open libraries are closed when the user opens a new library, including the one containing the currently executing method. 
 
-## **Passwords** 
+Passwords
 
 If the library does not need a master password, it is opened at the master level, otherwise the usual prompt for password dialog is opened. The library is closed and a flag false returned if this dialog is closed without a password being entered. 
 
-## **Startup task** 
+Startup task
 
 If the _Do not open startup task_ option is specified, the startup task construct for the opened library is not called and there is no startup task instance. Otherwise, the startup task $construct() method is called and the parameters for it are passed. 
 
-## **Enable conversion by runtime** 
+Enable conversion by runtime
 
 If you select the _Enable conversion by runtime_ option, and the library was created with a previous version of Omnis, then the runtime version of Omnis can convert the library if the user allows. The default is that an Omnis runtime will not ask the user if they want to convert the library. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt the user for a library path and open the selected
-```
-
-```
 # library
 Prompt for library (Do not close others)
 If flag true
@@ -14582,60 +11249,41 @@ OK message {Library Opened!}
 End If
 ```
 
-## **Prompt for page setup** 
+<!-- p216-217 | Prompt for page setup -->
+## Prompt for page setup
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|YES|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Prompt for page setup** 
 
-216 
-
-
-
-## **Description** 
+### Description
 
 This command displays the Printer page setup dialog box. This dialog allows the page size, orientation and printer’s effects to be chosen before a report is printed. The flag is set if the dialog is closed by clicking on the OK pushbutton. Cancel clears the flag and leaves the page parameters unchanged. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt for page setup before printing the
-```
-
-```
 # report rMyReport
-```
-
-```
 Set report name rMyReport
-```
-
-```
 Prompt for page setup
 If flag true
 Print report
 End If
 ```
 
-## **Prompt for port name** 
+<!-- p217-217 | Prompt for port name -->
+## Prompt for port name
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|YES|YES<br>NO<br>All|
+Command group: Report destinations | Flag affected: YES | Reversible: YES
 
+### Syntax
 
+Prompt for port name
 
-## **Syntax** 
-
-## **Prompt for port name** 
-
-## **Description** 
+### Description
 
 This command displays the Set port dialog box that lets the user select a port. The flag is set if the port is successfully selected; if the user cancels, the flag is cleared and the port closed. 
 
@@ -14643,7 +11291,7 @@ You can set the baud rate and other parameters for the port using Set port param
 
 If the command is in a reversible block, the port is closed when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 Prompt for port name
@@ -14655,68 +11303,46 @@ End import
 Close port
 ```
 
-## **Prompt for print or export file** 
+<!-- p217-218 | Prompt for print or export file -->
+## Prompt for print or export file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|YES|YES<br>NO<br>All|
+Command group: Report destinations | Flag affected: YES | Reversible: YES
 
+### Syntax
 
+Prompt for print or export file
 
-## **Syntax** 
-
-## **Prompt for print or export file** 
-
-217 
-
-
-
-## **Description** 
+### Description
 
 This command displays the Select Print or Export File dialog. The flag is set if the file is successfully selected. If the file exists already, a further dialog lets you delete it. If the user cancels, the flag is cleared and the file is closed. 
 
 If the command is in a reversible block, the file is closed when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 Prompt for print or export file
-```
-
-```
 If flag true
-```
-
-```
 Send to file
-```
-
-```
 Set report name rMyReport
 End If
-```
-
-```
 Print report
 ```
 
-## **Prompted find** 
+<!-- p218-218 | Prompted find -->
+## Prompted find
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|YES|YES|NO<br>All|
+Command group: Finding data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Prompted find** ([ _Exact match_ ]) 
 
-## **Options** 
+### Options
 
 Exact match If specified, the index value of the field in suitable records must equal the current value 
 
-## **Description** 
+### Description
 
 This command prompts the user to enter a value in an indexed field on the current window and locates the record which most closely matches that value. The user can use the Tab key to select an indexed field. The Find field is the current field for the window when the user clicks on the OK button. 
 
@@ -14724,40 +11350,29 @@ Once the user enters a value in the Find field and clicks OK, Omnis locates the 
 
 If the exact field value cannot be matched, the next highest value in the index is located. You use the _Exact match_ option if you want only the exact match. 
 
-## **Example** 
+### Example
 
 ```
 # Find the record for an indexed value entered into
-```
-
-```
 # the current window instance
-```
-
-```
 Prompted find
 If flag true
 Do $cinst.$redraw()
 End If
 ```
 
-## **Put file name** 
+<!-- p218-219 | Put file name -->
+## Put file name
 
-218 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Put file name** ( _path_ [, _dialog_ - _title_ ] [, _prompt_ ] [, _default_ ]) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -14769,44 +11384,32 @@ You can pass a title for the dialog, in dialog-title. You can specify a default 
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 # prompt the user for a file name, default to myfile.txt
 Put file name (lPathname,'select a file','','myfile.txt') Returns lErrCode
 If len(lPathname)=0
-```
-
-```
 # cancel button pressed
 Else
-```
-
-```
 # file name entered
-```
-
-```
 End If
 ```
 
-## **Queue bring to top** 
+<!-- p219-219 | Queue bring to top -->
+## Queue bring to top
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Queue bring to top** window-instance-name 
 
-## **Description** 
+### Description
 
 This command queues a “bring to top” event for the specified window instance as if the user had clicked on the window instance with the mouse. The command brings the window instance to the fore and generates evWindowClick and evToTop events. If, at runtime, the specified window instance does not exist, the command will do nothing. 
 
-## **Example** 
+### Example
 
 ```
 Open window instance wMyWindow/wInst1/STK
@@ -14814,69 +11417,49 @@ Open window instance wMyWindow/wInst2/STK
 Queue bring to top wInst1 ;; brings the instance wInst1 to the top
 ```
 
-## **Queue cancel** 
+<!-- p219-220 | Queue cancel -->
+## Queue cancel
 
-219 
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Queue cancel
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Queue cancel** 
-
-## **Description** 
+### Description
 
 This command queues a “cancel” event, as if the user had clicked on the Cancel button or pressed the escape key. The command takes no parameters. 
 
-## **Example** 
+### Example
 
 ```
 # Setup a timer call to cancel the edit after 120 seconds
 Set timer method sec cGeneral/TimerSetup
-```
-
-```
 Prepare for edit
 Enter data
-```
-
-```
 Update files if flag set
 # Code for cGeneral/TimerSetup
-```
-
-```
 Send to trace log {No edit has occurred - Timed out}
 Queue cancel
 ```
 
-## **Queue click** 
+<!-- p220-222 | Queue click -->
+## Queue click
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Queue click** ([ _Shift_ ][, _Command/Ctrl_ ]) { _field-name_ ( _selection-range_ )} 
 
-## **Options** 
+### Options
 
-|Shift|If specifed, the queued event behaves as if the shift key has been pressed|
-|---|---|
-|Command/Ctrl|If specifed, the queued event behaves as if the command/ctrl key has been pressed|
+Shift
+If specified, the queued event behaves as if the shift key has been pressed
+Command/Ctrl
+If specified, the queued event behaves as if the command/ctrl key has been pressed
 
-
-
-## **Description** 
+### Description
 
 This command queues a “mouse click” event on a specified field, that is, it simulates a user-generated mouse click/drag operation on a field. You must specify the name of the field as a parameter, including the click positions within the field (that is, Start Row, Finish Row for lists and Start Character, Finish Character for text field selection). The specified field will get the focus. 
 
@@ -14886,23 +11469,19 @@ The _field name_ parameter must be the name of a window field, not the name of t
 
 _Queue clicks_ returns an error if the field cannot be found. You can turn off this error by setting the option “reportQueueCommandFieldNotFoundErrors” to false, located in the “defaults” section of config.json. 
 
-## **Queue click for pushbuttons** 
+Queue click for pushbuttons
 
 If the specified field is a pushbutton it is activated and an evClick event is generated as if the user had clicked on the button. 
 
-## **Queue click for Radio buttons and check boxes** 
-
-220 
-
-
+Queue click for Radio buttons and check boxes
 
 If the specified field is a check box or set of radio buttons, the check box field or group of radio buttons is checked/unchecked accordingly, and an evClick event is generated. Methods behind radio buttons and check boxes run as if the user had clicked on the window fields. 
 
-## **Queue click for Radio groups** 
+Queue click for Radio groups
 
 If the specified field is a radio group, you identify the member of the group that is to receive the click by setting the _selection-range_ parameter to the value of$dataname that corresponds to the member. When the command executes, Omnis checks the member and generates an evClick event. Event methods for the radio group run as if the user had clicked on the field. 
 
-## **Queue click on Edit fields** 
+Queue click on Edit fields
 
 You can specify a range of characters. For example, the parameter field-name (2,5), highlights the characters within cursor positions 2 to 5 (that is, characters 3 to 5). Note that cursor position 0 is to the left of character 1, and cursor position 1 is to the right of character 1 (or to the left of character 2). 
 
@@ -14910,108 +11489,62 @@ If Shift is selected and 5 is passed as the selection point, all characters betw
 
 As the **Queue click** examples for Edit show, the two parameters act as a “click on, drag to” key operation. 
 
-## **Queue click for lists** 
+Queue click for lists
 
 If the specified field is a window list box or grid, the range is interpreted as a range of list lines. For example, the parameter list-fieldname (2,5), selects the lines 2 to 5 (if $multipleselect for the list field is set), and the current line will be set to 2. An evClick event is generated after the specified lines have been selected. 
 
-## **Example** 
+### Example
 
 ```
 # Queue click for edit fields
-```
-
-```
 # highlight characters 3 to 7
 Queue click {myEntryField (7,2)}
-```
-
-```
 # highlight characters 6 to 9
 Queue click {myEntryField (5,7)}
-```
-
-```
 # assuming the current cursor is at position 15,
 # characters 9 to 15 are highlighted
 Queue click (Shift) {myEntryField (8)}
-```
-
-```
 # assuming the current cursor is at position 15,
 # characters 16 to 22 are highlighted
 Queue click (Shift) {myEntryField (22)}
-```
-
-```
 # assuming the current cursor is at position 15,
 # characters 10 to 15 are highlighted
 Queue click (Shift) {myEntryField (7,9)}
-```
-
-```
 # assuming the current cursor is at position 15,
 # characters 8 to 15 are highlighted
 Queue click (Shift) {myEntryField (9,7)}
-```
-
-```
 # Queue click for lists
 # lines 7 to 3 are selected and the current line set to 7
 Queue click {myListField (7,3)}
-```
-
-```
 # lines 2 to 9 are selected and the current line set to 2
 Queue click {myListField (2,9)}
-```
-
-```
 # the current line to line 12 are selected
 # the current line does not change
 Queue click (Shift) {myListField (12)}
-```
-
-221 
-
-
-
-```
 # line 13 is selected and any lines currently selected remain selected
-```
-
-```
 # the current line does not change
-```
-
-```
 Queue click (Shift,Command/Ctrl) {myListField (13)}
-```
-
-```
 # lines 4 to 8 are selected and any lines currently selected remain selected
 # the current line does not change
 Queue click (Shift,Command/Ctrl) {myListField (4,8)}
 ```
 
-## **Queue close** 
+<!-- p222-222 | Queue close -->
+## Queue close
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Queue close** window-instance-name 
 
-## **Description** 
+### Description
 
 This command queues a “close window” event for the specified window instance as if the user had selected the close option (system menu under Windows and Linux, or close box under macOS). 
 
 The specified window instance is closed, and an evClose event is produced. If the specified window instance does not exist, the command has no effect. If you omit the window instance name, the top window instance at the time of execution will be closed, and an evClose event is generated. 
 
-## **Example** 
+### Example
 
 ```
 Open window instance wMyWindow/wInst1
@@ -15019,31 +11552,23 @@ Open window instance wMyWindow/wInst2
 Queue close ## close wInst2, the top instance
 ```
 
-## **Queue double-click** 
+<!-- p222-223 | Queue double-click -->
+## Queue double-click
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Queue double-click** ([ _Shift_ ][, _Command/Ctrl_ ]) { _field-name_ ( _selection-range_ )} 
 
-## **Options** 
+### Options
 
-|Shift|If specifed, the queued event behaves as if the shift key has been pressed|
-|---|---|
-|Command/Ctrl|If specifed, the queued event behaves as if the command/ctrl key has been pressed|
+Shift
+If specified, the queued event behaves as if the shift key has been pressed
+Command/Ctrl
+If specified, the queued event behaves as if the command/ctrl key has been pressed
 
-
-
-222 
-
-
-
-## **Description** 
+### Description
 
 This command queues a “double-click event” on the specified field, that is, it simulates a user-generated double-click event on the field. A double-click event always generates an evClick before an evDoubleClick. You must specify the name of the field as a parameter, including the click positions within the field (that is, Start Row, Finish Row for lists and Start Character, Finish Character for text field selection). 
 
@@ -15053,19 +11578,19 @@ The field name parameter must be the name of a window field, not the name of the
 
 _Queue double click_ returns an error if the field cannot be found. You can turn off this error by setting the option “reportQueueCommandFieldNotFoundErrors” to false, located in the “defaults” section of config.json. 
 
-## **Queue double-click for edit fields** 
+Queue double-click for edit fields
 
 Double-clicks on text within an edit field will select the complete word. If a range was specified, all COMPLETE words falling within the start and end positions will be highlighted. 
 
-## **Queue double-click for list fields** 
+Queue double-click for list fields
 
 Double-clicks on list fields will generate an evClick followed by an evDoubleClick. The behavior in other ways is the same as described for Queue click. 
 
-## **Queue double-click for other field types** 
+Queue double-click for other field types
 
 Pushbuttons, radio buttons, radio groups and check boxes behave in the same way as described for Queue click. An evDoubleClick event is not generated. 
 
-## **Example** 
+### Example
 
 - `# Example for edit fields` 
 
@@ -15095,61 +11620,54 @@ Pushbuttons, radio buttons, radio groups and check boxes behave in the same way 
 
 - `On default` 
 
-   - `Quit event handler` 
+   - `Quit event handler`
 
-## **Queue keyboard event** 
+<!-- p223-225 | Queue keyboard event -->
+## Queue keyboard event
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Queue keyboard event** { _key-sequence_ or _calculation_ } 
 
-## **Description** 
+### Description
 
 This command queues a “keyboard” event or series of events. It simulates keyboard entry by the user from within your methods. You can enter the _key sequence_ in several ways: 
 
-223 
-
-
-
-## 1. **Recording a key sequence** 
+1. Recording a key sequence
 
 - When your cursor is positioned at the end of the command, you can press the Helper button (at the bottom left of the editor panel), or press Alt-H on Windows or Cmnd+Opt+H on macOS to open the Key Sequence Recorder. You can use the **Start Recording** and **Stop Recording** buttons to specify the keys to be generated. During the recording, all key events are echoed to the Key sequence parameter field, and are not acted on by Omnis in any other way (for example, pressing Ctrl/Cmnd-Q will NOT suddenly quit Omnis). Click events, however, behave normally so you can click on **Stop recording** button. 
 
-## 2. **Entering into the text field** 
+2. Entering into the text field
 
 You can enter the text representation manually to generate the keys. Syntax checking is done at design time. When recording is off, you can edit the Key sequence parameter manually. This lets you delete key combinations or enter key sequences by hand. Since spaces are used to automatically separate key presses, the special key name SPACE will have to be manually entered to generate a “space key” event. 
 
-## 3. **Specifying a calculation** 
+3. Specifying a calculation
 
 You can enter a calculation like concatenating text fields, which will contain the text representation of the keys to be generated. Syntax checking is done at runtime. Incorrect key sequence syntax will result in a runtime error. When you use a calculation, the general calculation syntax applies, which is checked at design time. 
 
-## **Key names** 
+Key names
 
 Special keys or key combinations are represented using the names of the keys. When a given key combination is run on another platform, a conversion is carried out internally so that, for example, alt-c under Windows becomes opt-c under MacOSX. The list below summarizes the conversion: 
 
-## **Windows and Linux** 
+Windows and Linux
 
-## **Modifier Key names** : shift-, alt-, ctrl- 
+Modifier Key names : shift-, alt-, ctrl-
 
 **Special Key names** : Space, Up, Down, Left, Right, PgUp, PgDn, PgLeft, PgRight, Home, End, Tab, Return, Enter, Bkspc, Clear, Cancel, Minus, Move, Del, Ins, Exit 
 
-## **MacOSX** 
+MacOSX
 
-## **Modifier Key names** : shift-, opt-, com- 
+Modifier Key names : shift-, opt-, com-
 
 **Special Key names** : Space, Up, Down, Left, Right, PgUp, PgDn, PgLeft, PgRight, Home, End, Tab, Return, Enter, Bkspc, Clear, Cancel, Minus, Move, Del. 
 
-## **Set current field** 
+Set current field
 
 If queued key events are intended for an edit field or a list, it is advisable to queue a “set current field” event before generating the key events. On the other hand, general key events, for example, menu accelerators or shortcut keys, do not require a specific current field. 
 
-## **Key event restrictions under Windows and Linux** 
+Key event restrictions under Windows and Linux
 
 Under Windows, you can use alt-<key> sequences to select menu options from the menu bar. Since the menu bar is handled by the operating environment, and **Queue keyboard event** generates internal Omnis events, queuing alt-<key> events will NOT drive the menu bar. Thus, for example, queuing alt-f will not drop the **File** menu. 
 
@@ -15159,98 +11677,61 @@ A second situation where evKey events are not generated is when you queue alt-co
 
 **WARNING** When queuing events on pushbuttons there is a danger of recursion under Windows and Linux, but also under macOS if buttons have been given Windows behavior, that is, they get the focus. Normally, when the focus is on a pushbutton, you can activate it by pressing the space bar. If that pushbutton receives an evClick event and has a queued space key event WITHOUT a set current field, the space key event will be sent back to the pushbutton, thereby generating another evClick, which again activates the space key event. Infinite recursion occurs, resulting in a crash. 
 
-## **Key event restriction under macOS** 
+Key event restriction under macOS
 
 Under macOS, you use opt-<letter> to generate extended characters. When queued key events include such opt-<letter> sequences, evKey is not generated. 
 
-224 
-
-
-
-## **Example** 
+### Example
 
 ```
 # button method
-```
-
-```
 On evClick
-```
-
-```
 Open window instance wMyWindow
-```
-
-```
 Queue keyboard event {y o u r n a m e}
 # paste button
-```
-
-```
 On evClick
-```
-
-```
 Queue keyboard event {ctrl-V}
 ```
 
-## **Queue OK** 
+<!-- p225-225 | Queue OK -->
+## Queue OK
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Queue OK
 
-## **Syntax** 
-
-## **Queue OK** 
-
-## **Description** 
+### Description
 
 This command queues an “OK” event. It simulates the user clicking on the OK button or pressing the Enter key. 
 
-## **Example** 
+### Example
 
 ```
 # trap a Tab event and issue an OK event from it
-```
-
-```
 On evTab
-```
-
-```
 Queue OK
 ```
 
-## **Queue quit** 
+<!-- p225-225 | Queue quit -->
+## Queue quit
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Queue quit
 
-## **Syntax** 
-
-## **Queue quit** 
-
-## **Description** 
+### Description
 
 This command queues a quit event. It simulates the user selecting the Exit/Quit option in the File menu. In enter data mode, a Queue OK or Queue Cancel should precede a **Queue quit** to close the enter data correctly. 
 
-## **Example** 
+### Example
 
 ```
 # button method to terminate data entry and quit
-```
-
-```
 If flag true
-```
-
-```
 Queue OK
 Queue quit
 Else
@@ -15259,31 +11740,24 @@ Close top window
 End If
 ```
 
-225 
+<!-- p226-226 | Queue scroll -->
+## Queue scroll
 
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-## **Queue scroll** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Queue scroll** ( _Left_ | _Right_ | _Up_ | _Down_ [, _Page_ ]) { _field-name_ ( _units_ )} 
 
-## **Types** 
+Types
 
 Left Scroll the field to the left Right Scroll the field to the right Up Scroll the field up Down Scroll the field down 
 
-## **Options** 
+### Options
 
 Page If specified, scrolling occurs in pages rather than the units corresponding to the up and down arrows on the scroll bar 
 
-## **Description** 
+### Description
 
 This command queues a “scroll” event in the specified scrollable field, that is, it simulates a mouse click or page key event on a scrollable field. With this command you can scroll a field up or down, left or right provided the appropriate scroll bar is available. You cannot use this command to scroll a window instance. 
 
@@ -15295,30 +11769,23 @@ The _Units_ parameter specifies the number of lines to scroll up or down in a ve
 
 If the _Page_ option is selected, the event simulates clicking above or below the “thumb” and is the same as using the Page up or Page down key. 
 
-## **Example** 
+### Example
 
 ```
 # scroll a list field by 5 lines
 Queue scroll (Down) {myListField (5)}
 ```
 
-## **Queue set current field** 
+<!-- p226-227 | Queue set current field -->
+## Queue set current field
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Queue set current field** { _field-name_ } 
 
-226 
-
-
-
-## **Description** 
+### Description
 
 This command queues a “set current field” event in the specified field, that is, it simulates a user-generated click or tab to the specified field. In enter data mode, the contents of the field is selected. The command does not generate an evClick. However it will produce proper evBefore and evAfter events during Enter data. 
 
@@ -15326,84 +11793,60 @@ The _field name_ parameter must be the name of a window field, not the name of t
 
 _Queue set current field_ returns an error if the field cannot be found. You can turn off this error by setting the option “reportQueueCommandFieldNotFoundErrors” to false, located in the “defaults” section of config.json. 
 
-## **Example** 
+### Example
 
 ```
 # field method to jump to another field within the same window instance
 On evAfter
-```
-
-```
 Queue set current field {myField}
 ```
 
-## **Queue tab** 
+<!-- p227-227 | Queue tab -->
+## Queue tab
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|NO<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+### Syntax
+**Queue tab**([_Shift_])
+### Options
+Shift
+If specified, the queued event behaves as if the shift key has been pressed
 
-## **Syntax** 
-
-|**Syntax**||
-|---|---|
-|**Queue tab**([_Shift_])||
-|**Options**||
-|Shift|If specifed, the queued event behaves as if the shift key has been pressed|
-
-
-
-## **Description** 
+### Description
 
 This command queues a “tab” or “shift-tab” event. It simulates a user-generated tab event. With the Shift option, it simulates a shift-tab keypress. 
 
-## **Example** 
+### Example
 
 ```
 # Field method for a window field to simulate auto tab. When the 4th character is entered
-```
-
-```
 # a tab occurs. The field must have $keyevents turned on.
 On evBefore iCount as 0
-```
-
-```
 On evKey
-```
-
-```
 Calculate iCount as iCount+1
 If iCount>3
 Queue tab
 End If
 ```
 
-## **Quick check** 
+<!-- p227-228 | Quick check -->
+## Quick check
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|YES|NO|NO<br>All|
+Command group: Data management | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Quick check** ([ _Perform repairs_ ]) 
 
-227 
-
-
-
-**Options** 
+### Options
 
 If selected, repairs to the data file are automatically carried out 
 
 Perform repairs 
 
-## **Description** 
+### Description
 
 This command performs a quick check on the current data file. It examines the status of the current data file by reading only the internal tables in which records of any inconsistencies are stored. These records indicate corruption caused by either hardware or software failure. No attempt is made to systematically check the entire data file for problems (you use the Check data command for this purpose). 
 
@@ -15415,7 +11858,7 @@ If you are not running in single user mode, Omnis automatically tests that only 
 
 If a working message with a count is open while the command is executing, the count will be incremented at regular intervals. The command may take a long time to execute and it is not possible to cancel execution even if a working message with cancel box is open. 
 
-## **Example** 
+### Example
 
 ```
 Quick check
@@ -15425,23 +11868,20 @@ Open check data log
 End If
 ```
 
-## **Quit all if canceled** 
+<!-- p228-228 | Quit all if canceled -->
+## Quit all if canceled
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|NO|NO|NO<br>All|
+Command group: Methods | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Quit all if canceled
 
-## **Syntax** 
-
-## **Quit all if canceled** 
-
-## **Description** 
+### Description
 
 This command quits all methods that are running when the user clicks on a Cancel button inside a working message dialog box. The keyboard equivalent to the Cancel pushbutton is the Escape key under Windows and Linux, or Cmnd-period under macOS. Note that the test for cancel is carried out in Working message only if Disable cancel test at loops has first been executed. 
 
-## **Example** 
+### Example
 
 ```
 # Quit the current and all other methods currently running
@@ -15452,71 +11892,51 @@ End reversible block
 Repeat
 Working message (Cancel button,Repeat count)
 Quit all if canceled
-```
-
-```
 Calculate iMyVar as iMyVar+1
 Until iMyVar=500000
 ```
 
-228 
+<!-- p229-229 | Quit all methods -->
+## Quit all methods
 
+Command group: Methods | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
-**Quit all methods** 
+Quit all methods
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Quit all methods** 
-
-## **Description** 
+### Description
 
 This command quits all methods that are running. If the command is executed during a method which has been called, Omnis quits both the current method and the calling method. 
 
-## **Example** 
+### Example
 
 ```
 # Quit all methods so that OK message never gets shown
-```
-
-```
 # calling method
-```
-
-```
 Do method QuitMethod
 OK message {This never never gets shown}
 # method Quitmethod
 Quit all methods
 ```
 
-## **Quit event handler** 
+<!-- p229-230 | Quit event handler -->
+## Quit event handler
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Events|NO|NO|YES<br>All|
+Command group: Events | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Quit event handler** ([ _Discard event_ ][, _Pass to next handler_ ]) 
 
-## **Options** 
+### Options
 
-|Discard event|If specifed, Omnis discards the active event (meaning that no further processing will occur for that event)|
-|---|---|
-|Pass to next handler|If specifed, Omnis will pass the event to the next level of handler (the window or task $control() method)|
+Discard event
+If specified, Omnis discards the active event (meaning that no further processing will occur for that event)
+Pass to next handler
+If specified, Omnis will pass the event to the next level of handler (the window or task $control() method)
 
-
-
-## **Description** 
+### Description
 
 This command is used to quit out of the currently executing event handling method and is only used to terminate an On clause. It is not reversible and does not affect the flag. 
 
@@ -15524,30 +11944,14 @@ If the _Discard event_ option is checked, the event is thrown away and Omnis qui
 
 If the _Pass to next handler_ option is checked, the event is passed to the next level of handler such as the window $control() method or task $control() method. 
 
-229 
-
-
-
-## **Example** 
+### Example
 
 ```
 On evAfter
-```
-
-```
 If iName=''
-```
-
-```
 OK message {You must enter a name}
-```
-
-```
 Queue set current field {myField}
 Quit event handler (Discard event)
-```
-
-```
 End If
 ```
 
@@ -15559,58 +11963,43 @@ End If
 Quit event handler (Pass to next handler)
 ```
 
-## **Quit method** 
+<!-- p230-230 | Quit method -->
+## Quit method
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|NO|NO|YES<br>All|
+Command group: Methods | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Quit method** _return-value_ 
 
-## **Description** 
+### Description
 
 This command quits the current method and returns control to the calling method, if any. If you supply a _return-value_ , the command returns this value to the calling method. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt the user to quit Omnis
-```
-
-```
 Yes/No message {Do you want to quit Omnis?}
-```
-
-```
 If flag true
-```
-
-```
 Quit Omnis (Force quit) ## closes all instances and tasks, then quits Omnis
 End If
 ```
 
-## **Quit Omnis** 
+<!-- p230-231 | Quit Omnis -->
+## Quit Omnis
 
-|**Command group**|**Flag affected**|**Reversible**|**Execute on client**<br>**Platform(s)**|
-|---|---|---|---|
-|Methods|NO|NO|NO<br>All|
+Command group: Methods | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Quit Omnis** ([ _Force quit_ ]) 
 
-## **Options** 
+### Options
 
 Force quit If specified, Omnis will force all instances to close even if they have $canclose methods that would prevent them (and therefore Omnis) from closing 
 
-## **Description** 
+### Description
 
 This command quits Omnis closing all libraries and data files. It is equivalent to the Exit/Quit option in the File menu. However, if the Force quit option is not checked **Quit Omnis** will set the flag false and do nothing if an instance or library cannot be closed. 
 
@@ -15618,31 +12007,26 @@ If the _Force quit_ check box is checked Omnis will force any class instances to
 
 This command can also be executed in a Web Client method running on the client. It only does anything in the Omnis Web Client running on Windows Mobile, where it quits the client application; the _Force quit_ check box has no affect. 
 
-230 
+### Example
 
-
-
-## **Example** 
-
-# Prompt the user to quit Omnis 
+Prompt the user to quit Omnis
 
 Yes/No message {Do you want to quit Omnis?} If flag true 
 
-**Quit Omnis** (Force quit) ## closes all instances and tasks, then quits Omnis End If 
+**Quit Omnis** (Force quit) ## closes all instances and tasks, then quits Omnis End If
 
-## **Read entire file** 
+<!-- p231-231 | Read entire file -->
+## Read entire file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Read entire file** ( _path_ , _binary_ - _variable_ [, _‘r’_ ]) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -15654,40 +12038,29 @@ This command reads an entire file into a binary field. If you specify ‘r’ as
 
 The Type is always ‘TEXT’, and the Creator is always ‘mdos’. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt the user for a file and read it's entire contents into the
 # binary variable lBinFld
-```
-
-```
 Do FileOps.$putfilename(lPathname,'Select a file','') Returns lReturnFlag
 If lReturnFlag
-```
-
-```
 Read entire file (lPathname,lBinfld) Returns lErrCode
 End If
 ```
 
-## **Read file as binary** 
+<!-- p231-232 | Read file as binary -->
+## Read file as binary
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Read file as binary** ( _refnum_ , _binary-variable_ [, _start-position_ ] [, _num-bytes_ ]) **Returns** _err-code_ 
 
-231 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -15699,17 +12072,11 @@ If you specify _a start-position_ of 0 and _num-bytes_ equal to 0, the file poin
 
 It returns an error code (See Error Codes), or zero if no error occurs. Note the special case for end of file. In this case, the command returns the error code –39, but may still have read some data. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt the user for a file and read its contents into the binary
-```
-
-```
 # variable lBinfld
-```
-
-```
 Do FileOps.$putfilename(lPathname,'Select a file','') Returns lReturnFlag
 ```
 
@@ -15719,29 +12086,22 @@ Do FileOps.$putfilename(lPathname,'Select a file','') Returns lReturnFlag
 
 ```
 Read file as binary (lRefNum,lBinfld) Returns lErrCode
-```
-
-```
 Close file (lRefNum)
-```
-
-```
 End If
 ```
 
-## **Read file as character** 
+<!-- p232-233 | Read file as character -->
+## Read file as character
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Read file as character** ( _refnum_ , _character-variable_ [, _start-position_ ] [, _num-characters_ ]) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -15753,45 +12113,29 @@ If you specify a start-position of 0 and _num-characters_ equal to 0, the file p
 
 It returns an error code (See Error Codes), or zero if no error occurs. Note the special case for end of file. In this case, the command returns the error code –39, but may still have read some data. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt the user for a text file and read its contents into the character
 # variable lCharVar
-```
-
-```
 Do FileOps.$putfilename(lPathname,'Select a text file','*.txt') Returns lReturnFlag
 If lReturnFlag
-```
-
-232 
-
-
-
-```
 Open file (lPathname,lRefNum)
 Read file as character (lRefNum,lCharVar) Returns lErrCode
 Close file (lRefNum)
-```
-
-```
 End If
 ```
 
-## **ReadBinFile** 
+<!-- p233-233 | ReadBinFile -->
+## ReadBinFile
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **ReadBinFile** ( _pathname_ , _binfld_ [, _start_ [, _length_ ]] ) **Returns** _return-value_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -15811,7 +12155,7 @@ _Return-value_ is a long Integer that is the number of bytes read, if no error o
 
 Code -1 -2 -10 -11 -12 -20 -100 -101 -998 
 
-## **Example** 
+### Example
 
 ```
 # read the binary data from the file lPathname
@@ -15820,90 +12164,59 @@ ReadBinFile (lPathname,lBinfld) Returns lNumbytes
 OK message {[lNumbytes] bytes read}
 ```
 
-## **Redefine list** 
+<!-- p233-234 | Redefine list -->
+## Redefine list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|NO|NO|NO<br>All|
+Command group: Lists | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-233 
-
-
-
-**Syntax** 
+### Syntax
 
 **Redefine list** { _list-of-field-or-file-names_ (F1,F2..F3,F4)} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command redefines the columns of the current list. No change is made to the data currently stored in the list, or to the data type of each column; the command only changes the field name associated with each column. If you pass more field names to **Redefine list** than the current number of columns, the extra names are ignored. List boxes on windows will no longer display the data in the list unless you change their $calculation property to include the new variable or field name(s). 
 
-## **Example** 
+### Example
 
 ```
 Set current list iList1
 Define list {iCol1Date,iCol2Num,iCol3Char}
-```
-
-```
 Add line to list
-```
-
-```
 # redefine the 3rd column in the list to hold boolean values
 Redefine list {iCol1Date,iCol2Num,iCol4Boolean}
-```
-
-```
 # the boolean field value is converted into a character field format 'YES' etc and then add to the list
 Add line to list
-```
-
-```
 # or do it like this
-```
-
-```
 Do ilist.$redefine(iCol1Date,iCol2Num,iCol4Boolean)
 ```
 
-## **Redraw** 
+<!-- p234-235 | Redraw -->
+## Redraw
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Fields|YES|NO|NO<br>All|
+Command group: Fields | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Redraw** ([Refresh now]) {list-of-field-or-window-names (Name1,Name2,…)} 
 
-## **Options** 
+### Options
 
-|Refresh now|If specifed, the redraw occurs|
-|---|---|
-||before the command fnishes|
-||executing, rather than occurring at|
-||a later indeterminate point|
+Refresh now
+If specified, the redraw occurs
+before the command finishes
+executing, rather than occurring at
+a later indeterminate point
 
-
-
-## **Description** 
+### Description
 
 This command redraws the specified field or window instance (or list of fields or window instances). The _Refresh now_ option ensures the redraw is completed when the command is executed. Without this option the redraw occurs when the method has finished executing. 
 
-234 
-
-
-
-## **Example** 
+### Example
 
 ```
 Prepare for edit
@@ -15911,66 +12224,45 @@ Enter data
 If flag true
 Update files
 Else
-```
-
-```
 Clear main & con
 Redraw {wDataEntry}
-```
-
-```
 End If
-```
-
-```
 # alternatively you can use the $redraw(setcontents,refresh) method to redraw the
-```
-
-```
 # contents and/or refresh a field or window# setcontents defaults to true, refresh to false
 Do $cfield.$redraw() ## redraw current field
-```
-
-```
 Do $cwind.$redraw() ## redraw current window
-```
-
-```
 Do $root.$redraw() ## redraw all window instances
 ```
 
-## **Redraw lists** 
+<!-- p235-236 | Redraw lists -->
+## Redraw lists
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Fields|NO|NO|NO<br>All|
+Command group: Fields | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Redraw lists** ([ _All windows_ ][, _All lists_ ][, _Selection only_ ]) 
 
-## **Options** 
+### Options
 
-|All windows|If specifed, the command applies|
-|---|---|
-||to all open window instances,|
-||rather than just the top open|
-||window instance|
-|All lists|If specifed, the command applies|
-||to all lists on the window|
-||instance(s),rather than just the|
-||current list|
-|Selection only|If specifed, the command|
-||redraws the lists without|
-||reloading the data, in order to|
-||show changes to the selection|
-||state|
+All windows
+If specified, the command applies
+to all open window instances,
+rather than just the top open
+window instance
+All lists
+If specified, the command applies
+to all lists on the window
+instance(s),rather than just the
+current list
+Selection only
+If specified, the command
+redraws the lists without
+reloading the data, in order to
+show changes to the selection
+state
 
-
-
-## **Description** 
+### Description
 
 This command redraws the current list window field or all list fields. It lets you update the display of the current list field after you delete, change, or insert a line, so that the screen list reflects the changes. When Omnis executes **Redraw lists** , the selected line is scrolled into view and the visible lines recalculated. 
 
@@ -15980,48 +12272,32 @@ The _Selection only_ option causes the redraw to affect the highlighting of the 
 
 Omnis also redraws any fields which are local to the list field so that they will display the new values. It also redraws the grid fields associated with the current list. 
 
-235 
-
-
-
-## **Example** 
+### Example
 
 ```
 Begin reversible block
-```
-
-```
 Set current list iList
-```
-
-```
 End reversible block
 Define list {iCol1,iCol2}
 Calculate iCol1 as 42
-```
-
-```
 Add line to list {(iCol1,chr(iCol1))}
 Redraw lists
 ```
 
-## **Redraw menus** 
+<!-- p236-236 | Redraw menus -->
+## Redraw menus
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|NO|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Redraw menus** 
 
-## **Description** 
+### Description
 
 This command redraws all instances of your own custom menus. When executing **Redraw menus** , Omnis re-evaluates any squarebracket notation contained in the menu titles and lines before redrawing the menu bar. 
 
-## **Example** 
+### Example
 
 ```
 # Redraw the menus so that any with the title set to
@@ -16031,91 +12307,69 @@ This command redraws all instances of your own custom menus. When executing **Re
 
 ```
 Calculate tMenuName as 'MyMenu'
-```
-
-```
 Redraw menus
 ```
 
-## **Redraw toolbar** 
+<!-- p236-236 | Redraw toolbar -->
+## Redraw toolbar
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Toolbars|NO|NO|NO<br>All|
+Command group: Toolbars | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Redraw toolbar** ([ _Droplists only_ ]) { _toolbar-instance_ } 
 
-## **Options** 
+### Options
 
 Droplists only If specified, the command will only redraw the droplists on the toolbar 
 
-## **Description** 
+### Description
 
 This command redraws the toolbar instance. You can redraw droplists only using the _Droplists only_ option. 
 
-## **Example** 
+### Example
 
 ```
 Show docking area {kDockingAreaLeft}
 Install toolbar {tbMyToolbar}
 # do something
-```
-
-```
 # then redraw the droplists displayed on the toolbar tbMyToolbar
 Redraw toolbar (Droplists only) {tbMyToolbar}
 ```
 
-236 
+<!-- p237-237 | Redraw working message -->
+## Redraw working message
 
+Command group: Message boxes | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
-**Redraw working message** 
+Redraw working message
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Message boxes|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Redraw working message** 
-
-## **Description** 
+### Description
 
 This command redraws the text in the working message after evaluating any square bracket notation. Omnis does not increment the working message count and does nothing if there is no open working message. 
 
-## **Example** 
+### Example
 
 ```
 # Redraw the working message to update the record counter
 Working message {Processing Record [lCount]}
 For lCount from 1 to 20000 step 1
-```
-
-```
 Redraw working message
 End For
 ```
 
-## **Register DLL** 
+<!-- p237-238 | Register DLL -->
+## Register DLL
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Register DLL** ( _library_ , _procedure_ , _type-definition_ [, _unregister_ {Default kFalse}]) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -16131,56 +12385,105 @@ The remaining characters (one for each parameter) identify the parameter data ty
 
 Register and Call DLL commands support 64-bit type specifiers. The following table lists the possible data type characters: 
 
-|Character|Description|Pass By|C declaration|
-|---|---|---|---|
-|A|Logical|Value|short int|
-|B|IEEE 8 byte foating point|Value|double|
-|C|Null-terminated string|Value|TCHAR *|
-|D|Pascal string|Value|TCHAR *|
-|E|IEEE 8 byte foating point|Reference|double *|
-|H|Unsigned 16 bit integer|Value|unsigned short int|
-|I|Signed 16 bit integer|Value|short int|
+Character
+### Description
+Pass By
+C declaration
+A
+Logical
+Value
+short int
+B
+IEEE 8 byte floating point
+Value
+double
+C
+Null-terminated string
+Value
+TCHAR *
+D
+Pascal string
+Value
+TCHAR *
+E
+IEEE 8 byte floating point
+Reference
+double *
+H
+Unsigned 16 bit integer
+Value
+unsigned short int
+I
+Signed 16 bit integer
+Value
+short int
 
-
-
-237 
-
-
-
-|Character|Description|Pass By|C declaration|
-|---|---|---|---|
-|J|Signed 32 bit integer|Value|long int|
-|L|Logical|Reference|short int *|
-|M|Signed 16 bit integer|Reference|short int *|
-|N|Signed 32 bit integer|Reference|long int *|
-|O|Null-terminated 8-bit string: Encoded as|Value|char *|
-||Ansi on Win32, MacRoman on macOS,|||
-||ISO-8859-1 on Linux|||
-|P|Signed integer of pointer size for the|value|Intptr_t|
-||current architecture (32 or 64 bit)|||
-|Q|Signed integer of pointer size for the|Reference|Intptr_t *|
-||current architecture (32 or 64 bit)|||
-|R|Signed 64-bit integer|Value|Int64_t|
-|S|Signed 64-bit integer|Reference|Int64_t *|
-|V|void (use if no return value)||void|
-|Z|Cannot be used as a return value data|Value|char *|
-||type. When passing the parameter,|||
-||behaves like data type C. Use Z to indicate|||
-||that the procedure sets the parameter to|||
-||a sequence of null-terminated|||
-||strings,terminated by an additional null|||
-||character._Call DLL_sets the parameter to|||
-||the same sequence of strings,using|||
-||carriage returns instead of null|||
-||terminators|||
-
-
+Character
+### Description
+Pass By
+C declaration
+J
+Signed 32 bit integer
+Value
+long int
+L
+Logical
+Reference
+short int *
+M
+Signed 16 bit integer
+Reference
+short int *
+N
+Signed 32 bit integer
+Reference
+long int *
+O
+Null-terminated 8-bit string: Encoded as
+Value
+char *
+Ansi on Win32, MacRoman on macOS,
+ISO-8859-1 on Linux
+P
+Signed integer of pointer size for the
+value
+Intptr_t
+current architecture (32 or 64 bit)
+Q
+Signed integer of pointer size for the
+Reference
+Intptr_t *
+current architecture (32 or 64 bit)
+R
+Signed 64-bit integer
+Value
+Int64_t
+S
+Signed 64-bit integer
+Reference
+Int64_t *
+V
+void (use if no return value)
+void
+Z
+Cannot be used as a return value data
+Value
+char *
+type. When passing the parameter,
+behaves like data type C. Use Z to indicate
+that the procedure sets the parameter to
+a sequence of null-terminated
+strings,terminated by an additional null
+character._Call DLL_sets the parameter to
+the same sequence of strings,using
+carriage returns instead of null
+terminators
 
 Note that TCHAR represents the character type used for operating system API calls - for Windows it is 16 bit unsigned short. 
 
 When you have finished using the procedure, you may wish to unregister the procedure; this allows Omnis to unload the DLL containing the procedure. To do this, pass the unregister parameter as kTrue. Note that the DLL will remain loaded until all the registered procedures in the DLL have been unregistered; also, if the DLL is loaded into the Omnis process for another reason e.g. the DLL is linked with the Omnis executable, then it will remain loaded even after the last procedure has been unregistered. 
 
-## **Example** 
+### Example
 
 ```
 # Flash the Omnis window to attract the user's attention
@@ -16204,147 +12507,95 @@ Call DLL ("KERNEL32.DLL","CloseHandle",#1) Returns #50
 Calculate #1 as binlength(#S1)
 ```
 
-## **Reinitialize search class** 
+<!-- p238-239 | Reinitialize search class -->
+## Reinitialize search class
 
-238 
+Command group: Searches | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Reinitialize search class
 
-Command group Flag affected Reversible Execute on client Searches NO NO NO 
-
-## **Syntax** 
-
-## **Reinitialize search class** 
-
-## **Description** 
+### Description
 
 This command reloads the current search definition into memory. **Reinitialize search class** is useful if square bracket notation has been used in the search class. The square bracket expressions are re-evaluated using current field values before reloading the search definition. Each find table keeps its own copy of the search conditions so you must re-issue the Find command if a search needs reinitializing. 
 
-## **Example** 
+### Example
 
 ```
 # This example assumes a search class sTown uses the comparison line TOWN Begins with [lStartsWith]
 # The window wStarts is used to allow the user to specify a value for #S5
 Set search name sTown
-```
-
-```
 Repeat
-```
-
-```
 Open window instance wStarts/CEN
 Enter data
-```
-
-```
 Close window instance wStarts
-```
-
-```
 If flag true
-```
-
-```
 Reinitialize search class
-```
-
-```
 Do method PrintReport
 End If
-```
-
-```
 Until flag false
 ```
 
-## **Remove all menus** 
+<!-- p239-239 | Remove all menus -->
+## Remove all menus
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Remove all menus** 
 
-## **Description** 
+### Description
 
 This command removes all menu instances from the menu bar, excluding the standard Omnis menus such as File and Edit. If you use **Remove all menus** in a reversible block, the menu instances are reinstalled when the method containing the block finishes. 
 
-## **Example** 
+### Example
 
 ```
 # Remove all user defined menus from the main
-```
-
-```
 # omnis menubar
-```
-
-```
 Begin reversible block
 Remove all menus
 End reversible block
 OK message {Menus are now removed}
-```
-
-```
 # now all menu instances are reinstalled
 ```
 
-239 
+<!-- p240-240 | Remove final menu -->
+## Remove final menu
 
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
-## **Remove final menu** 
+Remove final menu
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Remove final menu** 
-
-## **Description** 
+### Description
 
 This command removes the final or right-most menu instance from the menu bar, excluding the standard Omnis menus such as File and Edit. If you use **Remove final menu** in a reversible block, the final menu instance is reinstalled when the method containing the block terminates. 
 
-## **Example** 
+### Example
 
 ```
 # Remove the last menu installed
-```
-
-```
 Begin reversible block
 Remove final menu
-```
-
-```
 End reversible block
 OK message {Menu is now removed}
 # now the final menu is reinstalled
 ```
 
-## **Remove menu** 
+<!-- p240-240 | Remove menu -->
+## Remove menu
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|YES|YES|NO<br>All|
+Command group: Menus | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Remove menu** menu-instance-name 
 
-## **Description** 
+### Description
 
 This command removes the specified menu instance from the menu bar and sets the flag. You can choose the menu name from a list containing any custom and standard built-in menus, such as *File, *Edit, and so on. 
 
@@ -16352,14 +12603,11 @@ If you use this command to remove a menu instance which has previously been inst
 
 If you use **Remove menu** in a reversible block, the specified menu instance is reinstalled when the method containing the reversible block terminates. 
 
-## **Example** 
+### Example
 
 ```
 # If the menu mView is installed remove it
 Test for menu installed {mView}
-```
-
-```
 If flag true
 Remove menu mView
 End If
@@ -16367,125 +12615,82 @@ End If
 Do $imenus.mView.$close()
 ```
 
-240 
+<!-- p241-241 | Remove toolbar -->
+## Remove toolbar
 
+Command group: Toolbars | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-## **Remove toolbar** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Toolbars|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Remove toolbar** { _toolbar-instance_ } 
 
-## **Description** 
+### Description
 
 This command removes the specified toolbar instance. 
 
-## **Example** 
+### Example
 
 ```
 Show docking area {kDockingAreaLeft}
 Install toolbar {tbMyToolbar/kDockingAreaLeft}
 # do something
-```
-
-```
 # now remove the toolbar & docking area again
 Remove toolbar {tbMyToolbar}
 Hide docking area {kDockingAreaLeft}
 # or you do it like this
-```
-
-```
 Do $itoolbars.tbMyToolbar.$close()
-```
-
-```
 # or if you used notation to install the toolbar
-```
-
-```
 Do $clib.$toolbars.tbMyToolbar.$open('*',kDockingAreaLeft) Returns lToolBarRef
-```
-
-```
 # use the toolbar reference to close it
-```
-
-```
 Do lToolBarRef.$close()
 ```
 
-## **Rename class** 
+<!-- p241-242 | Rename class -->
+## Rename class
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|YES|NO|NO<br>All|
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+### Syntax
+**Rename class**([Perform find and replace]) {class-name/new-name}
+### Options
+Perform find and replace
+If specified, and the command
+is executing in a development
+version of Omnis, the
+command opens the find and
+replace dialog to allow the user
+to replace the old class name
+with the new class name
 
-## **Syntax** 
-
-|**Syntax**||
-|---|---|
-|**Rename class**([Perform fnd and replace]) {class-name/new-name}||
-|**Options**||
-|Perform fnd and replace|If specifed, and the command|
-||is executing in a development|
-||version of Omnis, the|
-||command opens the fnd and|
-||replace dialog to allow the user|
-||to replace the old class name|
-||with the new class name|
-
-
-
-## **Description** 
+### Description
 
 This command renames the specified library class and can perform a find and replace. Errors, such as attempting to use a name that is already in use, simply clear the flag and display an error message. You can rename a class which is in use. 
 
 When renaming a class, you can use the Perform find and replace option to search through all the classes in the library and replace the references to the old class name with the new name. 
 
-241 
-
-
-
-## **Example** 
+### Example
 
 ```
 New class {Search Class/sMySearch} ## create new search class
 Modify class {sMySearch} ## let user modify it
 Delete class {sUser} ## delete the search class sUser
-```
-
-```
 Rename class {sMySearch/sUser} ## rename the new search class to the old search
 Set search name sUser
-```
-
-```
 Print report (Use search)
 ```
 
-## **Rename data** 
+<!-- p242-242 | Rename data -->
+## Rename data
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|YES|NO|NO<br>All|
+Command group: Data management | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Rename data** { _file-name_ / _new-slot-name_ } 
 
-## **Description** 
+### Description
 
 This command renames the data for a specified file class in a data file so that the data will then belong to a file with a different name; that is, it renames a slot. The existing file class name and the new slot name are specified as parameters. 
 
@@ -16499,72 +12704,60 @@ If you are not running in single user mode, Omnis automatically tests that only 
 
 This command sets the flag if it completes successfully and clears the flag otherwise. The command is not reversible. 
 
-## **Example** 
+### Example
 
 ```
 Rename data {fCustomers/fCustomersArchive}
-```
-
-```
 If flag true
 OK message {File archived}
 Else
-```
-
-```
 OK message {Cannot archive while more than 1 user is logged on}
 End If
 ```
 
-## **Reorganize data** 
+<!-- p242-244 | Reorganize data -->
+## Reorganize data
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|YES|NO|NO<br>All|
+Command group: Data management | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Reorganize data** ([ _Test only_ ][, _Optimize_ ][, _Convert pictures_ ][, _Use true color when converting_ ]) { _list-of-files_ ( _F1,F2,..,Fn_ ) (leave empty to select all)} 
 
-242 
+### Options
 
+Test only
+If specified,the data file is
+not updated; the command
+purely tests to see if it
+would update the data file
+when executed without
+this option specified,and
+returns the flag set to true
+if an update would occur
+Optimize
+If specified,the command
+also attempts to optimize
+free space to make data
+storage more efficient
+Convert pictures
+If specified,the command
+also converts (where
+necessary) pictures to
+shared (cross-platform)
+picture format
+Use true color when converting
+Only relevant when
+‘Convert pictures’ is
+specified.If
+specified,pictures are
+converted to the
+recommended shared true
+color format,rather than
+the out of date shared 256
+color format.
 
-
-**Options** 
-
-|Test only|If specifed,the data fle is|
-|---|---|
-||not updated; the command|
-||purely tests to see if it|
-||would update the data fle|
-||when executed without|
-||this option specifed,and|
-||returns the fag set to true|
-||if an update would occur|
-|Optimize|If specifed,the command|
-||also attempts to optimize|
-||free space to make data|
-||storage more effcient|
-|Convert pictures|If specifed,the command|
-||also converts (where|
-||necessary) pictures to|
-||shared (cross-platform)|
-||picture format|
-|Use true color when converting|Only relevant when|
-||‘Convert pictures’ is|
-||specifed.If|
-||specifed,pictures are|
-||converted to the|
-||recommended shared true|
-||color format,rather than|
-||the out of date shared 256|
-||color format.|
-
-
-
-## **Description** 
+### Description
 
 This command reorganizes the data for the specified file or list of files. Reorganization is the process by which the data structures held in the Omnis data file are brought into line with the file class definitions. 
 
@@ -16586,98 +12779,63 @@ The _Optimize_ checkbox option specifies whether reorganize with optimize is to 
 
 The _Convert pictures_ checkbox option causes all pictures in the data to be converted to a shared picture format. 
 
-## **Example** 
+### Example
 
 ```
 Reorganize data (Test only) ## all files
 If flag true
-```
-
-243 
-
-
-
-```
 Yes/No message {Reorganize now?}
 If flag true
 Reorganize data
 End If
-```
-
-```
 Else
-```
-
-```
 OK message {No reorganization required}
 End If
 ```
 
-## **Repeat** 
+<!-- p244-244 | Repeat -->
+## Repeat
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+Repeat
 
-## **Syntax** 
-
-## **Repeat** 
-
-## **Description** 
+### Description
 
 This command repeats a command or series of commands that are contained in a loop closed by an Until command. Each time the command is repeated, Omnis tests the condition attached to the Until command to ensure that the condition is true. If the condition is true, the commands in the loop are not executed and the command after the Until is executed. However, if the condition is false, Omnis jumps back to the first command following the **Repeat** command. 
 
 An error will result if there is a **Repeat** command without a matching Until command. **Repeat** loops always execute at least once. The Repeat– Until logic test is carried out at the end of the loop, after the commands in the loop are executed, whereas the While–End While logic test is carried out at the beginning of the loop. 
 
-## **Example** 
+### Example
 
 ```
 Repeat
-```
-
-```
 Yes/No message {Press Yes to exit loop}
 Until flag true
-```
-
-```
 Repeat
-```
-
-```
 No/Yes message {Press No to exit loop}
 Until flag false
 Repeat
-```
-
-```
 Prompt for input Enter a value greater than 10 to exit loop Returns lValue
 Until lValue>10
 ```
 
-## **Replace line in list** 
+<!-- p244-245 | Replace line in list -->
+## Replace line in list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Replace line in list** { _line-number_ ( _values_ ) {default is current line}} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-244 
-
-
-
-## **Description** 
+### Description
 
 This command transfers field values from the current record buffer to the corresponding fields in the current list. Alternatively, it is possible to specify a comma-separated list of values enclosed in brackets after the line number. In this case, the values stored in the specified line of the list are set up from the values in the brackets and not from the variables specified when the list was defined. 
 
@@ -16687,7 +12845,7 @@ will store ‘abc’ into the first column of the final line of the current list
 
 If the line number specified in the command line is empty, or if it evaluates to zero, the current line is used. If the list is empty or if the line is beyond the current end of the list, the flag is cleared. 
 
-## **Example** 
+### Example
 
 ```
 # Replace Harry with Arnold and increment
@@ -16707,19 +12865,16 @@ Replace line in list {(,lAge)}
 End For
 ```
 
-## **Replace standard Edit menu** 
+<!-- p245-246 | Replace standard Edit menu -->
+## Replace standard Edit menu
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Replace standard Edit menu** { _class-name_ [/ _instance-name_ ] [( _parameters_ )]} 
 
-## **Description** 
+### Description
 
 This command removes the standard built-in Edit menu from the menu bar and replaces it with a custom menu. You can assign an instance name for the replacement menu. The default instance name of the replacement menu is the menu class name. If no replacement menu name is specified, the Edit menu is reinstated. 
 
@@ -16727,21 +12882,14 @@ The replacement menu will remain enabled even when commands such as Disable all 
 
 You can disable the Edit menu or its replacement menu by using Disable menu line. 
 
-## **Example** 
+### Example
 
 ```
 # Replace the standard edit menu with the user
-```
-
-```
 # defined menu mMyEdit while in enter data
 ```
 
 - `# $construct of window` 
-
-245 
-
-
 
 ```
 Replace standard Edit menu {mMyEdit}
@@ -16749,19 +12897,16 @@ Enter data
 Replace standard Edit menu ## put system Edit menu back
 ```
 
-## **Replace standard File menu** 
+<!-- p246-246 | Replace standard File menu -->
+## Replace standard File menu
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Replace standard File menu** { _class-name_ [/ _instance-name_ ] [( _parameters_ )]} 
 
-## **Description** 
+### Description
 
 This command removes the standard built-in File menu from the menu bar and replaces it with a custom menu. You can assign an instance name for the replacement menu. The default instance name of the replacement menu is the menu class name. If no replacement menu name is specified, the File menu is reinstated. 
 
@@ -16769,7 +12914,7 @@ The replacement menu will remain enabled even when commands such as Disable all 
 
 You can disable the File menu or its replacement menu by using Disable menu line. 
 
-## **Example** 
+### Example
 
 ```
 # Replace the standard file menu with the user
@@ -16781,29 +12926,20 @@ You can disable the File menu or its replacement menu by using Disable menu line
 
 ```
 Replace standard File menu {mMyFile}
-```
-
-```
 Enter data
-```
-
-```
 Replace standard File menu ## put system File menu back
 ```
 
-## **Request advises** 
+<!-- p246-247 | Request advises -->
+## Request advises
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|YES|YES|NO<br>Windows|
+Command group: Exchanging data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Request advises** _field-name_ { _server-data-item-name_ } 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as client. This command sends a request to the server asking to be advised of any changes made to a specified data item. An error occurs if the channel is not open. The command takes the Omnis field name and the server data item name as parameters. The data item name can contain square bracket notation. 
 
@@ -16811,11 +12947,7 @@ Whenever Omnis is advised of a change in field value, that value is changed prov
 
 You can use a control method to detect the arrival of data from the server using evSent. 
 
-246 
-
-
-
-## **Example** 
+### Example
 
 ```
 Request advises iCompany {iCompany}
@@ -16825,23 +12957,20 @@ Enter data
 Update files if flag set
 ```
 
-## **Request field** 
+<!-- p247-247 | Request field -->
+## Request field
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|YES|NO|NO<br>Windows|
+Command group: Exchanging data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Request field** _field-name_ { _server-data-item-name_ } 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as client. This command requests a data item from the DDE channel. An error occurs if the channel is not open. The command takes the Omnis field name and the server data item name as parameters. The data item name can contain square bracket notation. If the data item name is not specified, the Omnis field name is used. The flag is set if the command is successful. 
 
-## **Example** 
+### Example
 
 ```
 Set DDE channel number {1}
@@ -16863,37 +12992,30 @@ Enter data
 Update files if flag set
 ```
 
-## **Restore selection for line(s)** 
+<!-- p247-248 | Restore selection for line(s) -->
+## Restore selection for line(s)
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Restore selection for line(s)** ([ _All lines_ ]) { _line-number_ ( _calculation_ )} 
-
-247 
-
-
 
 **Options** All lines 
 
 If specified, the command affects all the lines in the list 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command copies the Saved selection state to the Current selection state and sets the flag. To allow sophisticated manipulation of data via lists, a list can store two selection states for each line; the “Current” and the “Saved” selection. The Current and Saved selections have nothing to do with saving data on the disk; they are no more than labels for two sets of selections. The lists may be held in memory and never saved to disk: they will still have a Current and Saved selection state for each line but they will be lost if not saved. When a list is stored in the data file, both sets of selections are stored. 
 
 The **Restore selection for line(s)** command allows the Saved selection state of the specified line (or All lines) to be copied into the Current set. You can specify a particular line in the list either by entering a number or a calculation. You are required to redraw the list to refresh the state of the displayed list field. The _All lines_ option restores the selection states for all lines of the current list. 
 
-## **Example** 
+### Example
 
 ```
 # Save and restore the selection after all
@@ -16910,117 +13032,79 @@ Deselect list line(s) (All lines)
 Restore selection for line(s) (All lines)
 ```
 
-## **Revert class** 
+<!-- p248-248 | Revert class -->
+## Revert class
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Classes|YES|NO|NO|All|
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **Revert class** { _class-name_ } 
 
-## **Description** 
+### Description
 
 This command reads the specified class from the library file on disk into RAM, so that any changes made to that class using the notation are lost. The flag is set if the class is successfully re-read. A runtime error occurs if the specified class cannot be found. 
 
-## **Example** 
+### Example
 
 ```
 # make change to a window class
 Do $windows.wMyWindow.$objs.Field1.$visible.$assign(kFalse)
 Open window instance wMyWindow
 # do something
-```
-
-```
 Revert class {wMyWindow} ## reset the Field1 on the saved window (NOT the current instance) to be visible
 ```
 
-248 
+<!-- p249-249 | Save class -->
+## Save class
 
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-## **Save class** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Save class** { _class-name_ } 
 
-## **Description** 
+### Description
 
 This command writes the specified class, which normally contains changes made by notation, into the library file on disk. You use **Save class** to make the changes permanent. The flag is set if the class is successfully saved. A runtime error occurs if the specified class cannot be found. 
 
-## **Example** 
+### Example
 
 ```
 # get a reference to a window in the current library
 Set reference lWinRef to $windows.wMyWindow
-```
-
-```
 # create a pushbutton object on the window
-```
-
-```
 Set reference lObjRef to lWinRef.$objs.$add(kPushbutton,5,5,23,120)
-```
-
-```
 # save the class
-```
-
-```
 Save class {wMyWindow}
-```
-
-```
 # opens the window with the new button
-```
-
-```
 Open window instance wMyWindow
 ```
 
-## **Save selection for line(s)** 
+<!-- p249-250 | Save selection for line(s) -->
+## Save selection for line(s)
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Save selection for line(s)** ([ _All lines_ ]) { _line-number_ ( _calculation_ )} 
 
-## **Options** 
+### Options
 
 All lines If specified, the command affects all the lines in the list 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command saves the selection state of the specified line(s) in memory and sets the flag. To allow sophisticated manipulation of data via lists, a list can store two selection states for each line; the “Current” and the “Saved” selection. The Current and Saved selections have nothing to do with saving data on the disk; they are no more than labels for two sets of selections. The lists may be held in memory and never saved to disk: they will still have a Current and Saved selection state for each line but they will be lost if not saved. When a list is stored in the data file, both sets of selections are stored. 
 
 **Save selection for line(s)** allows the selection state of the specified line (or All lines) to be copied into the Saved set. You can specify a particular line in the list by entering either a number or a calculation. If the line number is not specified, the current line selection is saved. The _All lines_ option saves the selection for all lines of the current list. This example selects the middle line of the list: 
 
-249 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Save and restore the selection after all an invert
@@ -17036,25 +13120,22 @@ Invert selection for line(s) (All lines)
 Restore selection for line(s) (All lines)
 ```
 
-## **SEA continue execution** 
+<!-- p250-250 | SEA continue execution -->
+## SEA continue execution
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Error handlers|NO|NO|NO<br>All|
+Command group: Error handlers | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+SEA continue execution
 
-## **Syntax** 
-
-## **SEA continue execution** 
-
-## **Description** 
+### Description
 
 This command continues method execution at the command following the command which called an error handler; SEA stands for Set Error Action. Using it is, in effect, like saying “Error is acknowledged. Now, skip over the error line and proceed with the succeeding good lines.” 
 
 Using this command is similar to setting the go point in the debugger at L+1 where L is the error line. The command is always used within an error handler. 
 
-## **Example** 
+### Example
 
 ```
 # error handler to trap break key while waiting for semaphore
@@ -17068,36 +13149,26 @@ Using this command is similar to setting the go point in the debugger at L+1 whe
 
    - `SEA con execution` 
 
-- `End If` 
+- `End If`
 
-## **SEA repeat command** 
+<!-- p250-251 | SEA repeat command -->
+## SEA repeat command
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Error handlers|NO|NO|NO<br>All|
+Command group: Error handlers | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+SEA repeat command
 
-## **Syntax** 
-
-## **SEA repeat command** 
-
-## **Description** 
+### Description
 
 This command attempts to repeat the command that caused an error; SEA stands for Set Error Action. This is most useful after an out of memory condition. The command is always used within an error handler. It is your responsibility to ensure that an endless looping situation between the error handler and the command is not created. Also, you must ensure that any side effects of the original execution of the command which caused the error are taken into account. 
 
-250 
-
-
-
-## **Example** 
+### Example
 
 ```
 # error handler traps an attempt to edit a locked record and the user presses the Break key
 If #ERRCODE=kerrCantlock
-```
-
-```
 Yes/No message {Do you want to cancel the edit?}
 ```
 
@@ -17107,37 +13178,25 @@ Yes/No message {Do you want to cancel the edit?}
 
 ```
 Else
-```
-
-```
 SEA repeat command
-```
-
-```
+End If
 End If
 ```
 
-```
-End If
-```
+<!-- p251-251 | SEA report fatal error -->
+## SEA report fatal error
 
-## **SEA report fatal error** 
+Command group: Error handlers | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Error handlers|NO|NO|NO<br>All|
+### Syntax
 
+SEA report fatal error
 
-
-## **Syntax** 
-
-## **SEA report fatal error** 
-
-## **Description** 
+### Description
 
 This command causes the default action for a fatal error to occur; SEA stands for Set Error Action. If the debugger is available, it is invoked, otherwise, execution halts with an error message. This command, like the other SEA commands, should only be used from within an error handler. The SEA commands determine the behavior following fatal or warning errors. 
 
-## **Example** 
+### Example
 
 ```
 # This causes a warning error to generate the same action as a fatal error
@@ -17149,55 +13208,48 @@ This command causes the default action for a fatal error to occur; SEA stands fo
 
    - `# your code...` 
 
-- `End If` 
+- `End If`
 
-## **Search list** 
+<!-- p251-253 | Search list -->
+## Search list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|YES|NO|NO<br>All|
+Command group: Lists | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Search list** ([ _From start_ ][, _Only test selected lines_ ][, _Select matches (OR)_ ][, _Deselect non-matches (AND)_ ][, _Do not load line_ ]) 
 
-## **Options** 
+### Options
 
 From start If specified, the command starts with the first line of the list rather than the line immediately after the current line Only test selected lines If specified, the command only operates on selected lines 
 
 From start 
 
-251 
+Select matches (OR)
+If specified, the command
+processes all specified lines and
+selects lines which match the
+search; any lines selected before
+the command executes remain
+selected
+Deselect non-matches (AND)
+If specified, the command
+processes all specified lines and
+deselects lines which do not
+match the search
+Do not load line
+If specified, the line found by the
+search is not loaded into the
+current record buffer; this is only
+relevant when ‘Select matches
+(OR)’ and ‘Deselect non-matches
+(AND)’ are both not specified
 
-
-
-|Select matches (OR)|If specifed, the command|
-|---|---|
-||processes all specifed lines and|
-||selects lines which match the|
-||search; any lines selected before|
-||the command executes remain|
-||selected|
-|Deselect non-matches (AND)|If specifed, the command|
-||processes all specifed lines and|
-||deselects lines which do not|
-||match the search|
-|Do not load line|If specifed, the line found by the|
-||search is not loaded into the|
-||current record buffer; this is only|
-||relevant when ‘Select matches|
-||(OR)’ and ‘Deselect non-matches|
-||(AND)’ are both not specifed|
-
-
-
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command searches the current list for field values that match the current search class or search calculation and loads them into the Current Record Buffer. The search starts at the beginning of the list if _From start_ is checked, otherwise at the line after the current line. 
 
@@ -17211,7 +13263,7 @@ If the _Deselect non-matches (AND)_ option is used, the command scans all the li
 
 Using the Select and the Deselect options together alters the selection state so that matching lines are selected, non-matching lines are deselected. The current line is not affected. 
 
-## **Example** 
+### Example
 
 ```
 Set current list iList1
@@ -17223,44 +13275,34 @@ Calculate iColNum as iColNum+1
 Until iColNum=6
 Set search as calculation {iColNum=3|iColNum=4}
 Search list (From start) ## current line is now 3
-```
-
-252 
-
-
-
-```
 Search list (Select matches (OR)) ## selects line 4
 # or do it like this
 Do iList1.$search(iColNum=3|iColNum=4,kTrue,kFalse,kTrue,kFalse)
 Do iList1.$first(kTrue)
 ```
 
-## **Select list line(s)** 
+<!-- p253-253 | Select list line(s) -->
+## Select list line(s)
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Select list line(s)** ([ _All lines_ ]) {line-number (calculation)} 
 
-## **Options** 
+### Options
 
 All lines If specified, the command affects all the lines in the list 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command selects the specified list line. The specified line of the current list is selected and is shown highlighted (or checked on popup lists) on any window list fields provided that the field has $multipleselect on. If the line number is not specified, the current list line is selected. The _All lines_ option selects all lines of the current list. The current line is not affected. When a list is saved in the data file, the line selection is stored. The following example selects the middle line of the list: 
 
-## **Example** 
+### Example
 
 ```
 # Select line 3 of the list
@@ -17268,38 +13310,28 @@ Set current list lMyList
 Define list {lCol1}
 For lCol1 from 1 to 6 step 1
 Add line to list {lCol1}
-```
-
-```
 End For
 Select list line(s) {lMyList.$linecount/2}
 # Alternatively, you can select a line by assigning its $selected property.
 Do lMyList.1.$selected.$assign(kTrue)
 ```
 
-## **Select printer** 
+<!-- p253-254 | Select printer -->
+## Select printer
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Reports and Printing|YES|NO|NO<br>All|
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Select printer** ([ _Discard previous settings_ ]) {printer-name} 
 
-253 
-
-
-
-**Options** 
+### Options
 
 Discard previous settings 
 
 If specified, the command reloads the Omnis page setup with the default system settings for the selected printer (Windows platform only) 
 
-## **Description** 
+### Description
 
 This command allows the user to specify a printer to receive reports. You can choose the required printer from a list of all installed printers. After this command has executed, the flag is set if the printer was selected successfully. 
 
@@ -17307,7 +13339,7 @@ The _Discard previous settings_ option causes Omnis to reload the Omnis page set
 
 You can use the function _sys(101)_ to return the name of the current printer. 
 
-## **Example** 
+### Example
 
 ```
 # Select the printer prior to printing
@@ -17320,23 +13352,20 @@ End If
 End If
 ```
 
-## **Send advises now** 
+<!-- p254-254 | Send advises now -->
+## Send advises now
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|NO|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Send advises now** 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as server. This command advises the client applications of all the field values for all the fields for which Advise requests have been received. The values are taken from the CRB. 
 
-## **Example** 
+### Example
 
 ```
 Set main file {fCustomers}
@@ -17344,23 +13373,16 @@ Find on fCustomers.CustomerID (Exact match) {iCustID}
 Send advises now
 ```
 
-## **Send command** 
+<!-- p254-255 | Send command -->
+## Send command
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|YES|NO|NO<br>Windows|
+Command group: Exchanging data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-254 
-
-
-
-**Syntax** 
+### Syntax
 
 **Send command** { _text_ } 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as client. This command sends a command or a series of commands as text to the current channel. 
 
@@ -17370,28 +13392,19 @@ The DDE syntax dictates that the commands be enclosed in square brackets and Omn
 
 The flag is set if the server accepts the command(s). 
 
-## **Syntax and errors** 
+Syntax and errors
 
 When you send commands to Omnis, the syntax is defined by the text shown in the method editor. You can enter scripts in Omnis, copy them to the clipboard and paste them into the client application. If the sent command returns an error to Omnis, the hash variables _#ERRCODE_ and _#ERRTEXT_ store the error code and message. 
 
-## **Example** 
+### Example
 
 ```
 # put your command text into the character variable lString
 Calculate lString as '[your command]'
 Send command {[lString]} ## send the command to the server
-```
-
-```
 # else you can enter the command directly into the command parameter by doubling the first set of brackets# eg
 Send command {[[releasecontrol]}
-```
-
-```
 # Example
-```
-
-```
 Set DDE channel number {2}
 Open DDE channel {Omnis|Country}
 If flag false
@@ -17405,29 +13418,22 @@ OK message {Update finished}
 End If
 ```
 
-## **Send field** 
+<!-- p255-256 | Send field -->
+## Send field
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|YES|NO|NO<br>Windows|
+Command group: Exchanging data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Send field** field-name {server-data-item-name} 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as client. This command sends the value of an Omnis field to the current DDE channel. An error occurs if the channel is not open. The command takes the Omnis field name and the server data item name as parameters. The data item name can contain square bracket notation. If the data item name is not specified, the Omnis field name is used. 
 
 The flag is set if the server program accepts the value. 
 
-255 
-
-
-
-## **Example** 
+### Example
 
 ```
 Set DDE channel number {2}
@@ -17435,67 +13441,44 @@ Open DDE channel {Omnis|DDE2}
 Calculate lString as '[TakeControl]'
 Send command {[lString]}
 If flag false
-```
-
-```
 OK message {Error sending: [lString]}
 End If
-```
-
-```
 Send field iClient {sName}
 Send field iTotal {sTotals}
 ```
 
-## **Send to a window field** 
+<!-- p256-256 | Send to a window field -->
+## Send to a window field
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|NO|YES<br>NO<br>All|
-|**Syntax**|||
-|**Send to a window feld**{_feld-name_}|||
+Command group: Report destinations | Flag affected: NO | Reversible: YES
 
+### Syntax
+**Send to a window field**{_field-name_}
 
-
-## **Description** 
+### Description
 
 This command directs the output of a report to a window Screen Report field; you cannot print to any other type of window field. When you print the report the field is changed into a standard screen report window that has all the features of the standard screen report. 
 
 An error is generated if the field name is invalid for the current window. If you use **Send to a window field** in a reversible block, the report destination reverts to its former setting when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 # the $event method behind a pushbutton on a window
-```
-
-```
 On evClick
-```
-
-```
 Send to a window field {WindowReportField}
-```
-
-```
 Set report name rMyReport
-```
-
-```
 Print report ## prints the report in the window field
 ```
 
-## **Send to clipboard** 
+<!-- p256-257 | Send to clipboard -->
+## Send to clipboard
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|NO|YES<br>NO<br>All|
-
-
+Command group: Report destinations | Flag affected: NO | Reversible: YES
 
 **Syntax Send to clipboard** 
 
-## **Description** 
+### Description
 
 This command sends the output of any subsequent reports to the clipboard. The report is printed as a text-only file and all text formatting is ignored. If two reports are sent to the clipboard, the second report overwrites the first. Once a report has been sent to the clipboard, you can launch another program, such as a word processor, and paste the report into it. 
 
@@ -17503,11 +13486,7 @@ If you use **Send to clipboard** in a reversible block, the report destination r
 
 If you want to copy pictures from a report to the clipboard, you can print the report to screen and use the mouse to select the area required. The standard Edit menu Copy option will copy the graphic to the clipboard. 
 
-256 
-
-
-
-## **Example** 
+### Example
 
 ```
 Send to clipboard
@@ -17516,26 +13495,20 @@ Print report
 # now launch word processor and paste
 Launch program NOTEPAD.EXE Returns lStatus
 If lStatus
-```
-
-```
 Paste from clipboard
 End If
 ```
 
-## **Send to DDE channel** 
+<!-- p257-257 | Send to DDE channel -->
+## Send to DDE channel
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|NO|YES<br>NO<br>Windows|
+Command group: Report destinations | Flag affected: NO | Reversible: YES
 
+### Syntax
 
+Send to DDE channel
 
-## **Syntax** 
-
-## **Send to DDE channel** 
-
-## **Description** 
+### Description
 
 This command directs any subsequent reports to a DDE channel. The current channel is defined by Set DDE channel number. An error occurs if the channel is not open or if the report is not printed with an export format. 
 
@@ -17547,7 +13520,7 @@ If you use **Send to DDE channel** in a reversible block, the report destination
 
 It may be the case that an export format for a particular Omnis report does not correspond to any of the formats supported by DDE. If a mismatch occurs, there will be an error message at the Print report or Prepare for print command. 
 
-## **Example** 
+### Example
 
 ```
 Send to DDE channel
@@ -17560,23 +13533,16 @@ Print report
 Close DDE channel
 ```
 
-## **Send to file** 
+<!-- p257-258 | Send to file -->
+## Send to file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|NO|YES<br>NO<br>All|
+Command group: Report destinations | Flag affected: NO | Reversible: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Send to file** 
 
-257 
-
-
-
-## **Description** 
+### Description
 
 This command directs the report output to the currently selected print file. The report is sent as a text file (no text style or formatting) with the appropriate line terminators. The print file is not closed when a report finishes so you can print multiple reports without changing the destination or the name of the print file. 
 
@@ -17586,7 +13552,7 @@ Set lines per page lets you specify page length from methods. If the Send form f
 
 If you use **Send to file** in a reversible block, the report destination reverts to its former setting when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 Send to file
@@ -17596,33 +13562,29 @@ Set print or export file name {[lPrintFileName]}
 Print report
 ```
 
-## **Send to page preview** 
+<!-- p258-259 | Send to page preview -->
+## Send to page preview
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|NO|YES<br>NO<br>All|
+Command group: Report destinations | Flag affected: NO | Reversible: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Send to page preview** ([ _Do not wait for user_ ][, _Hide until complete_ ]) title[/ _left/top/width/height/stk/cen/max_ ] 
 
-## **Options** 
+### Options
 
-|Do not wait for user|Unless this option is specifed,|
-|---|---|
-||the user must close the|
-||window before method|
-||execution continues and before|
-||doing anything else|
-|Hide until complete|If specifed, the report window|
-||is not displayed until the report|
-||has been completely generated|
+Do not wait for user
+Unless this option is specified,
+the user must close the
+window before method
+execution continues and before
+doing anything else
+Hide until complete
+If specified, the report window
+is not displayed until the report
+has been completely generated
 
-
-
-## **Description** 
+### Description
 
 This command sends the report instance to a page preview screen. This lets the user check the final page layout before printing. On small screens, the text is Greeked, that is, each character is represented by a dot. 
 
@@ -17630,11 +13592,7 @@ The _Do not wait for user option_ allows subsequent method lines to execute or l
 
 The _Hide until Complete_ option suppresses the output until all the report data is ready. Normally, you can view the first part of the report before all the records have been prepared. 
 
-## **Title and Position** 
-
-258 
-
-
+Title and Position
 
 You can give each page preview a title and control its position and size. The _Left/Top/Right/Bottom_ values fix the positions of the four corners to screen pixel resolution. The _/STK_ parameter offsets the top left-hand corner from the last page preview and _/CEN_ positions the page preview in the middle of the screen. 
 
@@ -17644,94 +13602,63 @@ If you change the shape and size of the page preview window it will no longer re
 
 If you use **Send to page preview** in a reversible block, the report destination reverts to its former setting when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 # Example shows how to stack 2 page previews showing UK and US customers
 Set report name rMyReport
-```
-
-```
 Send to page preview (Do not wait for user) UK customers/STK
 Set search as calculation {cCountry='UK'}
-```
-
-```
 Print report (Use search,Do not finish others) {rInst1}
 Send to page preview (Do not wait for user) USA customers/STK
 Set search as calculation {cCountry='USA'}
 Print report (Use search,Do not finish others) {rInst2}
 ```
 
-## **Send to port** 
+<!-- p259-259 | Send to port -->
+## Send to port
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Report destinations|NO|YES|NO<br>All|
+Command group: Report destinations | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Send to port
 
-## **Syntax** 
-
-## **Send to port** 
-
-## **Description** 
+### Description
 
 This command directs the report output to the currently selected port. The report is sent as a stream of text with the appropriate line terminators. The port is selected with the Set port name command. 
 
 If you use **Send to port** in a reversible block, the report destination reverts to its former setting when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 If platform()='X'
-```
-
-```
 Set port name {2 (Printer port)} ## macOS
-```
-
-```
 Else
-```
-
-```
 Set port name {COM2:} ## Windows & Linux
-```
-
-```
 End If
-```
-
-```
 Send to port
 Set port parameters {9600,n,70,0}
 Print report
 ```
 
-## **Send to printer** 
+<!-- p259-260 | Send to printer -->
+## Send to printer
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|NO|YES<br>NO<br>All|
+Command group: Report destinations | Flag affected: NO | Reversible: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Send to printer** 
 
-259 
-
-
-
-## **Description** 
+### Description
 
 This command sends the report to the current printer. You can choose the printer using the Select printer command. 
 
 If you use **Send to printer** in a reversible block, the report destination reverts to its former setting when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 Set report name rMyReport
@@ -17739,63 +13666,57 @@ Send to printer
 Print report
 ```
 
-## **Send to trace log** 
+<!-- p260-261 | Send to trace log -->
+## Send to trace log
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Debugger|NO|NO|YES<br>All|
+Command group: Debugger | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Send to trace log** ([ _Diagnostic message_ ] [, _Always log_ ] [, _Start diagnostic logging_ ] [, _Stop diagnostic logging_ ]) _text_ 
 
-## **Options** 
+### Options
 
-|_Diagnostic message_|If specifed, the message will only|
-|---|---|
-||be added to the trace log, if the|
-||trace log has been set to log|
-||diagnostic messages|
-|_Always log_|If specifed, always log the|
-||message even if $nodebug is true|
-||for the library or the local|
-||debugger is disabled (this option|
-||is ignored for a diagnostic|
-||message)|
-|_Start diagnostic logging_|If specifed, the command|
-||switches on the Log Diagnostic|
-||Messages trace log option, before|
-||logging the message if the other|
-||command options allow. Also, if|
-||specifed with an empty message|
-||to log, the command does not log|
-||an empty line|
-|_Stop diagnostic logging_|If specifed, the command|
-||switches off the Log Diagnostic|
-||Messages trace log option, after|
-||logging the message if the other|
-||command options allow. Also, if|
-||specifed with an empty message|
-||to log, the command does not log|
-||an empty line|
+_Diagnostic message_
+If specified, the message will only
+be added to the trace log, if the
+trace log has been set to log
+diagnostic messages
+_Always log_
+If specified, always log the
+message even if $nodebug is true
+for the library or the local
+debugger is disabled (this option
+is ignored for a diagnostic
+message)
+_Start diagnostic logging_
+If specified, the command
+switches on the Log Diagnostic
+Messages trace log option, before
+logging the message if the other
+command options allow. Also, if
+specified with an empty message
+to log, the command does not log
+an empty line
+_Stop diagnostic logging_
+If specified, the command
+switches off the Log Diagnostic
+Messages trace log option, after
+logging the message if the other
+command options allow. Also, if
+specified with an empty message
+to log, the command does not log
+an empty line
 
-
-
-## **Description** 
+### Description
 
 This command sends a specified line of text to the trace log. The text can contain square bracket notation. You can use text styles (generated using the style() function inside square brackets) to (for example) apply colors to sections of the logged text when it is displayed in the trace log panel in the browser or the trace log window; such styles are stripped when writing the trace log line to the text log file in the logs folder. The trace log renders the text styles if the entry traceLogUsesStyles in the defaults section of config.json 
-
-260 
-
-
 
 is set to true. Note that if you use styles other than kEscColor and kEscStyle, these styles are ignored when copying selected trace log lines to the clipboard as HTML. 
 
 For JavaScript client-executed methods, this command sends the text to the JavaScript console (provided it is available). In this case, text styles are not supported. 
 
-## **Example** 
+### Example
 
 ```
 # send messages to the trace log
@@ -17803,87 +13724,68 @@ Open trace log (Clear trace log )
 Send to trace log Current task is [$ctask().$name]
 Send to trace log Current class is [$cclass().$name]
 For lCount from 1 to 10 step 1
-```
-
-```
 Send to trace log Value lCount is [lCount]
 End For
-```
-
-```
 Send to trace log End of For Loop
 ```
 
-## **Set ‘About…’ method** 
+<!-- p261-261 | Set About… method -->
+## Set About… method
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Omnis environment|NO|YES<br>NO<br>All|
+Command group: Omnis environment | Flag affected: NO | Reversible: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set ‘About…’ method** [ _name_ /] _name_ 
 
-## **Description** 
+### Description
 
 This command changes the “About…” option by calling the specified method which you should set to open a different About window. Omnis executes the specified method when this option is selected in exactly the same way as if it had been selected from a menu, for example, standard windows are closed. If you use **Set ‘About…’ method** in a reversible block, the command is reversed when the method terminates. 
 
 There are no restrictions on what you can do in the **Set ‘About…’ method** , that is, the method that is called. Extra care is needed to ensure that the method does not alter any variables, lists or the status of the flag. 
 
-## **Example** 
+### Example
 
 ```
 # Open the window wMyAbout instead of the standard Omnis about box
 Set 'About...' method cMyCodeClass/AboutBox
-```
-
-```
 # method AboutLibrary in code class cMyCodeClass
 Open window instance wMyAbout
 ```
 
-## **Set advise options** 
+<!-- p261-262 | Set advise options -->
+## Set advise options
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set advise options** ([ _Find/next/previous_ ][, _OK_ ][, _Redraw_ ]) 
 
-261 
+### Options
 
+Find/next/previous
+If specified,Omnis will send DDE
+advise messages to the client
+application,when
+Find/Next/Previous or Clear
+commands are executed (see
+command Advise on
+find/next/previous)
+OK
+If specified,Omnis will send DDE
+advise messages to the client
+application,when an evOK event
+occurs (see command Advise on
+OK)
+Redraw
+If specified,Omnis will send DDE
+advise messages to the client
+application,when a redraw
+occurs (see command Advise on
+redraw)
 
-
-**Options** 
-
-|Find/next/previous|If specifed,Omnis will send DDE|
-|---|---|
-||advise messages to the client|
-||application,when|
-||Find/Next/Previous or Clear|
-||commands are executed (see|
-||command Advise on|
-||fnd/next/previous)|
-|OK|If specifed,Omnis will send DDE|
-||advise messages to the client|
-||application,when an evOK event|
-||occurs (see command Advise on|
-||OK)|
-|Redraw|If specifed,Omnis will send DDE|
-||advise messages to the client|
-||application,when a redraw|
-||occurs (see command Advise on|
-||redraw)|
-
-
-
-## **Description** 
+### Description
 
 DDE command, Omnis as server. This command determines when Omnis is permitted to send requested Advise messages to the client application. When the Accept advise requests option is active, Omnis will accept Advise requests from the client program. By default, the client program will only be advised of the values requested from Omnis when Send advises now is executed. 
 
@@ -17893,7 +13795,7 @@ The _Find/next/previous_ option sends the requested Advise value whenever a Find
 
 Each of these options in **Set advise options** has its command equivalent within the Exchanging Data… group, whose function is identical. These commands are listed as Advise on Find/next/previous, Advise on OK, and Advise on redraw. 
 
-## **Example** 
+### Example
 
 ```
 Set server mode (Field requests,Advise requests)
@@ -17901,31 +13803,24 @@ Set advise options (Find/next/previous,OK)
 OK message {Server mode for DDE enabled}
 ```
 
-## **Set bottom margin** 
+<!-- p262-263 | Set bottom margin -->
+## Set bottom margin
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set bottom margin** ([ _Measurement in cms_ ]) {measurement-in-inches/cms} 
 
-## **Options** 
+### Options
 
 Measurement in cms If specified ,the measurement parameter is a value in centimetres rather than inches 
 
-262 
-
-
-
-## **Description** 
+### Description
 
 This command specifies the bottom margin for the current report class. It overrides the $bottommargin property until such time as the current report is reset. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt user and set appropiate margins
@@ -17941,26 +13836,20 @@ Set top margin {1.0}
 End If
 Print report
 Set report name rMyReport ## the settings for rMyReport are now reverted
-```
-
-```
 # Alternatively, you can use notation to set the bottom margin
 Do $clib.$reports.rMyReport.$bottommargin.$assign(1.0)
 ```
 
-## **Set break calculation** 
+<!-- p263-263 | Set break calculation -->
+## Set break calculation
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Debugger|NO|NO|NO<br>All|
+Command group: Debugger | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set break calculation on** _field-name_ { _calculation_ } 
 
-## **Description** 
+### Description
 
 This command stops method execution when the specified calculation evaluates to true; all values except zero are considered true. You use **Set break calculation** after a Variable menu command: Set break on calculation {field-name} command. The field used in the command does not have to feature in the calculation but is used to “label” the break within Omnis. 
 
@@ -17968,7 +13857,7 @@ At breakpoints, a method design window is opened with the current method loaded 
 
 Setting up calculated breakpoints slows down method execution considerably so you should use them sparingly. In runtime the command does nothing. 
 
-## **Example** 
+### Example
 
 ```
 # pause method execution when lMyBoolean=kTrue
@@ -17976,67 +13865,45 @@ Calculate lMyBoolean as kFalse
 Variable menu command : Set Break On Calculation {lMyBoolean}
 Set break calculation on lMyBoolean {lMyBoolean=kTrue}
 For lCount from 1 to 10 step 1
-```
-
-```
 If lCount=5
-```
-
-```
 Calculate lMyBoolean as kTrue
 End If
 End For
 ```
 
-263 
+<!-- p264-264 | Set class description -->
+## Set class description
 
+Command group: Classes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**Set class description** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Classes|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Set class description** { _class-name_ / _description_ } 
 
-## **Description** 
+### Description
 
 This command sets the description text for the specified library class. When a class is created, you must specify a class name and also an optional description of up to 255 characters. This command lets you set the description string for the specified library class. The original description for the specified class is cleared if the description parameter is left blank (or evaluates to an empty string). The flag is set if the description is changed. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lString as 'My Class Description'
-```
-
-```
 # set the class desciption to the contents of the local variable lString
 Set class description {sMySearch/[lString]}
-```
-
-```
 # show the new contents of the class description
 OK message {[$clib.$classes.sMySearch.$desc]}
 ```
 
-## **Set closed files** 
+<!-- p264-264 | Set closed files -->
+## Set closed files
 
-|**Command group**|**Flag affected**|**Reversible**|**Execute on client**<br>**Platform(s)**|
-|---|---|---|---|
-|Files|YES|YES|NO<br>All|
+Command group: Files | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set closed files** { _list-of-files_ (F1,F2,..,Fn)} 
 
-## **Description** 
+### Description
 
 This command sets the file mode of the specified file(s), other than a main file, to closed. Closing a file prevents any data from being read or changed in that file. 
 
@@ -18046,75 +13913,59 @@ Closing a parent file when editing a child has the effect of protecting the conn
 
 In the method editor, a list of files is displayed. You can Ctrl/Cmnd-click on the file names to select multiple names. 
 
-## **Example** 
+### Example
 
-# Prevent data from being read or changed in the files 
+Prevent data from being read or changed in the files
 
-# fAccounts and fInvoices 
+fAccounts and fInvoices
 
-**Set closed files** {fAccounts,fInvoices} 
+**Set closed files** {fAccounts,fInvoices}
 
-264 
+<!-- p265-265 | Set current data file -->
+## Set current data file
 
+Command group: Data files | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-## **Set current data file** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data fles|NO|YES|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Set current data file** { _internal-name_ } 
 
-## **Description** 
+### Description
 
 This command sets the specified data file the “current” data file. If your methods refer to file class names without specifying the data file, it is essential to make the appropriate data file current before setting a main file. 
 
-## **Example** 
+### Example
 
 ```
 Open data file {Archive.df1/DataFileA}
 Open data file (Do not close other dat) {myData.df1/DataFileB}
 Set current data file {DataFileA}
-```
-
-```
 Set main file {fCustomers}
-```
-
-```
 # fCustomers.Field1 now refers to DataFileA.fCustomers.Field1
 ```
 
-## **Set current list** 
+<!-- p265-265 | Set current list -->
+## Set current list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|NO|YES|NO<br>All|
+Command group: Lists | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set current list** _list-or-row-name_ 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
 _Note that you can create an instance variable of List data type, and such lists do not need to be made “current” since they are instantiated automatically and made current in the context of the current method or instance._ 
 
-## **Description** 
+### Description
 
 This command sets the current list, that is, the list to be processed in the subsequent list commands. You can make any type of list the current list, including local, class, and library variables of list data type. If you use this command as part of a reversible block, the current list reverts to its former value when the method containing the reversible block finishes. 
 
 See also Define list. 
 
-## **Example** 
+### Example
 
 ```
 Set current list iMyList
@@ -18123,23 +13974,16 @@ Set main file {fCustomers}
 Build list from file on fCustomers.CustomerID
 ```
 
-265 
+<!-- p266-266 | Set DDE channel item name -->
+## Set DDE channel item name
 
+Command group: Exchanging data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**Set DDE channel item name** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|YES|NO|NO<br>Windows|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Set DDE channel item name {** _server-data-item-name_ } 
 
-## **Description** 
+### Description
 
 DDE command, Omnis as client. This command specifies the server data item name to which you can send the exported report. When transmitting a Send to DDE channel report, Omnis takes the channel item name and uses it as the server item name which is to be sent. 
 
@@ -18149,7 +13993,7 @@ The item names set in the command accumulate over each use of the command until 
 
 Within a client library, for example, a report class is created which sends the fields ClF1, ClF2…ClF5 to the current channel. At the server end of the conversation, the fields are to be read into five fields server1, server2…server5. Before you can print the report, the method must contain the following commands: 
 
-## **Example** 
+### Example
 
 ```
 Set report name rMyReport
@@ -18167,66 +14011,44 @@ Print report
 End If
 ```
 
-## **Set DDE channel number** 
+<!-- p266-267 | Set DDE channel number -->
+## Set DDE channel number
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|YES|YES|NO<br>Windows|
+Command group: Exchanging data | Flag affected: YES | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Set DDE channel number { calculation }
 
-## **Syntax** 
-
-## **Set DDE channel number** { _calculation_ } 
-
-## **Description** 
+### Description
 
 DDE command, Omnis as client. This command sets the channel number to be used in subsequent DDE commands. Each channel number identifies a particular conversation. 
 
 The channels are numbered from 1 to 8, and the flag is cleared if an invalid channel number is used. If you omit the channel number, it defaults to 1. The channel number selected can be the result of a calculation. All subsequent channel commands function on the current channel number. To select another channel, you must use a new Set DDE channel number command. 
 
-266 
-
-
-
-## **Example** 
+### Example
 
 ```
 Set DDE channel number {2}
 Open DDE channel {Omnis|Country}
 If flag false
 OK message {The Country library is not running}
-```
-
-```
 Else
-```
-
-```
 Send command {Do method Invoice}
-```
-
-```
 Do method TransferData
-```
-
-```
 End If
 ```
 
-## **Set default data file** 
+<!-- p267-267 | Set default data file -->
+## Set default data file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data fles|NO|YES|NO<br>All|
+Command group: Data files | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set default data file** { _list-of-files_ (F1,F2,..,Fn)} 
 
-## **Description** 
+### Description
 
 This command sets the default data file to be the current data file. Normally, file classes are associated with whatever the current data file is, at the time of execution. You use Set current data file to change the identity of the current data file. As the current data file changes, the file classes are associated with the changed current data file. 
 
@@ -18236,54 +14058,41 @@ When you close the default data file for a file, that file reverts to a floating
 
 **Set default data file** does not change the flag but is reversible, that is, when the command is reversed, the previous default data files are restored. A runtime error occurs if there are no data files open when the command is executed. 
 
-## **Example** 
+### Example
 
 ```
 Open data file {myDataFile} ## open first datafile
 Open data file (Do not close other dat) {myOtherDataFile} ## open second datafile
 Set default data file {fCustomers,fOrders}
-```
-
-```
 Set current data file {myDataFile}
 Set main file {fCustomers}
-```
-
-```
 # This now refers to the myOtherDataFile NOT myDataFile which is the current data file
 ```
 
-## **Set export format** 
+<!-- p267-268 | Set export format -->
+## Set export format
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set export format** { _export-format_ } 
-
-267 
-
-
 
 **Export Formats** 
 
 Delimited (commas) Delimited (tabs) One field per line Omnis data transfer Delimited (user delimiter) 
 
-## **Description** 
+### Description
 
 This command specifies the export format to be used with the current report. The **Set export format** command lets you to override the parameters stored in the report class. You should use it after selecting a report class. 
 
 If you leave the name empty, the report is printed without an export format. An error occurs if the name is not a valid export format name. The name specified for the command can contain square bracket notation. 
 
-## **Translation** 
+Translation
 
 Export format names are not tokenized and therefore are not understood by foreign language versions of Omnis. To avoid this portability problem, you can always build a list of export formats and use the list to select a format (see the second Example below). 
 
-## **Example** 
+### Example
 
 ```
 # Ouput report rMyReport to a comma delemited file
@@ -18302,19 +14111,18 @@ Do iExportFormatList.$loadcols()
 Set export format {[iExportFormat]}
 ```
 
-## **Set file read-only attribute** 
+<!-- p268-269 | Set file read-only attribute -->
+## Set file read-only attribute
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Set file read-only attribute** ( _path_ , _read-flag_ ) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -18322,11 +14130,7 @@ This command lets you set the read-only attribute of the file specified in path-
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-268 
-
-
-
-## **Example** 
+### Example
 
 ```
 # set the read-only attribute of lPathname to kTrue
@@ -18334,29 +14138,26 @@ Calculate lPathname as con(sys(115),'libraries',sys(9),'mylibrary.lbs')
 Set file read-only attribute (lPathname,kTrue)
 ```
 
-## **Set final line number** 
+<!-- p269-269 | Set final line number -->
+## Set final line number
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set final line number** { _line-number_ ( _calculation_ )} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command explicitly sets the value of LIST.$linecount by specifying a line number or a calculation. Omnis expands or contracts any list as necessary and maintains the value of the LIST.$linecount property as the last line number. If the number of lines in the list is less than the number set for LIST.$linecount, Omnis adds empty lines to the end. If the number of lines is greater than LIST.$linecount, Omnis shortens the list and reduces the memory needed by the list. 
 
 You can use **Set final line number** to speed up list handling by setting the final line number to shorten lists, for example. The list is effectively cleared of data when the line number parameter is left blank (or evaluates to zero). 
 
-## **Example** 
+### Example
 
 ```
 # Reduce the number of lines in the list from 100 to 50
@@ -18370,36 +14171,26 @@ Set final line number {50}
 OK message {List now has [lMyList.$linecount] lines}
 ```
 
-## **Set import file name** 
+<!-- p269-270 | Set import file name -->
+## Set import file name
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Importing and Exporting|YES|YES|NO<br>All|
+Command group: Importing and Exporting | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set import file name** { _file-name_ } 
 
-269 
-
-
-
-## **Description** 
+### Description
 
 This command specifies the name of the import file. The flag is set if the import file is successfully selected. You use the current import file in any subsequent Import field from file commands. 
 
 If you use **Set import file name** in a reversible block, the import file is closed when the method containing the reversible block terminates. 
 
-## **Example** 
+### Example
 
 ```
 # import from a csv file called myImport.txt in the root of your omnis tree
 Calculate lImportPath as con(sys(115),'myImport.txt')
-```
-
-```
 Set import file name {[lImportPath]}
 Prepare for import from file {Delimited (commas)}
 Import data lImportList
@@ -18407,29 +14198,26 @@ End import
 Close import file
 ```
 
-## **Set label width** 
+<!-- p270-270 | Set label width -->
+## Set label width
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set label width** ([Measurement in cms]) {measurement-in-inches/cms} 
 
-## **Options** 
+### Options
 
 Measurement in cms If specified, the measurement parameter is a value in centimetres rather than inches 
 
-## **Description** 
+### Description
 
 This command specifies the width of the labels when printing labels. It overrides the value set in the report parameters dialog until the current report is next reset. The width is measured from the edge of one label to the corresponding edge of the next. 
 
 You can set up the vertical spacing between labels using Set record spacing. 
 
-## **Example** 
+### Example
 
 ```
 # Print labels with a width of 4.5 cms
@@ -18439,36 +14227,26 @@ Set record spacing {3}
 Set repeat factor {2} ## two of each label
 Set label width (Measurement in cms) {4.5}
 Print report ## default measurement is inches
-```
-
-```
 # Alternatively, you can use notation to set the label width
 Do $clib.$reports.rLabels.$labelwidth.$assign(4.5)
 ```
 
-## **Set labels across page** 
+<!-- p270-271 | Set labels across page -->
+## Set labels across page
 
-270 
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Set labels across page** { _number_ } 
 
-## **Description** 
+### Description
 
 This command specifies the number of labels across the page for label printing. It overrides the setting in the report parameters dialog for the current report class. The setting remains in force until the next Set report name command. 
 
 When labels are printed, the vertical spacing from the top of one label to the next is set up using the $recordspacing property or from a method using Set record spacing. 
 
-## **Example** 
+### Example
 
 ```
 # Print 4 labels across a page
@@ -18479,35 +14257,29 @@ Set label width {(Measurement in cms){4.5}}
 Print report
 ```
 
-## **Set left margin** 
+<!-- p271-272 | Set left margin -->
+## Set left margin
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set left margin** ([ _Measurement in cms_ ]) {measurement-in-inches/cms} 
 
-## **Options** 
+### Options
 
 Measurement in cms If specified, the measurement parameter is a value in centimeters rather than inches 
 
-## **Description** 
+### Description
 
 This command specifies the left margin for the current report class. It overrides the left margin setting in the report properties until such time as the current report is reset. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt user and set appropiate margins
 Set report name rMyReport
 Yes/No message {Print on A4 paper?}
-```
-
-```
 If flag true
 Set bottom margin (Measurement in cms) {2.34}
 Set top margin (Measurement in cms) {1.2}
@@ -18515,81 +14287,55 @@ Set left margin (Measurement in cms) {1.2}
 Set right margin (Measurement in cms) {1.2}
 Else
 # default measurement is inches
-```
-
-271 
-
-
-
-```
 Set bottom margin {0.5}
 Set top margin {0.5}
 Set left margin {0.5}
 Set right margin {0.5}
-```
-
-```
 End If
 Print report
-```
-
-```
 # Alternatively, you can use notation to set the left margin
 Do $clib.$reports.rMyReport.$leftmargin.$assign(0.5)
 ```
 
-## **Set lines per page** 
+<!-- p272-272 | Set lines per page -->
+## Set lines per page
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set lines per page** ([ _Send form feed_ ]) { _number_ } 
 
-## **Options** 
+### Options
 
 Send form feed If specified, Omnis outputs a form feed character at the end of each page of the report 
 
-## **Description** 
+### Description
 
 This command changes the number of lines per page for reports printed to file or port. You can send any report to a port or file using the Report destination dialog. When the destination is selected in this window, the number of lines is automatically set to the default number for the destination, so you must use **Set lines per page** after you have selected the report destination. The default lines per page setting is stored in the configuration file. 
 
 The _Send form feed_ option lets you send a form feed character at the end of each page of the report; otherwise, multiple line feeds are sent. 
 
-## **Example** 
+### Example
 
 ```
 # Set the number of lines for each page of the report
 # rMyReport to 66
-```
-
-```
 Set report name rMyReport
 Set lines per page (Send form feed) {66}
 Print report
 ```
 
-## **Set main file** 
+<!-- p272-273 | Set main file -->
+## Set main file
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Files|NO|YES|NO<br>All|
+Command group: Files | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set main file** { _file-name_ } 
 
-272 
-
-
-
-## **Description** 
+### Description
 
 This command selects the “main file” class. **Set main file** is an essential command which you must execute before manipulating any data. You can insert or delete data only in the file designated as the main file. The designated file cannot be memory-only or closed. 
 
@@ -18601,33 +14347,18 @@ Changing the main file after a Prepare for… command does not cancel Prepare fo
 
 If you use **Set main file** in a reversible block, the main file is reset to its previous value when the method containing the reversible block finishes. 
 
-## **Multiple open data files** 
+Multiple open data files
 
 If more than one data file is open, there is only one main file setting shared by all open data files. If you do not qualify a file class name with a data file, the current data file is assumed unless you have created an association between the file class and another data file using the Set default data file command. 
 
-## **Example** 
+### Example
 
 ```
 # Set the main file in a reversible block so it returns to
-```
-
-```
 # it's former setting once this method terminates
-```
-
-```
 Begin reversible block
-```
-
-```
 Set main file {fAccounts}
-```
-
-```
 End reversible block
-```
-
-```
 Prepare for insert
 Calculate fAccounts.Code as 'AC01'
 Calculate fAccounts.Surname as 'Smith'
@@ -18635,19 +14366,16 @@ Calculate fAccounts.Balance as 100
 Update files
 ```
 
-## **Set memory-only files** 
+<!-- p273-274 | Set memory-only files -->
+## Set memory-only files
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Files|YES|YES|NO<br>All|
+Command group: Files | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set memory-only files** { _list-of-files_ (F1,F2,..,Fn)} 
 
-## **Description** 
+### Description
 
 This command sets the file mode of the specified file(s), other than the main file, to memory-only. You can use the fields from a memory-only file as global variables. To do this: 
 
@@ -18657,48 +14385,37 @@ This command sets the file mode of the specified file(s), other than the main fi
 
 3. Use the fields in your methods as temporary storage for data. 
 
-273 
-
-
-
 When a memory-only file is changed to read/write, its fields are not cleared from the current record buffer. Similarly, when a file is changed from read/write to memory-only, its records are not cleared. Memory-only fields are initialized as empty when the library is launched. 
 
 If used in a reversible block, **Set memory-only files** is reversed when the method containing the block finishes. This command does not clear the Prepare for update mode. 
 
 In the method editor, a list of files is displayed. You can Ctrl/Cmnd-click on the file names to select multiple names. 
 
-## **Example** 
+### Example
 
 ```
 # Use the fields in the file class fGlobals as temporary global variables
-```
-
-```
 # which do not get written to a datafile
 Set memory-only files {fGlobals}
-```
-
-```
 Calculate fGlobals.gMyGlobalVar as 'My Global Var'
 ```
 
-## **Set Omnis window title** 
+<!-- p274-274 | Set Omnis window title -->
+## Set Omnis window title
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Omnis environment|NO|YES<br>NO<br>Windows,Linux|
+Command group: Omnis environment | Flag affected: NO | Reversible: YES
 
+Windows,Linux
 
+### Syntax
 
-## **Syntax** 
+Set Omnis window title { title }
 
-## **Set Omnis window** title { _title_ } 
-
-## **Description** 
+### Description
 
 This command changes the title on the Omnis application window (available under Windows and Linux only). The title parameter provides the new title which may contain square bracket notation. Unless reversed as part of a reversible block, the new title will remain until Omnis is restarted. 
 
-## **Example** 
+### Example
 
 ```
 # Set the Omnis window title to 'My Application'
@@ -18708,36 +14425,26 @@ This command changes the title on the Omnis application window (available under 
 
 - `Set Omnis window title {My Application} ## for Windows/Linux only` 
 
-- `End reversible block` 
+- `End reversible block`
 
-## **Set page width** 
+<!-- p274-275 | Set page width -->
+## Set page width
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
+### Syntax
 
+Set page width { number }
 
-## **Syntax** 
-
-## **Set page width** { _number_ } 
-
-## **Description** 
+### Description
 
 This command changes the width of reports printed to file or port. The default setting is stored in the preferences file and is selected automatically when the destination is chosen. **Set page width** overrides this setting and must be used after selecting the report destination. 
 
-274 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Set the page width for the report rMyReport to 45
 Set report name rMyReport
-```
-
-```
 Send to file
 Set print or export file name {[con(sys(115),'output.txt')]}
 Set lines per page {66}
@@ -18746,19 +14453,16 @@ Print report
 Close print or export file
 ```
 
-## **Set port name** 
+<!-- p275-275 | Set port name -->
+## Set port name
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|YES|NO<br>NO<br>All|
+Command group: Report destinations | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set port name** { _port-name_ (e.g. COMn: or LPTn:)} 
 
-## **Description** 
+### Description
 
 This command specifies the name of the port to be used with subsequent input or output via the port. The flag is set if the port is successfully selected. The command should follow Send to port. You can set the baud rate and other parameters for the port using Set port parameters. 
 
@@ -18766,7 +14470,7 @@ This command specifies the name of the port to be used with subsequent input or 
 
 If an error occurs, then this command sometimes generates a fatal error. You can use an error handler to intercept the fatal error; see Load error handler for details. 
 
-## **Example** 
+### Example
 
 ```
 Set report name rMyReport
@@ -18780,23 +14484,16 @@ Set port parameters {1200,n,7,2}
 Print report
 ```
 
-## **Set port parameters** 
+<!-- p275-276 | Set port parameters -->
+## Set port parameters
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|YES|NO<br>NO<br>All|
+Command group: Report destinations | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set port parameters** { _profile-spec_ (< _profile_ >,< _cpi_ >,< _lpi_ >) or parameters (e.g. 9600,n,8,1,x,10,6)} 
 
-275 
-
-
-
-## **Description** 
+### Description
 
 This command sets the port parameters. When you use _Select port_ in a method, the baud rate and other parameters are set to the values configured for the system, or the values set by the last application to use the port. If you need to change the settings you can do so with this command, which should follow a Send to port. The flag is set if the command is successful. 
 
@@ -18818,29 +14515,17 @@ The _timeout_ specifies the time in seconds that Omnis will wait for data transf
 
 You can use a port profile name instead of the port parameters as described above. 
 
-## **Example** 
+### Example
 
 ```
 # example 1
-```
-
-```
 # set a baud rate of 9600, no parity, eight data bits and 1 stop bit
 Set port parameters {9600,n,8,1}
-```
-
-```
 # example 2
-```
-
-```
 # The extra comma indicates no change to the handshake parameter (X/H/R)
 Set port parameters {9600,n,8,1,,10,6}
 # set up the XON/XOFF handshale protocol
 Set port parameters {9600,n,7,1,X}
-```
-
-```
 # example 3
 Set report name rMyReport
 Send to port
@@ -18853,23 +14538,16 @@ Set port parameters {1200,n,7,2}
 Print report
 ```
 
-## **Set print or export file name** 
+<!-- p276-277 | Set print or export file name -->
+## Set print or export file name
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report destinations|YES|YES<br>NO<br>All|
+Command group: Report destinations | Flag affected: YES | Reversible: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set print or export file name** { _file-name_ } 
 
-276 
-
-
-
-## **Description** 
+### Description
 
 This command specifies the print file name to which printed output is to be directed. The flag is set if the print file is successfully selected. If you use **Set print or export file name** in a reversible block, the print file is closed when the method containing the reversible block terminates. 
 
@@ -18879,45 +14557,30 @@ Once the file name has been specified, Send to file directs the report output to
 
 If an error occurs, then this command sometimes generates a fatal error. You can use an error handler to intercept the fatal error; see Load error handler for details. 
 
-## **Example** 
+### Example
 
 ```
 If platform()='X'
-```
-
-```
 Set print or export file name {/Work/Output file2} ## macOS
 Else
-```
-
-```
 Set port name {C:\work\output2.prn} ## Windows & Linux
-```
-
-```
 End If
-```
-
-```
 Send to file
 Set report name rMyReport
 Print report
 Close print or export file
 ```
 
-## **Set read-only files** 
+<!-- p277-277 | Set read-only files -->
+## Set read-only files
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Files|YES|YES|NO<br>All|
+Command group: Files | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set read-only files** { _list-of-files_ (F1,F2,..,Fn)} 
 
-## **Description** 
+### Description
 
 This command sets the file mode of the specified file(s) to read-only. You can read but not write to a read-only file. **Set read-only files** does not cancel the Prepare for update mode. 
 
@@ -18927,7 +14590,7 @@ In multi-user systems, you use **Set read-only files** to prevent Omnis from loc
 
 In the method editor, a list of files is displayed. You can Ctrl/Cmnd-click on the file names to select multiple names. 
 
-## **Example** 
+### Example
 
 ```
 # Data from fAccounts may be read, but not changed
@@ -18938,23 +14601,16 @@ Enter data
 Update files if flag set
 ```
 
-277 
+<!-- p278-278 | Set read/write files -->
+## Set read/write files
 
+Command group: Files | Flag affected: YES | Reversible: YES | Execute on client: NO
 
-
-**Set read/write files** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Files|YES|YES|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Set read/write files** { _list-of-files_ (F1,F2,..,Fn)} 
 
-## **Description** 
+### Description
 
 This command sets the file mode of the specified file(s) to read/write. The read/write file mode is the default type of Omnis file; you can read and write data to a read/write file. The other three file modes are read-only, closed and memory-only. If a file is changed to read/write mode when in Prepare for update, the data for the file class is reread from disk. In multi-user systems, read/write files are locked when a Prepare for… command is executed. 
 
@@ -18962,53 +14618,37 @@ The file mode will revert to its former state if you use the command in a revers
 
 In the method editor, a list of files is displayed. You can Ctrl/Cmnd-click on the file names to select multiple names. 
 
-## **Example** 
+### Example
 
 ```
 # Set the file fSequences to read/write so that we can get the next invoice number
 Set read/write files {fSequences}
-```
-
-```
 Set main file {fSequences}
 Prepare for insert
 Find first
 Calculate fSequences.InvoiceNumber as fSequences.InvoiceNumber+1
-```
-
-```
 Update files
-```
-
-```
 Set read-only files {fSequences}
 ```
 
-## **Set record spacing** 
+<!-- p278-279 | Set record spacing -->
+## Set record spacing
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set record spacing** ([ _Measurement in cms_ ]) {measurement-in-inches/cms} 
 
-## **Options** 
+### Options
 
 Measurement in cms If specified, the measurement parameter is a value in centimetres rather than inches 
 
-## **Description** 
+### Description
 
 This command specifies the line spacing for the record section of the current report class. It overrides the setting in the record section properties for the current report. The setting remains in force until the next Set report name. 
 
-278 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Set the record spacing for the report rMyReport to 5.2 cms
@@ -19016,65 +14656,49 @@ Set report name rLabels
 Set labels across page {3}
 Set record spacing (Measurement in cms) {5.2} ## default is inches
 Print report
-```
-
-```
 # Alternatively, you can use notation to set the record spacing
 Do $clib.$reports.rLabels.$recordspacing.$assign(5.2)
 ```
 
-## **Set reference** 
+<!-- p279-279 | Set reference -->
+## Set reference
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Calculations|NO|NO|YES<br>All|
+Command group: Calculations | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set reference** field-name **to** notation-or-calculation-for-an-item 
 
-## **Description** 
+### Description
 
 This command sets up and stores a reference to an item in a variable of type Item reference. It assigns an alias for an item of notation that you do not want to type each time the item is referenced in the code. 
 
 Note - for JavaScript client-executed methods this command is equivalent to Calculate. 
 
-## **Example** 
+### Example
 
 ```
 # declare local variable lRef of type Item reference in a window class
 # set the local item reference variable lRef to a Balance field on a Page Pane
 Set reference lRef to $cinst.$objs.PagePane.$objs.Balance
-```
-
-```
 # now you can set the text color of the Balance field to red using lRef
 Do lRef.$textcolor.$assign(kRed)
 ```
 
-## **Set repeat factor** 
+<!-- p279-280 | Set repeat factor -->
+## Set repeat factor
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
+### Syntax
 
+Set repeat factor { number }
 
-## **Syntax** 
-
-## **Set repeat factor** { _number_ } 
-
-## **Description** 
+### Description
 
 This command specifies the number of copies of the record section to be printed. It overrides the repeat factor specified in the report properties for the current report. **Set repeat factor** is particularly useful when printing multiple labels. The setting remains in force until the next Set report name. If the repeat factor is left blank (or evaluates to zero), the printing of the record sections of a report is suppressed completely; all heading sections, totals and subtotals are still calculated correctly. 
 
-279 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Print 2 of each label
@@ -19083,36 +14707,30 @@ Set labels across page {3}
 Set repeat factor {2}
 Set label width {3.4}
 Print report
-```
-
-```
 # Alternatively, you can use notation to set the repeat factor
 Do $clib.$reports.rLabels.$repeatfactor.$assign(2)
 ```
 
-## **Set report main file** 
+<!-- p280-280 | Set report main file -->
+## Set report main file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set report main file** { _file-name_ } 
 
-## **Description** 
+### Description
 
 This command specifies the main file for the current report. When a report is printed, Omnis uses the main file set by the last Set main file. **Set report main file** overrides the main file setting by specifying a new main file specifically for the report. The setting remains in force until the next Set report name. 
 
-## **Printing connected files** 
+Printing connected files
 
 When printing connected files, it is essential that the child file is made the main file. Only the main file and its connected parent files are automatically read into the current record buffer. 
 
 If no sort fields are specified in the report class, the report generator steps through the records in the order defined by the record sequencing number for the main file. Sort fields let you reorder the report records. 
 
-## **Example** 
+### Example
 
 ```
 # Set the main file to fAccounts for the report rMyReport
@@ -19122,30 +14740,20 @@ Clear sort fields
 Set sort field fAccounts.Surname
 Prompt for destination
 Print report
-```
-
-```
 # Alternatively, you can use notation to set the main file
 Do $clib.$reports.rMyReport.$mainfile.$assign('fAccounts')
 ```
 
-## **Set report main list** 
+<!-- p280-281 | Set report main list -->
+## Set report main list
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set report main list** _list-or-row-name_ 
 
-280 
-
-
-
-## **Description** 
+### Description
 
 This command specifies a list as the source for the data for the current report. When a report is printed, Omnis uses the main file specified either in $mainfile or the file set by the last Set main file command. **Set report main list** lets you override the main file setting by specifying a list, from which data is read for the next printed report. 
 
@@ -19153,96 +14761,65 @@ A list-based report prints one record for each line in the list. The data file i
 
 When a Prepare for print command is encountered, the current list or file setting overrides the Main file setting used in the report parameters dialog. 
 
-## **Example** 
+### Example
 
 ```
 # Set the main list for the report rMyReport
-```
-
-```
 Set report name rMyReport
-```
-
-```
 Set report main list tMyList
 Prompt for destination
-```
-
-```
 Print report
-```
-
-```
 # Alternatively, you can use notation to set the main list
 Do $clib.$reports.rMyReport.$mainlist.$assign('tMyList')
 ```
 
-## **Set report name** 
+<!-- p281-281 | Set report name -->
+## Set report name
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|NO|YES<br>NO<br>All|
+Command group: Reports and Printing | Flag affected: NO | Reversible: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set report name** _report-name_ 
 
-## **Description** 
+### Description
 
 This command selects a report class for use with subsequent Print… commands. It terminates any report in progress. 
 
 If you use **Set report name** in a reversible block, the previous report name will be restored when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 # Print the report rMyReport to the selected
-```
-
-```
 # destination
-```
-
-```
 Prompt for destination
-```
-
-```
 If flag true
 Set report name rMyReport
 Print report
 End If
 ```
 
-## **Set right margin** 
+<!-- p281-282 | Set right margin -->
+## Set right margin
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set right margin** ([ _Measurement in cms_ ]) {measurement-in-inches/cms} 
 
-281 
-
-
-
-**Options** 
+### Options
 
 Measurement in cms 
 
 If specified, the measurement parameter is a value in centimeters rather than inches 
 
-## **Description** 
+### Description
 
 This command specifies the right margin for the current report class. It overrides the right margin setting in the report properties until such time as the current report is reset. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt user and set appropiate margins
@@ -19265,25 +14842,22 @@ Print report
 Do $clib.$reports.rMyReport.$rightmargin.$assign(0.5)
 ```
 
-## **Set search as calculation** 
+<!-- p282-283 | Set search as calculation -->
+## Set search as calculation
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Searches|NO|YES|NO<br>All|
+Command group: Searches | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set search as calculation** { _calculation_ } 
 
-## **Description** 
+### Description
 
 This command sets the current search as the single line calculation specified. The calculation replaces the current search class if one has been set. A subsequent report, Search list or a Find command with Use search will use the search calculation. 
 
 Search calculations allow the index optimization routine in Omnis to select a suitable index, provided that such an index is available. Leaving the calculation blank has the effect of clearing the previous search calculation. 
 
-## **Example** 
+### Example
 
 ```
 # Use Town index in fCustomers to find Londoners and then use search to locate Smiths.
@@ -19291,35 +14865,22 @@ Set main file {fCustomers}
 Set search as calculation {fCustomers.Surname='Smith'}
 Find on fCustomers.Town (Exact match,Use search) {'London'}
 Do $cwind.$redraw()
-```
-
-```
 # example 2, moves selected lines only between lists
-```
-
-282 
-
-
-
-```
 Set current list lList2
 Set search as calculation {#LSEL}
 Merge list lList1 (Use search)
 ```
 
-## **Set search name** 
+<!-- p283-283 | Set search name -->
+## Set search name
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Searches|NO|YES|NO<br>All|
+Command group: Searches | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set search name** _search-name_ 
 
-## **Description** 
+### Description
 
 This command sets the search class to be used with reports, Search list and Find (using search) commands. If no search class name is included, the current search is cleared. Search classes allow subsets of the records to be printed or worked on. 
 
@@ -19327,7 +14888,7 @@ A Find first (Use search) command reads in the first record which matches the cu
 
 If used within a reversible block, the search name reverts to its former setting when the method terminates. 
 
-## **Example** 
+### Example
 
 ```
 # example 1
@@ -19348,33 +14909,27 @@ End While
 End print
 ```
 
-## **Set server mode** 
+<!-- p283-284 | Set server mode -->
+## Set server mode
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Exchanging data|NO|YES|NO<br>Windows|
+Command group: Exchanging data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set server mode** ([ _Field requests_ ][, _Field values_ ][, _Advise requests_ ][, _Commands_ ]) 
 
-## **Options** 
+### Options
 
-283 
+Field requests
+If specified, Omnis will accept DDE field request commands (see command Accept field requests)
+Field values
+If specified, Omnis will accept DDE field value commands (see command Accept field values)
+Advise requests
+If specified, Omnis will accept DDE advise request commands (see command Accept advise requests)
+Commands
+If specified, Omnis will accept DDE commands (see command Accept commands)
 
-
-
-|Field requests|If specifed, Omnis will accept DDE feld request commands (see command Accept feld requests)|
-|---|---|
-|Field values|If specifed, Omnis will accept DDE feld value commands (see command Accept feld values)|
-|Advise requests|If specifed, Omnis will accept DDE advise request commands (see command Accept advise requests)|
-|Commands|If specifed, Omnis will accept DDE commands (see command Accept commands)|
-
-
-
-## **Description** 
+### Description
 
 This command sets Omnis to act as a DDE server and specifies which DDE commands it will accept. With one or more of the check box options selected Omnis will respond to the corresponding commands and demands from a client. If none is selected, server mode is deselected. 
 
@@ -19392,45 +14947,38 @@ If no options are set, Omnis is disabled as a server except for the System Topic
 
 All four server mode options have equivalent commands which are described separately: Accept field requests, Accept field values, Accept advise requests and Accept commands. 
 
-## **Example** 
+### Example
 
 ```
 Set server mode (Field requests)
 ```
 
-## **Set sort field** 
+<!-- p284-285 | Set sort field -->
+## Set sort field
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Sort felds|NO|YES|NO<br>All|
+Command group: Sort fields | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set sort field** field-name ([ _Descending_ ][, _Upper case_ ][, _Subtotals_ ][, _New page_ ]) 
 
-## **Options** 
+### Options
 
-|Descending|If specifed, data for the feld is sorted in|
-|---|---|
-||descending order|
-|Upper case|If specifed, data for the feld is sorted in|
-||a case-insensitive manner, converting|
-||data to upper case before sorting|
-|Subtotals|If specifed, the Subtotal section in a|
-||report is printed when the value of the|
-||sort feld changes|
-
-
-
-284 
-
-
+Descending
+If specified, data for the field is sorted in
+descending order
+Upper case
+If specified, data for the field is sorted in
+a case-insensitive manner, converting
+data to upper case before sorting
+Subtotals
+If specified, the Subtotal section in a
+report is printed when the value of the
+sort field changes
 
 New page Only relevant if you specify the subtotals option. If specified, Omnis starts a new page in a report when the value of the sort field changes 
 
-## **Description** 
+### Description
 
 This command specifies a field on which a list or report is to be sorted. The report generator systematically works through the records in the main and connected files and prints them using the report class definition. You can use sort fields to sort the records into a specific index order. 
 
@@ -19444,7 +14992,7 @@ If used within a reversible block, the sort field setting reverts when the metho
 
 The _Descending_ option sorts the records in descending order. The _Upper Case_ option converts lower case characters to upper case for the purpose of sorting. The _Subtotals_ option causes the Subtotal section in the report to be printed when the value of the sort field changes. Thus, in the above example, when AREA changes, subtotals 1 is printed, when DEPT changes, subtotals 2 is printed, and so on. The _New Page_ option starts a new page when the field value changes. 
 
-## **Example** 
+### Example
 
 ```
 # Sort the report on fields Surname,Balance
@@ -19457,27 +15005,20 @@ Send to screen
 Print report
 ```
 
-## **Set timer method** 
+<!-- p285-286 | Set timer method -->
+## Set timer method
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Methods|NO|YES|NO<br>All|
+Command group: Methods | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set timer method** _interval_ (seconds) **sec** [ _name_ /] _name_ 
 
-## **Description** 
+### Description
 
 This command calls the specified method at regular intervals while waiting for a keyboard input; the called method should preferably be one contained in a code class. You could use this command for automatic telephone dialing, regular checks for electronic mail, and so on. 
 
 The command specifies the timer method and the interval in seconds between calls to the timer method. This interval can be between 1 and 30,000 in the form “n sec” where n is the number of seconds. Omnis will start the next timer method when the method which is currently executing, finishes. Timer methods cannot operate in real time as Omnis will not execute a timer method while another method is running or when an OK or Yes/No message is displayed on the screen. 
-
-285 
-
-
 
 The timer method in your code class should not contain a Quit all methods as this will terminate any Enter data commands which are running. You can also use an Enter data inside a timer method: if so and you do not clear the timer method, the timer method continues to be active while Omnis carries out the Enter data part of the timer method. 
 
@@ -19485,7 +15026,7 @@ You can use **Set timer method** in a reversible block, in which case the timer 
 
 Note that (from Studio 11 onwards) the timer method runs in the context of the current task, therefore you can access its task variables from the method. Note that the timer method will continue to run after the task closes. 
 
-## **Example** 
+### Example
 
 ```
 # Call the method Timer every 5 seconds
@@ -19494,45 +15035,33 @@ Set timer method 5 sec Timer
 OK message {Timer method triggered}
 ```
 
-## **Set top margin** 
+<!-- p286-286 | Set top margin -->
+## Set top margin
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Report parameters|NO|NO<br>NO<br>All|
+Command group: Report parameters | Flag affected: NO | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Set top margin** ([ _Measurement in cms_ ]) {measurement-in-inches/cms} 
 
-## **Options** 
+### Options
 
 Measurement in cms If specified, the measurement parameter is a value in centimeters rather than inches 
 
-## **Description** 
+### Description
 
 This command specifies the top margin for the current report class. It overrides $topmargin until such time as the current report is reset. 
 
-## **Example** 
+### Example
 
 ```
 # Prompt user and set appropiate margins
 Set report name rMyReport
 Yes/No message {Print on metric A4 paper?}
-```
-
-```
 If flag true
 Set bottom margin (Measurement in cms) {2.34}
 Set top margin (Measurement in cms) {1.2}
-```
-
-```
 Else
-```
-
-```
 Set bottom margin {1.0}
 Set top margin {1.0}
 # Default measurement is inches
@@ -19543,29 +15072,22 @@ Set report name rMyReport ## the settings for rMyReport are now reverted
 Do $clib.$reports.rMyReport.$topmargin.$assign(1.0)
 ```
 
-**Set top window title** 
+<!-- p286-287 | Set top window title -->
+## Set top window title
 
-286 
+Command group: Windows | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|NO|YES|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Set top window title** { _title_ } 
 
-## **Description** 
+### Description
 
 This command specifies the title for the top window instance. You can use square bracket notation within the window title. The title of the top window instance is cleared if you omit the window title parameter (or it evaluates to an empty string). The title reverts to the normal title if the window instance is closed and reopened. An error occurs if there is no window instance. 
 
 If you use **Set top window title** in a reversible block, the title reverts to its normal value when the method containing the reversible block terminates. 
 
-## **Example** 
+### Example
 
 ```
 # Use the value of lName in the window title
@@ -19573,53 +15095,43 @@ Prompt for input Name ? Returns lName
 Set top window title {Messages for [lName]}
 ```
 
-## **Show ‘About…’ window** 
+<!-- p287-287 | Show About… window -->
+## Show About… window
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Omnis environment|NO|NO<br>NO<br>All|
+Command group: Omnis environment | Flag affected: NO | Reversible: NO
 
+### Syntax
 
+Show ‘About…’ window
 
-## **Syntax** 
+### Description
 
-## **Show ‘About…’ window** 
+This command displays the standard “About…” window which is available as an option in the Help menu under Windows and Linux, or the Apple menu under macOS. You can change the standard “About…” screen with the Set ‘About…’ method command.
 
-## **Description** 
+<!-- p287-288 | Show docking area -->
+## Show docking area
 
-This command displays the standard “About…” window which is available as an option in the Help menu under Windows and Linux, or the Apple menu under macOS. You can change the standard “About…” screen with the Set ‘About…’ method command. 
+Command group: Toolbars | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-## **Show docking area** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Toolbars|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Show docking area** ([ _Show text_ ][, _Large Icons_ ][, _Variable Text Width_ ]) { _docking-area_ (e.g. kDockingAreaBottom)} 
 
-## **Options** 
+### Options
 
 Show text If specified, the docking area will display text for objects that have an associated text string Large Icons If specified, the docking area will display large icons (32x32) rather than small icons (16x16) 
-
-287 
-
-
 
 If specified, and ‘Show text’ is also specified, the docking area will adjust the width of the objects according to the width of the text 
 
 Variable Text Width 
 
-## **Description** 
+### Description
 
 This command opens the top, bottom, left, or right docking area into which toolbars may be installed. The docking area is specified using one of the constants: kDockingAreaTop, kDockingAreaBottom, kDockingAreaLeft, kDockingAreaRight or kDockingAreaFloating. 
 
 When a toolbar is created each control may have a text label, for example, a Print button may have the word “Print” associated with it. The _Show text_ option allows these text labels to be shown beneath the buttons. 
 
-## **Example** 
+### Example
 
 ```
 Show docking area {kDockingAreaLeft}
@@ -19629,25 +15141,22 @@ Do $root.$prefs.$dockingareas.$assign(kDockingAreaLeft)
 Do $clib.$toolbars.tbMyToolbar.$open('*',kDockingAreaLeft) Returns lToolBarRef
 ```
 
-## **Show fields** 
+<!-- p288-288 | Show fields -->
+## Show fields
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Fields|NO|YES|NO<br>All|
+Command group: Fields | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Show fields** { _list-of-field-names_ (Name1,Name2,…)} 
 
-## **Description** 
+### Description
 
 This command shows the specified window field or list of fields. You can hide fields with Hide fields or using the notation. Inactive pushbuttons with the Do not gray attribute cannot be made visible with this or any other command. 
 
 If you use **Show fields** in a reversible block, the specified fields are hidden when the method containing the reversible block terminates. 
 
-## **Example** 
+### Example
 
 ```
 Yes/No message {Do you want to show fields?}
@@ -19665,49 +15174,39 @@ Do $cwind.$objs.myField1.$visible.$assign(kTrue)
 Do $cwind.$objs.$sendall($ref.$visible.$assign(kTrue))
 ```
 
-## **Show Omnis maximized** 
+<!-- p288-289 | Show Omnis maximized -->
+## Show Omnis maximized
 
-288 
+Command group: Omnis environment | Flag affected: NO | Reversible: NO
 
+### Syntax
 
+Show Omnis maximized
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Omnis environment|NO|NO<br>NO<br>Windows|
-
-
-
-## **Syntax** 
-
-## **Show Omnis maximized** 
-
-## **Description** 
+### Description
 
 This command shows Omnis at its maximum size within the application window. This command performs the same action as the _Maximize_ option in the System menu and the _Maximize_ button on the application window. 
 
-## **Example** 
+### Example
 
 ```
 # Maximize Omnis after processing
-Show Omnis minimized
-For lCount from 1 to 100000 step 1
-# delay
-End For
-```
 
-```
+<!-- p289-289 | Show Omnis minimized -->
+## Show Omnis minimized
+
+Command group: Omnis environment | Flag affected: NO | Reversible: NO
+
+For lCount from 1 to 100000 step 1
+delay
+End For
 Show Omnis maximized
 ```
 
 ## **Show Omnis minimized** 
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Omnis environment|NO|NO<br>NO<br>Windows|
-|**Syntax**|||
-|**Show Omnis minimized**|||
-
-
+**Syntax**
+**Show Omnis minimized**
 
 ## **Description** 
 
@@ -19716,64 +15215,48 @@ This command minimizes Omnis which subsequently appears as an icon at the bottom
 ## **Example** 
 
 ```
-# Minimize Omnis while processing
+Minimize Omnis while processing
 Show Omnis minimized
 For lCount from 1 to 100000 step 1
-# delay
+delay
 End For
 Show Omnis maximized
 ```
 
-## **Show Omnis normal** 
+<!-- p289-290 | Show Omnis normal -->
+## Show Omnis normal
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Omnis environment|NO|NO<br>NO<br>Windows|
+Command group: Omnis environment | Flag affected: NO | Reversible: NO
 
+### Syntax
 
+Show Omnis normal
 
-## **Syntax** 
-
-## **Show Omnis normal** 
-
-289 
-
-
-
-## **Description** 
+### Description
 
 This command shows Omnis at its normal size within the application window. Icons for other applications are visible along the bottom of the screen. 
 
-## **Example** 
+### Example
 
 ```
 # Return Omnis to its original size after processing
-```
-
-```
 Show Omnis minimized
 For lCount from 1 to 100000 step 1
 # delay
 End For
-```
-
-```
 Show Omnis normal
 ```
 
-## **Signal error** 
+<!-- p290-290 | Signal error -->
+## Signal error
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Error handlers|NO|NO|NO<br>All|
+Command group: Error handlers | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Signal error** { _error-number_ , _error-text_ (e.g. 5, ‘Error 5 occurred’)} 
 
-## **Description** 
+### Description
 
 This command reports a fatal error which can be either a user-defined error or a built-in Omnis error. A fatal error is any error that normally halts method execution and reports an error (for example, syntax error, or an out of memory error). Built-in Omnis errors are reported in #ERRCODE and #ERRTEXT, the latter is limited to 255 characters. 
 
@@ -19781,77 +15264,58 @@ The fatal error is reported with the specified error code and text. Any error ha
 
 This command is useful for trapping user-defined errors, and is a convenient tool for triggering an error situation inside Omnis for whatever condition you may want to specify. 
 
-## **Example** 
+### Example
 
 ```
 Test for only one user
 If flag false
-```
-
-```
 Signal error {99,'Test for one user failed'}
 End If
 ```
 
-## **Single file find** 
+<!-- p290-291 | Single file find -->
+## Single file find
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Finding data|YES|YES|NO|All|
+Command group: Finding data | Flag affected: YES | Reversible: YES | Execute on client: P NO A
 
-
-
-## **Syntax** 
+### Syntax
 
 **Single file find on** field-name ([ _Exact match_ ]) {calculation} 
 
-## **Options** 
-
-290 
-
-
+### Options
 
 If specified, the index value of the field in suitable records must equal the current value 
 
 Exact match 
 
-## **Description** 
+### Description
 
 This command locates a record in a single file only. It is similar to the standard Find command but is not dependent on the main file; that is, the field used in **Single file find** does not have to belong to the main file and it does not read in the connected records. You can specify a calculation for Single file find which determines the value used in the Find. The _Exact match_ option with a blank calculation indicates that the command is to be executed using the current value of the field, that is, the file is searched for a record whose index value matches the current value of the specified field. 
 
 In multi-user systems, a **Single file find** while in Prepare for… mode causes additional semaphores to be set. If the record is already locked, the user must wait for access to the record. 
 
-## **Example** 
+### Example
 
 ```
 # Find account lMyAccCode
 Prompt for input Account Code ? Returns lMyAccCode (Cancel button)
 Wait for semaphores
-```
-
-```
 Single file find on fAccounts.Code (Exact match) {fAccounts.Code=lMyAccCode}
 If flag false
-```
-
-```
 OK message {Can't find record}
 End If
 ```
 
-## **SMTPSend** 
+<!-- p291-293 | SMTPSend -->
+## SMTPSend
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **SMTPSend** ( _server_ , _from_ , _to_ , _subj_ , _body_ {Char|Bin|MIME-List}[, _cc_ , _bcc_ , _name_ , _stsproc_ , _pri_ , _xtrahdrs_ , _user_ , _pass_ , _secure_ {Default zero insecure;1 secure;2 use STARTTLS}, _verify_ {Default kTrue}]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -19870,10 +15334,6 @@ _To_ is either an Omnis Character field or an Omnis list field. If the field is 
 _Subject_ is an Omnis character field containing the subject of the e-mail message. 
 
 Body is 
-
-291 
-
-
 
 - either an Omnis Character or Binary field containing the body of the e-mail message; the text appears as the actual e-mail message 
 
@@ -19899,23 +15359,17 @@ _Secure_ is an optional Boolean parameter which indicates if a secure connection
 
 _Verify_ is an optional Boolean parameter which is only significant when _Secure_ is not kFalse. When _Verify_ is kTrue, the command instructs the installed SSL library to verify the server’s identity using its certificate; if the verification fails, then the connection will not be established. You can pass _Verify_ as kFalse, to turn off this verification; in this case, the connection will still be encrypted, but there is a chance the server is an impostor. In order to perform the verification, the installed SSL library uses the Certificate Authority Certificates in the cacerts sub-folder of the secure folder in the Omnis folder. If you use your own Certificate Authority to self-sign certificates, you can place its certificate in the cacerts folder, and the installed SSL library will use it after you restart Omnis. 
 
-## **Header Values Containing International Characters** 
+Header Values Containing International Characters
 
 **SMTPSend** supports RFC 2047, and uses it to encode international characters in header values, using UTF-8 as the character encoding. 
 
-## **Example** 
+### Example
 
 ```
 # Send email via the smtp server iOutServer from the email address iOutFrom to the email addresses in
 If pEnclosureList.$linecount>0
-```
-
-```
 # if the new e-mail contains enclosures, compose and send as multipart MIME content
 Do pEnclosureList.$redefine(lFileName,lFilePath)
-```
-
-```
 Do lMimeList.$define(lLevel,lContentType,lContentSubType,lFileName,
 ```
 
@@ -19924,17 +15378,7 @@ Do lMimeList.$define(lLevel,lContentType,lContentSubType,lFileName,
 ```
 Do lMimeList.$add(0,'multipart','mixed')
 Do lMimeList.$add(1,'text','plain',,pBody,,,)
-```
-
-```
 For lLineInList from 1 to pEnclosureList.$linecount step 1
-```
-
-292 
-
-
-
-```
 Do pEnclosureList.$line.$assign(lLineInList)
 Do pEnclosureList.$loadcols()
 Do lFileOps.$openfile(lFilePath)
@@ -19945,47 +15389,32 @@ End For
 SMTPSend (iOutServer,iOutFrom,pToAddresslist,pSubject,lMimeList,
 pCCAddresslist,pBCCAddresslist,iOutFromName,pStatusCall,pPriority)
 Returns lStatus
-```
-
-```
 Else
-```
-
-```
 # send message with no enclosures
-```
-
-```
 SMTPSend (iOutServer,iOutFrom,pToAddresslist,pSubject,pBody,
 pCCAddresslist,pBCCAddresslist,iOutFromName,pStatusCall,pPriority)
 Returns lStatus
-```
-
-```
 End If
 ```
 
-## **Sort list** 
+<!-- p293-293 | Sort list -->
+## Sort list
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|YES|NO|NO<br>All|
+Command group: Lists | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Sort list** 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command sorts the current list in the order specified by the current sort fields. You can use Set sort field to set the sort fields. Note that lists have to be explicitly redrawn before you can view the results of a sort. 
 
-## **Example** 
+### Example
 
 ```
 Set current list iMyList
@@ -19997,88 +15426,90 @@ Set sort field fCustomers.Surname
 Set sort field fCustomers.Town
 Sort list
 # or do it like this
-```
-
-```
 Do iMyList.$sort(fCustomers.Surname,kTrue,fCustomers.Town,kTrue)
 ```
 
-## **Sound bell** 
+<!-- p293-294 | Sound bell -->
+## Sound bell
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Message boxes|NO|NO|YES<br>All|
+Command group: Message boxes | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+Sound bell
 
-293 
-
-
-
-**Syntax** 
-
-## **Sound bell** 
-
-## **Description** 
+### Description
 
 This command sounds the system beep. You can sound the bell at any point in a method to draw attention to a particular method, field, message, error, and so on. 
 
-## **Example** 
+### Example
 
 ```
 # Sound the bell and open the window 'wMyErrorDialog'
 Sound bell
-```
-
-```
 Open window instance wMyErrorDialog
 ```
 
-## **Split path name** 
+<!-- p294-294 | Split path name -->
+## Split path name
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Split path name** ( _path_ , _drive-name_ , _directory-name_ , _file-name_ , _file-extension_ ) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This command splits a full path name into its component parts: the drive name, directory and file name, and file extension. It returns an error code (See Error Codes), or zero if no error occurs. The following examples show how Split path name operates. 
 
-## **Windows** 
+Windows
 
-|Path|Drive|Directory|Filename<br>Extension|
-|---|---|---|---|
-|C:\TESTDIR\TESTSDIR\TESTFILE|C:|\TESTDIR\TESTSDIR\|TESTFILE|
-|C:\TESTDIR\TESTFILE.EXT|C:|\TESTDIR\|TESTFILE<br>.EXT|
-|C:\TESTFILE|C:|\|TESTFILE|
+Path
+Drive
+Directory
+Filename
+Extension
+C:\TESTDIR\TESTSDIR\TESTFILE
+C:
+\TESTDIR\TESTSDIR\
+TESTFILE
+C:\TESTDIR\TESTFILE.EXT
+C:
+\TESTDIR\
+TESTFILE
+.EXT
+C:\TESTFILE
+C:
+\
+TESTFILE
 
+Linux
 
+Path
+Drive
+Directory
+Filename
+Extension
+/TESTDIR/TESTSDIR/TESTFILE
+/TESTDIR/TESTSDIR/
+TESTFILE
+/TESTDIR/TESTFILE.EXT
+/TESTDIR
+TESTFILE
+.EXT
+/TESTFILE
+/
+TESTFILE
 
-## **Linux** 
-
-|Path|Drive|Directory|Filename|Extension|
-|---|---|---|---|---|
-|/TESTDIR/TESTSDIR/TESTFILE||/TESTDIR/TESTSDIR/|TESTFILE||
-|/TESTDIR/TESTFILE.EXT||/TESTDIR|TESTFILE|.EXT|
-|/TESTFILE||/|TESTFILE||
-
-
-
-## **Example** 
+### Example
 
 ```
 # split the path name lPathname
-```
-
-```
 Calculate lPathname as 'c:\desktop\myfolder\mylibrary.lbs' ## Windows example using '\'
 Split path name (lPathname,lDrive,lDirectory,lFileName,lExtension)
 ```
@@ -20089,25 +15520,18 @@ Split path name (lPathname,lDrive,lDirectory,lFileName,lExtension)
 
 - `# lFileName = 'mylibrary'` 
 
-- `# lExtension ='.lbs'` 
+- `# lExtension ='.lbs'`
 
-294 
+<!-- p295-295 | Sta: -->
+## Sta:
 
+Command group: SQL Object Commands | Flag affected: NO | Reversible: NO
 
-
-## **Sta:** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|SQL Object Commands|NO|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Sta:** { _sql-script_ } 
 
-## **Description** 
+### Description
 
 This command appends script data to the SQL buffer for the current method stack. The Begin statement command clears the buffer ready for a new statement. 
 
@@ -20119,7 +15543,7 @@ Text loaded into the buffer must be valid SQL, and must be understood by the ser
 
 You cannot insert an inline comment on any lines in a **Sta:** code block. 
 
-## **Example** 
+### Example
 
 ```
 # Open a multi-threaded omnis sql connection to
@@ -20137,158 +15561,117 @@ Do lStatObj.$execdirect()
 Do lStatObj.$fetch(lMyList,kFetchAll)
 ```
 
-## **Standard menu command** 
+<!-- p295-296 | Standard menu command -->
+## Standard menu command
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|NO|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Standard menu command command
 
-## **Syntax** 
-
-## **Standard menu command** _command_ 
-
-## **Description** 
+### Description
 
 This command performs the standard functionality of an option from one of the standard menus such as the File menu. This command can prove useful when defining a new menu class to replace a standard menu using Replace standard file menu or Replace standard edit menu. 
 
-295 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Execute the 'Open Library' option from
-```
-
-```
 # the standard edit menu
-```
-
-```
 Standard menu command *File/11020 {Open Library...}
 ```
 
-## **Start program maximized** 
+<!-- p296-296 | Start program maximized -->
+## Start program maximized
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Operating system|YES|NO<br>NO<br>Windows,Linux|
+Command group: Operating system | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
+### Syntax
 
-## **Syntax** 
+Start program maximized { program-name }
 
-## **Start program maximized** { _program-name_ } 
-
-## **Description** 
+### Description
 
 This command starts up an application at its maximum screen size. The program name must be the pathname of the executable file. You can also specify the full pathname of a file, and other parameters, separated by a space from the program name. You can use this command on Windows and Linux, although on Linux the command does not maximize the application. 
 
 The flag is set if the program is found. 
 
-## **Example** 
+### Example
 
 ```
 # If the program lPath exists start it maximized
 Calculate lPath as 'c:\program files\windows\accessories\wordpad.exe'
 Test if file exists {[lPath]}
-```
-
-```
 If flag true
-```
-
-```
 Start program maximized {[lPath]}
 End If
 ```
 
-## **Start program minimized** 
+<!-- p296-296 | Start program minimized -->
+## Start program minimized
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Operating system|YES|NO<br>NO<br>Windows,Linux|
+Command group: Operating system | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
+### Syntax
 
-## **Syntax** 
+Start program minimized { program-name }
 
-## **Start program minimized** { _program-name_ } 
-
-## **Description** 
+### Description
 
 This command starts up an application as a minimized icon. The program name must be the pathname of the executable file. You can also specify the full pathname of a file, and other parameters, separated by a space from the program name. You can use this command on Windows and Linux, although on Linux the command does not minimize the application. The flag is set if the program is found. 
 
-## **Example** 
+### Example
 
 ```
 # If the program lPath exists start it minimized
 Calculate lPath as 'c:\program files\windows\accessories\wordpad.exe'
 Test if file exists {[lPath]}
-```
-
-```
 If flag true
-```
-
-```
 Start program minimized {[lPath]}
 End If
 ```
 
-296 
+<!-- p297-297 | Start program normal -->
+## Start program normal
 
+Command group: Operating system | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-**Start program normal** 
+### Syntax
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Operating system|YES|NO<br>NO<br>Windows,Linux|
+Start program normal { program-name }
 
-
-
-## **Syntax** 
-
-## **Start program normal** { _program-name_ } 
-
-## **Description** 
+### Description
 
 This command starts up a Windows or Linux application at its normal screen size. The program name must be the pathname of the executable file. You can also specify the full pathname of a file, and other parameters, separated by a space from the program name. The flag is set if the program is found. 
 
-## **Example** 
+### Example
 
 ```
 # If the program lPath exists start it in its normal screen size
 Calculate lPath as 'c:\program files\windows\accessories\wordpad.exe'
 Test if file exists {[lPath]}
-```
-
-```
 If flag true
-```
-
-```
 Start program normal {[lPath]}
 End If
 ```
 
-## **Start server** 
+<!-- p297-297 | Start server -->
+## Start server
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Threads|YES|NO|NO<br>All|
+Command group: Threads | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Start server** { _stack-initialization-method_ (parameters)} 
 
-## **Description** 
+### Description
 
 **Start server** starts the multi-threaded Web Client server. It creates the client method stacks and their associated threads, and starts the thread which listens for client requests. You use the property $root.$prefs.$serverstacks to specify the number of method stacks to be created. 
 
@@ -20296,7 +15679,7 @@ End If
 
 The command clears the flag if it is used in a single threaded Omnis, or the serial number does not allow clients to connect. It generates a fatal error if for some other reason it is not possible to create the stacks and threads and start the listener. 
 
-## **Example** 
+### Example
 
 ```
 Start server
@@ -20305,23 +15688,16 @@ OK message {Failed to start multithreaded server}
 End If
 ```
 
-297 
+<!-- p298-298 | Stop server -->
+## Stop server
 
+Command group: Threads | Flag affected: YES | Reversible: NO | Execute on client: NO
 
+### Syntax
 
-**Stop server** 
+Stop server
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Threads|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
-
-## **Stop server** 
-
-## **Description** 
+### Description
 
 **Stop server** stops the server from responding to client requests. Once the server has been started (using Start server) it is recommended that it is stopped before quitting the Studio program, before using the Studio program for anything apart from serving client requests, and before opening or closing any datafiles or libraries. 
 
@@ -20329,88 +15705,69 @@ End If
 
 **Stop server** will fail and clear the flag, if you call it from a client method stack. In other words, you can only call **Stop server** from the main method stack. 
 
-## **Example** 
+### Example
 
 ```
 Stop server
 If flag false
-```
-
-```
 OK message {Failed to stop multithreaded server}
 End If
 ```
 
-## **Swap lists** 
+<!-- p298-299 | Swap lists -->
+## Swap lists
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Lists|YES|NO|NO<br>All|
+Command group: Lists | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Swap lists** list-or-row-name 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command swaps the definition and contents of the specified list with that of the current list and sets the flag. After this command, the current list contains the fields and data which were held in the specified list, and the specified list contains the fields and data which were in the current list. 
 
 This command cannot be used to copy lists. To do this use Calculate LIST2 as LIST1. 
 
-298 
-
-
-
-## **Example** 
+### Example
 
 ```
 Set current list iList1
 Define list {fCustomers}
 Build list from file
 Swap lists iList2
-```
-
-```
 # Note: iList2 now contains the defintion and data from iList1 (the current list)
-```
-
-```
 # iList1 is now empty
 ```
 
-## **Swap selected and saved** 
+<!-- p299-299 | Swap selected and saved -->
+## Swap selected and saved
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Swap selected and saved** ([ _All lines_ ]) { _line-number_ ( _calculation_ )} 
 
-## **Options** 
+### Options
 
 All lines If specified, the command affects all the lines in the list 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command swaps the Saved selection state and the Current selection state and sets the flag. To allow sophisticated manipulation of data via lists, a list can store two selection states for each line; the “Current” and the “Saved” selection. The Current and Saved selections have nothing to do with saving data on the disk; they are no more than labels for two sets of selections. The lists may be held in memory and never saved to disk: they will still have a Current and Saved selection state for each line but they will be lost if not saved. When a list is stored in the data file, both sets of selections are stored. 
 
 **Swap selected and saved** allows the Saved selection state of the specified line (or _All lines_ ) to be swapped with the Current set. You can specify a particular line in the list by entering either a number or a calculation. The _All lines_ option swaps the selection status for all lines of the current list. The following example selects the middle line of the list: 
 
-## **Example** 
+### Example
 
 ```
 # Select all lines, save the selection, deselect all
@@ -20427,23 +15784,16 @@ Deselect list line(s) (All lines)
 Swap selected and saved (All lines)
 ```
 
-299 
+<!-- p300-300 | Switch -->
+## Switch
 
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-## **Switch** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Switch** expression 
 
-## **Description** 
+### Description
 
 This command initiates a **Switch** method construct. You use a **Switch** statement to select a course of action from a set of options based on the value of a variable, expression or calculation. It is similar to an If–Else If construct although the performance of a **Switch** construct tends to be faster. 
 
@@ -20453,84 +15803,41 @@ You can use the Break to end of switch command to jump out of the current Case s
 
 You can nest multiple **Switch** statements, and embed other conditional statements such as If–Else constructs. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lPage as $cwind.$objs.PagedPane.$currentpage
-```
-
-```
 Switch lPage
-```
-
-```
 Case 1
-```
-
-```
 If len(iSerialNumber)=0
 Calculate lErrorMsg as 'Please enter a serial number'
-```
-
-```
 End If
 Case 2
 If len(iUserName)=0
 Calculate lErrorMsg as 'Please enter your username'
-```
-
-```
 End If
-```
-
-```
 Case 3
-```
-
-```
 If iAgreeFlag=kFalse
-```
-
-```
 Calculate lErrorMsg as 'You may not proceed until you agree to the license agreement'
 End If
-```
-
-```
 End Switch
-```
-
-```
 If len(lErrorMsg)
 OK message {[lErrorMsg]}
-```
-
-```
 Else
-```
-
-```
 Do $cwind.$objs.PagedPane.$currentpage.$assign(lPage+1) ## go to next page
 End If
 ```
 
-## **TCPAccept** 
+<!-- p300-301 | TCPAccept -->
+## TCPAccept
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPAccept** ( _socket_ ) **Returns** _socket_ 
 
-300 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -20544,48 +15851,33 @@ The Socket parameter is a socket which is listening for incoming connections on 
 
 **TCPAccept** returns a long integer, which is either a new socket for the accepted connection, or an error code less than zero. The new socket has the same blocking mode as the listening socket. The listening socket continues to listen for further incoming connection requests. 
 
-## **Example** 
+### Example
 
 ```
 # Accept incoming connections on port iPort
 Calculate iPort as 6000
-```
-
-```
 TCPSocket Returns iSocket
 TCPBind (iSocket,iPort) Returns lStatus
 TCPListen (iSocket) Returns lStatus
 If lStatus=0
 Repeat
-```
-
-```
 TCPAccept (iSocket) Returns lConnectedSocket
 Until lConnectedSocket>=0
-```
-
-```
 # client connected, get the whole message sent
 End If
-```
-
-```
 TCPClose (iSocket) Returns lStatus
 ```
 
-## **TCPAddr2Name** 
+<!-- p301-302 | TCPAddr2Name -->
+## TCPAddr2Name
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPAddr2Name** ( _address_ ) **Returns** _hostname_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -20599,11 +15891,7 @@ _Hostname_ is an Omnis Character field which receives a hostname which maps to t
 
 **Note** : This command fails if the address of a Domain Name Server has not been defined for your computer. Not all host IP Addresses may be known to the Domain Name Server. If the Domain Name Server is busy or unavailable, the command times out and returns an error. Defining often -used servers in a local host’s file or using a caching Domain Name Server increases performance of this command. 
 
-301 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Return the Hostname for pIPAddress
@@ -20611,19 +15899,16 @@ TCPAddr2Name (pIPAddress) Returns lHostName
 Quit method lHostName
 ```
 
-## **TCPBind** 
+<!-- p302-302 | TCPBind -->
+## TCPBind
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPBind** ( _socket_ , _service_ | _port_ ) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -20637,34 +15922,25 @@ _Service/Port_ is either an Omnis integer field containing the number of the por
 
 _Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Get the next available socket and bind it to port iPort
 Calculate iPort as 6000
-```
-
-```
 TCPSocket Returns iSocket
-```
-
-```
 TCPBind (iSocket,iPort) Returns lStatus
 ```
 
-## **TCPBlock** 
+<!-- p302-303 | TCPBlock -->
+## TCPBlock
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPBlock** ( _socket_ , _option_ {Zero for blocking; Non-zero for non-blocking}) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -20673,10 +15949,6 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 The **TCPBlock** command makes a socket blocking or non-blocking. 
 
 The blocking state of a socket affects the commands TCPAccept, TCPReceive, TCPSend, and HTTPSend. If you use **TCPBlock** to change the blocking state of sockets returned for FTP connections, this could result in undesirable behavior of the FTP commands. 
-
-302 
-
-
 
 If a socket is blocking, the commands listed above wait until they can complete successfully; in other words, a receive waits until it has received some data, a send waits until it has sent some data, and an accept waits until an incoming connection request arrives. 
 
@@ -20688,62 +15960,38 @@ _Option_ is an Omnis integer field. Non-zero means non-blocking and zero means b
 
 _Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Note** : 
+Note :
 
 If the connection is secure (see TCPConnect) then calls to TCPSend will always be blocking, even if the socket is marked as nonblocking. 
 
-## **Example** 
+### Example
 
 ```
 # Listen for incoming connections with blocking off
-```
-
-```
 Calculate iPort as 6000
-```
-
-```
 TCPSocket Returns iSocket
 TCPBind (iSocket,iPort) Returns lStatus
 TCPBlock (iSocket,1) Returns lStatus
 TCPListen (iSocket) Returns lStatus
 If lStatus=0
-```
-
-```
 Repeat
-```
-
-```
 TCPAccept (iSocket) Returns lConnectedSocket
 Until lConnectedSocket>=0
-```
-
-```
 # client connected
-```
-
-```
 End If
-```
-
-```
 TCPClose (iSocket) Returns lStatus
 ```
 
-## **TCPClose** 
+<!-- p303-304 | TCPClose -->
+## TCPClose
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPClose** ( _socket_ [, _option_ {Default zero for complete;1 for partial;2 for abort}]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -20754,10 +16002,6 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 The most brutal form of **TCPClose** is an abortive close. In this case, no consideration is given to the state of the connection, or exchanges with the remote application, and the socket is closed and released immediately. This form of **TCPClose** is recommended for use in error handling situations. 
 
 The mildest form of **TCPClose** is a partial close. In this case, the socket is not released, and you will need to call **TCPClose** again to release the socket. A partial close initiates a disconnect of the TCP/IP connection, by sending a TCP/IP packet with the finish flag set. This means that you can no longer send data to the remote application, but you can continue to receive data. The remote application will be informed of the partial close, when it receives zero bytes; in the case of the TCPReceive command, it will return a received 
-
-303 
-
-
 
 character count of zero. At this point, the remote application can continue to send data, and when it has finished, it issues a complete close itself. 
 
@@ -20771,32 +16015,26 @@ _Option_ is an optional Omnis Integer field, which has the value zero for a comp
 
 _Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Close the socket bound to iPort
 Calculate iPort as 6000
 TCPSocket Returns iSocket
 TCPBind (iSocket,iPort) Returns lStatus
-```
-
-```
 TCPClose (iSocket)
 ```
 
-## **TCPConnect** 
+<!-- p304-305 | TCPConnect -->
+## TCPConnect
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPConnect** ( _hostname_ , _service_ | _port_ [, _secure_ {Default kFalse}, _verify_ {Default kTrue}]) **Returns** _socket_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -20814,25 +16052,18 @@ _Secure_ is an optional Boolean parameter which indicates if a secure connection
 
 _Verify_ is an optional Boolean parameter which is only significant when Secure is not kFalse. When Verify is kTrue, the command instructs the installed SSL library to verify the server’s identity using its certificate; if the verification fails, then the connection will 
 
-304 
-
-
-
 not be established. You can pass Verify as kFalse, to turn off this verification; in this case, the connection will still be encrypted, but there is a chance the server is an impostor. In order to perform the verification, the installed SSL library uses the Certificate Authority Certificates in the cacerts sub-folder of the secure folder in the Omnis folder. If you use your own Certificate Authority to self-sign certificates, you can place its certificate in the cacerts folder, and the installed SSL library will use it after you restart Omnis. 
 
-## **Notes:** 
+Notes:
 
 This differs from the more standard implementation of the sockets connect call. Instead of creating a socket with one command (such as TCPSocket), then passing the socket to a connect command, **TCPConnect** creates the socket and returns the socket number in one step. 
 
 When using a secure connection all calls to TCPSend are blocking. 
 
-## **Example** 
+### Example
 
 ```
 # Connect to the server IP address iHostName on port iPort ready for
-```
-
-```
 # sending a message
 Calculate iHostName as '0.0.0.0'
 Calculate iPort as 6000
@@ -20842,19 +16073,16 @@ If iSocket>0
 End If
 ```
 
-## **TCPGetMyAddr** 
+<!-- p305-306 | TCPGetMyAddr -->
+## TCPGetMyAddr
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPGetMyAddr** ([ _socket_ {Default 0}, _ipv6_ {Default kFalse}]) **Returns** _address_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -20872,11 +16100,7 @@ _Address_ is an Omnis Character field which receives the IP Address of the local
 
 Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-305 
-
-
-
-## **Additional Notes** 
+Additional Notes
 
 When passing a socket to TCPGetMyAddr, the address returned is whatever the operating system API _getsockname_ returns, and this can be either IP v4 or v6, which depends on how the connection was established. The ip v6 parameter to TCPGetMyAddr has no effect in this case. 
 
@@ -20884,7 +16108,7 @@ When passing no socket to TCPGetMyAddr, the code uses the _gethostname_ operatin
 
 Therefore, the information returned by this command is highly dependent on information exposed by operating system APIs, and these are only cross-platform in terms of their calling interface – the information they return depends on both the Operating System and the system configuration. In the case of _getaddrinfo_ , the order of the returned items in the list is Operating system dependent. 
 
-## **Example** 
+### Example
 
 ```
 # Return the IP address of this machine
@@ -20892,19 +16116,16 @@ TCPGetMyAddr Returns lIPAddress
 Quit method lIPAddress
 ```
 
-## **TCPGetMyPort** 
+<!-- p306-306 | TCPGetMyPort -->
+## TCPGetMyPort
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPGetMyPort** (socket) **Returns** _port_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -20916,47 +16137,28 @@ _Socket_ is an Omnis Long Integer field containing a connected socket, or a sock
 
 _Port_ is an Omnis Long Integer field which receives the port number, or an error code < 0. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Bind iPort to iSocket and use TCPGetMyPort to return the
-```
-
-```
 # port to which iSocket is bound in lMyPort.
-```
-
-```
 Calculate iPort as 6000
-```
-
-```
 TCPSocket Returns iSocket
-```
-
-```
 TCPBind (iSocket,iPort) Returns lStatus
 TCPGetMyPort (iSocket) Returns lMyPort
 TCPClose (iSocket) Returns lStatus
 ```
 
-## **TCPGetRemoteAddr** 
+<!-- p306-307 | TCPGetRemoteAddr -->
+## TCPGetRemoteAddr
 
-306 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **TCPGetRemoteAddr** (socket) **Returns** _address_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -20970,18 +16172,12 @@ _Address_ is an Omnis Character field which receives the IP Address of the host 
 
 Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # Listen for a incoming connections on port iPort and get the IP
 # address iAddress of the remote computer
-```
-
-```
 Calculate iPort as 6000
-```
-
-```
 TCPSocket Returns iSocket
 TCPBind (iSocket,iPort) Returns lStatus
 TCPListen (iSocket) Returns lStatus
@@ -20989,30 +16185,21 @@ If lStatus=0
 Repeat
 TCPAccept (iSocket) Returns lConnectedSocket
 Until lConnectedSocket>=0
-```
-
-```
 TCPGetRemoteAddr (lConnectedSocket) Returns iAddress
 End If
-```
-
-```
 TCPClose (iSocket) Returns lStatus
 ```
 
-## **TCPListen** 
+<!-- p307-308 | TCPListen -->
+## TCPListen
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPListen** ( _socket_ ) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -21024,18 +16211,11 @@ _Socket_ is an Omnis Long Integer field containing the number of a socket that h
 
 _Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-307 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Listen for a incoming connections on port iPort
 Calculate iPort as 6000
-```
-
-```
 TCPSocket Returns iSocket
 TCPBind (iSocket,iPort) Returns lStatus
 TCPListen (iSocket) Returns lStatus
@@ -21043,27 +16223,21 @@ If lStatus=0
 Repeat
 TCPAccept (iSocket) Returns lConnectedSocket
 Until lConnectedSocket>=0
-```
-
-```
 # client connected
 End If
 TCPClose (iSocket) Returns lStatus
 ```
 
-## **TCPName2Addr** 
+<!-- p308-308 | TCPName2Addr -->
+## TCPName2Addr
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPName2Addr** ( _hostname_ [, _ipv6_ {Default kFalse}]) **Returns** _address_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -21077,7 +16251,7 @@ _Address_ is an Omnis Character field which receives the IP Address correspondin
 
 **Note** : This command fails if the address of a Domain Name Server has not been defined in your computer. Not all host IP Addresses may be known to the Domain Name Server. If the Domain Name Server is busy or unavailable, the command times out and returns an error. Defining often-used servers to a local host’s file or using a caching Domain Name Server increases performance of this command. 
 
-## **Example** 
+### Example
 
 ```
 # Return the IP address for pHostName
@@ -21085,23 +16259,16 @@ TCPName2Addr (pHostName) Returns lIPAddress
 Quit method lIPAddress
 ```
 
-## **TCPPing** 
+<!-- p308-309 | TCPPing -->
+## TCPPing
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPPing** ( _hostname_ [, _size_ , _timeout_ ]) **Returns** _milliseconds_ 
 
-308 
-
-
-
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -21117,55 +16284,37 @@ _Timeout_ is an optional parameter. It is an Omnis Long Integer field containing
 
 _Milliseconds_ is an Omnis Long Integer field. When no error occurs, **TCPPing** returns the number of milliseconds that it took to receive the ping response from the host. On very fast LANs, it is possible that the ping can complete so quickly that the value may be 0 (zero). A value of -1 (minus one) is returned if the ping times out. All other negative values are error codes. 
 
-## **Example** 
+### Example
 
 ```
 # Ping iHostName to see if it is available
 Calculate iHostName as '0.0.0.0'
-```
-
-```
 TCPPing (iHostName) Returns iMilliseconds
 If iMilliseconds<0
-```
-
-```
 If iMilliseconds=-1
-```
-
-```
 OK message {Timeout}
 Else
-```
-
-```
 OK message {Error [iMilliseconds]}
 End If
-```
-
-```
 End If
 ```
 
-## **TCPReceive** 
+<!-- p309-310 | TCPReceive -->
+## TCPReceive
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPReceive** ( _socket_ , _buffer_ [, _maxbytes_ ]) **Returns** _received-byte-count_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
 This Web command is multi-threaded, allowing another thread to execute in the multi-threaded server while it runs. Note that the same socket cannot safely be used concurrently by more than one thread. 
 
-## **TCPReceive** receives data on a connected socket. 
+TCPReceive receives data on a connected socket.
 
 _Socket_ is a long integer field containing the socket number of a connected socket. 
 
@@ -21173,26 +16322,19 @@ _Buffer_ is a character or binary field into which **TCPReceive** places the rec
 
 _Maxbytes_ is an optional parameter which indicates the maximum number of bytes to be received. If you omit this parameter the command receives available data with no practical limit. 
 
-309 
-
-
-
 **TCPReceive** receives data into the buffer, and then returns the number of received bytes to the long integer _Received-byte-count_ . If an error occurs, **TCPReceive** returns a negative error code. Note that zero can be returned to Received-byte-count when graceful closure of the connection is initiated by the remote application, and there is no more data to receive. See TCPClose for details. 
 
-## **Notes** 
+### Notes
 
 Non-blocking sockets return an error code of -10035 if no data is available. Some implementations of socket libraries may have limits on the number of bytes you can receive at one time. Consult the documentation for your installed sockets libraries. You may have to read data in multiple chunks to assemble an entire message. Always check the number of bytes returned to make sure there was no error. 
 
 Using **TCPReceive** to receive into a character field will not produce sensible results if the end of the received data stops part way through a UTF-8 encoded character. 
 
-## **Example** 
+### Example
 
 ```
 # Listen for incoming connections, if a connection is made get the message sent
 Calculate iPort as 6000
-```
-
-```
 TCPSocket Returns iSocket
 TCPBind (iSocket,iPort) Returns lStatus
 TCPListen (iSocket) Returns lStatus
@@ -21211,19 +16353,16 @@ End If
 TCPClose (iSocket) Returns lStatus
 ```
 
-## **TCPSend** 
+<!-- p310-311 | TCPSend -->
+## TCPSend
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPSend** ( _socket_ , _buffer_ ) **Returns** _sent-byte-count_ 
 
-## **Description** 
+### Description
 
 **Note:** The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -21239,13 +16378,9 @@ If the socket is in blocking mode, **TCPSend** always sends all of the data, unl
 
 If the socket is in non-blocking mode, **TCPSend** sends as much data as it can without blocking. 
 
-310 
-
-
-
 If an error occurs, **TCPSend** returns a negative error code 
 
-## **Notes** 
+### Notes
 
 If the connection is secure (see TCPConnect) then the send will always be blocking, even if the socket is marked as non-blocking. 
 
@@ -21253,48 +16388,30 @@ Non-blocking sockets return an error code of -10035 if the socket cannot accept 
 
 It does not make sense to send a character field on a non-blocking socket, because the _sent-byte-count_ corresponds to the sent UTF-8 bytes. 
 
-## **Example** 
+### Example
 
 ```
 # Connect to the server IP address iHostName on port iPort and send the message iMessage
 Calculate iHostName as '0.0.0.0'
-```
-
-```
 Calculate iPort as 6000
-```
-
-```
 Calculate lMessage as 'Hello remote application'
 TCPConnect (iHostName,iPort) Returns iSocket
-```
-
-```
 If iSocket>0
-```
-
-```
 # connected
-```
-
-```
 TCPSend (iSocket,lMessage) Returns lByteCount
 End If
 ```
 
-## **TCPSocket** 
+<!-- p311-312 | TCPSocket -->
+## TCPSocket
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **TCPSocket** () **Returns** _socket_ 
 
-## **Description** 
+### Description
 
 **Note:** The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -21304,56 +16421,37 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 
 _Socket_ is an Omnis Long Integer field which receives the number of the allocated socket. If an error occurs, the command returns a negative number. 
 
-## **Example** 
+### Example
 
 ```
 # Create a new socket, bind it to port 6000 and listen for an incoming client connection
 Calculate iPort as 6000
-```
-
-```
 TCPSocket Returns iSocket
 TCPBind (iSocket,iPort) Returns lStatus
 TCPListen (iSocket) Returns lStatus
 If lStatus=0
-```
-
-```
 Repeat
-```
-
-```
 TCPAccept (iSocket) Returns lConnectedSocket
-```
-
-311 
-
-
-
-```
 Until lConnectedSocket>=0
 #; client con
 End If
 TCPClose (iSocket) Returns lStatus
 ```
 
-## **Test check data log** 
+<!-- p312-312 | Test check data log -->
+## Test check data log
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|YES|NO|NO<br>All|
+Command group: Data management | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Test check data log** ([Perform repairs]) 
 
-## **Options** 
+### Options
 
 Perform repairs If selected, repairs to the data file are automatically carried out 
 
-## **Description** 
+### Description
 
 This command tests if there are any reports of nonrepaired damage in the check data log. If the _Perform repairs_ option is not specified, the flag is set if there are any reports of non-repaired damage. 
 
@@ -21363,7 +16461,7 @@ If a working message with a count is open while the command is executing, the co
 
 The command sets the flag if it completes the data repair successfully and clears the flag otherwise. The command is not reversible. 
 
-## **Example** 
+### Example
 
 ```
 Quick check
@@ -21374,138 +16472,94 @@ Open check data log
 End If
 ```
 
-## **Test clipboard** 
+<!-- p312-313 | Test clipboard -->
+## Test clipboard
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Clipboard|YES|NO|NO<br>All|
+Command group: Clipboard | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Test clipboard** field-name 
 
-## **Description** 
+### Description
 
 This command tests whether the data on the clipboard is suitable for pasting into the specified field or current selection. The command sets the flag to true if and only if there is data on the clipboard “suitable” for pasting into the specified or current field. “Suitability” here is defined by the standard type conversion built into Omnis, that is, a text field has to be presented with some text, and a picture field with something that can be handled as a picture, for example, a bitmap, metafile, PICT, OLE object, and so on. 
 
-312 
-
-
-
-## **Example** 
+### Example
 
 ```
 Test clipboard iPicture
 If flag true
-```
-
-```
 Paste from clipboard iPicture (Redraw field)
 End If
 ```
 
-## **Test data with search class** 
+<!-- p313-313 | Test data with search class -->
+## Test data with search class
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Searches|YES|NO|NO<br>All|
+Command group: Searches | Flag affected: YES | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Test data with search class
 
-## **Syntax** 
-
-## **Test data with search class** 
-
-## **Description** 
+### Description
 
 This command tests the record in the CRB against the current search class. It sets the flag if the record passes the test or if there is no current search class. If the data does not fit the current search class, the flag is cleared. 
 
 Test data with search class uses the current search as the condition of the test which has been set using Set search name or Set search as calculation. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lCode as 'RT'
-```
-
-```
 Set search as calculation {len(lCode)>2}
-```
-
-```
 Test data with search class
 If flag false
-```
-
-```
 OK message {Test failed, [lCode] invalid}
 End If
 ```
 
-## **Test for a current record** 
+<!-- p313-313 | Test for a current record -->
+## Test for a current record
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|YES|NO|NO<br>All|
+Command group: Finding data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Test for a current record {file-name}
 
-## **Syntax** 
-
-## **Test for a current record** {file-name} 
-
-## **Description** 
+### Description
 
 This command tests for the presence of a current record from a specified file class. The flag is set if a current record for the file is found and cleared if not. The flag is also cleared if the selected file is a memory-only or a closed file. The test is carried out on the main file if no other file class is specified. 
 
-## **Example** 
+### Example
 
 ```
 # If a record for fAccounts does not exist in the current record buffer, get the first
 Set main file {fAccounts}
-```
-
-```
 Test for a current record {fAccounts}
-```
-
-```
 If flag false
-```
-
-```
 Find first
-```
-
-```
 End If
 ```
 
-313 
+<!-- p314-314 | Test for a unique index value -->
+## Test for a unique index value
 
+Command group: Finding data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**Test for a unique index value** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Finding data|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Test for a unique index value** on field-name 
 
-## **Description** 
+### Description
 
 This command tests the specified indexed field for a unique value. The flag is set if the current field value is a unique index value, and cleared if the value duplicates an existing index value. In a multi-user situation, no account is made of field values in records held by other work stations which are not yet updated to disk. 
 
 You use **Test for a unique index value** before storing a new value in a file. In the following example, the proposed new part number is tested against the existing file. 
 
-## **Example** 
+### Example
 
 ```
 # Insert account AC05 if it does not already exist
@@ -21518,23 +16572,20 @@ Update files
 End If
 ```
 
-## **Test for field enabled** 
+<!-- p314-314 | Test for field enabled -->
+## Test for field enabled
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Fields|YES|NO|NO<br>All|
+Command group: Fields | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Test for field enabled** { _field-name_ } 
 
-## **Description** 
+### Description
 
 This command tests if the specified field on the top window instance is enabled, that is, if it is not currently disabled with Disable fields or by setting $enabled to kFalse. The flag is always cleared if there are no window instances open or if the field does not exist. 
 
-## **Example** 
+### Example
 
 ```
 Test for field enabled {myField}
@@ -21547,34 +16598,24 @@ End If
 If $cwind.$objs.myField.$enabled
 Do $cwind.$objs.myField.$enabled.$assign(kFalse)
 Else
-```
-
-```
 Do $cwind.$objs.myField.$enabled.$assign(kTrue)
 End If
 ```
 
-314 
+<!-- p315-315 | Test for field visible -->
+## Test for field visible
 
+Command group: Fields | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-## **Test for field visible** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Fields|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Test for field visible** { _field-name_ } 
 
-## **Description** 
+### Description
 
 This command tests whether a particular field is visible. If the specified field in the top window instance is visible, that is, $visible is kTrue and the field has not been hidden with Hide fields, the flag is set. A field under another field or beyond the edge of the screen may be reported as visible and the flag set. The flag is always cleared if there are no window instances open or if the field does not exist. 
 
-## **Example** 
+### Example
 
 ```
 Test for field visible {myField}
@@ -21591,23 +16632,20 @@ Do $cwind.$objs.myField.$visible.$assign(kTrue)
 End If
 ```
 
-## **Test for menu installed** 
+<!-- p315-315 | Test for menu installed -->
+## Test for menu installed
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|YES|NO|NO<br>All|
+Command group: Menus | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Test for menu installed** { _menu-instance-name_ } 
 
-## **Description** 
+### Description
 
 This command tests whether the specified menu instance is installed on the menu bar. The flag is set if the menu instance is on the menu bar and cleared if it is not, regardless of whether the menu instance is enabled or grayed out. The command does not apply to hierarchical and popup menus. 
 
-## **Example** 
+### Example
 
 ```
 # Install the menu mMyMenu if it is not already installed
@@ -21617,72 +16655,47 @@ Install menu mMyMenu
 End If
 ```
 
-315 
+<!-- p316-316 | Test for menu line checked -->
+## Test for menu line checked
 
+Command group: Menus | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**Test for menu line checked** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Test for menu line checked** _line_ or _instance-name_ / _line_ 
 
-## **Description** 
+### Description
 
 This command tests whether the specified line of a menu instance is checked. You specify the _menu-instance-name_ and the _linenumber_ of the menu line you want to test. The flag is set if the specified line of the menu instance is checked, and cleared if the line is not checked. The flag is always cleared if the menu instance is not installed on the menu bar. 
 
 You can check menu lines using Check menu line. Uncheck menu line removes the check. 
 
-## **Example** 
+### Example
 
 ```
 # Uncheck the menu line 'Large' if it is currently checked
 Install menu mView
-```
-
-```
 Check menu line mView/Large
 Test for menu line checked mView/Large
 If flag true
-```
-
-```
 Uncheck menu line mView/Large
-```
-
-```
 End If
-```
-
-```
 # Alternatively, you can see if a menu line is checked using notation
 If $imenus.mView.$objs.Large.$checked
-```
-
-```
 Do $imenus.mView.$objs.Large.$checked.$assign(kFalse)
 End If
 ```
 
-## **Test for menu line enabled** 
+<!-- p316-316 | Test for menu line enabled -->
+## Test for menu line enabled
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|YES|NO|NO<br>All|
+Command group: Menus | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Test for menu line enabled** _line_ or _instance-name_ / _line_ 
 
-## **Description** 
+### Description
 
 This command tests whether the specified line of a menu instance is enabled. You specify the _menu-instance-name_ and the _methodnumber_ of the menu line you want to test. It sets the flag if the specified line of the menu instance is enabled. The flag is cleared if the menu instance is not installed on the menu bar. 
 
@@ -21690,49 +16703,30 @@ This command may still return false if the current user has no access to the men
 
 You can disable or enable menus using Disable menu line and Enable menu line. 
 
-## **Example** 
+### Example
 
 ```
 # Install the menu mMyMenu if it is not already installed
-```
-
-```
 Test for menu installed {mMyMenu}
-```
-
-```
 If flag false
-```
-
-```
 Install menu mMyMenu
-```
-
-```
 End If
 ```
 
-316 
+<!-- p317-317 | Test for only one user -->
+## Test for only one user
 
+Command group: Changing data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**Test for only one user** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Test for only one user** ([ _All data files_ ]) 
 
-## **Options** 
+### Options
 
 All data files If specified, all data files are tested, rather than just the current data file 
 
-## **Description** 
+### Description
 
 This command tests whether the current data file is being used by a single user, and if so sets the flag. 
 
@@ -21742,134 +16736,101 @@ If the flag is set, further workstations are prevented from logging on to the te
 
 Omnis always sets the flag if the program is running in single user mode. Under Windows, this means that the data is on a DOS volume without the SHARE command having been run. 
 
-## **Example** 
+### Example
 
 ```
 Test for only one user
 If flag false
 OK message {Sorry, option not allowed}
 Quit method kFalse
-```
-
-```
 End If
 Do method Invoices/InsertNew
 ```
 
-## **Test for program open** 
+<!-- p317-318 | Test for program open -->
+## Test for program open
 
-|Command group|Flag affected|Reversible|Execute on client|Platform(s)|
-|---|---|---|---|---|
-|Operating system|YES|NO|NO|Windows,Linux|
+Command group: Operating system | Flag affected: YES | Reversible: NO | Execute on client: P NO W
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Test for program open** { _program-name_ } 
 
-## **Description** 
+### Description
 
 This command tests whether the specified program is running. The flag is set if the specified program is running. You can use this command under Windows and Linux. 
 
 The program name can be the Windows module name, or the full pathname for the program. Under Windows NT/2000, the file PSAPI.DLL must be present in the Omnis directory or on the Windows path for this command to work. PSAPI.DLL is supplied in the Omnis directory of the Windows NT/2000 version of Omnis Studio. 
 
-317 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Test to see if the program lPath is open
-```
-
-```
 Calculate lPath as 'c:\program files\windows\accessories\wordpad.exe'
 Test for program open {[lPath]}
 If flag false
-```
-
-```
 Start program normal {[lPath]}
 End If
 ```
 
-## **Test for valid calculation** 
+<!-- p318-318 | Test for valid calculation -->
+## Test for valid calculation
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Calculations|YES|NO|NO<br>All|
+Command group: Calculations | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Test for valid calculation** { _calculation_ } 
 
-## **Description** 
+### Description
 
 This command lets you test a _calculation_ before it is evaluated. It is essential to test strings to be evaluated by the eval(), evalf() and fld() functions before doing the evaluation. The flag is set to kTrue if the calculation is valid. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lCalculation as 'lBalance < 0'
 Test for valid calculation {evalf(lCalculation)}
 If flag true
-```
-
-```
 Do lAccountsList.$search(evalf(lCalculation))
 End If
 ```
 
-## **Test for window open** 
+<!-- p318-318 | Test for window open -->
+## Test for window open
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Windows|YES|NO|NO<br>All|
+Command group: Windows | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Test for window open** { _window-instance-name_ } 
 
-## **Description** 
+### Description
 
 This command tests if the specified window instance is open. If the window instance is open, Omnis sets the flag, otherwise the flag is cleared. Window instances are opened with Open window instance or the $open() method. 
 
-## **Example** 
+### Example
 
 ```
 # Open the window wMyWindow if it is not already open
 Test for window open {wMyWindow}
 If flag false
-```
-
-```
 Open window instance wMyWindow
 End If
 ```
 
-318 
+<!-- p319-319 | Test if file exists -->
+## Test if file exists
 
+Command group: Operating system | Flag affected: YES | Reversible: NO
 
-
-## **Test if file exists** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Operating system|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Test if file exists** { _file-name_ } 
 
-## **Description** 
+### Description
 
 This command tests if the specified file exists and can be opened. The flag is set if the file exists and can be opened. Otherwise, it is cleared. You can use this command to prevent the user from overwriting existing files with print files, and so on. To perform the test, the command opens the file in shared read mode, and then closes it, if the open was successful. 
 
@@ -21879,66 +16840,40 @@ You cannot use this command to check for the existence of a data file if the dat
 
 You can use this command to test for the existence of a data file that is to be accessed using the ODB (Omnis Data Bridge). Specify the location of the file using the ODB syntax: 
 
-## `odb://[*address*:*port*:]*name*` 
-
+`odb://[*address*:*port*:]*name*`
 where _address_ : _port_ is the TCP/IP address and port number of the ODB server, e.g. 127.0.0.1:5900, and _name_ is the name of a data file accessed using the ODB server. You can omit _address_ : _port_ :, in which case Omnis uses the address and port stored in the $odbserver root preference. Note that the value of $odbserver is stored in the file odb.txt in the studio folder of the Omnis installation tree. 
 
-## **Example** 
+### Example
 
 ```
 # If the file myfile already exists in the root of the studio tree show a ok message
 Calculate lPath as con(sys(115),'myfile')
-```
-
-```
 Test if file exists {[lPath]}
-```
-
-```
 If flag true
-```
-
-```
 OK message {The file [lPath] already exists}
-```
-
-```
 Else
-```
-
-```
 Create file ([lPath])
-```
-
-```
 End If
 ```
 
-## **Test if list line selected** 
+<!-- p319-320 | Test if list line selected -->
+## Test if list line selected
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Test if list line selected** { _line-number_ ( _calculation_ )} 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-319 
-
-
-
-## **Description** 
+### Description
 
 This command tests the specified line of the current list and sets the flag if it is selected. You can specify a particular line in the list by entering either a number or a calculation. If the number is not specified, the test is performed on the current line of the list, that is, the line number held in LIST.$line. 
 
-## **Example** 
+### Example
 
 ```
 # If line 2 is selected show a message dialog
@@ -21958,32 +16893,26 @@ OK message {List line 2 is selected}
 End If
 ```
 
-## **Test if running in background** 
+<!-- p320-320 | Test if running in background -->
+## Test if running in background
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Omnis environment|YES|NO<br>NO<br>All|
+Command group: Omnis environment | Flag affected: YES | Reversible: NO
 
+### Syntax
 
+Test if running in background
 
-## **Syntax** 
-
-## **Test if running in background** 
-
-## **Description** 
+### Description
 
 This command tests if Omnis is running in the background, that is, it sets the flag if Omnis is not the top application window. 
 
 Windows, macOS, and Linux all provide multi-tasking facilities. When another program is running, with Omnis in the background, you can continue with tasks such as importing data although the processor’s time becomes shared between the current tasks. You can use this test to alter the behavior of the library when it becomes the background task. 
 
-## **Example** 
+### Example
 
 ```
 # Bring Omnis back to the front when another application goes to top
 Show Omnis minimized
-```
-
-```
 Calculate #F as kFalse
 While flag false
 Test if running in background
@@ -21991,35 +16920,28 @@ End While
 Show Omnis normal
 ```
 
-## **Text:** 
+<!-- p320-321 | Text: -->
+## Text:
 
-320 
+Command group: Text | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Text|NO|NO|YES<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Text:** {text} ([ _Carriage return_ ][, _Linefeed_ ][, _Platform newline_ ]) 
 
-|Options||
-|---|---|
-|Carriage return|If specifed, the command appends a carriage|
-||return, after it appends the text|
-|Linefeed|If specifed, the command appends a line|
-||feed, after it appends the text|
-|Platform newline|If specifed, the command appends the|
-||newline character sequence for the currently|
-||executing platform after it appends the text|
+### Options
+Carriage return
+If specified, the command appends a carriage
+return, after it appends the text
+Linefeed
+If specified, the command appends a line
+feed, after it appends the text
+Platform newline
+If specified, the command appends the
+newline character sequence for the currently
+executing platform after it appends the text
 
-
-
-## **Description** 
+### Description
 
 This command adds text to the text buffer for the current method stack: note the Method Editor will enclose the complete text in curly brackets automatically, so these do not need to be entered. 
 
@@ -22027,76 +16949,51 @@ The **Text:** command supports leading and trailing spaces and can contain squar
 
 The _Carriage return_ , _Linefeed_ , and _Platform newline_ options add the appropriate character(s) to the end of the current **Text:** line. When you have placed one **Text:** line and you press Ctrl/Cmnd-N to create a new method line, the **Text:** command is selected and the current carriage return and line feed options are copied to the new method line automatically. You should end a block of text with the End text block command, and you can return the contents of the text buffer using the Get text block command. 
 
-## You cannot insert an inline comment on any lines in a **Text:** code block. 
+You cannot insert an inline comment on any lines in a Text: code block.
 
-You cannot insert “Text:(” because the Text: command can have options (unlike Line:). For the Text: command, when you type ( at the end of the code editor line, Omnis treats this as the start of the options, and the code assistant can then pop up the possible options. As soon as you type another character after the (, Omnis treats this as text comprising ( followed by the character. This restriction is the best compromise that allows the code assistant to present the possible options, and allows text starting with ( to be entered. As a workaround, you can enter [“(”] if you want to add an open parenthesis to the text. 
+You cannot insert “Text:(” because the Text: command can have options (unlike Line:). For the Text: command, when you type ( at the end of the code editor line, Omnis treats this as the start of the options, and the code assistant can then pop up the possible options. As soon as you type another character after the (, Omnis treats this as text comprising ( followed by the character. This restriction is the best compromise that allows the code assistant to present the possible options, and allows text starting with ( to be entered. As a workaround, you can enter [“(”] if you want to add an open parenthesis to the text.
 
-## **Trace off** 
+<!-- p321-322 | Trace off -->
+## Trace off
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Debugger|NO|NO|NO<br>All|
+Command group: Debugger | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Trace off
 
-## **Syntax** 
-
-## **Trace off** 
-
-## **Description** 
+### Description
 
 This command turns off the trace mode at a point in a method. See Trace on for more information about trace mode and using the debugger. 
 
-321 
-
-
-
-## **Example** 
+### Example
 
 ```
 Open trace log
-```
-
-```
 #; the following lines are sent to the trace log ...
-```
-
-```
 Trace on (Clear trace log )
 For lCount from 1 to 5 step 1
-```
-
-```
 OK message {Sent to trace log}
 End For
-```
-
-```
 Trace off
-```
-
-```
 # ...and the following line is not
 OK message {Not sent to trace log}
 ```
 
-## **Trace on** 
+<!-- p322-322 | Trace on -->
+## Trace on
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Debugger|NO|NO|NO<br>All|
+Command group: Debugger | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Trace on** ([ _Clear trace log])_ 
 
-## **Options** 
+### Options
 
 Clear trace log If specified, the command clears the trace log 
 
-## **Description** 
+### Description
 
 This command sends all subsequent commands to the trace log and displays the current command in the method editor. It lets you turn on trace mode at a point in a method where you suspect that there may be a problem, or some code which is difficult to follow. In trace mode, the topmost method design window is continually changed to show the command being executed. Also when in trace mode, a trace log is maintained; this contains the class name and method name in the Item column and the command line text in the Data column, for all methods which are executed in trace mode or single-stepped. Error messages, breakpoints, and so on, which occur in trace mode are also entered in the trace log. The _Clear trace log_ option deletes all existing entries before new lines are added to the log. 
 
@@ -22104,16 +17001,13 @@ The trace log window is opened and brought to top either via the Tools menu or b
 
 If the double-clicked line in the log is a field value line, the value window for that field is opened. The trace log is not adjusted when methods are modified. This means that trace log lines may point to the wrong command or no command if the class containing that method has been modified. 
 
-## **Example** 
+### Example
 
 ```
 Open trace log
 # the following lines are sent to the trace log ...
 Trace on (Clear trace log )
 For lCount from 1 to 5 step 1
-```
-
-```
 OK message {Sent to trace log}
 End For
 Trace off
@@ -22121,27 +17015,20 @@ Trace off
 OK message {Not sent to trace log}
 ```
 
-322 
+<!-- p323-323 | Transmit text to port -->
+## Transmit text to port
 
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO
 
-
-**Transmit text to port** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Transmit text to port** ([ _Add newline_ ]) { _text_ } 
 
-## **Options** 
+### Options
 
 Add newline If specified, the command sends a newline character sequence after sending the text 
 
-## **Description** 
+### Description
 
 This command sends text to a port; for example, you can send printer control characters. To transmit control characters, you can use the _chr()_ function inside square brackets. For example, [ _chr(27,14)_ ] sends escape 14. 
 
@@ -22151,7 +17038,7 @@ An error occurs and the flag is cleared if the port has not been selected or if 
 
 When you use a printer connected to the port, this command lets you send escape codes to control print characteristics. 
 
-## **Example** 
+### Example
 
 ```
 # Send text followed by the report rMyReport to a port
@@ -22164,21 +17051,19 @@ Print report
 Close port
 ```
 
-## **Transmit text to print file** 
+<!-- p323-324 | Transmit text to print file -->
+## Transmit text to print file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|Reports and Printing|YES|NO<br>NO<br>All|
-|**Syntax**|||
-|**Transmit text to print fle**([_Add newline_]) {_text_}|||
+Command group: Reports and Printing | Flag affected: YES | Reversible: NO
 
+### Syntax
+**Transmit text to print file**([_Add newline_]) {_text_}
 
-
-## **Options** 
+### Options
 
 Add newline If specified, the command sends a newline character sequence after sending the text 
 
-## **Description** 
+### Description
 
 This command sends text to a print file, for example, you can send printer control characters. To transmit control characters, you can use the _chr()_ function inside square brackets. For example, [ _chr(27,14)]_ sends escape 14. 
 
@@ -22186,38 +17071,30 @@ The _Add newline_ option causes Omnis to add end of line characters after each l
 
 An error occurs if no print file has been selected. 
 
-323 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Create a file containing the text 'This is my report' together with the report rMyReport
 Set print or export file name {[con(sys(115),'output.txt')]}
 Transmit text to print file (Add newline) {This is my report}
 Set report name rMyReport
-```
-
-```
 Send to file
 Print report
 Close print or export file
 ```
 
-## **Truncate file** 
+<!-- p324-324 | Truncate file -->
+## Truncate file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Truncate file** ( _refnum_ [, _end-position_ ] [, _end-position-is-character_ ]) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note:** The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -22225,251 +17102,170 @@ This command truncates a file. You specify the file reference number returned by
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lPathname as con(sys(115),'charfile.txt')
-```
-
-```
 Create file (lPathname) Returns lErrCode
-```
-
-```
 Open file (lPathname,lRefNum)
-```
-
-```
 Calculate lCharVar as 'Truncate the contents of this file'
 Write file as character (lRefNum,lCharVar) Returns lErrCode
 Truncate file (lRefNum,8) Returns lErrCode
 Close file (lRefNum)
 ```
 
-## **Uncheck menu line** 
+<!-- p324-325 | Uncheck menu line -->
+## Uncheck menu line
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Menus|NO|YES|NO<br>All|
+Command group: Menus | Flag affected: NO | Reversible: YES | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Uncheck menu line** _line_ or _instance-name_ / _line_ 
 
-## **Description** 
+### Description
 
 This command removes the check mark on the specified line of a menu instance. No action is taken if there is no check mark or the menu instance is not installed. You specify the menu-instance-name and the line-number of the menu line you want to uncheck. 
 
 If you use **Uncheck menu line** in a reversible block, the specified menu line is checked again when the method terminates. 
 
-324 
-
-
-
-## **Example** 
+### Example
 
 ```
 # Test whether a line in the menu instance is checked and
-```
-
-```
 # either check or uncheck it accordingly.
 Install menu mView
 Test for menu line checked mView/Large
 If flag true
 Uncheck menu line mView/Large
 Else
-```
-
-```
 Check menu line mView/Large
 End If
-```
-
-```
 # Alternatively, you change the $checked property of a line
-```
-
-```
 # in the menu instance using notation
 Do $imenus.mView.$objs.Large.$checked.$assign(kFalse)
 ```
 
-## **Unload error handler** 
+<!-- p325-325 | Unload error handler -->
+## Unload error handler
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Error handlers|YES|NO|NO<br>All|
+Command group: Error handlers | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Unload error handler** [ _name_ /] _name_ 
 
-## **Description** 
+### Description
 
 This command unloads the specified error handler (a method is taken as its parameter). If there are multiple error handlers at that method, they are all unloaded. The flag is set if an error handler is unloaded. See Load error handler for more information about error handlers. 
 
-## **Example** 
+### Example
 
 ```
 Unload error handler cMyErrorHandler/Errors
 Load error handler cMyErrorHandler/Error2Handler
 ```
 
-## **Unload event handler** 
+<!-- p325-325 | Unload event handler -->
+## Unload event handler
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Externals|NO|NO|NO<br>All|
+Command group: Externals | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Unload event handler** routine-name or library-name/routine-name (parameters) 
 
-## **Description** 
+### Description
 
 This command unloads the specified event handler or, if no handler is specified, all event handlers. If none exists, no action is taken. An event handler is always unloaded when the library is closed or when the program quits. See Load event handler for more information on event handlers. 
 
-## **Example** 
+### Example
 
 ```
 # unload the event handler, myEventHandler
 Unload event handler myEventHandler
 ```
 
-325 
+<!-- p326-326 | Unload external routine -->
+## Unload external routine
 
+Command group: Externals | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-## **Unload external routine** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Externals|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Unload external routine** _routine-name_ or _library-name/routine-name_ (parameters) 
 
-## **Description** 
+### Description
 
 This command unloads the specified external code from memory. If it is not already loaded or is not found, the flag is cleared and no action takes place. If no external is specified, all externals are unloaded. All loaded external routines are unloaded when the library is closed or when the program quits. See Load external routine for more information on external routines. 
 
-## **Example** 
+### Example
 
 ```
 Unload external routine** MathsLib/sqroot
 ```
 
-## **Until break** 
+<!-- p326-326 | Until break -->
+## Until break
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|NO<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: NO
 
+### Syntax
 
+Until break
 
-## **Syntax** 
-
-## **Until break** 
-
-## **Description** 
+### Description
 
 This command terminates a repeat loop if the user requests a cancel by either clicking on a working message Cancel button, or by pressing Ctrl-Break under Windows, Ctrl-C under Linux, or Cmnd-period under macOS. Note that the user cannot request a cancel (and therefore cause **Until break** to terminate the repeat loop) if Disable cancel test at loops has been executed. Note that you can also terminate a repeat loop using Break to end of loop within the loop, or by using one of the alternative Until… commands. 
 
-## **Example** 
+### Example
 
 ```
 # only way out of this loop is to enter a value greater than 10
 Disable cancel test at loops
-```
-
-```
 Repeat
-```
-
-```
 Prompt for input Enter a value greater than 10 to exit loop Returns lValue
 If lValue>10
-```
-
-```
 Break to end of loop
-```
-
-```
 End If
-```
-
-```
 Until break
 ```
 
-## **Until calculation** 
+<!-- p326-327 | Until calculation -->
+## Until calculation
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-326 
-
-
-
-**Syntax** 
+### Syntax
 
 **Until** _calculation_ 
 
-## **Description** 
+### Description
 
 This command terminates a Repeat-Until conditional loop specifying a _calculation_ as the condition. The _calculation_ is evaluated at the end of the loop that continues if the derived value is zero. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lCount as 1
-```
-
-```
 Repeat ## Repeat loop
-```
-
-```
 Calculate lCount as lCount+1
-```
-
-```
 Until lCount>=3
-```
-
-```
 OK message {Count=[lCount]} ## prints 'Count=3'
 ```
 
-## **Until flag false** 
+<!-- p327-327 | Until flag false -->
+## Until flag false
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
-
-
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
 **Syntax Until flag false** 
 
-## **Description** 
+### Description
 
 This command terminates the Repeat–Until conditional loop if the flag is false; execution continues with the command following the Until. If the flag is true, execution continues with the command following the Repeat. 
 
-## **Example** 
+### Example
 
 ```
 # loop until 'No' is pressed
@@ -22478,64 +17274,49 @@ No/Yes message {Press No to exit loop}
 Until flag false
 ```
 
-## **Until flag true** 
+<!-- p327-328 | Until flag true -->
+## Until flag true
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+Until flag true
 
-## **Syntax** 
-
-## **Until flag true** 
-
-## **Description** 
+### Description
 
 This command terminates the Repeat–Until conditional loop if the flag is true; execution continues with the command following the Until command. If the flag is false, execution continues with the command following the Repeat command. 
 
-327 
-
-
-
-## **Example** 
+### Example
 
 ```
 # loop until 'Yes' is pressed
 Repeat
-```
-
-```
 Yes/No message {Press Yes to exit loop}
 Until flag true
 ```
 
-## **Update data dictionary** 
+<!-- p328-328 | Update data dictionary -->
+## Update data dictionary
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Data management|YES|NO|NO<br>All|
+Command group: Data management | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Update data dictionary** ([ _Test only_ ]) { _list-of-files_ (F1,F2,..,Fn) (leave empty to select all)} 
 
-## **Options** 
+### Options
 
-|Test only|If specifed, the data fle is not|
-|---|---|
-||updated; the command purely|
-||tests to see if it would update the|
-||data fle when executed without|
-||this option specifed, and returns|
-||the fag set to true if an update|
-||would occur|
+Test only
+If specified, the data file is not
+updated; the command purely
+tests to see if it would update the
+data file when executed without
+this option specified, and returns
+the flag set to true if an update
+would occur
 
-
-
-## **Description** 
+### Description
 
 This command updates the data dictionary for the specified file or list of files. The data dictionary is a copy of the file class field definitions and is stored in the data file. The command lets you write minor file class changes to the data dictionary. These minor changes do not require data reorganization, and include changes such as adding new fields, altering field names and altering field lengths. You can only update the data dictionary if you are the only user logged on to the data file. 
 
@@ -22547,41 +17328,31 @@ If the _Test only_ option is specified, no updating is actually carried out, and
 
 Certain changes made to a file class (that is, changes in indexes, field type changes and changes in file connections) require data reorganization. In this case, using **Update data dictionary** to keep the file class and the data file “in step” will be inappropriate. Reorganize data lets you test whether a data file needs reorganization as well as to reorganize it if necessary. 
 
-## **Example** 
+### Example
 
 ```
 Update data dictionary (Test only) ## all files
 If flag true
-```
-
-```
 Update data dictionary ## all files
 End If
 ```
 
-## **Update files** 
+<!-- p328-329 | Update files -->
+## Update files
 
-328 
+Command group: Changing data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Update files** ([ _Do not cancel pfu_ ]) 
 
-## **Options** 
+### Options
 
 Do not cancel pfu 
 
 If specified, Omnis remains in prepare for update mode after the command finishes, meaning that multi-user locks remain in place, and you can perform further updates 
 
-## **Description** 
+### Description
 
 This command writes the records in the current record buffer to disk and cancels the Prepare for… mode. You must execute the command when Omnis is in a Prepare for update mode otherwise an error occurs. 
 
@@ -22591,13 +17362,10 @@ The _Do not cancel pfu_ option prevents the command from canceling Prepare for u
 
 The _**Update files**_ command causes the indexes in the files to be re-sorted. Thus, in multi-user mode, the files are locked while Update files is executing. You can control this file locking by running Do not wait for semaphores. When Do not wait for semaphores is active, **Update files** returns flag false and does nothing if the file is locked. 
 
-## **Example** 
+### Example
 
 ```
 # The following example inserts an invoice in the parent file and a list of
-```
-
-```
 # related invoice items in the child file. The Do not cancel pfu option ensures
 # that the parent record remains locked until complete.
 Set main file {fInvoice}
@@ -22624,34 +17392,25 @@ Until flag true
 End If
 ```
 
-329 
+<!-- p330-330 | Update files if flag set -->
+## Update files if flag set
 
+Command group: Changing data | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**Update files if flag set** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Update files if flag set** ([ _Do not cancel pfu_ ]) 
 
-## **Options** 
+### Options
 
-|Do not cancel pfu|If specifed, Omnis remains in prepare for|
-|---|---|
-||update mode after the command|
-||fnishes, meaning that multi-user locks|
-||remain in place, and you can perform|
-||further updates|
+Do not cancel pfu
+If specified, Omnis remains in prepare for
+update mode after the command
+finishes, meaning that multi-user locks
+remain in place, and you can perform
+further updates
 
-
-
-## **Description** 
+### Description
 
 This command writes the current values in the current record buffer to disk if the flag is set to kTrue. This is a variation on the Update files command and is equivalent to: 
 
@@ -22661,21 +17420,18 @@ Update files
 End If
 ```
 
-When the command follows Enter data, the Prepare for update mode is cancelled, and the record is stored on disk if the user clicks OK or presses the Return/Enter key. 
+When the command follows Enter data, the Prepare for update mode is cancelled, and the record is stored on disk if the user clicks OK or presses the Return/Enter key.
 
-## **UUDecode** 
+<!-- p330-331 | UUDecode -->
+## UUDecode
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **UUDecode** ( _stream_ , _decoded-stream_ ) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -22689,43 +17445,27 @@ _Decoded-Stream_ is an Omnis Character or Binary field that receives the resulti
 
 _Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-330 
-
-
-
-## **Example** 
+### Example
 
 ```
 # encode the contents of the character variable lString to get lEncodedString
-```
-
-```
 # and decode lEnclodedString to get lString back
-```
-
-```
 Calculate lString as 'This is my character string to encode'
 UUEncode (lString,lEncodedString) Returns lErrCode
 Calculate lString as ''
-```
-
-```
 UUDecode (lEncodedString,lString) Returns lErrCode
 ```
 
-## **UUEncode** 
+<!-- p331-331 | UUEncode -->
+## UUEncode
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **UUEncode** ( _stream_ , _encoded-stream_ ) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -22739,7 +17479,7 @@ _Encoded-Stream_ is an Omnis Character or Binary field that receives the resulti
 
 _Status_ is an Omnis Long Integer field which receives the value zero for success, or an error code < 0 for failure. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # encode the contents of the character variable lString to get lEncodedString
@@ -22747,27 +17487,20 @@ Calculate lString as 'This is my character string to encode'
 UUEncode (lString,lEncodedString) Returns lErrCode
 ```
 
-## **Variable menu command** 
+<!-- p331-333 | Variable menu command -->
+## Variable menu command
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Debugger|NO|NO|NO<br>All|
+Command group: Debugger | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **Variable menu command:** _command_ { _list-of-field-or-file-names_ (F1,F2..F3,F4)} 
-
-331 
-
-
 
 **Commands** 
 
 Set Break On Variable Change Clear Break On Variable Change Set Break On Calculation Clear Break On Calculation Store Min & Max Do Not Store Min & Max Add To Watch Variables List Remove From Watch Variables List Send Value To Trace Log Send Minimum To Trace Log Send Maximum To Trace Log Send All To Trace Log Open Value Window Open Values List… 
 
-## **Description** 
+### Description
 
 This command performs one of the Variable context menu options on the specified field or list of fields. You can specify one of the following Variable menu options: 
 
@@ -22799,57 +17532,35 @@ _Open value window_ opens a value window for each variable on the list, or for e
 
 _Open values list_ opens the values list for each of the variable types given in the command parameters. For example, _**Variable menu command:** open values list {lValue, iCount}_ opens two values lists, one for Local variables, the other for Instancel variables. There is one values list for each file class, so if more than one variable name in a particular file class is specified the values list for that file will only be opened once. There is also a limit on the number of windows that you can open at once. 
 
-332 
-
-
-
-## **Example** 
+### Example
 
 ```
 # pause method execution when the value of iValue changes
-```
-
-```
 Calculate iValue as 5
-```
-
-```
 Variable menu command : Set Break On Variable Change {iValue}
 Calculate iValue as 2
-```
-
-```
 Variable menu command : Clear Break On Variable Change {iValue}
-```
-
-```
 # open two variable windows one showing the value of lCount and the other the value of iValue
 Calculate lCount as 10
-```
-
-```
 Variable menu command : Open Value Window {lCount,iValue}
 ```
 
-## **Wait for semaphores** 
+<!-- p333-333 | Wait for semaphores -->
+## Wait for semaphores
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Changing data|NO|YES|NO<br>All|
+Command group: Changing data | Flag affected: NO | Reversible: YES | Execute on client: NO
 
+### Syntax
 
+Wait for semaphores
 
-## **Syntax** 
-
-## **Wait for semaphores** 
-
-## **Description** 
+### Description
 
 This command causes all the commands which set semaphores to wait with a lock cursor until the semaphores for the required records are available. 
 
 When a library is first selected, **Wait for semaphores** is automatically selected to ensure compatibility with existing libraries. It causes all the commands which set semaphores to wait with a lock cursor until the semaphore is available then return with the flag set, or to wait until the user cancels with a Ctrl-Break/Ctrl-C/Cmnd-period then return with a flag clear. 
 
-## **Semaphores** 
+Semaphores
 
 Semaphores are internal flags or indicators set in the data file to show other users that the record has been required elsewhere for editing. Semaphores are set only when running in multi-user mode, that is, the data file is located on a networked server, a Mac volume or on a DOS machine on which SHARE has been run. 
 
@@ -22857,529 +17568,703 @@ The commands which set semaphores are Prepare for edit, Prepare for insert, Upda
 
 The Edit/Insert commands from the Commands menu always wait for a semaphore as do automatic find entry fields. 
 
-## **Example** 
+### Example
 
 ```
 Wait for semaphores
-```
-
-```
 Prepare for edit ## waits for record if locked by another user
 Enter data
-```
-
-```
 Do not wait for semaphores
-```
-
-```
 If flag true
-```
-
-```
 Update files
-```
-
-```
 If flag false
 OK message {File was locked, update failed}
-```
-
-```
+End If
 End If
 ```
 
-```
-End If
-```
-
-## **Web Command Error Codes** 
+<!-- p333-341 | Web Command Error Codes -->
+## Web Command Error Codes
 
 Error codes marked with * are received in responses from the FTP server, and then returned as the result of FTP command execution. 
 
-333 
+Error Code
+Error Text
+-501
+Incorrect parameter type
+-502
+Error getting information about a
+parameter
+-503
+Incorrect number of parameters
+-504
+The command can only decode streams of
+characters (in a character variable)
+-506
+Unrecognised command
+-507
+Error locking handle
+-508
+Bad list generated by command
+-509
+Bad socket passed to command
+-511
+No address specified
+-512
+Could not open ICMP handle
+-513
+Could not start timer
+-516
+The end-user cancelled the request
+-517
+Bad option passed to TCPClose
+-522
+Timeout while waiting for response or
+request
+-523
+Badly formatted response from server
+-524
+Response from server is too short
+-525
+Response from server has incorrect syntax
+-1010
+Out of memory
+-1012
+Unix TCPPing requires a raw socket: only
+processes with an effective user id of zero
+or the CAP_NET_RAW capability are
+allowed to open raw sockets
+-1013
+Cannot do TCPPing on Win32 without
+icmp.dll
+-1014
+Attempt to perform secure operation on
+non-secure connection
+-1015
+Attempt to make an already secure
+connection secure
+-1016
+Cannot load wesecure.so/dll. Perhaps
+OpenSSL is not installed
+-1017
+A required function is missing from
+wesecure.so/dll
+-1018
+Cannot request a partial closure of a secure
+connection
+-1019
+Error setting up secure library threading
+-1020
+Error seeding Pseudo Random Number
+Generator
+-1021
+The OpenSSL library returned an error; call
+WebDevGetSecureError for more
+information
+-1022
+Invalid secure object passed to wesecure
+-1023
+Unknown error returned by OpenSSL
+library
+-1024
+Unable to get a suitable Omnis folder for
+CA certificates
+-1025
+Cannot open cacerts.pem
+-1026
+Cannot get find handle to list CA
+certificates
+-1027
+cacerts folder does not contain any CA
+certificates
+-1028
+Error getting next certificate file
+-1029
+Unable to open CA certificate
+-1030
+Wesecure initialization failed
+-1031
+Error establishing secure connection
 
+Error Code
+Error Text
+-1032
+Buffer overflow would occur because a field
+is too long
+-1033
+Connection gracefully closed
+-1034
+Attempt to connect timed out
+-1035
+Unknown error
+-1036
+InitSecurityInterface failed
+-1037
+Internal error with received data buffer
+-1038
+Internal error with extra data buffer
+-1039
+Could not find decryption output buffer
+-1040
+Unable to resume session for data
+connection
+-1105*
+Need FTP account for storing files
+-1106*
+Requested FTP action aborted: page type
+unknown
+-1107*
+Requested FTP file action aborted.
+Exceeded storage allocation (for current
+directory or dataset)
+-1108*
+Requested FTP action not taken. File name
+not allowed
+-1109*
+Requested FTP action aborted: local error
+in processing
+-1110*
+FTP file not found, or no access to file
+-1116
+Parameter passed to FTP command is too
+long
+-1117
+Parameter passed to FTP command
+contains invalid characters
+-1119*
+FTP Restart marker reply
+-1120*
+FTP serviceready in nnn minutes
+-1121*
+FTP data connection already open; transfer
+starting
+-1122*
+FTP file status okay; about to open data
+connection
+-1123*
+FTP user name okay, need password
+-1124*
+Unrecognised FTP positive preliminary
+reply
+-1125*
+Unrecognised FTP positive intermediate
+reply
+-1126*
+Unrecognised FTP transient negative
+completion reply
+-1127*
+Unrecognised FTP permanent negative
+completion reply
+-1129
+Could not extract server IP address and
+port from response to FTP command PASV
+-1130
+FTP transfer type must be zero (for ASCII) or
+one (for binary)
+-1131
+FTP could not open local file
+-1132
+Error while FTP was reading or writing the
+local file
+-1134*
+Need account for FTP login
+-1135*
+Requested FTP file action pending further
+information
+-1136*
+FTP service not available, closing control
+connection
+-1137*
+Cannot open FTP data connection
+-1138*
+FTP connection closed; transfer aborted
+-1139*
+Requested FTP file action not taken. File
+unavailable (e.g., file busy)
 
+Error Code
+Error Text
+-1142*
+Requested FTP action not taken.
+Insufficient storage space in system
+-1143*
+Syntax error: FTP command unrecognized
+or too long
+-1144*
+Syntax error in FTP parameters or
+arguments
+-1145*
+FTP command not implemented
+-1146*
+Bad sequence of FTP commands
+-1147*
+FTP command not implemented for that
+parameter
+-1148*
+Not logged in to FTP server
+-1149*
+Unrecognised response from FTP server
+-1150
+Must use passive FTP when the connection
+is secure
+-1151
+FTP server response to AUTH TLS
+command does not allow a secure
+connection to be established
+-1154
+Unable to determine end of HTTP header
+-1161
+Incomplete HTML tag
+-1180
+Parameter passed to HTTP command is too
+long
+-1181
+Post with CGI parameters sends CGI
+parameters as content: cannot supply
+content-type/length header in header list
+-1182
+Received HTTP request is badly formatted
+-1183
+Received HTTP request does not contain
+the HTTP version
+-1184
+Received HTTP request contains badly
+formatted CGI parameters
+-1185
+Invalid HTTP status code - must be 1-999
+-1186
+The client HTTP application closed the
+connection
+-1187
+The client HTTP application did not send a
+Content-Length header
+-1188
+The maximum response size specified in
+the call to HTTPRead was exceeded
+-1189
+Proxy server rejected CONNECT method
+-1190
+Invalid HTTP authentication type
+-1191
+No HTTP method specified
+-1192
+The connection to the server has closed
+(this can occur for example due to the
+server timing out the connection)
+-1202
+SMTP: the server response to the STARTTLS
+command was incorrect
+-1203
+SMTP: the server does not support the
+STARTTLS command, so a secure
+connection cannot be established
+-1204
+SMTP: the secure parameter to SMTPSend
+is invalid
+-1205
+SMTP: 435 Unable to authenticate at
+present
+-1206
+The SMTP server does not support
+authentication
+-1207
+SMTP: 535 Incorrect authentication data
+-1208
+SMTP: 432 A password transition is needed
+-1209
+SMTP: 534 The authentication mechanism
+is too weak
 
-|Error Code|Error Text|
-|---|---|
-|-501|Incorrect parameter type|
-|-502|Error getting information about a|
-||parameter|
-|-503|Incorrect number of parameters|
-|-504|The command can only decode streams of|
-||characters (in a character variable)|
-|-506|Unrecognised command|
-|-507|Error locking handle|
-|-508|Bad list generated by command|
-|-509|Bad socket passed to command|
-|-511|No address specifed|
-|-512|Could not open ICMP handle|
-|-513|Could not start timer|
-|-516|The end-user cancelled the request|
-|-517|Bad option passed to TCPClose|
-|-522|Timeout while waiting for response or|
-||request|
-|-523|Badly formatted response from server|
-|-524|Response from server is too short|
-|-525|Response from server has incorrect syntax|
-|-1010|Out of memory|
-|-1012|Unix TCPPing requires a raw socket: only|
-||processes with an effective user id of zero|
-||or the CAP_NET_RAW capability are|
-||allowed to open raw sockets|
-|-1013|Cannot do TCPPing on Win32 without|
-||icmp.dll|
-|-1014|Attempt to perform secure operation on|
-||non-secure connection|
-|-1015|Attempt to make an already secure|
-||connection secure|
-|-1016|Cannot load wesecure.so/dll. Perhaps|
-||OpenSSL is not installed|
-|-1017|A required function is missing from|
-||wesecure.so/dll|
-|-1018|Cannot request a partial closure of a secure|
-||connection|
-|-1019|Error setting up secure library threading|
-|-1020|Error seeding Pseudo Random Number|
-||Generator|
-|-1021|The OpenSSL library returned an error; call|
-||WebDevGetSecureError for more|
-||information|
-|-1022|Invalid secure object passed to wesecure|
-|-1023|Unknown error returned by OpenSSL|
-||library|
-|-1024|Unable to get a suitable Omnis folder for|
-||CA certifcates|
-|-1025|Cannot open cacerts.pem|
-|-1026|Cannot get fnd handle to list CA|
-||certifcates|
-|-1027|cacerts folder does not contain any CA|
-||certifcates|
-|-1028|Error getting next certifcate fle|
-|-1029|Unable to open CA certifcate|
-|-1030|Wesecure initialization failed|
-|-1031|Error establishing secure connection|
+Error Code
+Error Text
+-1210
+SMTP: 538 Encryption is required for
+requested authentication mechanism
+-1211
+SMTP: 454 Temporary authentication
+failure
+-1212
+SMTP: 530 Authentication is required
+-1213
+Unexpected response from server during
+authentication
+-1214
+SMTP: OK Authenticated
+-1215
+SMTP: continue command
+-1216
+Required type of authentication (PLAIN or
+LOGIN) not supported by SMTP server
+-1217
+The response to the EHLO command could
+not be parsed
+-1218
+Parameter passed to mail command is too
+long
+-1219
+SMTP: Unrecognised response from SMTP
+server
+-1220
+SMTP: 211 System status, or system help
+reply
+-1221
+SMTP: 214 Help message
+-1222
+SMTP: 220 <domain> Service ready
+-1223
+SMTP: 221 <domain> Service closing
+transmission channel
+-1224
+SMTP: 250 Requested mail action okay,
+completed
+-1225
+SMTP: 251 User not local; will forward to
+<forward-path>
+-1226
+SMTP: 354 Start mail input; end with
+<CRLF>.<CRLF>
+-1227
+SMTP: 421 <domain> Service not available,
+closing transmission channel
+-1228
+SMTP: 450 Requested mail action not taken:
+mailbox unavailable [E.g., mailbox busy]
+-1229
+SMTP: 451 Requested action aborted: local
+error in processing
+-1230
+SMTP: 452 Requested action not taken:
+insufficient system storage
+-1231
+SMTP: 500 Syntax error, command
+unrecognized
+-1232
+SMTP: 501 Syntax error in parameters or
+arguments
+-1233
+SMTP: 502 Command not implemented
+-1234
+SMTP: 503 Bad sequence of commands
+-1235
+SMTP: 504 Command parameter not
+implemented
+-1236
+SMTP: 550 Requested action not taken:
+mailbox unavailable
+-1237
+SMTP: 551 User not local; please try
+<forward-path>
+-1238
+SMTP: 552 Requested mail action aborted:
+exceeded storage allocation
+-1239
+SMTP: 553 Requested action not taken:
+mailbox name not allowed
+-1240
+SMTP: 554 Transaction failed
+-1241
+Error decoding quoted printable or base 64
+encoded data
+-1242
+Body part list is inconsistent - cannot build
+MIME content
 
+Error Code
+Error Text
+-1243
+Header name is empty
+-1244
+POP3: error received from server
+-1245
+POP3: could not extract message size from
+response to LIST command
+-1246
+POP3: message received from server is too
+large (does not match size in LIST
+command response)
+-1247
+POP3: the secure parameter is invalid
+-1260
+IMAP: invalid response received from server
+-1261
+IMAP: invalid tag received from server
+-1262
+IMAP: invalid greeting message received
+from server
+-1263
+IMAP: connection rejected by server (BYE
+received in greeting message)
+-1264
+IMAP: the server does not support plain or
+CRAM-MD5 authentication
+-1265
+IMAP: the server does not support the
+STARTTLS command, so a secure
+connection cannot be established
+-1266
+IMAP: the server response to the
+CAPABILITY command was incorrect
+-1267
+IMAP: the server must support IMAP4rev1,
+but it does not indicate that in its
+CAPABILITY response
+-1268
+IMAP: the server response to the STARTTLS
+command was incorrect
+-1269
+IMAP: parameter passed to command is
+too long
+-1270
+IMAP: login was rejected because the user
+name or password was incorrect
+-1271
+IMAP: the server response to the LOGIN
+command was incorrect
+-1272
+IMAP: the server response to the LOGOUT
+command was incorrect (network
+connection has been closed)
+-1273
+IMAP: the secure parameter to
+IMAPConnect is invalid
+-1274
+IMAP: the server response to the
+AUTHENTICATE CRAM-MD5 command was
+incorrect
+-1275
+IMAP: error decoding base64 response to
+AUTHENTICATE CRAM-MD5 command
+-1276
+IMAP: the server response to the LIST or
+LSUB command was incorrect
+-1277
+IMAP: the server response to the SELECT
+command was incorrect
+-1278
+IMAP: missing output list parameter
+-1279
+IMAP: the server response to the
+SUBSCRIBE command was incorrect
+-1280
+IMAP: the server response to the
+UNSUBSCRIBE command was incorrect
+-1281
+IMAP: the server response to the STORE
+command was incorrect
+-1282
+IMAP: the server response to the RENAME
+command was incorrect
+-1283
+IMAP: the server response to the EXPUNGE
+command was incorrect
 
+Error Code
+Error Text
+-1284
+IMAP: the server response to the DELETE
+command was incorrect
+-1285
+IMAP: the server response to the CREATE
+command was incorrect
+-1286
+IMAP: the server response to the COPY
+command was incorrect
+-1287
+IMAP: Incorrect FETCH response message
+sequence number when listing messages
+-1288
+IMAP: the server response to the FETCH
+command was incorrect when listing
+messages
+-1289
+IMAP: No flags returned in FETCH response
+when listing messages
+-1290
+IMAP: No size returned in FETCH response
+when listing messages
+-1291
+IMAP: No UID returned in FETCH response
+when listing messages
+-1292
+IMAP: Flags in response are not terminated
+by close parenthesis
+-1293
+IMAP: Invalid integer value in FETCH
+response when listing messages
+-1294
+IMAP: FETCH response not terminated with
+close parenthesis when listing messages
+-1295
+IMAP: No INTERNALDATE returned in
+FETCH response when listing messages
+-1296
+IMAP: INTERNALDATE returned in FETCH
+response when listing messages is not
+correctly enclosed in double quotes
+-1297
+IMAP: FETCH response incomplete
+-1298
+IMAP: the server response to the FETCH
+command was incorrect when receiving a
+message or headers
+-1299
+IMAP: bad message length in FETCH
+response
+-1300
+IMAP: unrecognized data item in response
+when FETCHing message or headers
+-1301
+IMAP: the server response to the NOOP
+command was incorrect
+-1302
+IMAP: the server response to the CHECK
+command was incorrect
+-1303
+IMAP: The length of the additional headers
+requested is too long
+-1304
+IMAP: FETCH response invalid
+-1305
+IMAP: Selected headers not returned in
+FETCH response when listing messages
+-1306
+IMAP: Invalid header line in FETCH
+response
+-1307
+IMAP: Received a header that was not
+requested in a FETCH response
+-10004
+Socket error: Interrupted function call
+-10009
+Socket error: Bad file descriptor
+-10013
+Socket error: Permission denied
+-10014
+Socket error: Bad address
+-10022
+Socket error: Invalid argument
+-10024
+Socket error: Too many open files
+-10035
+Socket error: The command would block
+-10036
+Socket error: Operation now in progress
+-10037
+Socket error: Operation already in progress
 
-334 
+Error Code
+Error Text
+-10038
+Socket error: Socket operation on
+non-socket
+-10039
+Socket error: Destination address required
+-10040
+Socket error: Message too long
+-10041
+Socket error: Protocol wrong type for
+socket
+-10042
+Socket error: Bad protocol option
+-10043
+Socket error: Protocol not supported
+-10044
+Socket error: Socket type not supported
+-10045
+Socket error: Operation not supported
+-10046
+Socket error: Protocol family not supported
+-10047
+Socket error: Address family not supported
+by protocol family
+-10048
+Socket error: Address already in use
+-10049
+Socket error: Cannot assign requested
+address
+-10050
+Socket error: Network is down
+-10051
+Socket error: Network is unreachable
+-10052
+Socket error: Network dropped connection
+on reset
+-10053
+Socket error: Software caused connection
+abort
+-10054
+Socket error: Connection reset by peer
+-10055
+Socket error: No buffer space available
+-10056
+Socket error: Socket is already connected
+-10057
+Socket error: Socket is not connected
+-10058
+Socket error: Cannot send after socket
+shutdown
+-10059
+Socket error: Too many references; cannot
+splice
+-10060
+Socket error: Connection timed out
+-10061
+Socket error: Connection refused
+-10062
+Socket error: Too many levels of symbolic
+links
+-10063
+Socket error: File name too long
+-10064
+Socket error: Host is down
+-10065
+Socket error: No route to host
+-10066
+Socket error: Directory not empty
+-10067
+Socket error: Too many processes
+-10068
+Socket error: Too many users
+-10069
+Socket error: Disk quota exceeded
+-10070
+Socket error: Stale NFS file handle
+-10071
+Socket error: Too many levels of remote in
+path
+-10091
+Socket error: Network subsystem is
+unavailable
+-10092
+Socket error: WINSOCK.DLL version out of
+range
+-10093
+Socket error: Successful WSAStartup() not
+yet performed
+-10101
+Socket error: Graceful shutdown in
+progress
+-11001
+Lookup error: Host not found
+-11002
+Lookup error: Non-authoritative host not
+found
+-11003
+Lookup error: This is a non-recoverable
+error
 
+Error Code Error Text -11004 Lookup error: Valid name, no data record of requested type
 
+<!-- p341-341 | WebDevGetSecureError -->
+## WebDevGetSecureError
 
-|Error Code|Error Text|
-|---|---|
-|-1032|Buffer overfow would occur because a feld|
-||is too long|
-|-1033|Connection gracefully closed|
-|-1034|Attempt to connect timed out|
-|-1035|Unknown error|
-|-1036|InitSecurityInterface failed|
-|-1037|Internal error with received data buffer|
-|-1038|Internal error with extra data buffer|
-|-1039|Could not fnd decryption output buffer|
-|-1040|Unable to resume session for data|
-||connection|
-|-1105*|Need FTP account for storing fles|
-|-1106*|Requested FTP action aborted: page type|
-||unknown|
-|-1107*|Requested FTP fle action aborted.|
-||Exceeded storage allocation (for current|
-||directory or dataset)|
-|-1108*|Requested FTP action not taken. File name|
-||not allowed|
-|-1109*|Requested FTP action aborted: local error|
-||in processing|
-|-1110*|FTP fle not found, or no access to fle|
-|-1116|Parameter passed to FTP command is too|
-||long|
-|-1117|Parameter passed to FTP command|
-||contains invalid characters|
-|-1119*|FTP Restart marker reply|
-|-1120*|FTP serviceready in nnn minutes|
-|-1121*|FTP data connection already open; transfer|
-||starting|
-|-1122*|FTP fle status okay; about to open data|
-||connection|
-|-1123*|FTP user name okay, need password|
-|-1124*|Unrecognised FTP positive preliminary|
-||reply|
-|-1125*|Unrecognised FTP positive intermediate|
-||reply|
-|-1126*|Unrecognised FTP transient negative|
-||completion reply|
-|-1127*|Unrecognised FTP permanent negative|
-||completion reply|
-|-1129|Could not extract server IP address and|
-||port from response to FTP command PASV|
-|-1130|FTP transfer type must be zero (for ASCII) or|
-||one (for binary)|
-|-1131|FTP could not open local fle|
-|-1132|Error while FTP was reading or writing the|
-||local fle|
-|-1134*|Need account for FTP login|
-|-1135*|Requested FTP fle action pending further|
-||information|
-|-1136*|FTP service not available, closing control|
-||connection|
-|-1137*|Cannot open FTP data connection|
-|-1138*|FTP connection closed; transfer aborted|
-|-1139*|Requested FTP fle action not taken. File|
-||unavailable (e.g., fle busy)|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-335 
-
-
-
-|Error Code|Error Text|
-|---|---|
-|-1142*|Requested FTP action not taken.|
-||Insuffcient storage space in system|
-|-1143*|Syntax error: FTP command unrecognized|
-||or too long|
-|-1144*|Syntax error in FTP parameters or|
-||arguments|
-|-1145*|FTP command not implemented|
-|-1146*|Bad sequence of FTP commands|
-|-1147*|FTP command not implemented for that|
-||parameter|
-|-1148*|Not logged in to FTP server|
-|-1149*|Unrecognised response from FTP server|
-|-1150|Must use passive FTP when the connection|
-||is secure|
-|-1151|FTP server response to AUTH TLS|
-||command does not allow a secure|
-||connection to be established|
-|-1154|Unable to determine end of HTTP header|
-|-1161|Incomplete HTML tag|
-|-1180|Parameter passed to HTTP command is too|
-||long|
-|-1181|Post with CGI parameters sends CGI|
-||parameters as content: cannot supply|
-||content-type/length header in header list|
-|-1182|Received HTTP request is badly formatted|
-|-1183|Received HTTP request does not contain|
-||the HTTP version|
-|-1184|Received HTTP request contains badly|
-||formatted CGI parameters|
-|-1185|Invalid HTTP status code - must be 1-999|
-|-1186|The client HTTP application closed the|
-||connection|
-|-1187|The client HTTP application did not send a|
-||Content-Length header|
-|-1188|The maximum response size specifed in|
-||the call to HTTPRead was exceeded|
-|-1189|Proxy server rejected CONNECT method|
-|-1190|Invalid HTTP authentication type|
-|-1191|No HTTP method specifed|
-|-1192|The connection to the server has closed|
-||(this can occur for example due to the|
-||server timing out the connection)|
-|-1202|SMTP: the server response to the STARTTLS|
-||command was incorrect|
-|-1203|SMTP: the server does not support the|
-||STARTTLS command, so a secure|
-||connection cannot be established|
-|-1204|SMTP: the secure parameter to SMTPSend|
-||is invalid|
-|-1205|SMTP: 435 Unable to authenticate at|
-||present|
-|-1206|The SMTP server does not support|
-||authentication|
-|-1207|SMTP: 535 Incorrect authentication data|
-|-1208|SMTP: 432 A password transition is needed|
-|-1209|SMTP: 534 The authentication mechanism|
-||is too weak|
-
-
-
-336 
-
-
-
-|Error Code|Error Text|
-|---|---|
-|-1210|SMTP: 538 Encryption is required for|
-||requested authentication mechanism|
-|-1211|SMTP: 454 Temporary authentication|
-||failure|
-|-1212|SMTP: 530 Authentication is required|
-|-1213|Unexpected response from server during|
-||authentication|
-|-1214|SMTP: OK Authenticated|
-|-1215|SMTP: continue command|
-|-1216|Required type of authentication (PLAIN or|
-||LOGIN) not supported by SMTP server|
-|-1217|The response to the EHLO command could|
-||not be parsed|
-|-1218|Parameter passed to mail command is too|
-||long|
-|-1219|SMTP: Unrecognised response from SMTP|
-||server|
-|-1220|SMTP: 211 System status, or system help|
-||reply|
-|-1221|SMTP: 214 Help message|
-|-1222|SMTP: 220 <domain> Service ready|
-|-1223|SMTP: 221 <domain> Service closing|
-||transmission channel|
-|-1224|SMTP: 250 Requested mail action okay,|
-||completed|
-|-1225|SMTP: 251 User not local; will forward to|
-||<forward-path>|
-|-1226|SMTP: 354 Start mail input; end with|
-||<CRLF>.<CRLF>|
-|-1227|SMTP: 421 <domain> Service not available,|
-||closing transmission channel|
-|-1228|SMTP: 450 Requested mail action not taken:|
-||mailbox unavailable [E.g., mailbox busy]|
-|-1229|SMTP: 451 Requested action aborted: local|
-||error in processing|
-|-1230|SMTP: 452 Requested action not taken:|
-||insuffcient system storage|
-|-1231|SMTP: 500 Syntax error, command|
-||unrecognized|
-|-1232|SMTP: 501 Syntax error in parameters or|
-||arguments|
-|-1233|SMTP: 502 Command not implemented|
-|-1234|SMTP: 503 Bad sequence of commands|
-|-1235|SMTP: 504 Command parameter not|
-||implemented|
-|-1236|SMTP: 550 Requested action not taken:|
-||mailbox unavailable|
-|-1237|SMTP: 551 User not local; please try|
-||<forward-path>|
-|-1238|SMTP: 552 Requested mail action aborted:|
-||exceeded storage allocation|
-|-1239|SMTP: 553 Requested action not taken:|
-||mailbox name not allowed|
-|-1240|SMTP: 554 Transaction failed|
-|-1241|Error decoding quoted printable or base 64|
-||encoded data|
-|-1242|Body part list is inconsistent - cannot build|
-||MIME content|
-
-
-
-337 
-
-
-
-|Error Code|Error Text|
-|---|---|
-|-1243|Header name is empty|
-|-1244|POP3: error received from server|
-|-1245|POP3: could not extract message size from|
-||response to LIST command|
-|-1246|POP3: message received from server is too|
-||large (does not match size in LIST|
-||command response)|
-|-1247|POP3: the secure parameter is invalid|
-|-1260|IMAP: invalid response received from server|
-|-1261|IMAP: invalid tag received from server|
-|-1262|IMAP: invalid greeting message received|
-||from server|
-|-1263|IMAP: connection rejected by server (BYE|
-||received in greeting message)|
-|-1264|IMAP: the server does not support plain or|
-||CRAM-MD5 authentication|
-|-1265|IMAP: the server does not support the|
-||STARTTLS command, so a secure|
-||connection cannot be established|
-|-1266|IMAP: the server response to the|
-||CAPABILITY command was incorrect|
-|-1267|IMAP: the server must support IMAP4rev1,|
-||but it does not indicate that in its|
-||CAPABILITY response|
-|-1268|IMAP: the server response to the STARTTLS|
-||command was incorrect|
-|-1269|IMAP: parameter passed to command is|
-||too long|
-|-1270|IMAP: login was rejected because the user|
-||name or password was incorrect|
-|-1271|IMAP: the server response to the LOGIN|
-||command was incorrect|
-|-1272|IMAP: the server response to the LOGOUT|
-||command was incorrect (network|
-||connection has been closed)|
-|-1273|IMAP: the secure parameter to|
-||IMAPConnect is invalid|
-|-1274|IMAP: the server response to the|
-||AUTHENTICATE CRAM-MD5 command was|
-||incorrect|
-|-1275|IMAP: error decoding base64 response to|
-||AUTHENTICATE CRAM-MD5 command|
-|-1276|IMAP: the server response to the LIST or|
-||LSUB command was incorrect|
-|-1277|IMAP: the server response to the SELECT|
-||command was incorrect|
-|-1278|IMAP: missing output list parameter|
-|-1279|IMAP: the server response to the|
-||SUBSCRIBE command was incorrect|
-|-1280|IMAP: the server response to the|
-||UNSUBSCRIBE command was incorrect|
-|-1281|IMAP: the server response to the STORE|
-||command was incorrect|
-|-1282|IMAP: the server response to the RENAME|
-||command was incorrect|
-|-1283|IMAP: the server response to the EXPUNGE|
-||command was incorrect|
-
-
-
-338 
-
-
-
-|Error Code|Error Text|
-|---|---|
-|-1284|IMAP: the server response to the DELETE|
-||command was incorrect|
-|-1285|IMAP: the server response to the CREATE|
-||command was incorrect|
-|-1286|IMAP: the server response to the COPY|
-||command was incorrect|
-|-1287|IMAP: Incorrect FETCH response message|
-||sequence number when listing messages|
-|-1288|IMAP: the server response to the FETCH|
-||command was incorrect when listing|
-||messages|
-|-1289|IMAP: No fags returned in FETCH response|
-||when listing messages|
-|-1290|IMAP: No size returned in FETCH response|
-||when listing messages|
-|-1291|IMAP: No UID returned in FETCH response|
-||when listing messages|
-|-1292|IMAP: Flags in response are not terminated|
-||by close parenthesis|
-|-1293|IMAP: Invalid integer value in FETCH|
-||response when listing messages|
-|-1294|IMAP: FETCH response not terminated with|
-||close parenthesis when listing messages|
-|-1295|IMAP: No INTERNALDATE returned in|
-||FETCH response when listing messages|
-|-1296|IMAP: INTERNALDATE returned in FETCH|
-||response when listing messages is not|
-||correctly enclosed in double quotes|
-|-1297|IMAP: FETCH response incomplete|
-|-1298|IMAP: the server response to the FETCH|
-||command was incorrect when receiving a|
-||message or headers|
-|-1299|IMAP: bad message length in FETCH|
-||response|
-|-1300|IMAP: unrecognized data item in response|
-||when FETCHing message or headers|
-|-1301|IMAP: the server response to the NOOP|
-||command was incorrect|
-|-1302|IMAP: the server response to the CHECK|
-||command was incorrect|
-|-1303|IMAP: The length of the additional headers|
-||requested is too long|
-|-1304|IMAP: FETCH response invalid|
-|-1305|IMAP: Selected headers not returned in|
-||FETCH response when listing messages|
-|-1306|IMAP: Invalid header line in FETCH|
-||response|
-|-1307|IMAP: Received a header that was not|
-||requested in a FETCH response|
-|-10004|Socket error: Interrupted function call|
-|-10009|Socket error: Bad fle descriptor|
-|-10013|Socket error: Permission denied|
-|-10014|Socket error: Bad address|
-|-10022|Socket error: Invalid argument|
-|-10024|Socket error: Too many open fles|
-|-10035|Socket error: The command would block|
-|-10036|Socket error: Operation now in progress|
-|-10037|Socket error: Operation already in progress|
-
-
-
-339 
-
-
-
-|Error Code|Error Text|
-|---|---|
-|-10038|Socket error: Socket operation on|
-||non-socket|
-|-10039|Socket error: Destination address required|
-|-10040|Socket error: Message too long|
-|-10041|Socket error: Protocol wrong type for|
-||socket|
-|-10042|Socket error: Bad protocol option|
-|-10043|Socket error: Protocol not supported|
-|-10044|Socket error: Socket type not supported|
-|-10045|Socket error: Operation not supported|
-|-10046|Socket error: Protocol family not supported|
-|-10047|Socket error: Address family not supported|
-||by protocol family|
-|-10048|Socket error: Address already in use|
-|-10049|Socket error: Cannot assign requested|
-||address|
-|-10050|Socket error: Network is down|
-|-10051|Socket error: Network is unreachable|
-|-10052|Socket error: Network dropped connection|
-||on reset|
-|-10053|Socket error: Software caused connection|
-||abort|
-|-10054|Socket error: Connection reset by peer|
-|-10055|Socket error: No buffer space available|
-|-10056|Socket error: Socket is already connected|
-|-10057|Socket error: Socket is not connected|
-|-10058|Socket error: Cannot send after socket|
-||shutdown|
-|-10059|Socket error: Too many references; cannot|
-||splice|
-|-10060|Socket error: Connection timed out|
-|-10061|Socket error: Connection refused|
-|-10062|Socket error: Too many levels of symbolic|
-||links|
-|-10063|Socket error: File name too long|
-|-10064|Socket error: Host is down|
-|-10065|Socket error: No route to host|
-|-10066|Socket error: Directory not empty|
-|-10067|Socket error: Too many processes|
-|-10068|Socket error: Too many users|
-|-10069|Socket error: Disk quota exceeded|
-|-10070|Socket error: Stale NFS fle handle|
-|-10071|Socket error: Too many levels of remote in|
-||path|
-|-10091|Socket error: Network subsystem is|
-||unavailable|
-|-10092|Socket error: WINSOCK.DLL version out of|
-||range|
-|-10093|Socket error: Successful WSAStartup() not|
-||yet performed|
-|-10101|Socket error: Graceful shutdown in|
-||progress|
-|-11001|Lookup error: Host not found|
-|-11002|Lookup error: Non-authoritative host not|
-||found|
-|-11003|Lookup error: This is a non-recoverable|
-||error|
-
-
-
-340 
-
-
-
-Error Code Error Text -11004 Lookup error: Valid name, no data record of requested type 
-
-## **WebDevGetSecureError** 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **WebDevGetSecureError** () **Returns** _errortext_ 
 
-## **Description** 
+### Description
 
 **Note:** The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -23389,7 +18274,7 @@ If you are using, or attempting to use, a secure connection to a server, the ins
 
 Omnis maintains a separate copy of the secure error text, for each thread in the multi-threaded server. 
 
-## **Example** 
+### Example
 
 ```
 Calculate lServer as 'my.pop3.server'
@@ -23397,26 +18282,20 @@ Calculate lUserName as 'myusername'
 Calculate lPassword as 'mypassword'
 POP3Connect (lServer,lUserName,lPassword,"",kTrue) Returns iSocket
 If iSocket=-1021
-```
-
-```
 WebDevGetSecureError Returns lSecureErrorText
 End If
 ```
 
-## **WebDevSetConfig** 
+<!-- p341-342 | WebDevSetConfig -->
+## WebDevSetConfig
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **WebDevSetConfig** ([ _errorproc_ , _commstimeout_ ]) **Returns** _status_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -23425,10 +18304,6 @@ This Web command is multi-threaded, allowing another thread to execute in the mu
 **WebDevSetConfig** allows you to set some configuration options for the WEB commands. The WEB commands are the commands with names prefixed by CGI, FTP, HTTP, POP3, TCP, and UU, and the MailSplit and SMTPSend commands. 
 
 ErrorProc is the WebDevError method. WebDevError is an Omnis method which ALL of the other WEB commands call when an error occurs. WEB command execution is as follows: 
-
-341 
-
-
 
 - Attempt to execute command 
 
@@ -23454,165 +18329,126 @@ You can also optionally pass _CommsTimeout_ to this command. CommsTimeout is a l
 
 The **WebDevSetConfig** command returns a long integer Status. Zero for success, or less than zero if an error occurs. Possible error codes are listed in the Web Command Error Codes Appendix. 
 
-## **Example** 
+### Example
 
 ```
 # call method $error in the current window instance a web error occurs
-```
-
-```
 # $construct
 WebDevSetConfig (con($cinst().$name,'.$error'))
 # $error method
 OK message Error executing [pCommand] {[pErrorCode] : [pErrorMsg]}
-```
-
-```
 # $event of push button - force error so $error gets called
-```
-
-```
 FTPConnect ('ftp.unknownserver.net','Username','Password') Returns lFTPSocket
 ```
 
-## **While calculation** 
+<!-- p342-343 | While calculation -->
+## While calculation
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
-
-
-## **Syntax** 
+### Syntax
 
 **While** _calculation_ 
 
-## **Description** 
+### Description
 
 This command starts a While–End While loop that continues while a calculated condition remains true. When the condition is not satisfied the method jumps out of the loop and the first command after the closing End While is executed. A loop that begins with a While command must terminate with an End While otherwise an error occurs. 
 
-342 
-
-
-
-## **Example** 
+### Example
 
 ```
 Calculate lCount as 1
 While lCount<=3 ## While loop
 Calculate lCount as lCount+1
-```
-
-```
 End While
-```
-
-```
 OK message {Count=[lCount]} ## prints 'Count=4'
 ```
 
-## **While flag false** 
+<!-- p343-343 | While flag false -->
+## While flag false
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+While flag false
 
-## **Syntax** 
-
-## **While flag false** 
-
-## **Description** 
+### Description
 
 This command starts a While–End While loop that continues while the flag is false. While the condition is false, a command or a series of commands is executed until the condition becomes true, at which time the first command after the closing End While is executed. A loop that begins with a While command must terminate with an End While, otherwise an error occurs. 
 
-## **Example** 
+### Example
 
 ```
 # loop until 'Yes' is pressed
 Calculate #F as kFalse
-```
-
-```
 While flag false
 No/Yes message {Do you wish to stop looping}
 ```
 
-## **While flag true** 
+<!-- p343-344 | While flag true -->
+## While flag true
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Constructs|NO|NO|YES<br>All|
+Command group: Constructs | Flag affected: NO | Reversible: NO | Execute on client: YES
 
+### Syntax
 
+While flag true
 
-## **Syntax** 
-
-## **While flag true** 
-
-## **Description** 
+### Description
 
 This command starts a While–End While loop which continues while the flag is true. While the condition is true, a command or a series of commands is executed until the condition becomes false, at which time the first command after the closing End While command is executed. A loop that begins with a While command must terminate with an End While, otherwise an error occurs. 
 
-## **Example** 
+### Example
 
 ```
 # loop until 'No' is pressed
 Calculate #F as kTrue
 While flag true
-```
-
-```
 Yes/No message {Do you wish to continue looping ?}
 End While
 ```
 
-343 
+**Working message**
 
+<!-- p344-345 | Working message -->
+## Working message
 
+Command group: Message boxes | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-|**Working message**||||
-|---|---|---|---|
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|Message boxes|NO|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Working message** _title_ ([ _Cancel button_ ] [, _Repeat count_ ] [, _Do not auto close_ ]) { _message_ } 
 
-## **Options** 
+### Options
 
-|_Cancel button_|If specifed, the message has a|
-|---|---|
-||cancel button|
-|_Repeat count_|If specifed, the message|
-||displays a numeric repeat|
-||count (an internal value that|
-||increments during method|
-||execution)|
-|_Do not auto close_|If specifed, open a modal|
-||working message that does not|
-||automatically close when the|
-||method ends. While the|
-||message is open, subsequent|
-||working message calls with this|
-||option increment the message|
-||and ignore the other|
-||parameters|
+_Cancel button_
+If specified, the message has a
+cancel button
+_Repeat count_
+If specified, the message
+displays a numeric repeat
+count (an internal value that
+increments during method
+execution)
+_Do not auto close_
+If specified, open a modal
+working message that does not
+automatically close when the
+method ends. While the
+message is open, subsequent
+working message calls with this
+option increment the message
+and ignore the other
+### parameters
 
-
-
-## **Description** 
+### Description
 
 This command displays a window, usually to indicate that Omnis is working or waiting for input. The window displays a sequence of changing icons to indicate that Omnis is actively working. A working message automatically closes when the method quits, and control returns to the user. 
 
 The _title_ parameter contains a title for the working message window, together with parameters that configure the behavior and appearance of the window. The method editor has a Configure Working Message Helper button below the code entry field that you can use to easily set these parameters. The _title_ parameter has the following syntax: 
 
-## `&lt;*Title` 
-
+`&lt;*Title`
 ```
 text*&gt; / &lt;*size*(16|32|48)&gt; : &lt;*color*&gt; : *id1,id2,...,idN* ; &lt;*speed*&gt; ; &lt;*progress
 bar range*&gt;;&lt;*display delay*&gt;
@@ -23630,29 +18466,19 @@ _progress bar range_ specifies the range of a progress bar. If you specify a non
 
 _display delay_ specifies the time in 1/60th second units, that must elapse before the working message window becomes visible. This allows you to use the Working message command in situations where the processing is sometimes very rapid, and in that case avoid the message displaying and disappearing almost immediately. 
 
-344 
-
-
-
 If a working message is placed in a loop with a _Cancel button_ , pressing Ctrl-break/Ctrl-C/Cmnd-period or clicking on Cancel quits all methods. However, if you first execute Disable cancel test at loops, you can implement an orderly exit. If Disable cancel test at loops is executed before the loop, the cancel is detected only on executing the Working message. 
 
 A _Repeat count_ option is available with **Working message** , and displays the value of an internal counter which indicates the number of times a particular **Working message** has been encountered. If the command is in a Repeat loop, the counter increments at each pass of the loop. 
 
-## **Example** 
+### Example
 
 ```
 # Working message with orderly exit
 Begin reversible block
 Disable cancel test at loops
-```
-
-```
 End reversible block
 Working message (Cancel button) {Processing Record [lCount]}
 For lCount from 1 to 20000 step 1
-```
-
-```
 Redraw working message
 If canceled
 Break to end of loop
@@ -23661,19 +18487,18 @@ End For
 OK message {All done}
 ```
 
-## **Write entire file** 
+<!-- p345-345 | Write entire file -->
+## Write entire file
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Write entire file** ( _path_ , _binary_ - _variable_ ) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -23683,7 +18508,7 @@ This command writes an entire file from a binary field, previously populated by 
 
 - File data. 
 
-## **Example** 
+### Example
 
 ```
 # read and then write the binary contents of mypicture.jpg
@@ -23693,23 +18518,18 @@ Read entire file (lPathname,lBinfld) Returns lErrCode
 Write entire file (lPathname,lBinfld) Returns lErrCode
 ```
 
-## **Write file as binary** 
+<!-- p345-346 | Write file as binary -->
+## Write file as binary
 
-345 
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Write file as binary** ( _refnum_ , _binary-variable_ [, _start-position_ ]) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -23719,7 +18539,7 @@ If you specify the _start-position_ , writing begins at that byte (0 is the firs
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 # write the binary class data of the window class 'MyWindow' to a file named
@@ -23732,19 +18552,18 @@ Write file as binary (lRefNum,lBinfld) Returns lErrCode
 Close file (lRefNum)
 ```
 
-## **Write file as character** 
+<!-- p346-347 | Write file as character -->
+## Write file as character
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>Windows,Linux|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
+Windows,Linux
 
-
-## **Syntax** 
+### Syntax
 
 **Write file as character** ( _refnum_ , _character-variable_ [, _start-position_ ]) **Returns** _err-code_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -23754,7 +18573,7 @@ If you specify the _start-position_ , writing begins at that absolute character 
 
 It returns an error code (See Error Codes), or zero if no error occurs. 
 
-## **Example** 
+### Example
 
 ```
 # write the contents of the character variable 'lCharVar' to a text file
@@ -23762,31 +18581,21 @@ It returns an error code (See Error Codes), or zero if no error occurs.
 Calculate lPathname as con(sys(115),'charfile.txt')
 Create file (lPathname) Returns lErrCode
 Open file (lPathname,lRefNum)
-```
-
-346 
-
-
-
-```
 Calculate lCharVar as 'The contents of this file was written using the command Write file as character'
 Write file as character (lRefNum,lCharVar) Returns lErrCode
 Close file (lRefNum)
 ```
 
-## **WriteBinFile** 
+<!-- p347-347 | WriteBinFile -->
+## WriteBinFile
 
-|Command group|Flag affected|Reversible<br>Execute on client<br>Platform(s)|
-|---|---|---|
-|External commands|YES|NO<br>NO<br>All|
+Command group: External commands | Flag affected: YES | Reversible: NO
 
-
-
-## **Syntax** 
+### Syntax
 
 **WriteBinFile** ( _pathname_ , _binfld_ [, _start_ [, _length_ ]] ) **Returns** _return-value_ 
 
-## **Description** 
+### Description
 
 **Note** : The flag is set according to whether Omnis was able to make a call to this external command. 
 
@@ -23822,49 +18631,36 @@ _Return-value_ is an integer field that is the number of bytes written if no err
 
 - -998: File too large 
 
-## **Example** 
+### Example
 
 ```
 # write the binary class data of the window class 'MyWindow' to a file named
 # 'binfile' in the root of the omnis tree sys(115) returns the full path to
-```
-
-```
 # the Omnis executable
-```
-
-```
 Calculate lPathname as con(sys(115),'binfile')
 Calculate lBinfld as $clib.$windows.MyWindow.$classdata
 WriteBinFile (lPathname,lBinfld) Returns lNumbytes
 OK message {[lNumbytes] bytes written}
 ```
 
-347 
+<!-- p348-348 | XOR selected and saved -->
+## XOR selected and saved
 
+Command group: List lines | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**XOR selected and saved** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|List lines|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **XOR selected and saved** ([ _All lines_ ]) { _line-number_ ( _calculation_ )} 
 
-## **Options** 
+### Options
 
 All lines If specified, the command affects all the lines in the list 
 
-## **Deprecated Command** 
+### Deprecated Command
 
 This command has been deprecated and is no longer visible in the Code Assistant in the Code Editor (it will not appear when you type the first few characters), although it is still present in Omnis Studio and will continue to function if used in legacy code. You can show this command by disabling the appropriate Command Filter in the **Modify** menu in the Code Editor. 
 
-## **Description** 
+### Description
 
 This command performs a logical XOR of the Saved selection with the Current selection. To allow sophisticated manipulation of data via lists, a list can store two selection states for each line; the “Current” and the “Saved” selection. The Current and Saved selections have nothing to do with saving data on the disk; they are no more than labels for two sets of selections. The lists may be held in memory and never saved to disk: they will still have a Current and Saved selection state for each line but they will be lost if not saved. When a list is stored in the data file, both sets of selections are stored. 
 
@@ -23872,20 +18668,27 @@ You can specify a particular line in the list by entering either a number or a c
 
 The **XOR selected and saved** command performs a logical XOR (exclusive OR) on the Saved and Current state and puts the result into the Current selection. Hence, if either of the Current and Saved states is selected, the Current state becomes selected, but if both states are equal, the resulting Current state will become deselected. 
 
-## **Logic Table (S=selected, D=deselected)** 
+Logic Table (S=selected, D=deselected)
 
-|Saved|Current|Resulting Current State|
-|---|---|---|
-|S|S|D|
-|D|S|S|
-|S|D|S|
-|D|D|D|
-
-
+Saved
+Current
+Resulting Current State
+S
+S
+D
+D
+S
+S
+S
+D
+S
+D
+D
+D
 
 The _All lines_ option performs the XOR for all lines of the current list. The flag is set by this command. The following example selects the middle line of the list: 
 
-## **Example** 
+### Example
 
 ```
 # Leave line 3 selected
@@ -23900,32 +18703,25 @@ Invert selection for line(s) {3}
 XOR selected and saved (All lines)
 ```
 
-348 
+<!-- p349-349 | Yes/No message -->
+## Yes/No message
 
+Command group: Message boxes | Flag affected: YES | Reversible: NO | Execute on client: NO
 
-
-**Yes/No message** 
-
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Message boxes|YES|NO|NO<br>All|
-
-
-
-## **Syntax** 
+### Syntax
 
 **Yes/No message** _title_ ([ _Icon_ ][, _Sound bell_ ][, _Cancel button_ ]) { _message_ } 
 
-## **Options** 
+### Options
 
-|Icon|If specifed, the message displays an operating system specifc icon|
-|---|---|
-|Sound bell|If specifed, the system bell sounds when the command displays the message|
-|Cancel button|If specifed, the message has a cancel button|
+Icon
+If specified, the message displays an operating system specific icon
+Sound bell
+If specified, the system bell sounds when the command displays the message
+Cancel button
+If specified, the message has a cancel button
 
-
-
-## **Description** 
+### Description
 
 This command displays a message box containing the specified message and provides a Yes and a No pushbutton. You can include a _Cancel button_ , and add a short _title_ for the message box. For greater emphasis, you can select an _Icon_ for the message box (the default “info” icon for the current operating system), and you can force the system bell to sound by checking the _Sound bell_ check box. Under Windows XP, you have to specify a system sound for a ‘Question’ in the Control Panel for the Sound Bell option to work. 
 
@@ -23935,83 +18731,43 @@ The number of lines displayed in the message box depends on your operating syste
 
 You can insert a **Yes/No message** at any appropriate point in a method. If the user clicks the Yes button, the flag is set; otherwise, it is cleared. You can use the msgcancelled() function to detect if the user pressed the Cancel button. 
 
-## **Example** 
+### Example
 
 ```
 # Open a Yes/No dialog and display the option selected
-```
-
-```
 Yes/No message My Editor (Icon,Cancel button) {Do you wish to save the changes you have made ?}
 If msgcancelled()
-```
-
-```
 OK message My Editor {Cancel button pressed}
-```
-
-```
 Else
-```
-
-```
 If flag true
-```
-
-```
 OK message My Editor {OK button pressed}
-```
-
-```
 Else
-```
-
-```
 OK message My Editor {Cancel button pressed}
-```
-
-```
+End If
 End If
 ```
 
-```
-End If
-```
+<!-- p349-357 | Yield to other threads -->
+## Yield to other threads
 
-## **Yield to other threads** 
+Command group: Threads | Flag affected: NO | Reversible: NO | Execute on client: NO
 
-|Command group|Flag affected|Reversible|Execute on client<br>Platform(s)|
-|---|---|---|---|
-|Threads|NO|NO|NO<br>All|
+### Syntax
 
+Yield to other threads
 
-
-## **Syntax** 
-
-## **Yield to other threads** 
-
-349 
-
-
-
-## **Description** 
+### Description
 
 **Yield to other threads** is only applicable to the multithreaded server. 
 
 This command is a hint that the executing thread is waiting for other threads and is prepared to yield its processor time. It can be used when waiting for semaphores (since with the multithreaded server another client stack could be holding the semaphore). 
 
-## **Example** 
+### Example
 
 ```
 Do not wait for semaphores
 Repeat
-```
-
-```
 Prepare for edit
-```
-
-```
 If flag true
 ```
 
@@ -24021,259 +18777,398 @@ If flag true
 
 ```
 Yield to other threads
-```
-
-```
 Until break
 ```
 
-## **Calculations** 
+Calculations
 
-## **Commands** 
+Commands
 
-|Calculate|Do|Do|Do|
-|---|---|---|---|
-|||default|inherited|
-|Do|JavaScript:|Set refer-|Test for|
-|redirect||ence|valid cal-|
-||||culation|
+Calculate
+Do
+Do
+Do
+default
+inherited
+Do
+JavaScript:
+Set refer-
+Test for
+redirect
+ence
+valid cal-
+culation
 
+Changing data
 
-
-## **Changing data** 
-
-## **Commands** 
+Commands
 
 The Changing Data commands are no longer visible in the Code Assistant in the Code Editor (they will not appear when you type the first few characters), although they are still present in Studio 11 and will continue to function. You can show these commands by disabling the appropriate Command Filter in the Modify menu in the Code Editor. 
 
 _These commands are for desktop apps only, not web or mobile apps._ 
 
-|Cancel|Delete|Delete|Do not|
-|---|---|---|---|
-|prepare||with|fush|
-|for||confr-|data|
-|update||mation||
-|Do not|Flush|Flush|Prepare|
-|wait for|data|data|for edit|
-|semaphores||now||
-|Prepare|Prepare|Test for|Update|
-|for insert|for insert|only one|fles|
-||with|user||
-||current|||
-||values|||
-|Update|Wait for|||
-|fles if|semaphores|||
-|fag set||||
-
-
-
-350 
-
-
+Cancel
+Delete
+Delete
+Do not
+prepare
+with
+flush
+for
+confir-
+data
+update
+mation
+Do not
+Flush
+Flush
+Prepare
+wait for
+data
+data
+for edit
+semaphores
+now
+Prepare
+Prepare
+Test for
+Update
+for insert
+for insert
+only one
+files
+with
+user
+current
+values
+Update
+Wait for
+files if
+semaphores
+flag set
 
 **Classes** 
 
-## **Commands** 
+Commands
 
 _These commands are for desktop apps only, not web or mobile apps._ 
 
-|Close all|Close|Delete|Duplicate|
-|---|---|---|---|
-|designs|design|class|class|
-|Modify|Modify|New|Print|
-|class|methods|class|class|
-|Rename|Revert|Save|Set class|
-|class|class|class|descrip-|
-||||tion|
+Close all
+Close
+Delete
+Duplicate
+designs
+design
+class
+class
+Modify
+Modify
+New
+Print
+class
+methods
+class
+class
+Rename
+Revert
+Save
+Set class
+class
+class
+class
+descrip-
+tion
 
+Clipboard
 
-
-## **Clipboard** 
-
-## **Commands** 
+Commands
 
 _These commands are for desktop apps only, not web or mobile apps._ 
 
-## **Constructs** 
+Constructs
 
-## **Commands** 
+Commands
 
-||Clear<br>data<br>Copy to<br>clip-<br>board<br>Cut to<br>clip-<br>board<br>Paste<br>from clip-<br>board<br>Test clip-<br>board|
-|---|---|
-|# Comment<br>Case<br>Else If<br>calculation<br>End For<br>End While<br>If canceled<br>Repeat<br>Until fag<br>false<br>While fag<br>true|Begin reversible<br>block<br>Break to end of<br>loop<br>Break to end<br>of switch<br>Default<br>Disable cancel<br>test at loops *<br>Else<br>Else If fag false<br>Else If fag true<br>Enable<br>cancel test<br>at loops *<br>End If<br>End reversible<br>block<br>End Switch<br>For each line in list<br>For feld value<br>If calculation<br>If fag false<br>If fag true<br>Jump to<br>start of loop<br>Switch<br>Until break<br>Until<br>calculation<br>Until fag true<br>While calculation<br>While fag<br>false|
-
-
+Clear
+data
+Copy to
+clip-
+board
+Cut to
+clip-
+board
+Paste
+from clip-
+board
+Test clip-
+board
+Comment
+Case
+Else If
+calculation
+End For
+End While
+If canceled
+Repeat
+Until flag
+false
+While flag
+true
+Begin reversible
+block
+Break to end of
+loop
+Break to end
+of switch
+Default
+Disable cancel
+test at loops *
+Else
+Else If flag false
+Else If flag true
+Enable
+cancel test
+at loops *
+End If
+End reversible
+block
+End Switch
+For each line in list
+For field value
+If calculation
+If flag false
+If flag true
+Jump to
+start of loop
+Switch
+Until break
+Until
+calculation
+Until flag true
+While calculation
+While flag
+false
 
 _*These commands are for desktop apps only, not web or mobile apps._ 
 
-## **Data files** 
+Data files
 
-## **Commands** 
+Commands
 
 The Data File commands are no longer visible in the Code Assistant in the Code Editor (they will not appear when you type the first few characters), although they are still present in Studio 11 and will continue to function. You can show these commands by disabling the appropriate Command Filter in the Modify menu in the Code Editor. 
 
-351 
-
-
-
 _These commands are for desktop apps using Omnis data files only, not web or mobile apps._ 
 
-|Close|Close|Create|Floating|
-|---|---|---|---|
-|data fle|lookup|data fle|default|
-||fle||data fle|
-|Open|Open|Prompt|Set|
-|data fle|lookup|for data|current|
-||fle|fle|data fle|
-|Set||||
-|default||||
-|data fle||||
+Close
+Close
+Create
+Floating
+data file
+lookup
+data file
+default
+file
+data file
+Open
+Open
+Prompt
+Set
+data file
+lookup
+for data
+current
+file
+file
+data file
+Set
+default
+data file
 
+Data management
 
-
-## **Data management** 
-
-## **Commands** 
+Commands
 
 The Data Management Commands are no longer visible in the Code Assistant in the Code Editor (they will not appear when you type the first few characters), although they are still present in Studio 11 and will continue to function. You can show these commands by disabling the appropriate Command Filter in the Modify menu in the Code Editor. 
 
 _These commands are for desktop apps using Omnis data files only, not web or mobile apps._ 
 
-|Build indexes|Check data<br>Clear check data log<br>Close check data log|
-|---|---|
-|Delete data|Drop indexes<br>Open check data log<br>Open runtime data fle browser|
-|Print check data log|Quick check<br>Rename data<br>Reorganize data|
-|Test check data log|Update data dictionary|
+Build indexes
+Check data
+Clear check data log
+Close check data log
+Delete data
+Drop indexes
+Open check data log
+Open runtime data file browser
+Print check data log
+Quick check
+Rename data
+Reorganize data
+Test check data log
+Update data dictionary
 
+Debugger
 
+Commands
 
-## **Debugger** 
+Breakpoint
+Clear
+Close
+Open
+trace log
+trace log
+trace log
+Print
+Send to
+Set
+Trace off
+trace log
+trace log
+break
+calcula-
+tion
+Trace on
+Variable
+menu
+com-
+mand
 
-## **Commands** 
+Enter data
 
-|Breakpoint|Clear|Close|Open|
-|---|---|---|---|
-||trace log|trace log|trace log|
-|Print|Send to|Set|Trace off|
-|trace log|trace log|break||
-|||calcula-||
-|||tion||
-|Trace on|Variable|||
-||menu|||
-||com-|||
-||mand|||
-
-
-
-## **Enter data** 
-
-## **Commands** 
+Commands
 
 _These commands are for desktop apps only, not web or mobile apps._ 
 
-|Disable|Enable|Enter|
-|---|---|---|
-|enter &|enter &|data|
-|escape|escape||
-|keys|keys||
+Disable
+Enable
+Enter
+enter &
+enter &
+data
+escape
+escape
+keys
+keys
 
+Error handlers
 
-
-## **Error handlers** 
-
-## **Commands** 
-
-352 
-
-
+Commands
 
 _Load SEA SEA SEA error continue repeat report handler execucomfatal tion mand error Signal Unload error error handler_ 
 
-## **Events** 
+Events
 
-## **Commands** 
+Commands
 
 _These commands are for handling events in web or mobile apps._ 
 
-|On|On|
-|---|---|
-||default|
-
-
+On
+On
+default
 
 _These commands are for desktop apps only, not web or mobile apps._ 
 
-|Process|Queue|Queue|Queue|
-|---|---|---|---|
-|event|bring to|cancel|click|
-|and|top|||
-|continue||||
-|Queue|Queue|Queue|Queue|
-|close|double-|key-|OK|
-||click|board||
-|||event||
-|Queue|Queue|Queue|Queue|
-|quit|scroll|set|tab|
-|||current||
-|||feld||
-|Quit||||
-|event||||
-|handler||||
+Process
+Queue
+Queue
+Queue
+event
+bring to
+cancel
+click
+and
+top
+continue
+Queue
+Queue
+Queue
+Queue
+close
+double-
+key-
+OK
+click
+board
+event
+Queue
+Queue
+Queue
+Queue
+quit
+scroll
+set
+tab
+current
+field
+Quit
+event
+handler
 
+Exchanging data
 
-
-## **Exchanging data** 
-
-## **Commands** 
+Commands
 
 The Exchanging Data commands are no longer visible in the Code Assistant in the Code Editor (they will not appear when you type the first few characters), although they are still present in Studio 11 and will continue to function. You can show these commands by disabling the appropriate Command Filter in the Modify menu in the Code Editor. 
 
 _These commands are for desktop apps only, not web or mobile apps._ 
 
-|_Accept_|_Accept_|_Accept_|_Accept_|
-|---|---|---|---|
-|_advise_|_com-_|_feld_|_feld_|
-|_requests_|_mands_|_requests_|_values_|
-|_Advise_|_Advise_|_Advise_|_Cancel_|
-|_on_|_on OK_|_on_|_advises_|
-|_fnd/next/previous_||_redraw_||
-|_Clear_|_Close_|_Message_|_Open_|
-|_DDE_|_DDE_|_timeout_|_DDE_|
-|_channel_|_channel_||_channel_|
-|_item_||||
-|_names_||||
-
-
-
-353 
-
-
+_Accept_
+_Accept_
+_Accept_
+_Accept_
+_advise_
+_com-_
+_field_
+_field_
+_requests_
+_mands_
+_requests_
+_values_
+_Advise_
+_Advise_
+_Advise_
+_Cancel_
+_on_
+_on OK_
+_on_
+_advises_
+_find/next/previous_
+_redraw_
+_Clear_
+_Close_
+_Message_
+_Open_
+_DDE_
+_DDE_
+_timeout_
+_DDE_
+_channel_
+_channel_
+_channel_
+_item_
+_names_
 
 _Request Request Send Send advises field advises comnow mand Send Set Set DDE Set DDE field advise channel channel options item number name Set server mode_ 
 
-## **External commands** 
+External commands
 
 The HTTP, IMAP, POP3, FTP & some File Commands in the OWEB external have been deprecated in Studio 11, and you should use the equivalent methods in the OW3 Worker Object (if available). 
 
 These commands are no longer visible in the Code Assistant in the Code Editor (they will not appear when you type the first few characters), although they are still present in Studio 11 and will continue to function. You can show the External Commands by disabling the appropriate Command Filter in the Modify menu in the Code Editor. 
 
-## **Calling External Code** 
+Calling External Code
 
 Call DLL Register DLL 
 
-## **Email Commands** 
+Email Commands
 
 IMAPCheck IMAPConnectIMAPCopyMessageIMAPCreateMailbox IMAPDeleteMailboxIMAPDisconnectIMAPExpungeMessagesIMAPListMailboxes IMAPListMessagesIMAPListSubscribedMailboxesIMAPNoOp IMAPRecvHeaders IMAPRecvMessageIMAPRenameMailboxIMAPSelectMailboxIMAPSetMessageFlags IMAPSubscribeMailboxIMAPUnsubscribeMailboxMailSplit POP3Connect POP3DeleteMessagePOP3DisconnectPOP3ListMessagesPOP3MessageCount POP3Recv POP3RecvHeadersPOP3RecvMessagePOP3Stat POP3UndoDeletesSMTPSend 
 
-## **FTP Commands** 
+FTP Commands
 
 FTPChmod FTPConnectFTPCwd FTPDelete FTPDisconnectFTPGet FTPGetBinaryFTPGetLastStatus FTPList FTPMkdir FTPPut FTPPutBinary FTPPwd FTPReceiveCommandReplyLineFTPRenameFTPSendCommand FTPSetConfigFTPSite FTPType 
 
 **TCP Commands** 
-
-354 
-
-
 
 TCPAccept TCPAddr2NameTCPBind TCPBlock 
 
@@ -24281,158 +19176,269 @@ TCPClose TCPConnectTCPGetMyAddrTCPGetMyPort
 
 TCPGetRemoteAddrTCPListen TCPName2AddrTCPPing TCPReceive TCPSend TCPSocket 
 
-## **Web Commands** 
+Web Commands
 
 CGIDecode CGIEncode HTTPClose HTTPGet HTTPHeaderHTTPMethodHTTPOpen HTTPPage HTTPParse HTTPPost HTTPRead HTTPSend HTTPServer HTTPSetAuthenticationHTTPSetProxyServerHTTPSplitHTML HTTPSplitURLUUDecode UUEncode WebDevGetSecureError WebDevSetConfig 
 
-## **File Commands** 
+File Commands
 
-|Change|Close fle|Copy fle|Create|
-|---|---|---|---|
-|working|||directory|
-|directory||||
-|Create|Delete|Does fle|Get fle|
-|fle|fle|exist|info|
-|Get fle|Get fle|Get fles|Get|
-|name|read-||folders|
-||only|||
-||attribute|||
-|Get|Move fle|Open fle|Put fle|
-|working|||name|
-|directory||||
-|Read|Read fle|Read fle|ReadBinFile|
-|entire|as binary|as char-||
-|fle||acter||
-|Set fle|Split|Truncate|Write|
-|read-|path|fle|entire|
-|only|name||fle|
-|attribute||||
-|Write fle|Write fle|WriteBinFile||
-|as binary|as char-|||
-||acter|||
-
-
+Change
+Close file
+Copy file
+Create
+working
+directory
+directory
+Create
+Delete
+Does file
+Get file
+file
+file
+exist
+info
+Get file
+Get file
+Get files
+Get
+name
+read-
+folders
+only
+attribute
+Get
+Move file
+Open file
+Put file
+working
+name
+directory
+Read
+Read file
+Read file
+ReadBinFile
+entire
+as binary
+as char-
+file
+acter
+Set file
+Split
+Truncate
+Write
+read-
+path
+file
+entire
+only
+name
+file
+attribute
+Write file
+Write file
+WriteBinFile
+as binary
+as char-
+acter
 
 **Externals** 
 
 **Commands** 
 
-355 
+_Build_
+_Call_
+_Load_
+_Load_
+_externals_
+_external_
+_event_
+_external_
+_list_
+_routine_
+_handler_
+_routine_
+_Unload_
+_Unload_
+_event_
+_external_
+_handler_
+_routine_
 
+Fields
 
-
-|_Build_|_Call_|_Load_|_Load_|
-|---|---|---|---|
-|_externals_|_external_|_event_|_external_|
-|_list_|_routine_|_handler_|_routine_|
-|_Unload_|_Unload_|||
-|_event_|_external_|||
-|_handler_|_routine_|||
-
-
-
-## **Fields** 
-
-## **Commands** 
+Commands
 
 _These commands are for desktop apps only, not web or mobile apps._ 
 
-|_Disable_|_Enable_|_Hide_|_Redraw_|
-|---|---|---|---|
-|_felds_|_felds_|_felds_||
-|_Redraw_|_Show_|_Test for_|_Test for_|
-|_lists_|_felds_|_feld_|_feld_|
-|||_enabled_|_visible_|
+_Disable_
+_Enable_
+_Hide_
+_Redraw_
+_fields_
+_fields_
+_fields_
+_Redraw_
+_Show_
+_Test for_
+_Test for_
+_lists_
+_fields_
+_field_
+_field_
+_enabled_
+_visible_
 
+Files
 
-
-## **Files** 
-
-## **Commands** 
+Commands
 
 _These commands are for desktop apps using Omnis data files only, not web or mobile apps._ 
 
-|Build|Build fle|Clear all|Clear|
-|---|---|---|---|
-|feld|list|fles|main &|
-|names|||con-|
-|list|||nected|
-|Clear|Clear|Clear|Set|
-|main fle|range of|selected|closed|
-||felds|fles|fles|
-|Set main|Set|Set read-|Set|
-|fle|memory-|only fles|read/write|
-||only fles||fles|
+Build
+Build file
+Clear all
+Clear
+field
+list
+files
+main &
+names
+con-
+list
+nected
+Clear
+Clear
+Clear
+Set
+main file
+range of
+selected
+closed
+fields
+files
+files
+Set main
+Set
+Set read-
+Set
+file
+memory-
+only files
+read/write
+only files
+files
 
+Finding data
 
-
-## **Finding data** 
-
-## **Commands** 
+Commands
 
 The Finding Data commands are no longer visible in the Code Assistant in the Code Editor (they will not appear when you type the first few characters), although they are still present in Studio 11 and will continue to function. You can show these commands by disabling the appropriate Command Filter in the Modify menu in the Code Editor. 
 
 _These commands are for desktop apps using Omnis data files only, not web or mobile apps._ 
 
-|Clear|Disable|Enable|Find|
-|---|---|---|---|
-|fnd|rela-|rela-||
-|table|tional|tional||
-||fnds|fnds||
-|Find frst|Find last|Load|Next|
-|||con-||
-|||nected||
-|||records||
-|Previous|Prompted|Single|Test for a|
-||fnd|fle fnd|current|
-||||record|
-
-
-
-356 
-
-
+Clear
+Disable
+Enable
+Find
+find
+rela-
+rela-
+table
+tional
+tional
+finds
+finds
+Find first
+Find last
+Load
+Next
+con-
+nected
+records
+Previous
+Prompted
+Single
+Test for a
+find
+file find
+current
+record
 
 Test for a unique index value 
 
-## **Importing and Exporting** 
+Importing and Exporting
 
-## **Commands** 
+Commands
 
 The Importing and Exporting commands are no longer visible in the Code Assistant in the Code Editor (they will not appear when you type the first few characters), although they are still present in Studio 11 and will continue to function. You can show these commands by disabling the appropriate Command Filter in the Modify menu in the Code Editor. 
 
 _These commands are for desktop apps using Omnis data files only, not web or mobile apps._ 
 
-|Build|Close|Enclose|End|
-|---|---|---|---|
-|export|import|exported|export|
-|format|fle|text in||
-|list||quotes||
-|End|Export|Export|Import|
-|import|data|felds|data|
-|Import|Import|Import|Prepare|
-|feld|feld|felds|for|
-|from fle|from||export to|
-||port||fle|
-|Prepare|Prepare|Prepare|Prepare|
-|for|for|for|for|
-|export to|import|import|import|
-|port|from|from fle|from|
-||client||port|
-|Prompt|Set|||
-|for|import|||
-|import|fle|||
-|fle|name|||
+Build
+Close
+Enclose
+End
+export
+import
+exported
+export
+format
+file
+text in
+list
+quotes
+End
+Export
+Export
+Import
+import
+data
+fields
+data
+Import
+Import
+Import
+Prepare
+field
+field
+fields
+for
+from file
+from
+export to
+port
+file
+Prepare
+Prepare
+Prepare
+Prepare
+for
+for
+for
+for
+export to
+import
+import
+import
+port
+from
+from file
+from
+client
+port
+Prompt
+Set
+for
+import
+import
+file
+file
+name
 
+Libraries
 
-
-## **Libraries** 
-
-## **Commands** 
+Commands
 
 Change Close Create Open user library library library password * Prompt for library * 
 
-_*These commands are for desktop apps only, not web or mobile apps._ 
-
-357 
-
+_*These commands are for desktop apps only, not web or mobile apps._

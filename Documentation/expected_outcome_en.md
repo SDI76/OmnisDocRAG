@@ -6,20 +6,20 @@ The expected retrieval quality is the same across the supported runtime variants
 - `docker_mcp-rag/` with PostgreSQL on the host
 - `docker_mcp-rag-pg/` with PostgreSQL 18 inside Docker
 
-All three use the same corpora, the same `BAAI/bge-m3` embedding model, and the same PostgreSQL hybrid search functions.
+All three use the same corpora, the same `BAAI/bge-m3` embedding model, and the same PostgreSQL search function (`rag.search_ranked`).
 
 ## Baseline without RAG
 
 AI has only baseline Omnis knowledge. Omnis is a proprietary niche language with hardly any presence on the internet. Generated code would look syntactically plausible, but be wrong in substance. Estimate: about `~5%` correct syntax for specific questions.
 
-## With these three RAGs
+## With the indexed documentation
 
 | Area | Without RAG | With RAG | Limitation |
 | --- | --- | --- | --- |
 | Function calls (`abs()`, `replace()`, `OJSON.*`) | ~5% | ~90% | `FunctionRef` is complete |
 | Command syntax (`Calculate`, `Do`, `If`, options) | ~5% | ~90% | `CommandRef` is complete |
 | Notation patterns (`$assign`, `$sendall`, `$open`) | ~15% | ~70% | Programming Guide is conceptually strong |
-| Properties per object (`$visible`, `$textcolor`, ...) | ~10% | ~35% | Missing from all three docs |
+| Properties per object (`$visible`, `$textcolor`, ...) | ~10% | ~80% | Notation corpus from the Omnis 11.1 help (doc pack) |
 | Event-handler code | ~10% | ~50% | Only partially documented |
 | SQL patterns | ~10% | ~75% | Well covered in the Programming Guide |
 
@@ -27,7 +27,7 @@ AI has only baseline Omnis knowledge. Omnis is a proprietary niche language with
 
 For standard tasks ("write me a method that builds a list and iterates over it"), the generated code should improve from about `~5%` to `~70-80%` directly executable.
 
-The biggest remaining gap is object properties: Which properties does a Data Grid have? A Single Line Entry Field? That is documented in Omnis Help (`F1`), not in these PDFs. The AI will still have to guess there.
+Object properties (which properties does a Data Grid have?) are not in the PDFs; they come from the notation corpus, which is built from the Omnis 11.1 help when the doc pack is available. Without the doc pack this gap remains.
 
 Comparison with GitHub Copilot for well-known languages: Copilot reaches about `~85-90%` correct syntax because it has seen millions of examples. With RAG, Omnis can reach about `~70-80%`, which is very strong for a language no LLM has ever really seen.
 
@@ -35,33 +35,20 @@ Comparison with GitHub Copilot for well-known languages: Copilot reaches about `
 
 # 2. Token Cost of the Architecture
 
-## Chunk sizes (realistic after extraction)
+## Two-step retrieval
 
-| Collection | Avg. Tokens/Chunk | Top-K Retrieval |
-| --- | --- | --- |
-| `omnis_commands` | ~250 Tokens | Top 3-5 |
-| `omnis_functions` | ~180 Tokens | Top 3-5 |
-| `omnis_programming` | ~450 Tokens | Top 2-3 |
+A search returns a compact list — per hit one line (corpus, title, source, id) and a snippet of
+~240 characters. Typical size: 8 hits ≈ 2–4 KB ≈ 600–1,000 tokens. The agent then fetches the full
+text of the 1–3 relevant ids with `get_omnis_doc` (chunks are ≤ 450 words, ~300–600 tokens each).
 
-## RAG context injected per request
+| Step | Tokens |
+| --- | --- |
+| Search (8 hits, snippets) | ~600–1,000 |
+| Full text of 2 chunks | ~600–1,200 |
+| Typical total per question | ~1,500–2,000 |
 
-### Simple question ("how does `replace()` work?")
-
-- Functions: `1 chunk × 180 = 180 tokens`
-- Commands: `0`
-- Programming: `1 chunk × 450 = 450 tokens`
-- RAG overhead: `~630 tokens`
-
-### Standard coding request ("write an SQL method with error handling")
-
-- Commands: `5 chunks × 250 = 1,250 tokens`
-- Functions: `3 chunks × 180 = 540 tokens`
-- Programming: `3 chunks × 450 = 1,350 tokens`
-- RAG overhead: `~3,100 tokens`
-
-### Complex request (agentic, multiple steps)
-
-- RAG overhead: `~4,000-6,000 tokens`
+Before the rework a single search returned 50–105 KB (the text was included up to four times),
+i.e. ~15,000–25,000 tokens per call.
 
 ## Full prompt per turn
 
@@ -81,10 +68,9 @@ Comparison with GitHub Copilot for well-known languages: Copilot reaches about `
 
 ## One-time embedding cost (entire corpus)
 
-- `CommandRef`: `~400 commands × 250 tokens = 100,000 tokens`
-- `FunctionRef`: `~350 functions × 180 tokens = 63,000 tokens`
-- `Programming`: `~300 sections × 450 tokens = 135,000 tokens`
-- Total corpus: `~298,000 tokens`
+- 6,009 chunks, ~1.7 M tokens in total (commands, functions, programming, notation)
+- Local embedding: minutes on a GPU / Apple Silicon, a few hours on a plain CPU; afterwards only
+  changed chunks are embedded again
 
 In the current repository this cost is effectively `$0`, because embeddings are generated locally with `BAAI/bge-m3` via `sentence-transformers`.
 

@@ -35,9 +35,9 @@ against the `rag` schema. The following tables must already be populated before 
 
 | Table | Content |
 |---|---|
-| `rag.corpus` | The three document collections |
+| `rag.corpus` | The document collections (commands, functions, programming, notation) |
 | `rag.document` | One row per chunk, with source metadata |
-| `rag.chunk` | Chunk text + `tsvector` for full-text search |
+| `rag.chunk` | Chunk text, title, heading path, symbol names, weighted `tsvector` |
 | `rag.embedding` | 1024-dimensional `vector(1024)` per chunk |
 
 The database is set up and populated by the pipeline scripts in the main project.
@@ -193,29 +193,27 @@ Start the stack with `docker compose up`, then restart the MCP server in VS Code
 
 ## Available Tools
 
-All three tools call the RAG server's `/search` endpoint and return structured JSON
-with chunks, context text, and retrieval metadata.
+The tools call the RAG server (`/search`, `/chunks`) and return compact plain text; the
+rag-server does all ranking and rendering.
 
-| Tool | Default corpus | Use for |
+| Tool | Scope | Use for |
 |---|---|---|
-| `search_omnis_syntax` | all | Exact command signatures, function parameters, syntax |
-| `search_omnis_concepts` | omnis-programming | Patterns, architecture, best practices |
-| `search_omnis_docs` | all | General documentation questions |
+| `search_omnis_docs` | all corpora (`corpus` to restrict) | Ranked search; `mode` = hybrid \| semantic \| fulltext, `top_k` |
+| `get_omnis_doc` | — | Full text of result ids |
+| `search_omnis_syntax` | commands, functions, notation | Signatures, parameters, properties, methods |
+| `search_omnis_concepts` | Programming manual | Patterns, architecture; `deep=true` → 15 hits |
 
-All tools accept optional overrides: `corpus`, `k_commands`, `k_functions`, `k_programming`.
-`search_omnis_concepts` also accepts `deep=true` for more thorough retrieval.
+See [`OmnisRAGServer/README.md`](../OmnisRAGServer/README.md) for the response format.
 
 ---
 
 ## Updating ragserver.py
 
-`rag-server/ragserver.py` is a copy of `OmnisRAGServer/rag-server/ragserver.py`.
-If you make changes to the original, copy the file again before rebuilding:
+`rag-server/ragserver.py` is the only copy of the server code. The local start script
+`OmnisRAGServer/rag-server/ragserver.py` runs this file. After changes:
 
 ```bash
-cp ../OmnisRAGServer/rag-server/ragserver.py rag-server/ragserver.py
-cp ../OmnisRAGServer/rag-server/requirements.txt rag-server/requirements.txt
-docker compose build rag-server
+docker compose build rag-server && docker compose up -d rag-server
 ```
 
 ---

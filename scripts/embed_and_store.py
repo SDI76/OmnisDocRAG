@@ -1,172 +1,172 @@
 """
-embed_and_store.py — JSON Chunks → JSONL with embeddings
-Reads all three chunk files, embeds via sentence-transformers (bge-m3), writes JSONL.
+embed_and_store.py — chunks → embeddings (JSONL)
+================================================
 
-Output: output/embeddings.jsonl
-Each line: {"id": "...", "text": "...", "metadata": {...}, "embedding": [...1024 floats...]}
+Reads every output/chunks/*_chunks.json, embeds each chunk's `embed_text` and
+writes output/embeddings.jsonl with one line per chunk:
 
-The "text" field already contains the metadata prefix (e.g.
-"Command: Calculate | Group: Calculations | Flag: YES | ...").
-That prefix is embedded together with the content — intentional, improves retrieval.
+    {"id": "cmd_ok_message", "hash": "<sha256 of embed_text, 16 hex>", "embedding": [1024 floats]}
 
-Usage:
-  python embed_and_store.py           # resume from existing JSONL
-  python embed_and_store.py --force   # wipe JSONL and re-embed from scratch
-                                      # required after chunk rebuild (prefix/content changes)
+Incremental: a chunk is only re-embedded when its embed_text changed (hash).
+Chunks that no longer exist are dropped from the file.
 
-First run downloads BAAI/bge-m3 (~2 GB) to ~/.cache/huggingface/
+Two ways to compute embeddings — both use BAAI/bge-m3, so query and document
+vectors always come from the same model:
+
+    python scripts/embed_and_store.py                           # local sentence-transformers
+    python scripts/embed_and_store.py --server http://localhost:7071
+                                                                # the running rag-server (/embed)
+Options:
+    --force    re-embed everything
 """
 
+from __future__ import annotations
+
+import argparse
+import hashlib
 import json
 import sys
 import time
+import urllib.request
 from pathlib import Path
 
-from sentence_transformers import SentenceTransformer
-
-# ── Config ────────────────────────────────────────────────────
 EMBED_MODEL = "BAAI/bge-m3"
-EMBED_DIM   = 1024
-BATCH_SIZE  = 64      # chunks per encode call (sentence-transformers handles memory)
+EMBED_DIM = 1024
 
-BASE   = Path(__file__).parent.parent
-CHUNKS = [
-    BASE / "output" / "chunks" / "commands_chunks.json",
-    BASE / "output" / "chunks" / "functions_chunks.json",
-    BASE / "output" / "chunks" / "programming_chunks.json",
-]
+BASE = Path(__file__).resolve().parent.parent
+CHUNKS = BASE / "output" / "chunks"
 OUTPUT = BASE / "output" / "embeddings.jsonl"
-# ─────────────────────────────────────────────────────────────
-
-model: SentenceTransformer = None
 
 
-def embed_batch(texts: list[str]) -> list[list[float]]:
-    embeddings = model.encode(texts, normalize_embeddings=True, show_progress_bar=False)
-    result = [emb.tolist() for emb in embeddings]
-    for emb in result:
-        if len(emb) != EMBED_DIM:
-            raise ValueError(f"Unexpected dim: {len(emb)} (expected {EMBED_DIM})")
-    return result
+def text_hash(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
 
 
-def load_all_chunks() -> list[dict]:
+def load_chunks() -> list[dict]:
     chunks = []
-    for path in CHUNKS:
+    for path in sorted(CHUNKS.glob("*_chunks.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
         print(f"  {path.name}: {len(data)} chunks")
         chunks.extend(data)
     return chunks
 
 
-def already_embedded(output_path: Path) -> set[str]:
-    """Return set of IDs already in the output file (for resume support)."""
-    if not output_path.exists():
-        return set()
-    done = set()
-    with output_path.open(encoding="utf-8") as f:
+def load_existing() -> dict[str, dict]:
+    if not OUTPUT.exists():
+        return {}
+    out = {}
+    with OUTPUT.open(encoding="utf-8") as f:
         for line in f:
-            line = line.strip()
-            if line:
-                try:
-                    done.add(json.loads(line)["id"])
-                except Exception:
-                    pass
-    return done
+            if line.strip():
+                rec = json.loads(line)
+                if "hash" in rec:          # v1 lines (without hash) are re-embedded
+                    out[rec["id"]] = rec
+    return out
+
+
+class LocalEmbedder:
+    def __init__(self, threads: int | None, max_seq_length: int):
+        import torch
+        from sentence_transformers import SentenceTransformer
+        if threads:
+            torch.set_num_threads(threads)
+        device = "cuda" if torch.cuda.is_available() else (
+            "mps" if getattr(torch.backends, "mps", None) and torch.backends.mps.is_available() else "cpu")
+        print(f"Loading model {EMBED_MODEL} on {device} (first run downloads ~2 GB), "
+              f"threads {torch.get_num_threads()}, max_seq_length {max_seq_length} ...")
+        self.model = SentenceTransformer(EMBED_MODEL, device=device)
+        self.model.max_seq_length = max_seq_length
+
+    def __call__(self, texts: list[str]) -> list[list[float]]:
+        return [v.tolist() for v in self.model.encode(texts, normalize_embeddings=True, show_progress_bar=False)]
+
+
+class ServerEmbedder:
+    def __init__(self, url: str):
+        self.url = url.rstrip("/") + "/embed"
+
+    def __call__(self, texts: list[str]) -> list[list[float]]:
+        req = urllib.request.Request(self.url, json.dumps({"texts": texts}).encode("utf-8"),
+                                     {"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=600) as resp:
+            data = json.loads(resp.read())
+        if data.get("model") != EMBED_MODEL:
+            raise RuntimeError(f"server model {data.get('model')!r} != {EMBED_MODEL!r}")
+        return data["embeddings"]
 
 
 def main() -> None:
-    global model
-
-    force = "--force" in sys.argv
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--server", help="rag-server base URL, e.g. http://localhost:7071")
+    ap.add_argument("--force", action="store_true")
+    ap.add_argument("--batch", type=int, default=32)
+    ap.add_argument("--threads", type=int, help="CPU threads for local embedding (default: torch default)")
+    ap.add_argument("--max-seq-length", type=int, default=512,
+                    help="token limit per chunk for local embedding (longer tails are not embedded)")
+    ap.add_argument("--checkpoint", type=int, default=10, help="write the file every N batches")
+    args = ap.parse_args()
 
     print("=== Embedding ===")
-    print(f"Model:  {EMBED_MODEL}")
-    print(f"Batch:  {BATCH_SIZE}")
-    if force:
-        print("Mode:   --force (wiping existing JSONL)")
-    print()
+    chunks = load_chunks()
+    existing = {} if args.force else load_existing()
+    records: dict[str, dict] = {}
+    pending: list[dict] = []
+    for c in chunks:
+        h = text_hash(c["embed_text"])
+        old = existing.get(c["id"])
+        if old and old["hash"] == h:
+            records[c["id"]] = old
+        else:
+            pending.append({"id": c["id"], "hash": h, "text": c["embed_text"]})
+    print(f"Total {len(chunks)}, unchanged {len(records)}, to embed {len(pending)}")
 
-    if force and OUTPUT.exists():
-        OUTPUT.unlink()
-        print(f"Deleted existing {OUTPUT.name}\n")
+    if pending:
+        embed = ServerEmbedder(args.server) if args.server else LocalEmbedder(args.threads, args.max_seq_length)
+        # Similar lengths per batch = less padding = noticeably faster on CPU.
+        pending.sort(key=lambda b: len(b["text"]))
+        t0 = time.time()
+        try:
+            for i in range(0, len(pending), args.batch):
+                if i and (i // args.batch) % args.checkpoint == 0:
+                    write(chunks, records, quiet=True)
+                batch = pending[i:i + args.batch]
+                vecs = embed([b["text"] for b in batch])
+                for b, v in zip(batch, vecs):
+                    if len(v) != EMBED_DIM:
+                        raise ValueError(f"unexpected dimension {len(v)} for {b['id']}")
+                    records[b["id"]] = {"id": b["id"], "hash": b["hash"],
+                                        "embedding": [round(x, 7) for x in v]}
+                done = min(i + args.batch, len(pending))
+                rate = done / max(time.time() - t0, 1e-6)
+                print(f"\r  {done}/{len(pending)}  {rate:.1f} chunks/s  ETA {(len(pending) - done) / rate:.0f}s   ",
+                      end="", flush=True)
+        finally:
+            print()
+            write(chunks, records)
+    else:
+        write(chunks, records)
 
-    print("Loading chunks...")
-    all_chunks = load_all_chunks()
-    print(f"Total: {len(all_chunks)} chunks\n")
 
-    done_ids = already_embedded(OUTPUT)
-    if done_ids:
-        print(f"Resuming: {len(done_ids)} already embedded, skipping.\n")
-
-    pending = [c for c in all_chunks if c["id"] not in done_ids]
-    print(f"To embed: {len(pending)} chunks\n")
-
-    if not pending:
-        print("Nothing to do.")
+def write(chunks: list[dict], records: dict[str, dict], quiet: bool = False) -> None:
+    """Rewrite the file in chunk order (also after an interruption, so progress is kept)."""
+    tmp = OUTPUT.with_suffix(".tmp")
+    written = 0
+    with tmp.open("w", encoding="utf-8") as f:
+        for c in chunks:
+            rec = records.get(c["id"])
+            if rec:
+                f.write(json.dumps(rec) + "\n")
+                written += 1
+    tmp.replace(OUTPUT)
+    if quiet:
         return
-
-    print(f"Loading model {EMBED_MODEL} ...")
-    t_load = time.time()
-    model = SentenceTransformer(EMBED_MODEL)
-    print(f"Model loaded in {time.time() - t_load:.1f}s\n")
-
-    out_file = OUTPUT.open("a", encoding="utf-8")
-    total   = len(pending)
-    done    = 0
-    errors  = 0
-    t_start = time.time()
-
-    try:
-        for batch_start in range(0, total, BATCH_SIZE):
-            batch = pending[batch_start: batch_start + BATCH_SIZE]
-            texts = [c["text"] for c in batch]
-
-            try:
-                embeddings = embed_batch(texts)
-            except Exception as e:
-                print(f"\n  ERROR embedding batch at {batch_start}: {e}")
-                errors += len(batch)
-                done   += len(batch)
-                continue
-
-            for chunk, emb in zip(batch, embeddings):
-                record = {
-                    "id":        chunk["id"],
-                    "text":      chunk["text"],
-                    "metadata":  chunk["metadata"],
-                    "embedding": emb,
-                }
-                out_file.write(json.dumps(record, ensure_ascii=False) + "\n")
-
-            done += len(batch)
-            out_file.flush()
-
-            elapsed   = time.time() - t_start
-            rate      = done / elapsed if elapsed > 0 else 0
-            remaining = (total - done) / rate if rate > 0 else 0
-            print(
-                f"\r  {done}/{total} chunks  "
-                f"({done/total*100:.1f}%)  "
-                f"{rate:.1f} chunks/s  "
-                f"ETA {remaining:.0f}s      ",
-                end="", flush=True,
-            )
-
-    finally:
-        out_file.close()
-
-    elapsed = time.time() - t_start
-    print(f"\n\nDone in {elapsed:.1f}s")
-    print(f"  Embedded: {done - errors}")
-    print(f"  Errors:   {errors}")
-    print(f"  Output:   {OUTPUT}")
-    size_mb = OUTPUT.stat().st_size / 1_000_000
-    print(f"  Size:     {size_mb:.1f} MB")
-    print()
-    print("Next step:")
-    print(f"  python scripts/import_to_postgres.py")
+    print(f"Wrote {written}/{len(chunks)} embeddings to {OUTPUT} ({OUTPUT.stat().st_size / 1e6:.1f} MB)")
+    if written == len(chunks):
+        print("Next: python scripts/import_to_postgres.py  (or import_to_docker_postgres.py)")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        sys.exit(130)

@@ -1,6 +1,8 @@
 # OmnisDocRAG
 
-Local RAG stack for Omnis Studio documentation — extracts PDF manuals, chunks and embeds them, stores them in PostgreSQL with `pgvector`, and exposes them as MCP tools to VS Code for AI-assisted Omnis development.
+Local RAG stack for the Omnis Studio documentation — extracts the PDF manuals (and optionally the
+notation reference from the Omnis help), chunks and embeds them, stores them in PostgreSQL with
+`pgvector`, and exposes semantic and full-text search as MCP tools for AI-assisted Omnis development.
 
 ---
 
@@ -8,7 +10,8 @@ Local RAG stack for Omnis Studio documentation — extracts PDF manuals, chunks 
 
 Start here: [Project_instructions.md](Project_instructions.md)
 
-It covers the project goal, directory layout, setup steps, runtime startup order, and the available topologies for local and Docker-based operation.
+It covers the project goal, directory layout, setup steps, runtime startup order, and the available
+topologies for local and Docker-based operation.
 
 ---
 
@@ -18,11 +21,12 @@ It covers the project goal, directory layout, setup steps, runtime startup order
 |---|---|
 | [Project_instructions.md](Project_instructions.md) | Entry point — setup, startup order, quick-start commands |
 | [Documentation/RAG_concept_en.md](Documentation/RAG_concept_en.md) | Why RAG, how retrieval works, architecture overview |
-| [Documentation/Pipeline_en.md](Documentation/Pipeline_en.md) | Full data-build pipeline (extract → chunk → embed → import) |
-| [Documentation/chunking_concept_en.md](Documentation/chunking_concept_en.md) | How chunks are structured and why |
+| [Documentation/Pipeline_en.md](Documentation/Pipeline_en.md) | Data build pipeline (extract → chunk → validate → embed → import), endpoints, tools |
+| [Documentation/chunking_concept_en.md](Documentation/chunking_concept_en.md) | How the PDFs are extracted and chunked, and why |
 | [Documentation/embedding_concept_en.md](Documentation/embedding_concept_en.md) | Embedding model, dimensions, and storage |
-| [Documentation/postgres_en.md](Documentation/postgres_en.md) | Database schema, `pgvector` setup, indexing |
+| [Documentation/postgres_en.md](Documentation/postgres_en.md) | Database schema, full-text vector, `rag.search_ranked` |
 | [Documentation/expected_outcome_en.md](Documentation/expected_outcome_en.md) | What a working system looks like end-to-end |
+| [Documentation/retrieval_quality_analysis_en.md](Documentation/retrieval_quality_analysis_en.md) | Retrieval quality analysis, measurements before/after the rework |
 | [OmnisRAGServer/README.md](OmnisRAGServer/README.md) | Local stdio MCP bridge contract and tool reference |
 | [docker_mcp-rag/README.md](docker_mcp-rag/README.md) | Docker stack — `mcp-server` + `rag-server`, using PostgreSQL on the host |
 | [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md) | Full Docker stack — PostgreSQL 18 + `pgvector` + `rag-server` + `mcp-server` |
@@ -49,39 +53,50 @@ VS Code (HTTP) → mcp-server (Python, port 3000) → rag-server (Python, port 7
 VS Code (HTTP) → mcp-server (Python, port 3000) → rag-server (Python, port 7071) → postgres (Docker, PG18 + pgvector)
 ```
 
-For existing local database setups, see [docker_mcp-rag/README.md](docker_mcp-rag/README.md).
-For the most portable out-of-the-box setup, see [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md).
-
 ---
 
-## MCP tools exposed
+## What is indexed
+
+| Corpus | Source | Chunks |
+|---|---|---|
+| `omnis-commands` | Command Reference (every command, overview sections, error code tables) | 585 |
+| `omnis-functions` | Function Reference | 395 |
+| `omnis-programming` | Programming manual, all 17 chapters | 1,883 |
+| `omnis-notation` | Notation reference from the Omnis 11.1 help (optional doc pack) | 3,146 |
+
+## MCP tools
 
 | Tool | Use for |
 |---|---|
-| `search_omnis_syntax` | Command signatures, function parameters, strict syntax |
-| `search_omnis_concepts` | Patterns, architecture, best practices |
-| `search_omnis_docs` | General documentation questions, mixed queries |
+| `search_omnis_docs` | Ranked search over everything. `mode`: `hybrid` (default), `semantic`, `fulltext` (supports `"phrase"`, `OR`, `-word`) |
+| `get_omnis_doc` | Full text of result ids (second step) |
+| `search_omnis_syntax` | Same search, only commands, functions, notation |
+| `search_omnis_concepts` | Same search, only the Programming manual |
 
-For setup, runtime selection, and MCP wiring details, see [Project_instructions.md](Project_instructions.md).
+Search answers are compact text (one line + snippet per hit, typically 2–4 KB); the full text is
+fetched only for the ids that matter.
 
 ---
 
 ## Minimum quick start (Full Docker stack)
 
 ```bash
-# 1. Build the data (once)
+# 1. Build the data
 source .venv/bin/activate
-python scripts/extract.py && python scripts/chunk.py
-python scripts/embed_and_store.py
+python scripts/extract.py
+python scripts/chunk.py --omnisdoc /path/to/omnisdoc     # doc pack optional
+python scripts/validate.py
+python scripts/embed_and_store.py                         # GPU/MPS: minutes, CPU: hours
 
 # 2. Start the stack
 cd docker_mcp-rag-pg
 cp .env.example .env   # then edit DB credentials
-docker compose up --build
+docker compose up -d --build
 
-# 3. Import into the Docker PostgreSQL
+# 3. Import into the Docker PostgreSQL and check
 cd ..
 python scripts/import_to_docker_postgres.py
+python scripts/eval_retrieval.py --compare
 
 # 4. VS Code — .vscode/mcp.json
 # { "omnis-rag-docker": { "type": "http", "url": "http://localhost:3000/mcp" } }
