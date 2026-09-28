@@ -22,8 +22,10 @@ removed (set DELETE_STALE_DOCS=0 to disable).
 from __future__ import annotations
 
 import sys
+import base64
 import hashlib
 import json
+import struct
 import logging
 import os
 import re
@@ -116,8 +118,16 @@ def load_inputs(allow_missing: bool = False) -> tuple[list[dict], dict[str, dict
     return chunks, emb
 
 
+def vector_of(rec: dict) -> list[float]:
+    """Record vector: compact float32/base64 ("vector") or a JSON number list ("embedding")."""
+    if "vector" in rec:
+        raw = base64.b64decode(rec["vector"])
+        return list(struct.unpack(f"<{len(raw) // 4}f", raw))
+    return rec["embedding"]
+
+
 def vec_literal(v: list[float]) -> str:
-    return "[" + ",".join(f"{x:.7f}" for x in v) + "]"
+    return "[" + ",".join(f"{x:.8g}" for x in v) + "]"
 
 
 def ensure_corpora(cur, names: set[str]) -> dict[str, str]:
@@ -136,7 +146,7 @@ def upsert_batch(cur, batch: list[dict], emb: dict[str, dict], corpus_ids: dict[
         rows.append((
             corpus_ids[c["corpus"]], c["id"], c["title"], json.dumps(meta),
             c["text"], " › ".join(c["heading_path"]), chunk_symbols(c),
-            vec_literal(emb[c["id"]]["embedding"]),
+            vec_literal(vector_of(emb[c["id"]])),
         ))
 
     psycopg2.extras.execute_values(cur, """

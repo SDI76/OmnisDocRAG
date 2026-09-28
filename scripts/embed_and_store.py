@@ -6,7 +6,12 @@ Reads every output/chunks/*_chunks.json, embeds each chunk's `embed_text` and
 writes output/embeddings.jsonl with one line per chunk:
 
     {"id": "cmd_ok_message", "hash": "<sha256 of embed_text, 16 hex>",
-     "model": "BAAI/bge-m3", "max_seq_length": 512, "embedding": [1024 floats]}
+     "model": "BAAI/bge-m3", "max_seq_length": 512, "vector": "<base64 of 1024 float32, little-endian>"}
+
+The vectors are stored as exact float32 bytes (base64), which keeps the file at
+~33 MB for ~6,000 chunks — small enough to live in git, so a build made on one
+machine reaches the others with a normal pull. Older files with a JSON number
+list ("embedding") are still read.
 
 Incremental: a chunk is only embedded again when its text, the model or the
 token limit changed. Chunks that no longer exist are dropped from the file.
@@ -29,10 +34,12 @@ Rough duration for ~6,000 chunks: minutes on cuda/mps, hours on CPU.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import os
 import platform
+import struct
 import sys
 import time
 import urllib.request
@@ -54,6 +61,18 @@ LEGACY_CONFIG = {"model": EMBED_MODEL, "max_seq_length": DEFAULT_MAX_SEQ}
 BASE = Path(__file__).resolve().parent.parent
 CHUNKS = BASE / "output" / "chunks"
 OUTPUT = BASE / "output" / "embeddings.jsonl"
+
+
+def encode_vector(v: list[float]) -> str:
+    return base64.b64encode(struct.pack(f"<{len(v)}f", *v)).decode("ascii")
+
+
+def decode_vector(rec: dict) -> list[float]:
+    """Vector of a record in either storage format."""
+    if "vector" in rec:
+        raw = base64.b64decode(rec["vector"])
+        return list(struct.unpack(f"<{len(raw) // 4}f", raw))
+    return rec["embedding"]
 
 
 def text_hash(text: str) -> str:
@@ -80,6 +99,8 @@ def load_existing() -> dict[str, dict]:
                 if "hash" in rec:          # v1 lines (without hash) are re-embedded
                     for k, v in LEGACY_CONFIG.items():
                         rec.setdefault(k, v)
+                    if "embedding" in rec:  # number list → compact storage
+                        rec["vector"] = encode_vector(rec.pop("embedding"))
                     out[rec["id"]] = rec
     return out
 
@@ -183,7 +204,7 @@ def main() -> None:
                 if len(v) != EMBED_DIM:
                     raise ValueError(f"unexpected dimension {len(v)} for {b['id']}")
                 records[b["id"]] = {"id": b["id"], "hash": b["hash"], **config,
-                                    "embedding": [round(x, 7) for x in v]}
+                                    "vector": encode_vector(v)}
             done = min(i + args.batch, len(pending))
             rate = done / max(time.time() - t0, 1e-6)
             print(f"\r  {done}/{len(pending)}  {rate:.1f} chunks/s  ETA {(len(pending) - done) / rate:.0f}s   ",

@@ -18,7 +18,7 @@ output/chunks/*_chunks.json
     │  scripts/validate.py       quality gate (exit code 1 on failure)
     │  scripts/embed_and_store.py   BAAI/bge-m3, incremental by text hash
     ▼
-output/embeddings.jsonl          (not in git — rebuilt locally)
+output/embeddings.jsonl          vectors as base64 float32, ~33 MB, versioned in git
     │  scripts/import_to_postgres.py / import_to_docker_postgres.py
     ▼
 PostgreSQL ragdb (schema rag, v2)
@@ -80,10 +80,11 @@ What adapts to the machine:
 | Generated files | written with LF; `.gitattributes` keeps `output/`, `*.sh`, `*.sql`, `*.yml` in LF |
 | Docker image | CPU build of PyTorch — containers have no GPU (Docker Desktop on macOS has none), and the CUDA build would add several GB on amd64; `pgvector` and Python images are multi-arch (arm64 on Apple Silicon) |
 
-**Embedding on one machine, serving on another.** The chunk files are in git, the embeddings are not.
-Build `output/embeddings.jsonl` where it is fast (`pipeline.py build --from embed --to embed` on a Mac
-with Apple Silicon), copy the file to the machine that runs the database, then run
-`pipeline.py build --from import` there.
+**Embedding on one machine, serving on another.** Chunks and embeddings are both in git
+(`output/embeddings.jsonl` stores the vectors as exact float32 bytes in base64, ~33 MB, and has no
+textual diff). Build the embeddings where it is fast (`pipeline.py build --from embed --to embed` on a
+Mac with Apple Silicon), commit and push; on the machine with the database pull and run
+`pipeline.py build --from import`.
 
 ---
 
@@ -108,7 +109,7 @@ OmnisDocRAG/
 │   ├── *_extracted.md             step 1, for reading
 │   ├── chunks/*_chunks.json       step 2
 │   ├── validation_report.json     step 3
-│   └── embeddings.jsonl           step 4 (git-ignored)
+│   └── embeddings.jsonl           step 4 (in git, ~33 MB)
 ├── docker_mcp-rag/                rag-server + mcp-server images (host PostgreSQL)
 ├── docker_mcp-rag-pg/             full stack: PostgreSQL 18 + pgvector + both servers
 │   └── postgres-init/

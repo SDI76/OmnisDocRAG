@@ -37,7 +37,7 @@ OmnisDocRAG/
 ├── output/                     Generated: extracted units, chunks, validation report, embeddings
 │   ├── extracted/              Step 1 — units per PDF (JSON)
 │   ├── chunks/                 Step 2 — chunks per corpus (JSON)
-│   └── embeddings.jsonl        Step 4 — not in git, rebuilt locally
+│   └── embeddings.jsonl        Step 4 — vectors (base64 float32, ~33 MB), versioned in git
 ├── scripts/                    extract, chunk, validate, embed, import, eval, bridge test, local SQL setup
 ├── docker_mcp-rag-pg/          Full containerised stack with PostgreSQL 18 + pgvector
 │   ├── docker-compose.yml      Orchestrates postgres + rag-server + mcp-server
@@ -106,9 +106,9 @@ from the repository root:
 python scripts/import_to_docker_postgres.py
 ```
 
-`output/embeddings.jsonl` is not in git: after a fresh clone run `scripts/embed_and_store.py` first
-(minutes on a GPU / Apple Silicon, hours on a plain CPU; `--server http://localhost:7071` uses the
-model inside the running rag-server container).
+`output/embeddings.jsonl` is versioned in git, so a fresh clone can be imported directly. It only has to
+be rebuilt after the chunks changed (`scripts/embed_and_store.py` embeds just the changed chunks;
+minutes on a GPU / Apple Silicon, hours on a plain CPU).
 
 ### Local bootstrap helper
 
@@ -228,7 +228,7 @@ What each step does:
    and entries that are new in 11.1).
 3. `validate.py` is the quality gate — it fails when entries are missing, code lines became titles,
    ligature damage is left, or chunks are empty/oversized.
-4. `embed_and_store.py` creates `output/embeddings.jsonl` (not in git). It is incremental: only
+4. `embed_and_store.py` updates `output/embeddings.jsonl` (versioned in git). It is incremental: only
    changed chunks are embedded again; `--force` re-embeds everything.
 5. Import into your target PostgreSQL:
    - local/external PostgreSQL: `python scripts/import_to_postgres.py`
@@ -478,7 +478,8 @@ Full details: [docker_mcp-rag-pg/README.md](docker_mcp-rag-pg/README.md)
 
 - Work only inside `OmnisDocRAG` for this finalized project copy.
 - Documentation in `Documentation/` is written in English (`_en` files).
-- Treat `output/` as generated artifacts; `output/embeddings.jsonl` is git-ignored (exceeds GitHub's file limit).
+- Treat `output/` as generated artifacts. They are versioned on purpose, including
+  `output/embeddings.jsonl` (base64 float32, ~33 MB), so every machine gets a complete build with a pull.
 - `embed_and_store.py` uses local `sentence-transformers` with `BAAI/bge-m3` (~2.2 GB download; MPS/CUDA
   used automatically) or, with `--server`, the model of the running rag-server.
 - `scripts/import_to_postgres.py` reads database environment values from `scripts/.env`.

@@ -100,6 +100,13 @@ chunks; their beginning (title, metadata, syntax) is always embedded.
 `embed_and_store.py` is incremental (only chunks whose text hash changed), writes checkpoints, and can
 use the model inside the running rag-server container (`--server http://localhost:7071`).
 
+### Storage
+
+`output/embeddings.jsonl` holds one line per chunk with id, text hash, model, token limit and the
+vector as exact float32 bytes in base64 (~5.6 KB per chunk, ~33 MB in total). The file is versioned in
+git: embeddings built on a fast machine reach every other machine with a pull, and an import needs no
+embedding step. A JSON list of numbers would be twice the size (the v1 file was 57 MB for 2,355 chunks).
+
 ### Alternatives considered
 
 - `text-embedding-3-large` (OpenAI): planned originally; replaced by a fully local pipeline.

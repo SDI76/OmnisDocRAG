@@ -6,3 +6,7 @@ Dockerfile text eol=lf
 
 # Generated artifacts are identical no matter on which OS they are built.
 output/**  text eol=lf
+
+# Embedding vectors (base64 float32, ~33 MB): versioned so every machine gets them with a pull;
+# no textual diffs for them.
+output/embeddings.jsonl  -diff
