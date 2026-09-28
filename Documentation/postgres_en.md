@@ -73,7 +73,7 @@ SELECT * FROM rag.search_ranked(
   p_top_k         := 8,
   p_candidate_k   := 60,
   p_w_dense       := 1.0,
-  p_w_fts         := 0.5,
+  p_w_fts         := 0.3,
   p_rrf_k         := 60);
 ```
 

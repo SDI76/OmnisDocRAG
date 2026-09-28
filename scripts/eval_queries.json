@@ -17,7 +17,7 @@
   {"id": "Q16", "type": "function-semantic", "query": "number of days between two dates", "gold": "ddiff"},
   {"id": "Q17", "type": "sql", "query": "get error code and error text after a failed SQL statement", "gold": "\\$errorcode|sql errors"},
   {"id": "Q18", "type": "notation", "query": "set the current line of a list", "gold": "not_list_properties|\\$line\\b|current line"},
-  {"id": "Q19", "type": "notation", "query": "$cinst reference to the current instance", "gold": "cinst"},
+  {"id": "Q19", "type": "notation", "query": "$cinst reference to the current instance", "gold": "cinst|current objects|not_root_properties"},
   {"id": "Q20", "type": "notation", "query": "number of lines in a list $linecount", "gold": "linecount|not_list_properties"},
   {"id": "Q21", "type": "notation", "query": "define the columns of a list with $define", "gold": "\\$define|defining lists|not_list_methods"},
   {"id": "Q22", "type": "notation", "query": "redraw a window field after changing its value", "gold": "redraw"},

@@ -133,7 +133,8 @@ BEGIN
          -- Snippet around the matching words, without the chunk's own heading line
          -- and without highlight markers (they would land inside code spans).
          CASE WHEN q IS NOT NULL AND t.content IS NOT NULL THEN
-           ts_headline('english', regexp_replace(t.content, '^#+[^\n]*\n+', ''), q,
+           ts_headline('english',
+             regexp_replace(t.content, '^#+[^\n]*\n+((Command|Function) group:[^\n]*\n+)?', ''), q,
              'MaxWords=35, MinWords=12, MaxFragments=2, FragmentDelimiter=" … ", StartSel="", StopSel=""')
          END AS snippet
   FROM top t

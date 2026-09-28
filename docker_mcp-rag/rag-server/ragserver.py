@@ -81,7 +81,9 @@ STRICT_PORT = _as_bool(os.environ.get("STRICT_PORT"), True)
 # Fusion weights; the full-text leg is weighted lower because single frequent
 # words ("list", "line") match many chunks. Tuned with scripts/eval_retrieval.py.
 W_DENSE = float(os.environ.get("RAG_W_DENSE", "1.0"))
-W_FTS = float(os.environ.get("RAG_W_FTS", "0.5"))
+W_FTS = float(os.environ.get("RAG_W_FTS", "0.3"))
+# Reciprocal Rank Fusion constant: smaller values give the top ranks of each leg more weight.
+RRF_K = int(os.environ.get("RAG_RRF_K", "60"))
 SNIPPET_CHARS = int(os.environ.get("RAG_SNIPPET_CHARS", "240"))
 
 CORPORA = ("omnis-commands", "omnis-functions", "omnis-programming", "omnis-notation")
@@ -146,27 +148,34 @@ nicht kein keine ist sind war mit ohne für von zu im in am an auf aus bei nach 
 ihr man kann können soll sollen muss müssen wird werden hat haben mein meine dein deine sein seine
 """.split())
 
-# German words frequently used in Omnis questions → English doc vocabulary.
+# German word stems frequently used in Omnis questions → English doc vocabulary.
 # Only the full-text leg needs this; the embedding model is multilingual.
-GERMAN_TERMS = {
-    "löschen": "delete remove", "lösche": "delete remove", "entfernen": "remove", "zeile": "line",
-    "zeilen": "lines", "liste": "list", "listen": "lists", "suchen": "search", "suche": "search",
-    "fenster": "window", "feld": "field", "felder": "fields", "klasse": "class", "klassen": "classes",
-    "methode": "method", "methoden": "methods", "tabelle": "table", "datei": "file", "dateien": "files",
-    "fehler": "error", "fehlerbehandlung": "error handling", "anzeigen": "display", "sortieren": "sort",
-    "speichern": "save", "öffnen": "open", "schließen": "close", "aktuelle": "current", "aktuellen": "current",
-    "auswählen": "select", "markieren": "select", "hinzufügen": "add", "einfügen": "insert",
-    "ersetzen": "replace", "schleife": "loop", "bedingung": "condition", "verbindung": "connection",
-    "abfrage": "query", "zeichenkette": "string", "datum": "date", "zahl": "number", "wert": "value",
-    "werte": "values", "objekt": "object", "referenz": "reference", "ereignis": "event",
-    "ereignisse": "events", "drucken": "print", "bericht": "report", "sitzung": "session",
+# A word matches a stem when it starts with it and adds at most 4 letters
+# ("sortiere", "sortieren", "sortiert" → sort).
+GERMAN_STEMS = sorted({
+    "lösch": "delete remove", "entfern": "remove", "zeile": "line", "liste": "list",
+    "such": "search", "fenster": "window", "feld": "field", "klasse": "class", "methode": "method",
+    "tabelle": "table", "datei": "file", "fehlerbehandlung": "error handling", "fehler": "error",
+    "anzeig": "display", "sortier": "sort", "speicher": "save", "öffne": "open", "schließ": "close",
+    "aktuell": "current", "auswähl": "select", "markier": "select", "hinzufüg": "add",
+    "einfüg": "insert", "ersetz": "replace", "schleife": "loop", "bedingung": "condition",
+    "verbindung": "connection", "abfrage": "query", "zeichenkette": "string", "datum": "date",
+    "zahl": "number", "wert": "value", "objekt": "object", "referenz": "reference",
+    "ereignis": "event", "druck": "print", "bericht": "report", "sitzung": "session",
     "anweisung": "statement", "rückgabewert": "return value", "beispiel": "example",
-    "unterschied": "difference", "variable": "variable", "variablen": "variables", "spalte": "column",
-    "spalten": "columns", "zeichen": "character", "text": "text", "aufrufen": "call", "senden": "send",
-    "alle": "all", "zeit": "time", "tage": "days", "tag": "day", "leer": "empty", "gleich": "equal",
-    "rekursion": "recursion", "konvertieren": "convert", "umwandeln": "convert", "lesen": "read",
-    "schreiben": "write", "erstellen": "create", "neu": "new", "berechnen": "calculate",
-}
+    "unterschied": "difference", "variable": "variable", "spalte": "column", "zeichen": "character",
+    "aufruf": "call", "zeit": "time", "tage": "day", "leer": "empty", "gleich": "equal",
+    "rekursion": "recursion", "konvertier": "convert", "umwandl": "convert", "umwandel": "convert",
+    "lese": "read", "schreib": "write", "erstell": "create", "berechn": "calculate",
+}.items(), key=lambda kv: -len(kv[0]))
+
+
+def german_terms(word: str) -> list[str] | None:
+    for stem, english in GERMAN_STEMS:
+        if word.startswith(stem) and len(word) - len(stem) <= 4:
+            return english.split()
+    return None
+
 
 SEARCH_SYNTAX = re.compile(r'"|\bOR\b|(^|\s)-\w')
 
@@ -187,8 +196,9 @@ def analyse_query(query: str) -> dict:
     terms: list[str] = []
     for tok in raw_tokens:
         low = tok.lower()
-        if low in GERMAN_TERMS:
-            terms.extend(GERMAN_TERMS[low].split())
+        mapped = german_terms(low)
+        if mapped:
+            terms.extend(mapped)
             continue
         for part in re.split(r"[.]", re.sub(r"[#$()]", "", low)):
             if len(part) > 1 and part not in STOPWORDS and re.fullmatch(r"[a-z0-9_]+", part):
@@ -222,6 +232,7 @@ class SearchRequest(BaseModel):
     format: str = "text"                       # text (compact, for agents) | json
     w_dense: float | None = None
     w_fts: float | None = None
+    rrf_k: int | None = Field(None, ge=1, le=200)
     # v1 compatibility: `corpus` was a single corpus name; k_* are ignored now.
     corpus: str | None = None
 
@@ -274,6 +285,9 @@ def make_snippet(content: str, highlighted: str | None) -> str:
                  if l.strip() and not l.startswith("#")
                  and not re.match(r"^(Command group|Function group):", l)]
         text = " ".join(lines)
+    # Plain text: no heading marks, bold or emphasis underscores (identifiers like k_list stay).
+    text = re.sub(r"#{2,}\s*", "", text)
+    text = re.sub(r"\*\*|(?<!\w)_|_(?!\w)", "", text)
     text = re.sub(r"\s+", " ", text).strip()
     if len(text) > SNIPPET_CHARS:
         text = text[:SNIPPET_CHARS].rsplit(" ", 1)[0] + " …"
@@ -379,7 +393,7 @@ def search(req: SearchRequest):
     with db_cursor() as cur:
         cur.execute(
             """SELECT * FROM rag.search_ranked(%s::vector(1024), %s::text[], %s::text, %s::text[], %s::text[],
-                                              %s, 60, %s, %s, 60)""",
+                                              %s, 60, %s, %s, %s)""",
             (vec,
              qa["terms"] if use_fts else None,
              qa["websearch"] if use_fts else None,
@@ -387,7 +401,8 @@ def search(req: SearchRequest):
              corpora,
              req.top_k,
              req.w_dense if req.w_dense is not None else W_DENSE,
-             req.w_fts if req.w_fts is not None else W_FTS))
+             req.w_fts if req.w_fts is not None else W_FTS,
+             req.rrf_k or RRF_K))
         rows = cur.fetchall()
     search_ms = (time.time() - t1) * 1000
 

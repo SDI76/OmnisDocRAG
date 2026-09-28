@@ -200,9 +200,32 @@ Acceptance: exact-name queries (Q03 and similar) at rank 1 in `fulltext` and `hy
 
 ## 6. Results log
 
-| Date | Change | Hit@5 | MRR@5 | Avg KB (HTTP) |
-|---|---|---|---|---|
-| 2026-09-28 | Baseline | 14/18 | 0.62 | 52.1 |
+| Date | Change | Queries | Mode | Hit@5 | MRR@5 | Answer size |
+|---|---|---|---|---|---|---|
+| 2026-09-28 | Baseline (v1) | 18 | mixed per corpus | 14/18 | 0.62 | 52 KB HTTP, ~105 KB MCP |
+| 2026-09-28 | Rework, first run (`w_fts` 0.5) | 40 | hybrid | 37/40 | 0.86 | 1.9 KB |
+| 2026-09-28 | + German word stems, sweep → `w_fts` 0.3, `rrf_k` 60 | 40 | hybrid | **39/40** | **0.92** | 1.9 KB |
+| 2026-09-28 | same | 40 | semantic | 37/40 | 0.86 | 1.9 KB |
+| 2026-09-28 | same | 40 | fulltext | 34/40 | 0.71 | 1.9 KB |
+| 2026-09-28 | same, original 18 queries only | 18 | hybrid | 17/18 | 0.82 | 1.9 KB |
+
+Notes on the measurement:
+
+- The query set grew from 18 to 40 (notation, exact names, German, 11.1 additions, overview). For five of
+  the original queries the expected-hit pattern was widened to accept an id (e.g. `not_list_properties`),
+  because notation answers are member groups whose title does not name the member.
+- Parameter sweep (hybrid, 40 queries): `rrf_k` ∈ {10, 20, 40, 60} × `w_fts` ∈ {0.3, 0.5, 0.7, 1.0} —
+  every combination 39/40; MRR 0.87–0.92, `w_fts` 0.3 best for every `rrf_k`. `rrf_k` stays at the
+  standard 60 (0.919 vs. best 0.921) to avoid tuning to 40 questions.
+- Remaining miss Q18 ("set the current line of a list"): the answer (`$line`) is one line inside the
+  "List properties" member chunk and is outranked by the list commands. Smaller notation member groups
+  would fix this but need a full re-embedding — candidate for the next round.
+- Latency (warm, CPU container): hybrid ~240 ms, semantic ~180 ms, fulltext ~80 ms.
+- Answer size over MCP: 1.5–3.5 KB per search (v1: ~105 KB); `get_omnis_doc` returns the full text of
+  the chosen ids.
+
+Sizes after the rework: 5,918 chunks (5.3 MB text), `output/embeddings.jsonl` 33 MB (base64 float32,
+versioned), database 123 MB (chunks 27 MB, embeddings incl. HNSW index 82 MB).
 
 ---
 

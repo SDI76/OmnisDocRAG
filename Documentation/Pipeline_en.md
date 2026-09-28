@@ -199,7 +199,7 @@ Both SQL files are idempotent; `30-rag-schema.sql` migrates a v1 database. See
 | `POST /chunks` | `{ids: [...], format}` — full text of results |
 | `POST /embed` | `{texts: [...]}` — embeddings with the server's model |
 
-Tuning via environment: `RAG_W_DENSE` (1.0), `RAG_W_FTS` (0.5), `RAG_SNIPPET_CHARS` (240).
+Tuning via environment: `RAG_W_DENSE` (1.0), `RAG_W_FTS` (0.3), `RAG_RRF_K` (60), `RAG_SNIPPET_CHARS` (240). `/search` accepts `w_dense`, `w_fts` and `rrf_k` per request for parameter sweeps.
 
 ### MCP tools (identical in the Docker server and the stdio bridge)
 

@@ -51,7 +51,7 @@ MRR@5 rose from 0.62 to 0.79 with the dense leg alone (see
 A naive full-text leg over the raw content (OR of all words, equal weight) made results worse in the
 analysis (MRR 0.50), because long chunks with frequent words such as "list" dominate. The v2 full-text
 leg therefore uses field weights (title A, heading path B, content C/D), stop-word removal,
-length normalisation, and a lower fusion weight than the dense leg (`RAG_W_FTS`, default 0.5).
+length normalisation, and a lower fusion weight than the dense leg (`RAG_W_FTS`, default 0.3, chosen by a parameter sweep with `scripts/eval_retrieval.py`).
 Exact names are handled by the separate boost, not by the full-text rank.
 
 ---
@@ -124,8 +124,8 @@ embedding step. A JSON list of numbers would be twice the size (the v1 file was 
 | `top_k` | tool / `/search` | 8 (max 30) |
 | `corpus` / `corpora` | tool / `/search` | all |
 | candidates per leg | `rag.search_ranked` | 60 |
-| RRF constant | `rag.search_ranked` | 60 |
-| dense / full-text weight | `RAG_W_DENSE` / `RAG_W_FTS` | 1.0 / 0.5 |
+| RRF constant | `RAG_RRF_K` | 60 |
+| dense / full-text weight | `RAG_W_DENSE` / `RAG_W_FTS` | 1.0 / 0.3 |
 | exact-name boost | `rag.search_ranked` | 0.02 × words in the name |
 | snippet length | `RAG_SNIPPET_CHARS` | 240 |
 
